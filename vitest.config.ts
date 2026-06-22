@@ -9,6 +9,12 @@ export default defineConfig({
       // Mirror the tsconfig "@/*" -> project root mapping so tests can import
       // app code the same way the app does.
       '@': fileURLToPath(new URL('.', import.meta.url)),
+      // next-intl's client navigation imports the bare specifier "next/navigation",
+      // which Vite's ESM resolver cannot map without Next's own bundler. Point it
+      // at the real CJS client module so Link/useRouter resolve under jsdom.
+      'next/navigation': fileURLToPath(
+        new URL('./node_modules/next/navigation.js', import.meta.url),
+      ),
     },
   },
   test: {
@@ -18,5 +24,13 @@ export default defineConfig({
     // Only run unit tests here. Playwright owns the e2e directory.
     include: ['**/__tests__/**/*.{test,spec}.{ts,tsx}'],
     exclude: ['node_modules', '.next', 'e2e'],
+    server: {
+      deps: {
+        // Inline next-intl so the "next/navigation" alias above is applied to
+        // its client navigation code (deps in node_modules are externalized by
+        // default and would otherwise bypass the alias).
+        inline: ['next-intl'],
+      },
+    },
   },
 })

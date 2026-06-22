@@ -4,6 +4,7 @@ import { Fraunces, Mulish } from "next/font/google";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages, setRequestLocale } from "next-intl/server";
 import { routing } from "@/i18n/routing";
+import { Header } from "@/components/layout/Header";
 import "../globals.css";
 
 // Headings: Fraunces, an old-style serif with optical sizing (opsz 9..144).
@@ -58,6 +59,7 @@ export default async function LocaleLayout({
     >
       <body className="min-h-full flex flex-col">
         <NextIntlClientProvider messages={messages}>
+          <Header />
           {children}
         </NextIntlClientProvider>
       </body>
