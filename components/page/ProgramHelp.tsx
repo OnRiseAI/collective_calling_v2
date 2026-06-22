@@ -20,16 +20,31 @@ import type { ProgramHelpItem } from '@/lib/content/pages/types'
  *
  * Props:
  * - eyebrow: the small uppercase label above the heading (for example "How we help").
- * - heading: the section heading, rendered as an h2.
+ * - heading: the section heading, rendered as an h2. It also names the section
+ *            landmark, so the section is never mislabeled for a different programme.
  * - items:   the ways the work helps, each a `{ title, body }` rendered as an h3 card.
  * - tone:    the Section band background (defaults to paper).
+ * - accent:  the colour of the thin decorative top rule on each card, flagging
+ *            the programme (brand indigo for Spain, clay terracotta for Tanzania,
+ *            gold for general). Defaults to brand indigo so Spain is unchanged.
  */
+
+type ProgramHelpAccent = 'brand' | 'clay' | 'accent'
 
 type ProgramHelpProps = {
   eyebrow: string
   heading: string
   items: ProgramHelpItem[]
   tone?: SectionTone
+  accent?: ProgramHelpAccent
+}
+
+// The thin top rule that flags each card as part of one connected programme.
+// Defaulting to brand indigo keeps Spain's existing look unchanged.
+const accentRule: Record<ProgramHelpAccent, string> = {
+  brand: 'bg-brand',
+  clay: 'bg-clay',
+  accent: 'bg-accent',
 }
 
 function cx(...parts: Array<string | undefined | false>): string {
@@ -54,9 +69,12 @@ export function ProgramHelp({
   heading,
   items,
   tone = 'paper',
+  accent = 'brand',
 }: ProgramHelpProps) {
   return (
-    <Section tone={tone} aria-label="How we help">
+    // The h2 heading names this landmark, so the section is labelled by its own
+    // heading rather than a hardcoded label that could mislabel another programme.
+    <Section tone={tone} aria-label={heading}>
       <div className="max-w-2xl">
         <p className="font-body text-lg font-bold uppercase tracking-[0.08em] text-accent">
           {eyebrow}
@@ -77,8 +95,9 @@ export function ProgramHelp({
               'hover:shadow-[0_12px_32px_rgba(31,27,22,0.12)]',
             )}
           >
-            {/* Thin indigo rule flags each way as part of one connected programme. */}
-            <span aria-hidden className="h-1 w-full shrink-0 bg-brand" />
+            {/* Thin rule flags each way as part of one connected programme.
+                Its colour comes from the accent prop (indigo, clay, or gold). */}
+            <span aria-hidden className={cx('h-1 w-full shrink-0', accentRule[accent])} />
 
             <div className="flex flex-1 flex-col gap-3 p-7 lg:p-8">
               <h3 className="font-heading text-[1.75rem] leading-[1.2] font-semibold text-balance text-ink">
