@@ -18,15 +18,18 @@ export default defineConfig({
   // the cold first-hit `load` stall is absorbed here rather than failing the
   // first timed navigation. See e2e/global-setup.ts.
   globalSetup: './e2e/global-setup.ts',
-  // Cap parallelism at two workers. The single-process `next start` production
-  // server stalls a keep-alive socket when four separate browser instances hit
-  // it at once on this platform: the HTML and DOM render fully (the page
-  // snapshot is complete) but the document `load` event never fires, so every
-  // navigation times out. Two workers stay below that threshold and the whole
-  // suite passes fast and reliably. This is a server-concurrency stability cap
-  // only; it changes no test logic or assertions. (Companion to the webServer
-  // `build && start` stability choice below.)
-  workers: 2,
+  // Run specs serially (one worker). The single-process `next start` production
+  // server stalls a keep-alive socket when multiple browser instances hit it at
+  // once on this platform: the HTML and DOM render fully (the page snapshot is
+  // complete) but the document `load` event never fires, so navigations time
+  // out. Two workers was enough while the homepage used only local images;
+  // once the homepage hero and cards load remote Sanity CDN images through the
+  // next/image optimizer, the per-navigation `load` event got heavier and two
+  // workers began to tip over the same socket stall intermittently. One worker
+  // stays clear of the contention and the whole suite passes reliably. This is
+  // a server-concurrency stability cap only; it changes no test logic or
+  // assertions. (Companion to the webServer `build && start` stability choice.)
+  workers: 1,
   use: {
     baseURL: 'http://localhost:3000',
     navigationTimeout: 45_000,

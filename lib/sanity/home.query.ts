@@ -7,6 +7,7 @@ import type {
   ImpactStat,
   Testimonial,
 } from '@/lib/content/types'
+import { defineQuery } from 'next-sanity'
 import { SEED_HOME } from '@/lib/content/seed'
 import { urlForImage } from '@/sanity/image'
 
@@ -14,8 +15,9 @@ import { urlForImage } from '@/sanity/image'
  * GROQ query for the `homePage` singleton. Selects every field consumed by
  * HomeContent. Image fields are projected as raw objects (the whole image
  * value) so mapSanityHome can resolve them to URL strings via urlForImage.
+ * Wrapped in defineQuery so Sanity TypeGen can generate its result type.
  */
-export const HOME_QUERY = `*[_type == "homePage"][0]{
+export const HOME_QUERY = defineQuery(`*[_type == "homePage"][0]{
   hero{ eyebrow, headline, lede, image, alt },
   impactStats[]{ icon, value, label },
   appeals[]{ slug, title, blurb, image, alt, href, theme },
@@ -29,7 +31,7 @@ export const HOME_QUERY = `*[_type == "homePage"][0]{
     onceTiers[]{ amount, interval, impact }
   },
   trust{ registration, statement, partners }
-}`
+}`)
 
 // Treat unknown input as an indexable record without throwing.
 function asRecord(value: unknown): Record<string, unknown> {
