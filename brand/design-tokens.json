@@ -1,0 +1,17 @@
+{
+  "color": {
+    "brand": "#1B3A6B",
+    "brandDark": "#0F2347",
+    "accent": "#C8922A",
+    "ink": "#1F1B16",
+    "paper": "#FBF7F0",
+    "muted": "#6E6258"
+  },
+  "font": {
+    "heading": "Fraunces",
+    "body": "Mulish"
+  },
+  "radius": {
+    "base": "0.5rem"
+  }
+}
