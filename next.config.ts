@@ -11,6 +11,17 @@ const nextConfig: NextConfig = {
   turbopack: {
     root: projectRoot,
   },
+  images: {
+    // Sanity image assets are served from the Sanity CDN. next/image rejects
+    // remote hosts that are not allowlisted, so permit the Sanity CDN here.
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "cdn.sanity.io",
+        pathname: "/images/**",
+      },
+    ],
+  },
 };
 
 const withNextIntl = createNextIntlPlugin("./i18n/request.ts");
