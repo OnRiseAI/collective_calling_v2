@@ -10,6 +10,12 @@ import * as React from 'react'
  *
  * When an `href` is provided the component renders an anchor (for CTAs) while keeping
  * link semantics. Otherwise it renders a native button.
+ *
+ * For internal app routes the caller can pass a polymorphic `as` prop (for
+ * example the locale-aware `Link` from "@/i18n/navigation") so the rendered
+ * element stays locale-aware. When `as` is omitted but `href` is present the
+ * component renders a plain anchor, which is the right choice for external links
+ * (Donorbox, socials) that must never be locale-prefixed.
  */
 
 export type ButtonVariant = 'primary' | 'secondary' | 'ghost'
@@ -25,11 +31,17 @@ type CommonProps = {
 type ButtonAsButton = CommonProps &
   Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, keyof CommonProps> & {
     href?: undefined
+    as?: undefined
   }
 
 type ButtonAsLink = CommonProps &
   Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, keyof CommonProps> & {
     href: string
+    // Optional element/component used to render when `href` is present. Defaults
+    // to a plain 'a'. Pass a locale-aware Link for internal routes. The extra
+    // props it receives are typed loosely because the renderer can be any
+    // anchor-compatible component.
+    as?: React.ElementType
   }
 
 export type ButtonProps = ButtonAsButton | ButtonAsLink
@@ -79,11 +91,14 @@ export function Button(props: ButtonProps) {
   )
 
   if ('href' in props && props.href !== undefined) {
-    const anchorRest = rest as React.AnchorHTMLAttributes<HTMLAnchorElement>
+    // `as` lets the caller render an internal link via a locale-aware component
+    // (Link). Default to a plain anchor so external links stay non-prefixed.
+    const { as: Component = 'a', ...anchorRest } =
+      rest as { as?: React.ElementType } & React.AnchorHTMLAttributes<HTMLAnchorElement>
     return (
-      <a className={classes} {...anchorRest}>
+      <Component className={classes} {...anchorRest}>
         {children}
-      </a>
+      </Component>
     )
   }
 

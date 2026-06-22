@@ -33,13 +33,41 @@ export function MobileNav({ sections }: { sections: NavSection[] }) {
     toggleRef.current?.focus()
   }, [])
 
-  // Escape closes from anywhere while open.
+  // Escape closes from anywhere while open. Tab and Shift+Tab are trapped inside
+  // the panel so keyboard focus cannot escape to the header controls behind the
+  // backdrop while the dialog is modal (aria-modal="true").
   React.useEffect(() => {
     if (!open) return
     function onKey(e: KeyboardEvent) {
       if (e.key === 'Escape') {
         e.preventDefault()
         close()
+        return
+      }
+      if (e.key !== 'Tab') return
+      const panel = panelRef.current
+      if (!panel) return
+      const focusable = Array.from(
+        panel.querySelectorAll<HTMLElement>(
+          'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])',
+        ),
+      ).filter((el) => el.tabIndex !== -1)
+      if (focusable.length === 0) return
+      const first = focusable[0]
+      const last = focusable[focusable.length - 1]
+      const active = document.activeElement as HTMLElement | null
+      // Wrap forward from last to first, and backward from first to last. Also
+      // pull focus back into the panel if it has somehow landed outside.
+      if (e.shiftKey) {
+        if (active === first || !panel.contains(active)) {
+          e.preventDefault()
+          last.focus()
+        }
+      } else {
+        if (active === last || !panel.contains(active)) {
+          e.preventDefault()
+          first.focus()
+        }
       }
     }
     document.addEventListener('keydown', onKey)
@@ -168,7 +196,7 @@ export function MobileNav({ sections }: { sections: NavSection[] }) {
             </nav>
 
             <div className="border-t border-muted/20 p-5">
-              <Button href={DONATE_HREF} onClick={close} className="w-full bg-accent text-brand-dark hover:bg-accent/90">
+              <Button as={Link} href={DONATE_HREF} onClick={close} className="w-full bg-accent text-brand-dark hover:bg-accent/90">
                 Donate
               </Button>
             </div>

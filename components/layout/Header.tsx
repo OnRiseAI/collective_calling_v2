@@ -58,6 +58,7 @@ export function Header() {
 
           {/* Donate: the one place gold leads. Gold on the navy field. */}
           <Button
+            as={Link}
             href={DONATE_HREF}
             className="hidden bg-accent text-brand-dark hover:bg-accent/90 sm:inline-flex"
           >
