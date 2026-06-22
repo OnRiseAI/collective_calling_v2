@@ -118,20 +118,24 @@ export function Testimonials(props: { testimonials: Testimonial[] }): React.JSX.
               <ChevronLeft />
             </button>
 
-            <ul className="flex items-center gap-2.5" aria-hidden="true">
-              {testimonials.map((_, dotIndex) => (
-                <li key={dotIndex}>
-                  <button
-                    type="button"
-                    tabIndex={-1}
-                    onClick={() => goTo(dotIndex)}
-                    className={
-                      'block h-2.5 w-2.5 rounded-full transition-colors duration-200 ease-out ' +
-                      (dotIndex === index ? 'bg-accent' : 'bg-brand/20 hover:bg-brand/40')
-                    }
-                  />
-                </li>
-              ))}
+            <ul className="flex items-center gap-2.5">
+              {testimonials.map((_, dotIndex) => {
+                const isActive = dotIndex === index
+                return (
+                  <li key={dotIndex}>
+                    <button
+                      type="button"
+                      onClick={() => goTo(dotIndex)}
+                      aria-label={`Show testimonial ${dotIndex + 1}`}
+                      aria-current={isActive ? 'true' : undefined}
+                      className={
+                        'block h-2.5 w-2.5 rounded-full transition-colors duration-200 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-clay-tint ' +
+                        (isActive ? 'bg-accent' : 'bg-brand/20 hover:bg-brand/40')
+                      }
+                    />
+                  </li>
+                )
+              })}
             </ul>
 
             <button

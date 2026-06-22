@@ -106,3 +106,36 @@ test('exposes a polite live region around the active quote', () => {
   expect(live).not.toBeNull()
   expect(live).toHaveTextContent(/love my neighbour/i)
 })
+
+test('exposes accessible position dots that are focusable buttons', () => {
+  const { container } = render(<Testimonials testimonials={sampleTestimonials} />)
+
+  // The dot list must not be hidden from assistive tech while containing
+  // focusable controls (the original WCAG 2.1 A violation).
+  const dotLists = Array.from(container.querySelectorAll('ul'))
+  for (const list of dotLists) {
+    expect(list.getAttribute('aria-hidden')).toBeNull()
+  }
+
+  // A dot is a real, labelled button reachable by keyboard (no negative tabindex).
+  const firstDot = screen.getByRole('button', { name: /show testimonial 1/i })
+  expect(firstDot).toBeInTheDocument()
+  expect(firstDot).not.toHaveAttribute('tabindex', '-1')
+  // The active dot is marked current for assistive tech.
+  expect(firstDot).toHaveAttribute('aria-current', 'true')
+})
+
+test('activating a non-active dot changes the visible quote', () => {
+  const { container } = render(<Testimonials testimonials={sampleTestimonials} />)
+
+  expect(currentQuote(container)).toHaveTextContent(/love my neighbour/i)
+
+  // Jump straight to the third testimonial via its dot control.
+  fireEvent.click(screen.getByRole('button', { name: /show testimonial 3/i }))
+
+  expect(currentQuote(container)).toHaveTextContent(/back to a loving home/i)
+  // The newly active dot now carries aria-current.
+  expect(
+    screen.getByRole('button', { name: /show testimonial 3/i }),
+  ).toHaveAttribute('aria-current', 'true')
+})
