@@ -60,7 +60,10 @@ export function Header() {
           <Button
             as={Link}
             href={DONATE_HREF}
-            className="hidden bg-accent text-brand-dark hover:bg-accent/90 sm:inline-flex"
+            // Donate is the one place gold leads (brand board section 6). The
+            // important modifiers ensure the gold fill wins over the primary
+            // variant's brand background regardless of generated CSS order.
+            className="hidden bg-accent! text-brand-dark! hover:bg-accent/90! sm:inline-flex"
           >
             Donate
           </Button>

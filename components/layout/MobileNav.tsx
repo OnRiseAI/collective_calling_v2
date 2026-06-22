@@ -196,7 +196,7 @@ export function MobileNav({ sections }: { sections: NavSection[] }) {
             </nav>
 
             <div className="border-t border-muted/20 p-5">
-              <Button as={Link} href={DONATE_HREF} onClick={close} className="w-full bg-accent text-brand-dark hover:bg-accent/90">
+              <Button as={Link} href={DONATE_HREF} onClick={close} className="w-full bg-accent! text-brand-dark! hover:bg-accent/90!">
                 Donate
               </Button>
             </div>
