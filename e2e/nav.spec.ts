@@ -39,7 +39,10 @@ test.describe('desktop mega-menu', () => {
   }) => {
     await page.goto('/')
 
-    const aboutTrigger = page.getByRole('link', { name: /^about us$/i })
+    // Scope to the primary navigation so the About Us trigger is not confused
+    // with the homepage Explore card's "About us" link lower on the page.
+    const primaryNav = page.getByRole('navigation', { name: /primary/i })
+    const aboutTrigger = primaryNav.getByRole('link', { name: /^about us$/i })
     await expect(aboutTrigger).toHaveAttribute('aria-expanded', 'false')
 
     // Hover opens the panel (Tearfund pattern).
