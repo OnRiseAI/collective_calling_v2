@@ -60,7 +60,7 @@ export type ContactContent = {
 
 export const contactContent: ContactContent = {
   hero: {
-    eyebrow: 'About us',
+    eyebrow: 'Get in touch',
     title: 'Contact Us',
     lede:
       'We would love to hear from you. Whether you have a question, want to partner with us, or would like to invite us to speak, we are only a message away.',
