@@ -6,7 +6,7 @@ import type { PageHero, RichBlock } from './types'
  * Collective Calling's child sponsorship offer in Tanzania. For 58 euros a
  * month a supporter walks alongside one child at the Centre of Hope in Kasulu,
  * giving food, shelter, education, and the chance of a future, within the
- * charity's rescue, restore, and reintegrate approach and its commitment to
+ * charity's rescue, rehabilitate, and reintegrate approach and its commitment to
  * reuniting children with their own families wherever it is safe and possible.
  *
  * Honesty rules (held strictly, real facts only):
@@ -81,8 +81,8 @@ export const sponsorChildContent: SponsorChildContent = {
       body: 'The Centre of Hope is a transitional rescue centre for street-connected children in Kasulu, established in 2018. It is a secure home where a child can rest, eat, heal, and begin again. To date we have rescued and are currently caring for 18 children there, each one welcomed as a precious gift and treated as an individual.',
     },
     {
-      heading: 'Rescue, restore, reintegrate',
-      body: 'Our approach is to rescue, restore, and reintegrate. A child is gently prepared for rescue as our team builds a relationship of trust, then cared for at the Centre while a social worker walks alongside their family. Most children in orphanages and on the streets still have a family to go home to, so wherever it is safe and possible, our goal is reunification: a child restored not only to health, but to their own home.',
+      heading: 'Rescue, rehabilitate, reintegrate',
+      body: 'Our approach is to rescue, rehabilitate, and reintegrate. A child is gently prepared for rescue as our team builds a relationship of trust, then cared for at the Centre while a social worker walks alongside their family. Most children in orphanages and on the streets still have a family to go home to, so wherever it is safe and possible, our goal is reunification: a child restored not only to health, but to their own home.',
     },
     {
       heading: 'What your 58 euros a month does',
