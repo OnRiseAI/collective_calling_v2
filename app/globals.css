@@ -1,26 +1,45 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/*
+ * Collective Calling design tokens.
+ *
+ * Tailwind v4 is CSS-first, so the brand theme lives in this @theme block rather
+ * than in a tailwind.config.ts. Values are mapped exactly from brand/design-tokens.json
+ * and the brand board (secondary colours documented there for later UI).
+ */
+@theme {
+  /* Core palette (brand/design-tokens.json). */
+  --color-brand: #1b3a6b; /* Dignified Indigo */
+  --color-brand-dark: #0f2347; /* Midnight Navy */
+  --color-accent: #c8922a; /* Antique Gold */
+  --color-ink: #1f1b16; /* Warm Ink */
+  --color-paper: #fbf7f0; /* Warm Ivory */
+  --color-muted: #6e6258; /* Warm Taupe */
+
+  /* Secondary palette (brand board, for later tasks). */
+  --color-clay: #b05a38; /* Terracotta Clay */
+  --color-clay-tint: #f3e7dc; /* Soft warm band */
+  --color-indigo-tint: #e7ecf4; /* Soft cool band */
+
+  /* Type families wired to the next/font CSS variables. */
+  --font-heading: var(--font-fraunces), Georgia, "Times New Roman", serif;
+  --font-body: var(--font-mulish), system-ui, -apple-system, sans-serif;
+
+  /* Base radius. */
+  --radius: 0.5rem;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
+/* Sensible page defaults: warm ivory paper, warm ink text, body font. */
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+}
+
+/* Headings default to the display serif. */
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-heading);
 }
