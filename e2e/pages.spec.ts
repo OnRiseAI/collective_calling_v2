@@ -26,7 +26,22 @@ const ROUTES = [
   '/contact',
   '/spain',
   '/tanzania',
+  // Plan 5 donate cluster. Ways to Give has no external embed, so it is fine
+  // under the default load wait alongside the rest of the cluster.
+  '/donate/ways-to-give',
 ]
+
+/**
+ * Plan 5 donate routes that embed a live Donorbox iframe (donorbox.org).
+ *
+ * The Donorbox iframe is a slow third-party resource, the same class of issue as
+ * the Sanity image load-event stall documented in playwright.config. Waiting for
+ * the default "load" event would block on that external frame and time out, so
+ * these routes are navigated with waitUntil: 'domcontentloaded'. We assert the
+ * page itself rendered (status < 400, one h1) and, on /donate, that the iframe
+ * element is attached to the DOM, without ever waiting for the iframe to load.
+ */
+const DONORBOX_ROUTES = ['/donate', '/get-involved/sponsor-a-child']
 
 for (const route of ROUTES) {
   test(`${route} resolves with one h1`, async ({ page }) => {
@@ -46,6 +61,60 @@ for (const route of ROUTES) {
     ).toHaveCount(1)
   })
 }
+
+for (const route of DONORBOX_ROUTES) {
+  test(`${route} resolves with one h1 (Donorbox embed, domcontentloaded)`, async ({
+    page,
+  }) => {
+    // domcontentloaded only: do not wait for the external Donorbox iframe to
+    // load, which would time out the navigation.
+    const response = await page.goto(route, { waitUntil: 'domcontentloaded' })
+
+    expect(response, `no response for ${route}`).not.toBeNull()
+    expect(
+      response!.status(),
+      `unexpected status for ${route}`,
+    ).toBeLessThan(400)
+
+    await expect(
+      page.getByRole('heading', { level: 1 }),
+      `${route} should render exactly one h1`,
+    ).toHaveCount(1)
+  })
+}
+
+test('/donate embeds the Donorbox giving-41 iframe element', async ({ page }) => {
+  // domcontentloaded so we never block on the external Donorbox frame. We only
+  // assert the iframe element is present in the DOM, not that its contents have
+  // loaded, so no iframe-load wait is involved.
+  await page.goto('/donate', { waitUntil: 'domcontentloaded' })
+
+  const donorbox = page.locator('iframe[src*="donorbox.org/embed/giving-41"]')
+  await expect(donorbox).toHaveCount(1)
+})
+
+test('homepage gold Donate CTA points at /donate and that route resolves', async ({
+  page,
+}) => {
+  await page.goto('/')
+
+  // The hero gold Donate button links to DONATE_HREF (/donate). The locale-aware
+  // Link strips the default-locale prefix, so the rendered href ends in /donate.
+  // Confirm at least one such link exists on the homepage (the previously-404
+  // Donate CTA target).
+  const donateLink = page.locator('a[href$="/donate"]')
+  await expect(
+    donateLink.first(),
+    'homepage should expose a Donate link to /donate',
+  ).toBeVisible()
+
+  // The destination now reaches a real page (not the old 404). domcontentloaded
+  // because /donate embeds the Donorbox iframe.
+  const response = await page.goto('/donate', { waitUntil: 'domcontentloaded' })
+  expect(response, 'no response for /donate').not.toBeNull()
+  expect(response!.status(), 'unexpected status for /donate').toBeLessThan(400)
+  await expect(page.getByRole('heading', { level: 1 })).toHaveCount(1)
+})
 
 test('homepage hero "See our appeals" link is present and reaches a real page', async ({
   page,
