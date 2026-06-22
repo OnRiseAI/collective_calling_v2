@@ -43,3 +43,18 @@ h3,
 h4 {
   font-family: var(--font-heading);
 }
+
+/*
+ * Testimonials carousel cross-fade. A quiet, brief fade used when the active
+ * supporter quote changes. Applied only under motion-safe (prefers-reduced-motion:
+ * no-preference) in the component, so readers who ask for reduced motion get an
+ * instant switch with no animation.
+ */
+@keyframes testimonial-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
