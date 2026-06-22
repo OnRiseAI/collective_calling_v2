@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { render, screen, within } from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
 import { expect, test } from 'vitest'
 import { NextIntlClientProvider } from 'next-intl'
 import { WhereMoneyGoes } from '@/components/home/WhereMoneyGoes'

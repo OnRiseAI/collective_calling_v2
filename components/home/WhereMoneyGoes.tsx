@@ -30,7 +30,7 @@ function noOrphan(text: string): string {
   const trimmed = text.trim()
   const lastSpace = trimmed.lastIndexOf(' ')
   if (lastSpace === -1) return trimmed
-  return trimmed.slice(0, lastSpace) + ' ' + trimmed.slice(lastSpace + 1)
+  return trimmed.slice(0, lastSpace) + ' ' + trimmed.slice(lastSpace + 1)
 }
 
 const HEADING = 'Where your money goes'
