@@ -6,6 +6,9 @@ import { getMessages, setRequestLocale } from "next-intl/server";
 import { routing } from "@/i18n/routing";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { SITE, isIndexable } from "@/lib/site";
+import { organizationJsonLd } from "@/lib/jsonld";
 import "../globals.css";
 
 // Headings: Fraunces, an old-style serif with optical sizing (opsz 9..144).
@@ -25,8 +28,30 @@ const mulish = Mulish({
 });
 
 export const metadata: Metadata = {
-  title: "Collective Calling",
-  description: "Collective Calling",
+  metadataBase: new URL(SITE.url),
+  title: {
+    default: SITE.name,
+    template: `%s | ${SITE.name}`,
+  },
+  description: SITE.description,
+  openGraph: {
+    type: "website",
+    siteName: SITE.name,
+    title: SITE.name,
+    description: SITE.description,
+    url: SITE.url,
+    images: [SITE.ogImage],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: SITE.name,
+    description: SITE.description,
+    images: [SITE.ogImage],
+  },
+  robots: {
+    index: isIndexable,
+    follow: isIndexable,
+  },
 };
 
 // Pre-render the locale segment for every supported locale.
@@ -60,6 +85,7 @@ export default async function LocaleLayout({
     >
       <body className="min-h-full flex flex-col">
         <NextIntlClientProvider messages={messages}>
+          <JsonLd data={organizationJsonLd()} />
           <Header />
           <main className="flex-1">{children}</main>
           <Footer />
