@@ -5,9 +5,12 @@ import { SEED_STORIES } from '@/lib/content/seed.collections'
 /**
  * GROQ query for the `story` document type.
  *
- * Image fields are projected as raw objects so the mapper can resolve them via
- * urlForImage. Wrapped in defineQuery so Sanity TypeGen can generate its result
- * type.
+ * Images are projected as asset references (`images[]{ asset }`). The mapper
+ * returns the raw `_ref` string for each image; if the Sanity document has no
+ * images, it falls back to the seed image paths. `urlForImage` expansion is
+ * deferred until the Sanity `story` schema exists (Task 3).
+ *
+ * Wrapped in defineQuery so Sanity TypeGen can generate its result type.
  *
  * No em dashes anywhere in this file.
  */
@@ -33,9 +36,10 @@ function arr(value: unknown): unknown[] {
   return Array.isArray(value) ? value : []
 }
 
-export function mapSanityStory(raw: unknown, index: number): Story {
+export function mapSanityStory(raw: unknown, _index: number): Story {
   const doc = asRecord(raw)
-  const seedStory = SEED_STORIES[index]
+  const slug = str(doc.slug) || str(asRecord(doc.slug).current)
+  const seed = SEED_STORIES.find((s) => s.slug === slug)
 
   const images: string[] = arr(doc.images)
     .map((img) => {
@@ -46,17 +50,17 @@ export function mapSanityStory(raw: unknown, index: number): Story {
     .filter(Boolean)
 
   const result: Story = {
-    slug: str(doc.slug) || str(asRecord(doc.slug).current),
-    title: str(doc.title, seedStory?.title ?? ''),
+    slug,
+    title: str(doc.title, seed?.title ?? ''),
     location: (str(doc.location, 'general') as Story['location']) || 'general',
-    excerpt: str(doc.excerpt, seedStory?.excerpt ?? ''),
-    body: str(doc.body, seedStory?.body ?? ''),
+    excerpt: str(doc.excerpt, seed?.excerpt ?? ''),
+    body: str(doc.body, seed?.body ?? ''),
   }
 
   if (images.length > 0) {
     result.images = images
-  } else if (seedStory?.images) {
-    result.images = seedStory.images
+  } else if (seed?.images) {
+    result.images = seed.images
   }
 
   if (typeof doc.placeholder === 'boolean') {

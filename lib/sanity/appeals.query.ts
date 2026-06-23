@@ -40,12 +40,11 @@ function resolveImage(source: unknown, fallback: string | undefined): string | u
   return urlForImage(source as never) ?? fallback
 }
 
-export function mapSanityAppeal(raw: unknown, index: number): AppealEntry {
+export function mapSanityAppeal(raw: unknown, _index: number): AppealEntry {
   const doc = asRecord(raw)
-  const seedAppeal = SEED_APPEALS[index]
-
   const slugValue = asRecord(doc.slug)
   const slug = str(doc.slug) || str(slugValue.current)
+  const seed = SEED_APPEALS.find((a) => a.slug === slug)
 
   const donorboxRaw = doc.donorboxQuery
   let donorboxQuery: AppealEntry['donorboxQuery'] | undefined
@@ -63,20 +62,20 @@ export function mapSanityAppeal(raw: unknown, index: number): AppealEntry {
 
   const result: AppealEntry = {
     slug,
-    title: str(doc.title, seedAppeal?.title ?? ''),
+    title: str(doc.title, seed?.title ?? ''),
     theme: (str(doc.theme, 'general') as AppealTheme) || 'general',
-    blurb: str(doc.blurb, seedAppeal?.blurb ?? ''),
-    body: str(doc.body, seedAppeal?.body ?? ''),
-    relatedHref: str(doc.relatedHref, seedAppeal?.relatedHref ?? ''),
-    donationDesignation: str(doc.donationDesignation, seedAppeal?.donationDesignation ?? ''),
+    blurb: str(doc.blurb, seed?.blurb ?? ''),
+    body: str(doc.body, seed?.body ?? ''),
+    relatedHref: str(doc.relatedHref, seed?.relatedHref ?? ''),
+    donationDesignation: str(doc.donationDesignation, seed?.donationDesignation ?? ''),
   }
 
-  const resolvedImage = resolveImage(doc.image, seedAppeal?.image)
+  const resolvedImage = resolveImage(doc.image, seed?.image)
   if (resolvedImage !== undefined) {
     result.image = resolvedImage
   }
 
-  const alt = str(doc.alt, seedAppeal?.alt ?? '')
+  const alt = str(doc.alt, seed?.alt ?? '')
   if (alt) {
     result.alt = alt
   }

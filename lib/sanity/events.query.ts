@@ -36,25 +36,24 @@ function resolveImage(source: unknown, fallback: string | undefined): string | u
   return urlForImage(source as never) ?? fallback
 }
 
-export function mapSanityEvent(raw: unknown, index: number): EventItem {
+export function mapSanityEvent(raw: unknown, _index: number): EventItem {
   const doc = asRecord(raw)
-  const seedEvent = SEED_EVENTS[index]
-
   const slugValue = asRecord(doc.slug)
   const slug = str(doc.slug) || str(slugValue.current)
+  const seed = SEED_EVENTS.find((e) => e.slug === slug)
 
   const result: EventItem = {
     slug,
-    title: str(doc.title, seedEvent?.title ?? ''),
-    summary: str(doc.summary, seedEvent?.summary ?? ''),
+    title: str(doc.title, seed?.title ?? ''),
+    summary: str(doc.summary, seed?.summary ?? ''),
   }
 
-  const resolvedImage = resolveImage(doc.image, seedEvent?.image)
+  const resolvedImage = resolveImage(doc.image, seed?.image)
   if (resolvedImage !== undefined) {
     result.image = resolvedImage
   }
 
-  const alt = str(doc.alt, seedEvent?.alt ?? '')
+  const alt = str(doc.alt, seed?.alt ?? '')
   if (alt) {
     result.alt = alt
   }
