@@ -10,6 +10,8 @@ import { PlaceholderBadge } from '@/components/collections/PlaceholderBadge'
 import { getAppeals, getAppeal } from '@/lib/content/appeals'
 import { routing } from '@/i18n/routing'
 import { toParagraphs } from '@/lib/text'
+import { SITE } from '@/lib/site'
+import { pageMetadata } from '@/lib/seo'
 
 /**
  * Appeal detail page (/appeals/[slug]).
@@ -24,6 +26,23 @@ import { toParagraphs } from '@/lib/text'
  * time. dynamicParams is left at its default (true) so Sanity-added slugs
  * still render on demand.
  */
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string; slug: string }>
+}) {
+  const { locale, slug } = await params
+  const appeal = await getAppeal(slug)
+  if (!appeal) return { title: SITE.name }
+  return pageMetadata({
+    locale,
+    path: `/appeals/${slug}`,
+    title: appeal.title,
+    description: appeal.blurb,
+    image: appeal.image,
+  })
+}
 
 export async function generateStaticParams() {
   const appeals = await getAppeals()

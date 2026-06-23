@@ -34,3 +34,30 @@ export function organizationJsonLd(): object {
     },
   }
 }
+
+/**
+ * Returns an Article JSON-LD object for an editorial story page.
+ * Uses only facts supplied by the caller - no fabricated data.
+ * No em dashes anywhere in this function.
+ */
+export function articleJsonLd(opts: {
+  title: string
+  description: string
+  url: string
+  image?: string
+}): object {
+  const base: Record<string, unknown> = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: opts.title,
+    description: opts.description,
+    mainEntityOfPage: opts.url,
+    publisher: {
+      '@type': 'Organization',
+      name: SITE.name,
+      url: SITE.url,
+    },
+  }
+  if (opts.image) base.image = opts.image
+  return base
+}
