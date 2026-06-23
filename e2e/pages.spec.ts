@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test'
+import { NAV_SECTIONS, DONATE_HREF } from '../lib/nav'
 
 /**
  * Cross-page end-to-end coverage for the About cluster and the programme pages.
@@ -29,6 +30,17 @@ const ROUTES = [
   // Plan 5 donate cluster. Ways to Give has no external embed, so it is fine
   // under the default load wait alongside the rest of the cluster.
   '/donate/ways-to-give',
+  // Plan 6 new routes: stories, appeals, events, get-involved cluster.
+  '/stories',
+  '/stories/caleb',
+  '/appeals',
+  '/appeals/spain-homelessness',
+  '/events',
+  '/get-involved',
+  '/get-involved/fundraise',
+  '/get-involved/pray',
+  '/get-involved/partner',
+  '/get-involved/invite-us-to-speak',
 ]
 
 /**
@@ -40,8 +52,16 @@ const ROUTES = [
  * these routes are navigated with waitUntil: 'domcontentloaded'. We assert the
  * page itself rendered (status < 400, one h1) and, on /donate, that the iframe
  * element is attached to the DOM, without ever waiting for the iframe to load.
+ *
+ * Plan 6 adds /appeals/sponsor-a-child: the appeal detail page for child
+ * sponsorship embeds the Donorbox giving-41 form (same form, sponsor-a-child
+ * designation preset) so it belongs here alongside /get-involved/sponsor-a-child.
  */
-const DONORBOX_ROUTES = ['/donate', '/get-involved/sponsor-a-child']
+const DONORBOX_ROUTES = [
+  '/donate',
+  '/get-involved/sponsor-a-child',
+  '/appeals/sponsor-a-child',
+]
 
 for (const route of ROUTES) {
   test(`${route} resolves with one h1`, async ({ page }) => {
@@ -88,6 +108,18 @@ test('/donate embeds the Donorbox giving-41 iframe element', async ({ page }) =>
   // assert the iframe element is present in the DOM, not that its contents have
   // loaded, so no iframe-load wait is involved.
   await page.goto('/donate', { waitUntil: 'domcontentloaded' })
+
+  const donorbox = page.locator('iframe[src*="donorbox.org/embed/giving-41"]')
+  await expect(donorbox).toHaveCount(1)
+})
+
+test('/appeals/sponsor-a-child embeds the Donorbox giving-41 iframe element', async ({
+  page,
+}) => {
+  // domcontentloaded only: do not wait for the external Donorbox iframe to
+  // load, which would time out the navigation. We only assert the iframe
+  // element is attached to the DOM.
+  await page.goto('/appeals/sponsor-a-child', { waitUntil: 'domcontentloaded' })
 
   const donorbox = page.locator('iframe[src*="donorbox.org/embed/giving-41"]')
   await expect(donorbox).toHaveCount(1)
@@ -156,3 +188,54 @@ test('homepage appeal cards reach /spain and /tanzania without 404', async ({
     await expect(page.getByRole('heading', { level: 1 })).toHaveCount(1)
   }
 })
+
+/**
+ * Nav-resolution check (Plan 6).
+ *
+ * Every internal href in NAV_SECTIONS and DONATE_HREF must resolve to a real
+ * page (HTTP < 400). The previously-404 targets -- /appeals, /stories,
+ * /get-involved, /events, /get-involved/fundraise,
+ * /get-involved/invite-us-to-speak, /get-involved/pray, /get-involved/partner
+ * -- are now built pages and must no longer 404.
+ *
+ * /get-involved/sponsor-a-child embeds the Donorbox iframe so we navigate it
+ * with domcontentloaded to avoid blocking on the external frame. All other
+ * internal links use the default load wait.
+ *
+ * External links (http/https), mailto, and tel hrefs are skipped -- they are
+ * not in-app routes and would require network or device access.
+ */
+const DONORBOX_NAV_HREFS = new Set(['/get-involved/sponsor-a-child'])
+
+// Collect every unique internal href from the nav (section tops + items) and
+// the persistent donate link.
+const ALL_NAV_HREFS: string[] = [
+  ...NAV_SECTIONS.flatMap((section) => [
+    section.href,
+    ...section.items.map((item) => item.href),
+  ]),
+  DONATE_HREF,
+].filter((href, index, arr) => {
+  // Deduplicate and keep only internal paths (no protocol, no mailto/tel).
+  return (
+    arr.indexOf(href) === index &&
+    href.startsWith('/') &&
+    !href.startsWith('//')
+  )
+})
+
+for (const href of ALL_NAV_HREFS) {
+  const isDonorbox = DONORBOX_NAV_HREFS.has(href)
+  test(`nav href ${href} resolves without 404`, async ({ page }) => {
+    const waitUntil = isDonorbox
+      ? ({ waitUntil: 'domcontentloaded' } as const)
+      : undefined
+    const response = await page.goto(href, waitUntil)
+
+    expect(response, `no response for nav href ${href}`).not.toBeNull()
+    expect(
+      response!.status(),
+      `nav href ${href} returned a 4xx/5xx`,
+    ).toBeLessThan(400)
+  })
+}
