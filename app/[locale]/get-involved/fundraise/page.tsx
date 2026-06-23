@@ -2,7 +2,6 @@ import { setRequestLocale } from 'next-intl/server'
 import { Link } from '@/i18n/navigation'
 import { PageHero } from '@/components/page/PageHero'
 import { Prose } from '@/components/page/Prose'
-import { ValueCards } from '@/components/page/ValueCards'
 import { Section } from '@/components/ui/Section'
 import { Button } from '@/components/ui/Button'
 import { DONATE_HREF } from '@/lib/nav'
@@ -15,7 +14,7 @@ import { fundraiseContent } from '@/lib/content/pages/fundraise'
  * shared page toolkit:
  *  1. PageHero, which owns the page's only h1.
  *  2. A Prose intro: why fundraising for CC matters (83% programmes stat).
- *  3. A heading section then ValueCards for fundraising ideas (h3 titles).
+ *  3. An inline card grid (h3 titles) for fundraising ideas, inside a Section with eyebrow and heading above it.
  *  4. Prose with the three-step how-it-works guide.
  *  5. A dark Donate section with CTA to /contact and DONATE_HREF.
  *
@@ -62,7 +61,7 @@ export default async function FundraisePage({
         </div>
       </Section>
 
-      {/* Eyebrow + heading for the ideas grid, then ValueCards (self-wrapping). */}
+      {/* Eyebrow + heading for the ideas grid, then inline card grid matching ValueCards markup, inside an explicit Section so the eyebrow/heading sit above it. */}
       <Section tone="indigo-tint">
         <p className="font-body text-lg font-bold uppercase tracking-[0.08em] text-accent">
           {ideasEyebrow}

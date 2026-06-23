@@ -92,7 +92,7 @@ export const prayContent: PrayContent = {
   ],
 
   closing:
-    'If you are praying for us regularly, or if God has laid something on your heart for this work, we would love to hear from you. Use the Contact page to reach the team.',
+    'If you are praying for us regularly, or if God has laid something on your heart for this work, we would love to hear from you.',
 }
 
 export default prayContent
