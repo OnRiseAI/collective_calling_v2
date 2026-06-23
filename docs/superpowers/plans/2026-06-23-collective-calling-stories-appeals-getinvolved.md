@@ -27,46 +27,43 @@
 
 ## Data model (typed mirrors in `lib/content/types.ts`)
 
-Add these types (names chosen to avoid clashing with the existing homepage `Appeal` card type):
+These types are ALREADY IMPLEMENTED (Tasks 1 and 2). They are the source of truth for the pages below. Do not redefine them; import from `@/lib/content/types`.
 
 ```ts
-export interface RichBlock { heading?: string; body: string } // already exists in lib/content/pages/types.ts; reuse or re-export, do not redefine a conflicting shape
+// RichBlock is re-exported from lib/content/pages/types via lib/content/types.
 
-export type StoryLocation = 'spain' | 'tanzania' | 'general'
-export interface Story {
+export type Story = {
   slug: string
   title: string
-  location: StoryLocation
+  location: 'tanzania' | 'spain' | 'general'
   excerpt: string
-  image?: string          // path under /public or a Sanity URL
-  alt?: string
-  body: RichBlock[]
+  body: string            // plain text; render as paragraphs split on blank lines
+  images?: string[]       // public paths; images[0] is the hero
   placeholder?: boolean
 }
 
-export type AppealTheme = 'spain' | 'tanzania' | 'general' | 'seasonal' // existing AppealTheme is 'spain'|'tanzania'|'general'; extend with 'seasonal'
-export interface AppealEntry {
+// AppealTheme = 'spain' | 'tanzania' | 'general' | 'seasonal'
+export type AppealEntry = {
   slug: string
   title: string
   theme: AppealTheme
-  summary: string         // hub card blurb
+  blurb: string           // hub card description
+  body: string            // plain text; render as paragraphs in Prose
   image?: string
   alt?: string
-  body: RichBlock[]
-  donationNote: string    // which Donorbox designation to choose on the form
-  donorboxQuery?: { amount?: number; recurring?: boolean; default_interval?: 'm' | 'o' }
-  relatedHref?: string    // e.g. '/spain', '/tanzania', '/get-involved/sponsor-a-child'
+  relatedHref: string     // e.g. '/spain', '/tanzania', '/get-involved/sponsor-a-child'
+  donationDesignation: string  // which Donorbox designation to choose on the form
+  donorboxQuery?: { amount: number; recurring: boolean; default_interval: 'm' | 'y' | 'o' }
   placeholder?: boolean
 }
 
-export interface EventItem {
+export type EventItem = {
   slug: string
   title: string
   summary: string
-  dateLabel?: string      // human label; when absent the UI shows "Date to be announced"
-  location?: string
   image?: string
   alt?: string
+  dateLabel?: string      // when absent the UI shows "Date to be announced"
   placeholder?: boolean
 }
 ```
@@ -147,9 +144,9 @@ export interface EventItem {
 
 **Content/behavior:**
 - `PlaceholderBadge`: a small gold-outlined pill reading "Sample content" rendered whenever an item has `placeholder` truthy. Reused by stories and events.
-- `CollectionCard`: a linked card (image optional, h3 title, excerpt/summary, optional `PlaceholderBadge`). Reuse `@/components/ui/Card` internally. Used by the stories and appeals hubs.
-- `/stories` (hub): `PageHero` (gold eyebrow, Fraunces h1 e.g. "Lives reclaimed"), intro lede, a grid of `CollectionCard` for `getStories()` linking to `/stories/[slug]`. Gentle "More stories coming" note since the real set is small. One `<h1>`.
-- `/stories/[slug]` (detail): `await params` for `{ locale, slug }`; `getStory(slug)`; if undefined call `notFound()`. `PageHero` (story title as the only h1, photographic mode when image present), `Prose` rendering `body` RichBlocks (heading -> h2, body -> paragraphs), a `PlaceholderBadge` if placeholder, a back link to `/stories`, and a closing gold Donate CTA to `DONATE_HREF`. `generateStaticParams` returns `routing.locales.flatMap(l => slugs.map(slug => ({ locale: l, slug })))` from `getStories()` (leave `dynamicParams` at its default so Sanity-added slugs still render).
+- `CollectionCard`: a linked card (image optional, h3 title, a description string, optional `PlaceholderBadge`). The caller passes the description (stories pass `excerpt`, appeals pass `blurb`). Reuse `@/components/ui/Card` internally. Used by the stories and appeals hubs.
+- `/stories` (hub): `PageHero` (gold eyebrow, Fraunces h1 e.g. "Lives reclaimed"), intro lede, a grid of `CollectionCard` for `getStories()` (pass `excerpt` as the description) linking to `/stories/[slug]`. Gentle "More stories coming" note since the real set is small. One `<h1>`.
+- `/stories/[slug]` (detail): `await params` for `{ locale, slug }`; `getStory(slug)`; if undefined call `notFound()`. `PageHero` (story title as the only h1, photographic mode using `images[0]` when present), `Prose` rendering the `body` string as paragraphs (split on blank lines), a `PlaceholderBadge` if placeholder, a back link to `/stories`, and a closing gold Donate CTA to `DONATE_HREF`. `generateStaticParams` returns `routing.locales.flatMap(l => slugs.map(slug => ({ locale: l, slug })))` from `getStories()` (leave `dynamicParams` at its default so Sanity-added slugs still render).
 
 - [ ] **Step 1: Write failing test** `__tests__/collections/stories.test.tsx`: render the hub (mock `setRequestLocale`, wrap in `NextIntlClientProvider`, mock the read layer to return the seed); assert exactly one `<h1>`, a link to `/stories/caleb`, and a "Sample content" badge for the placeholder story. Render the detail for `caleb`; assert one `<h1>` with the Caleb title and that body text renders.
 - [ ] **Step 2: Run → FAIL.**
@@ -164,8 +161,8 @@ export interface EventItem {
 **Files:** `app/[locale]/appeals/page.tsx`, `app/[locale]/appeals/[slug]/page.tsx`; `__tests__/collections/appeals.test.tsx`.
 
 **Content/behavior:**
-- `/appeals` (hub): `PageHero` (h1 e.g. "Our appeals"), intro, a grid of `CollectionCard` for `getAppeals()` linking to `/appeals/[slug]`. One `<h1>`.
-- `/appeals/[slug]` (detail): `await params`; `getAppeal(slug)`; `notFound()` if undefined. `PageHero` (appeal title h1), `Prose` for `body`, then a giving block: `DonorboxEmbed` preset with the appeal's `donorboxQuery` when present (e.g. sponsor-a-child uses `{ amount: 58, recurring: true, default_interval: 'm' }`), plus the `donationNote` telling the donor which designation to choose on the form (Area of greatest need / Spain / Tanzania / Sponsor A Child). A `Link` to `relatedHref` (e.g. "Read more about our work in Spain" -> `/spain`) when set. `generateStaticParams` from `getAppeals()` as in Task 4.
+- `/appeals` (hub): `PageHero` (h1 e.g. "Our appeals"), intro, a grid of `CollectionCard` for `getAppeals()` (pass `blurb` as the description) linking to `/appeals/[slug]`. One `<h1>`.
+- `/appeals/[slug]` (detail): `await params`; `getAppeal(slug)`; `notFound()` if undefined. `PageHero` (appeal title h1, photographic mode using `image` when present), `Prose` rendering the `body` string as paragraphs, then a giving block: `DonorboxEmbed` preset with the appeal's `donorboxQuery` when present (e.g. sponsor-a-child uses `{ amount: 58, recurring: true, default_interval: 'm' }`), plus a note built from `donationDesignation` telling the donor which designation to choose on the form (Area of greatest need / Spain / Tanzania / Sponsor A Child). A `Link` to `relatedHref` (e.g. "Read more about our work in Spain" -> `/spain`); `relatedHref` is always present. `generateStaticParams` from `getAppeals()` as in Task 4.
 - This is an appeal-framed, giving-focused page and is intentionally distinct from the `/spain` and `/tanzania` program pages (user-approved overlap).
 
 - [ ] **Step 1: Write failing test** `__tests__/collections/appeals.test.tsx`: render the hub; assert one `<h1>` and links to `/appeals/spain-homelessness` and `/appeals/sponsor-a-child`. Render the `sponsor-a-child` detail; assert one `<h1>`, the Donorbox `<iframe>` whose `src` contains `donorbox.org/embed/giving-41` and `amount=58`, and a link to `/get-involved/sponsor-a-child` (or the configured related href). Render the `spain-homelessness` detail; assert a link to `/spain`.
