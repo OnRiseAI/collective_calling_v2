@@ -1,4 +1,5 @@
 import * as React from 'react'
+import { cx } from '@/lib/cx'
 
 /**
  * Container constrains content to a comfortable reading measure and applies
@@ -23,10 +24,6 @@ const sizes: Record<ContainerSize, string> = {
   prose: 'max-w-prose',
   default: 'max-w-5xl',
   wide: 'max-w-7xl',
-}
-
-function cx(...parts: Array<string | undefined | false>): string {
-  return parts.filter(Boolean).join(' ')
 }
 
 export function Container({

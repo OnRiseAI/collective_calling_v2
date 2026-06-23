@@ -9,6 +9,7 @@ import { PlaceholderBadge } from '@/components/collections/PlaceholderBadge'
 import { getStories, getStory } from '@/lib/content/stories'
 import { routing } from '@/i18n/routing'
 import { DONATE_HREF } from '@/lib/nav'
+import { toParagraphs } from '@/lib/text'
 
 /**
  * Story detail page (/stories/[slug]).
@@ -44,10 +45,7 @@ export default async function StoryDetailPage({
   if (!story) notFound()
 
   // Split the plain body string into paragraphs on blank lines.
-  const paragraphs = story.body
-    .split(/\n\s*\n/)
-    .map((p) => p.trim())
-    .filter(Boolean)
+  const paragraphs = toParagraphs(story.body)
 
   const heroImage = story.images?.[0]
 

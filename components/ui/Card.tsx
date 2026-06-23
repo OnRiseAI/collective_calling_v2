@@ -1,6 +1,7 @@
 import * as React from 'react'
 import Image from 'next/image'
 import { Link } from '@/i18n/navigation'
+import { cx } from '@/lib/cx'
 
 /**
  * Card primitive for Collective Calling.
@@ -37,10 +38,6 @@ const themeRule: Record<CardTheme, string> = {
   spain: 'bg-brand',
   tanzania: 'bg-clay',
   seasonal: 'bg-accent',
-}
-
-function cx(...parts: Array<string | undefined | false>): string {
-  return parts.filter(Boolean).join(' ')
 }
 
 export function Card({

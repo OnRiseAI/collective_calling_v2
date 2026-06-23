@@ -2,6 +2,7 @@ import * as React from 'react'
 import { Link } from '@/i18n/navigation'
 import { Section } from '@/components/ui/Section'
 import { Button } from '@/components/ui/Button'
+import { noOrphan } from '@/lib/text'
 import type { HomeContent } from '@/lib/content/types'
 
 /**
@@ -18,17 +19,6 @@ import type { HomeContent } from '@/lib/content/types'
  * It takes only the provided mission content. No invented copy.
  */
 
-/**
- * Join the last two words of a heading with a non-breaking space so a single
- * trailing word never wraps onto its own line (orphan). text-balance handles the
- * rest of the line breaking (brand board headline rule).
- */
-function noOrphan(text: string): string {
-  const trimmed = text.trim()
-  const lastSpace = trimmed.lastIndexOf(' ')
-  if (lastSpace === -1) return trimmed
-  return trimmed.slice(0, lastSpace) + ' ' + trimmed.slice(lastSpace + 1)
-}
 
 export function MissionBlurb(props: { content: HomeContent['mission'] }): React.JSX.Element {
   const { content } = props

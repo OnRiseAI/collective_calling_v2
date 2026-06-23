@@ -8,6 +8,7 @@ import { DonorboxEmbed } from '@/components/donate/DonorboxEmbed'
 import { PlaceholderBadge } from '@/components/collections/PlaceholderBadge'
 import { getAppeals, getAppeal } from '@/lib/content/appeals'
 import { routing } from '@/i18n/routing'
+import { toParagraphs } from '@/lib/text'
 
 /**
  * Appeal detail page (/appeals/[slug]).
@@ -43,10 +44,7 @@ export default async function AppealDetailPage({
   if (!appeal) notFound()
 
   // Split the plain body string into paragraphs on blank lines.
-  const paragraphs = appeal.body
-    .split(/\n\s*\n/)
-    .map((p) => p.trim())
-    .filter(Boolean)
+  const paragraphs = toParagraphs(appeal.body)
 
   return (
     <>

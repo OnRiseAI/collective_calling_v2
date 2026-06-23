@@ -1,4 +1,5 @@
 import * as React from 'react'
+import { cx } from '@/lib/cx'
 import { Section, type SectionTone } from '@/components/ui/Section'
 import type { ValueItem } from '@/lib/content/pages/types'
 
@@ -23,9 +24,6 @@ type ValueCardsProps = {
   tone?: SectionTone
 }
 
-function cx(...parts: Array<string | undefined | false>): string {
-  return parts.filter(Boolean).join(' ')
-}
 
 export function ValueCards({ items, tone = 'indigo-tint' }: ValueCardsProps) {
   return (

@@ -3,6 +3,7 @@ import Image from 'next/image'
 import { Link } from '@/i18n/navigation'
 import { Button } from '@/components/ui/Button'
 import { DONATE_HREF } from '@/lib/nav'
+import { noOrphan } from '@/lib/text'
 import type { HomeContent } from '@/lib/content/types'
 
 /**
@@ -28,17 +29,6 @@ import type { HomeContent } from '@/lib/content/types'
  * It takes only the provided hero content. No invented stats or extra copy.
  */
 
-/**
- * Join the last two words of a headline with a non-breaking space so a single
- * trailing word never wraps onto its own line (orphan). text-balance handles the
- * rest of the line breaking.
- */
-function noOrphan(text: string): string {
-  const trimmed = text.trim()
-  const lastSpace = trimmed.lastIndexOf(' ')
-  if (lastSpace === -1) return trimmed
-  return trimmed.slice(0, lastSpace) + ' ' + trimmed.slice(lastSpace + 1)
-}
 
 export function Hero(props: { content: HomeContent['hero'] }): React.JSX.Element {
   const { content } = props

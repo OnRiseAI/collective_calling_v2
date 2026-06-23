@@ -1,4 +1,5 @@
 import * as React from 'react'
+import { cx } from '@/lib/cx'
 import Image from 'next/image'
 import type { Partner } from '@/lib/content/pages/types'
 
@@ -29,9 +30,6 @@ type PartnerListProps = {
   partners: Partner[]
 }
 
-function cx(...parts: Array<string | undefined | false>): string {
-  return parts.filter(Boolean).join(' ')
-}
 
 /**
  * Tidy a website href into a plain display label for the visit link: drop the
