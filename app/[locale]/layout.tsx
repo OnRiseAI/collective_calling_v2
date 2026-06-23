@@ -52,6 +52,9 @@ export const metadata: Metadata = {
     index: isIndexable,
     follow: isIndexable,
   },
+  icons: {
+    icon: '/favicon.ico',
+  },
 };
 
 // Pre-render the locale segment for every supported locale.

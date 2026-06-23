@@ -10,6 +10,8 @@ export function organizationJsonLd(): object {
     '@context': 'https://schema.org',
     '@type': 'NGO',
     name: SITE.name,
+    legalName: SITE.org.legalName,
+    taxID: SITE.org.taxId,
     url: SITE.url,
     logo: `${SITE.url}${SITE.ogImage}`,
     description: SITE.description,

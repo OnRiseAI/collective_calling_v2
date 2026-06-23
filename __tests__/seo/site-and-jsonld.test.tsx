@@ -3,23 +3,25 @@
  *
  * Write RED first, then implement to GREEN.
  */
-import { describe, it, expect, afterEach } from 'vitest'
+import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest'
 import { render } from '@testing-library/react'
 
 // ---------------------------------------------------------------------------
 // SITE config
 // ---------------------------------------------------------------------------
 describe('SITE config', () => {
+  beforeEach(() => {
+    vi.resetModules()
+  })
+
   afterEach(() => {
-    // Clean env between tests
-    delete process.env.NEXT_PUBLIC_SITE_URL
+    vi.unstubAllEnvs()
   })
 
   it('falls back to the canonical URL when env is unset', async () => {
+    // ?? fallback triggers only when value is null/undefined, not empty string.
+    // Delete the key so process.env.NEXT_PUBLIC_SITE_URL is undefined.
     delete process.env.NEXT_PUBLIC_SITE_URL
-    // Re-import to pick up the env state (vitest caches modules so we use vi.resetModules)
-    const { vi } = await import('vitest')
-    vi.resetModules()
     const { SITE } = await import('@/lib/site')
     expect(SITE.url).toBe('https://collectivecalling.org')
   })
@@ -30,9 +32,7 @@ describe('SITE config', () => {
   })
 
   it('isIndexable defaults to false when env is unset', async () => {
-    delete process.env.NEXT_PUBLIC_SITE_INDEXABLE
-    const { vi } = await import('vitest')
-    vi.resetModules()
+    vi.stubEnv('NEXT_PUBLIC_SITE_INDEXABLE', '')
     const { isIndexable } = await import('@/lib/site')
     expect(isIndexable).toBe(false)
   })
@@ -75,6 +75,18 @@ describe('organizationJsonLd()', () => {
     const ld = organizationJsonLd() as Record<string, unknown>
     // There must be no "founder" key in the top-level JSON-LD
     expect(Object.prototype.hasOwnProperty.call(ld, 'founder')).toBe(false)
+  })
+
+  it('includes legalName Collective Calling', async () => {
+    const { organizationJsonLd } = await import('@/lib/jsonld')
+    const ld = organizationJsonLd() as Record<string, unknown>
+    expect(ld['legalName']).toBe('Collective Calling')
+  })
+
+  it('includes taxID G93524130', async () => {
+    const { organizationJsonLd } = await import('@/lib/jsonld')
+    const ld = organizationJsonLd() as Record<string, unknown>
+    expect(ld['taxID']).toBe('G93524130')
   })
 })
 
