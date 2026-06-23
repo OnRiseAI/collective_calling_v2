@@ -18,7 +18,7 @@ import { Link } from '@/i18n/navigation'
  * elements. The title gains a gold underline on hover to signal the affordance.
  */
 
-export type CardTheme = 'general' | 'spain' | 'tanzania'
+export type CardTheme = 'general' | 'spain' | 'tanzania' | 'seasonal'
 
 export type CardProps = {
   image?: string
@@ -36,6 +36,7 @@ const themeRule: Record<CardTheme, string> = {
   general: 'bg-accent',
   spain: 'bg-brand',
   tanzania: 'bg-clay',
+  seasonal: 'bg-accent',
 }
 
 function cx(...parts: Array<string | undefined | false>): string {

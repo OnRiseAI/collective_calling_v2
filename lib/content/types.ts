@@ -11,7 +11,7 @@ export type ImpactStat = {
   label: string
 }
 
-export type AppealTheme = 'spain' | 'tanzania' | 'general'
+export type AppealTheme = 'spain' | 'tanzania' | 'general' | 'seasonal'
 
 export type Appeal = {
   slug: string
@@ -54,4 +54,48 @@ export type HomeContent = {
   money: { programsPct: number; adminPct: number; programsLabel: string; adminLabel: string; note: string }
   donate: { monthlyTiers: DonateTier[]; onceTiers: DonateTier[] }
   trust: { registration: string; statement: string; partners: string[] }
+}
+
+// Re-export RichBlock from pages/types so consumers can import from one place.
+export type { RichBlock } from './pages/types'
+
+/** A real story of a person whose life was changed through Collective Calling's work. */
+export type Story = {
+  slug: string
+  title: string
+  location: 'tanzania' | 'spain' | 'general'
+  excerpt: string
+  body: string
+  images?: string[]
+  placeholder?: boolean
+}
+
+/** A giving option keyed to a live Donorbox designation. */
+export type AppealEntry = {
+  slug: string
+  title: string
+  theme: AppealTheme
+  blurb: string
+  body: string
+  image?: string
+  alt?: string
+  relatedHref: string
+  donationDesignation: string
+  donorboxQuery?: {
+    amount: number
+    recurring: boolean
+    default_interval: 'm' | 'y' | 'o'
+  }
+  placeholder?: boolean
+}
+
+/** A fundraising or community event run by or for Collective Calling. */
+export type EventItem = {
+  slug: string
+  title: string
+  summary: string
+  image?: string
+  alt?: string
+  dateLabel?: string
+  placeholder?: boolean
 }

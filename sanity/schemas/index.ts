@@ -9,10 +9,14 @@ import { moneySplit } from './objects/moneySplit'
 import { scripture } from './objects/scripture'
 import { mission } from './objects/mission'
 import { trust } from './objects/trust'
+import { story } from './documents/story'
+import { appealEntry } from './documents/appealEntry'
+import { eventItem } from './documents/eventItem'
 
 /**
  * All schema types registered with the Studio. Consumed by sanity.config.ts
  * (Task 4). Objects are listed before the document that references them.
+ * Collection documents (story, appealEntry, eventItem) are registered last.
  */
 export const schemaTypes = [
   heroBlock,
@@ -26,4 +30,7 @@ export const schemaTypes = [
   mission,
   trust,
   homePage,
+  story,
+  appealEntry,
+  eventItem,
 ]
