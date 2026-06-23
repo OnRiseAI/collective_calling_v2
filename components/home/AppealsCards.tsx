@@ -1,6 +1,7 @@
 import * as React from 'react'
 import { Section } from '@/components/ui/Section'
 import { Card } from '@/components/ui/Card'
+import { Eyebrow } from '@/components/ui/Eyebrow'
 import type { Appeal } from '@/lib/content/types'
 
 /**
@@ -30,10 +31,7 @@ export function AppealsCards(props: { appeals: Appeal[] }): React.JSX.Element {
   return (
     <Section tone="paper" containerSize="wide">
       {/* Eyebrow: gold, uppercase, with a short gold rule echoing the gala poster. */}
-      <p className="flex items-center justify-center gap-3 font-body text-sm font-bold uppercase tracking-[0.18em] text-accent">
-        <span aria-hidden="true" className="h-px w-8 bg-accent" />
-        How you can help
-      </p>
+      <Eyebrow align="center">How you can help</Eyebrow>
 
       {/* Section heading. The hero owns the page h1, so this is an h2, and each
           Card title below is an h3 nested beneath it. NBSP holds "of love". */}

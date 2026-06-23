@@ -9,6 +9,11 @@ import { PlaceholderBadge } from '@/components/collections/PlaceholderBadge'
 import { getStories, getStory } from '@/lib/content/stories'
 import { routing } from '@/i18n/routing'
 import { DONATE_HREF } from '@/lib/nav'
+import { toParagraphs } from '@/lib/text'
+import { SITE } from '@/lib/site'
+import { pageMetadata } from '@/lib/seo'
+import { articleJsonLd } from '@/lib/jsonld'
+import { JsonLd } from '@/components/seo/JsonLd'
 
 /**
  * Story detail page (/stories/[slug]).
@@ -23,6 +28,23 @@ import { DONATE_HREF } from '@/lib/nav'
  * time. dynamicParams is left at its default (true) so Sanity-added slugs
  * still render on demand.
  */
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string; slug: string }>
+}) {
+  const { locale, slug } = await params
+  const story = await getStory(slug)
+  if (!story) return { title: SITE.name }
+  return pageMetadata({
+    locale,
+    path: `/stories/${slug}`,
+    title: story.title,
+    description: story.excerpt,
+    image: story.images?.[0],
+  })
+}
 
 export async function generateStaticParams() {
   const stories = await getStories()
@@ -44,15 +66,20 @@ export default async function StoryDetailPage({
   if (!story) notFound()
 
   // Split the plain body string into paragraphs on blank lines.
-  const paragraphs = story.body
-    .split(/\n\s*\n/)
-    .map((p) => p.trim())
-    .filter(Boolean)
+  const paragraphs = toParagraphs(story.body)
 
   const heroImage = story.images?.[0]
 
   return (
     <>
+      <JsonLd
+        data={articleJsonLd({
+          title: story.title,
+          description: story.excerpt,
+          url: `${SITE.url}/stories/${story.slug}`,
+          image: story.images?.[0],
+        })}
+      />
       <PageHero
         content={{
           eyebrow: 'Stories',

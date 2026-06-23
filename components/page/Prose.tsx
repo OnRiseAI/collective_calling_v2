@@ -1,4 +1,5 @@
 import * as React from 'react'
+import { cx } from '@/lib/cx'
 
 /**
  * Prose is the long-form body wrapper for About and programme pages. It holds
@@ -22,9 +23,6 @@ type ProseProps = {
   className?: string
 }
 
-function cx(...parts: Array<string | undefined | false>): string {
-  return parts.filter(Boolean).join(' ')
-}
 
 export function Prose({ children, className }: ProseProps) {
   return (

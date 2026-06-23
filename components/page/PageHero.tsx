@@ -1,6 +1,8 @@
 import * as React from 'react'
 import Image from 'next/image'
 import { Container } from '@/components/ui/Container'
+import { cx } from '@/lib/cx'
+import { noOrphan } from '@/lib/text'
 import type { PageHero as PageHeroContent } from '@/lib/content/pages/types'
 
 /**
@@ -26,27 +28,7 @@ type PageHeroProps = {
   content: PageHeroContent
 }
 
-function cx(...parts: Array<string | undefined | false>): string {
-  return parts.filter(Boolean).join(' ')
-}
 
-// The non-breaking space (the `&nbsp;` entity), written as its explicit code
-// point so it survives source transforms and is unambiguous in review.
-const NBSP = ' '
-
-/**
- * Glue the last two words of a heading with a non-breaking space so the line
- * never breaks to leave a single orphan word. Paired with `text-wrap: balance`
- * per the brand board headline rule. Preceding words keep ordinary spaces so
- * the title can still wrap naturally above the final pair.
- */
-function balanceTitle(title: string): string {
-  const words = title.trim().split(/\s+/)
-  if (words.length < 2) return title
-  const head = words.slice(0, -2).join(' ')
-  const lastTwo = words.slice(-2).join(NBSP)
-  return head ? `${head} ${lastTwo}` : lastTwo
-}
 
 export function PageHero({ content }: PageHeroProps) {
   const { eyebrow, title, lede, image, alt } = content
@@ -88,7 +70,7 @@ export function PageHero({ content }: PageHeroProps) {
         </p>
 
         <h1 className="mt-4 max-w-3xl font-heading text-[2.5rem] leading-[1.1] font-medium text-balance sm:text-5xl">
-          {balanceTitle(title)}
+          {noOrphan(title)}
         </h1>
 
         {lede ? (

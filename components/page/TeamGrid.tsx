@@ -1,4 +1,5 @@
 import * as React from 'react'
+import { cx } from '@/lib/cx'
 import Image from 'next/image'
 import { Section } from '@/components/ui/Section'
 import type { TeamGroup, TeamMember } from '@/lib/content/pages/types'
@@ -33,9 +34,6 @@ type TeamGridProps = {
 
 const SECTION_TONES = ['indigo-tint', 'paper'] as const
 
-function cx(...parts: Array<string | undefined | false>): string {
-  return parts.filter(Boolean).join(' ')
-}
 
 /**
  * Build the initials for the avatar fallback: the first letter of the first and

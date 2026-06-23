@@ -1,6 +1,7 @@
 'use client'
 
 import * as React from 'react'
+import { cx } from '@/lib/cx'
 import { Section } from '@/components/ui/Section'
 import { donorboxUrl } from '@/lib/donate'
 import type { DonateTier, HomeContent } from '@/lib/content/types'
@@ -47,9 +48,6 @@ function euros(amount: number): string {
   return `€${amount}`
 }
 
-function cx(...parts: Array<string | false | undefined>): string {
-  return parts.filter(Boolean).join(' ')
-}
 
 export function DonateWidget(props: { content: HomeContent['donate'] }): React.JSX.Element {
   const { monthlyTiers, onceTiers } = props.content

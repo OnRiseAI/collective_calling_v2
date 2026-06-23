@@ -1,8 +1,25 @@
+import type { Metadata } from 'next'
 import { setRequestLocale } from 'next-intl/server'
 import { PageHero } from '@/components/page/PageHero'
 import { Section } from '@/components/ui/Section'
 import { EventList } from '@/components/events/EventList'
 import { getEvents } from '@/lib/content/events'
+import { pageMetadata } from '@/lib/seo'
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>
+}): Promise<Metadata> {
+  const { locale } = await params
+  return pageMetadata({
+    locale,
+    path: '/events',
+    title: 'Events',
+    description:
+      'Each year Collective Calling holds three recurring events: the Annual Gala, Spring Fair, and Lunch with Santa. Dates are announced closer to the time.',
+  })
+}
 
 /**
  * Events hub (/events).

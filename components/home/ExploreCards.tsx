@@ -1,6 +1,7 @@
 import * as React from 'react'
 import { Section } from '@/components/ui/Section'
 import { Card } from '@/components/ui/Card'
+import { Eyebrow } from '@/components/ui/Eyebrow'
 import type { ExploreCard } from '@/lib/content/types'
 
 /**
@@ -32,10 +33,7 @@ export function ExploreCards(props: { cards: ExploreCard[] }): React.JSX.Element
   return (
     <Section tone="indigo-tint" containerSize="wide">
       {/* Eyebrow: gold, uppercase, with a short gold rule echoing the gala poster. */}
-      <p className="flex items-center justify-center gap-3 font-body text-sm font-bold uppercase tracking-[0.18em] text-accent">
-        <span aria-hidden="true" className="h-px w-8 bg-accent" />
-        Explore
-      </p>
+      <Eyebrow align="center">Explore</Eyebrow>
 
       {/* Section heading. The hero owns the page h1, so this is an h2, and each
           Card title below is an h3 nested beneath it. NBSP holds "in action". */}

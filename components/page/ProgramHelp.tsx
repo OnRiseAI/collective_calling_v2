@@ -1,4 +1,6 @@
 import * as React from 'react'
+import { cx } from '@/lib/cx'
+import { noOrphan } from '@/lib/text'
 import { Section, type SectionTone } from '@/components/ui/Section'
 import type { ProgramHelpItem } from '@/lib/content/pages/types'
 
@@ -47,22 +49,7 @@ const accentRule: Record<ProgramHelpAccent, string> = {
   accent: 'bg-accent',
 }
 
-function cx(...parts: Array<string | undefined | false>): string {
-  return parts.filter(Boolean).join(' ')
-}
 
-// Glue the last two words of the heading with a non-breaking space so the line
-// never breaks to leave a single orphan word, paired with text-wrap: balance
-// per the brand board headline rule.
-const NBSP = ' '
-
-function balanceHeading(heading: string): string {
-  const words = heading.trim().split(/\s+/)
-  if (words.length < 2) return heading
-  const head = words.slice(0, -2).join(' ')
-  const lastTwo = words.slice(-2).join(NBSP)
-  return head ? `${head} ${lastTwo}` : lastTwo
-}
 
 export function ProgramHelp({
   eyebrow,
@@ -80,7 +67,7 @@ export function ProgramHelp({
           {eyebrow}
         </p>
         <h2 className="mt-3 font-heading text-[2.25rem] leading-[1.15] font-medium text-balance text-ink">
-          {balanceHeading(heading)}
+          {noOrphan(heading)}
         </h2>
       </div>
 

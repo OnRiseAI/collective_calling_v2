@@ -1,5 +1,26 @@
+import type { Metadata } from 'next'
 import { setRequestLocale } from "next-intl/server";
 import { getHomeContent } from "@/lib/content/home";
+import { pageMetadata } from '@/lib/seo'
+import { SITE } from '@/lib/site'
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>
+}): Promise<Metadata> {
+  const { locale } = await params
+  const content = await getHomeContent()
+  return pageMetadata({
+    locale,
+    path: '/',
+    // The homepage title is the hero headline; the root layout template wraps
+    // it with " | Collective Calling" so the full tab title identifies the site.
+    title: content.hero.headline,
+    description: SITE.description,
+    image: content.hero.image,
+  })
+}
 import { Hero } from "@/components/home/Hero";
 import { ImpactStats } from "@/components/home/ImpactStats";
 import { AppealsCards } from "@/components/home/AppealsCards";

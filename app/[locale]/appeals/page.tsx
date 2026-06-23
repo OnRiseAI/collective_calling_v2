@@ -1,3 +1,4 @@
+import type { Metadata } from 'next'
 import { setRequestLocale } from 'next-intl/server'
 import { Link } from '@/i18n/navigation'
 import { PageHero } from '@/components/page/PageHero'
@@ -6,6 +7,22 @@ import { Button } from '@/components/ui/Button'
 import { CollectionCard } from '@/components/collections/CollectionCard'
 import { getAppeals } from '@/lib/content/appeals'
 import { DONATE_HREF } from '@/lib/nav'
+import { pageMetadata } from '@/lib/seo'
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>
+}): Promise<Metadata> {
+  const { locale } = await params
+  return pageMetadata({
+    locale,
+    path: '/appeals',
+    title: 'Our appeals',
+    description:
+      'Every appeal is tied to a real Donorbox designation so your gift goes exactly where you intend it. Choose the cause that moves you.',
+  })
+}
 
 /**
  * Appeals hub (/appeals).

@@ -1,4 +1,5 @@
 import * as React from 'react'
+import { cx } from '@/lib/cx'
 import { Button } from '@/components/ui/Button'
 import type { ContactInfo } from '@/lib/content/pages/types'
 import type { SocialLink } from '@/lib/content/pages/contact'
@@ -31,9 +32,6 @@ type ContactDetailsProps = {
   socials?: SocialLink[]
 }
 
-function cx(...parts: Array<string | undefined | false>): string {
-  return parts.filter(Boolean).join(' ')
-}
 
 const ICON_BASE =
   'h-5 w-5 text-brand'

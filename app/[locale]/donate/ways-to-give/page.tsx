@@ -1,10 +1,28 @@
+import type { Metadata } from 'next'
 import { setRequestLocale } from 'next-intl/server'
 import { Link } from '@/i18n/navigation'
 import { PageHero } from '@/components/page/PageHero'
 import { Prose } from '@/components/page/Prose'
 import { Section } from '@/components/ui/Section'
 import { Button } from '@/components/ui/Button'
+import { Eyebrow } from '@/components/ui/Eyebrow'
 import { waysToGiveContent } from '@/lib/content/pages/waysToGive'
+import { pageMetadata } from '@/lib/seo'
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>
+}): Promise<Metadata> {
+  const { locale } = await params
+  const { hero } = waysToGiveContent
+  return pageMetadata({
+    locale,
+    path: '/donate/ways-to-give',
+    title: hero.title,
+    description: hero.lede,
+  })
+}
 
 /**
  * Ways to Give (/donate/ways-to-give).
@@ -60,10 +78,7 @@ export default async function WaysToGivePage({
             unit with a programme top rule, an h3 title, a short body, and one CTA.
             One column on small screens, two from sm, three from lg. */}
         <div className="mt-12">
-          <p className="flex items-center gap-3 font-body text-sm font-bold uppercase tracking-[0.18em] text-accent">
-            <span aria-hidden="true" className="h-px w-8 bg-accent" />
-            {ways.eyebrow}
-          </p>
+          <Eyebrow>{ways.eyebrow}</Eyebrow>
           <h2 className="mt-5 max-w-2xl text-balance font-heading text-3xl font-medium leading-[1.15] text-ink sm:text-4xl">
             {ways.heading}
           </h2>

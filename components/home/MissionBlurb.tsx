@@ -2,6 +2,8 @@ import * as React from 'react'
 import { Link } from '@/i18n/navigation'
 import { Section } from '@/components/ui/Section'
 import { Button } from '@/components/ui/Button'
+import { Eyebrow } from '@/components/ui/Eyebrow'
+import { noOrphan } from '@/lib/text'
 import type { HomeContent } from '@/lib/content/types'
 
 /**
@@ -18,17 +20,6 @@ import type { HomeContent } from '@/lib/content/types'
  * It takes only the provided mission content. No invented copy.
  */
 
-/**
- * Join the last two words of a heading with a non-breaking space so a single
- * trailing word never wraps onto its own line (orphan). text-balance handles the
- * rest of the line breaking (brand board headline rule).
- */
-function noOrphan(text: string): string {
-  const trimmed = text.trim()
-  const lastSpace = trimmed.lastIndexOf(' ')
-  if (lastSpace === -1) return trimmed
-  return trimmed.slice(0, lastSpace) + ' ' + trimmed.slice(lastSpace + 1)
-}
 
 export function MissionBlurb(props: { content: HomeContent['mission'] }): React.JSX.Element {
   const { content } = props
@@ -40,10 +31,7 @@ export function MissionBlurb(props: { content: HomeContent['mission'] }): React.
       <div className="max-w-2xl">
         {/* Eyebrow: gold, uppercase, bold body face, with a short gold rule that
             echoes the gala poster's warm gold lettering. */}
-        <p className="flex items-center gap-3 font-body text-sm font-bold uppercase tracking-[0.18em] text-accent">
-          <span aria-hidden="true" className="h-px w-8 bg-accent" />
-          {content.eyebrow}
-        </p>
+        <Eyebrow>{content.eyebrow}</Eyebrow>
 
         {/* Section heading: Fraunces, text-balance, NBSP between the last two
             words. h2 because the hero owns the page h1. */}

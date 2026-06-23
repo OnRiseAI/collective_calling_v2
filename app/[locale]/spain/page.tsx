@@ -1,3 +1,4 @@
+import type { Metadata } from 'next'
 import Image from 'next/image'
 import { setRequestLocale } from 'next-intl/server'
 import { Link } from '@/i18n/navigation'
@@ -8,6 +9,23 @@ import { Section } from '@/components/ui/Section'
 import { Button } from '@/components/ui/Button'
 import { DONATE_HREF } from '@/lib/nav'
 import { spainContent } from '@/lib/content/pages/spain'
+import { pageMetadata } from '@/lib/seo'
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>
+}): Promise<Metadata> {
+  const { locale } = await params
+  const { hero } = spainContent
+  return pageMetadata({
+    locale,
+    path: '/spain',
+    title: hero.title,
+    description: hero.lede,
+    image: hero.image,
+  })
+}
 
 /**
  * Spain programme page (/spain).

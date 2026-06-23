@@ -1,5 +1,6 @@
 import * as React from 'react'
 import { Container, type ContainerSize } from './Container'
+import { cx } from '@/lib/cx'
 
 /**
  * Section is the vertical rhythm primitive. It alternates warm bands per the
@@ -35,10 +36,6 @@ const tones: Record<SectionTone, string> = {
 
 // Generous, premium vertical pace that scales up on larger screens.
 const spacing = 'py-16 sm:py-20 lg:py-28'
-
-function cx(...parts: Array<string | undefined | false>): string {
-  return parts.filter(Boolean).join(' ')
-}
 
 export function Section({
   as: Tag = 'section',

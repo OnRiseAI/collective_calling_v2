@@ -1,10 +1,28 @@
+import type { Metadata } from 'next'
 import { setRequestLocale } from 'next-intl/server'
 import { Link } from '@/i18n/navigation'
 import { PageHero } from '@/components/page/PageHero'
 import { Section } from '@/components/ui/Section'
+import { Eyebrow } from '@/components/ui/Eyebrow'
 import { WhereMoneyGoes } from '@/components/home/WhereMoneyGoes'
 import { DonorboxEmbed } from '@/components/donate/DonorboxEmbed'
 import { donateHubContent } from '@/lib/content/pages/donateHub'
+import { pageMetadata } from '@/lib/seo'
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>
+}): Promise<Metadata> {
+  const { locale } = await params
+  const { hero } = donateHubContent
+  return pageMetadata({
+    locale,
+    path: '/donate',
+    title: hero.title,
+    description: hero.lede,
+  })
+}
 
 /**
  * Donate hub (/donate).
@@ -61,10 +79,7 @@ export default async function DonatePage({
           cool band, each with a gold top rule (gold = general). */}
       <Section tone="indigo-tint">
         <div className="max-w-2xl">
-          <p className="flex items-center gap-3 font-body text-sm font-bold uppercase tracking-[0.18em] text-accent">
-            <span aria-hidden="true" className="h-px w-8 bg-accent" />
-            {giftDoes.eyebrow}
-          </p>
+          <Eyebrow>{giftDoes.eyebrow}</Eyebrow>
           <h2 className="mt-5 text-balance font-heading text-3xl font-medium leading-[1.15] text-ink sm:text-4xl">
             {giftDoes.heading}
           </h2>

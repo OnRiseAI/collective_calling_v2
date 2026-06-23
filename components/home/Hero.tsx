@@ -2,7 +2,9 @@ import * as React from 'react'
 import Image from 'next/image'
 import { Link } from '@/i18n/navigation'
 import { Button } from '@/components/ui/Button'
+import { Eyebrow } from '@/components/ui/Eyebrow'
 import { DONATE_HREF } from '@/lib/nav'
+import { noOrphan } from '@/lib/text'
 import type { HomeContent } from '@/lib/content/types'
 
 /**
@@ -28,17 +30,6 @@ import type { HomeContent } from '@/lib/content/types'
  * It takes only the provided hero content. No invented stats or extra copy.
  */
 
-/**
- * Join the last two words of a headline with a non-breaking space so a single
- * trailing word never wraps onto its own line (orphan). text-balance handles the
- * rest of the line breaking.
- */
-function noOrphan(text: string): string {
-  const trimmed = text.trim()
-  const lastSpace = trimmed.lastIndexOf(' ')
-  if (lastSpace === -1) return trimmed
-  return trimmed.slice(0, lastSpace) + ' ' + trimmed.slice(lastSpace + 1)
-}
 
 export function Hero(props: { content: HomeContent['hero'] }): React.JSX.Element {
   const { content } = props
@@ -76,10 +67,7 @@ export function Hero(props: { content: HomeContent['hero'] }): React.JSX.Element
         <div className="max-w-2xl">
           {/* Eyebrow: gold, uppercase, bold body face, with a short gold rule that
               echoes the gala poster's gold lettering. */}
-          <p className="flex items-center gap-3 font-body text-sm font-bold uppercase tracking-[0.18em] text-accent">
-            <span aria-hidden="true" className="h-px w-8 bg-accent" />
-            {content.eyebrow}
-          </p>
+          <Eyebrow>{content.eyebrow}</Eyebrow>
 
           <h1 className="mt-6 text-balance font-heading text-4xl font-medium leading-[1.05] text-paper sm:text-5xl lg:text-[4rem]">
             {noOrphan(content.headline)}

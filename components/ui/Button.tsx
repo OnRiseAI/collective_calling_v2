@@ -1,4 +1,5 @@
 import * as React from 'react'
+import { cx } from '@/lib/cx'
 
 /**
  * Button primitive for Collective Calling.
@@ -67,10 +68,6 @@ const variants: Record<ButtonVariant, string> = {
     'bg-transparent text-brand px-0 py-0 underline decoration-accent decoration-2 ' +
     'underline-offset-4 decoration-transparent hover:decoration-accent ' +
     'transition-[color,text-decoration-color] duration-200',
-}
-
-function cx(...parts: Array<string | undefined | false>): string {
-  return parts.filter(Boolean).join(' ')
 }
 
 export function Button(props: ButtonProps) {
