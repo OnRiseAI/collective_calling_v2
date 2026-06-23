@@ -4,6 +4,7 @@ import { Link } from '@/i18n/navigation'
 import { PageHero } from '@/components/page/PageHero'
 import { Prose } from '@/components/page/Prose'
 import { Section } from '@/components/ui/Section'
+import { Eyebrow } from '@/components/ui/Eyebrow'
 import { DonorboxEmbed } from '@/components/donate/DonorboxEmbed'
 import { PlaceholderBadge } from '@/components/collections/PlaceholderBadge'
 import { getAppeals, getAppeal } from '@/lib/content/appeals'
@@ -87,10 +88,7 @@ export default async function AppealDetailPage({
           designation note so donors pick the right designation on the form. */}
       <Section tone="indigo-tint">
         <div className="max-w-2xl">
-          <p className="flex items-center gap-3 font-body text-sm font-bold uppercase tracking-[0.18em] text-accent">
-            <span aria-hidden="true" className="h-px w-8 bg-accent" />
-            Give now
-          </p>
+          <Eyebrow>Give now</Eyebrow>
           <h2 className="mt-5 text-balance font-heading text-3xl font-medium leading-[1.15] text-ink sm:text-4xl">
             Support this appeal
           </h2>

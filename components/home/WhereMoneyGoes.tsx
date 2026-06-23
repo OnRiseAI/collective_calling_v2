@@ -2,6 +2,7 @@ import * as React from 'react'
 import { Link } from '@/i18n/navigation'
 import { Section } from '@/components/ui/Section'
 import { Button } from '@/components/ui/Button'
+import { Eyebrow } from '@/components/ui/Eyebrow'
 import { DONATE_HREF } from '@/lib/nav'
 import { noOrphan } from '@/lib/text'
 import type { HomeContent } from '@/lib/content/types'
@@ -39,10 +40,7 @@ export function WhereMoneyGoes(props: { content: HomeContent['money'] }): React.
       <div className="max-w-3xl">
         {/* Eyebrow: gold, uppercase, bold body face, with a short gold rule that
             echoes the gala poster's warm gold lettering. */}
-        <p className="flex items-center gap-3 font-body text-sm font-bold uppercase tracking-[0.18em] text-accent">
-          <span aria-hidden="true" className="h-px w-8 bg-accent" />
-          {HEADING}
-        </p>
+        <Eyebrow>{HEADING}</Eyebrow>
 
         {/* Section heading: Fraunces, text-balance, NBSP between the last two
             words. h2 because the hero owns the page h1. */}

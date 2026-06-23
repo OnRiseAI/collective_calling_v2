@@ -4,6 +4,7 @@ import { PageHero } from '@/components/page/PageHero'
 import { Prose } from '@/components/page/Prose'
 import { Section } from '@/components/ui/Section'
 import { Button } from '@/components/ui/Button'
+import { Eyebrow } from '@/components/ui/Eyebrow'
 import { DonorboxEmbed } from '@/components/donate/DonorboxEmbed'
 import { sponsorChildContent } from '@/lib/content/pages/sponsorChild'
 
@@ -94,10 +95,7 @@ export default async function SponsorChildPage({
       <Section tone="paper">
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-[1fr_minmax(0,33rem)] lg:items-start lg:gap-16">
           <div className="max-w-prose">
-            <p className="flex items-center gap-3 font-body text-sm font-bold uppercase tracking-[0.18em] text-accent">
-              <span aria-hidden="true" className="h-px w-8 bg-accent" />
-              {form.eyebrow}
-            </p>
+            <Eyebrow>{form.eyebrow}</Eyebrow>
             <h2 className="mt-5 text-balance font-heading text-3xl font-medium leading-[1.15] text-ink sm:text-4xl">
               {form.heading}
             </h2>

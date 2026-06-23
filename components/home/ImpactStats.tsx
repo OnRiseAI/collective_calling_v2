@@ -1,5 +1,6 @@
 import * as React from 'react'
 import { Section } from '@/components/ui/Section'
+import { Eyebrow } from '@/components/ui/Eyebrow'
 import type { ImpactStat } from '@/lib/content/types'
 
 /**
@@ -85,10 +86,7 @@ export function ImpactStats(props: { stats: ImpactStat[] }): React.JSX.Element {
   return (
     <Section tone="indigo-tint" containerSize="wide">
       {/* Eyebrow: gold, uppercase, with a short gold rule echoing the gala poster. */}
-      <p className="flex items-center justify-center gap-3 font-body text-sm font-bold uppercase tracking-[0.18em] text-accent">
-        <span aria-hidden="true" className="h-px w-8 bg-accent" />
-        Our impact
-      </p>
+      <Eyebrow align="center">Our impact</Eyebrow>
 
       {/* Section heading. The hero owns the page h1, so this is an h2. */}
       <h2 className="mx-auto mt-5 max-w-2xl text-balance text-center font-heading text-3xl font-medium leading-[1.15] text-ink sm:text-4xl">
