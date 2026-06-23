@@ -73,7 +73,7 @@ export type EventItem = {
 - `lib/content/seed.collections.ts` — `SEED_STORIES`, `SEED_APPEALS`, `SEED_EVENTS` (real-only + marked placeholders).
 - `lib/content/stories.ts`, `lib/content/appeals.ts`, `lib/content/events.ts` — guarded read functions with seed fallback.
 - `lib/sanity/stories.query.ts`, `lib/sanity/appeals.query.ts`, `lib/sanity/events.query.ts` — GROQ + mappers.
-- `sanity/schemas/objects/richBlock.ts`; `sanity/schemas/documents/story.ts`, `appealEntry.ts`, `event.ts`; registration in `sanity/schemas/index.ts` + `sanity/structure.ts`.
+- `sanity/schemas/documents/story.ts`, `appealEntry.ts`, `eventItem.ts`; registration in `sanity/schemas/index.ts` + `sanity/structure.ts` (no `richBlock` object; bodies are plain text).
 - `components/collections/CollectionCard.tsx`, `components/collections/PlaceholderBadge.tsx`, `components/events/EventList.tsx` (minimal presentational helpers; reuse `Card`/`SubNavCards` where they already fit).
 - `app/[locale]/stories/page.tsx`, `app/[locale]/stories/[slug]/page.tsx`.
 - `app/[locale]/appeals/page.tsx`, `app/[locale]/appeals/[slug]/page.tsx`.
@@ -121,20 +121,20 @@ export type EventItem = {
 
 ## Task 3: Sanity schemas + Studio (so staff can add/edit)
 
-**Files:** Create `sanity/schemas/objects/richBlock.ts`; `sanity/schemas/documents/{story,appealEntry,event}.ts`. Edit `sanity/schemas/index.ts` (register the four) and `sanity/structure.ts` (add Stories, Appeals, Events as document lists in the desk; homepage stays the pinned singleton). Run `pnpm typegen`. Create `__tests__/collections/schemas.test.ts`.
+**Files:** Create `sanity/schemas/documents/{story,appealEntry,eventItem}.ts`. Edit `sanity/schemas/index.ts` (register the three) and `sanity/structure.ts` (add Stories, Appeals, Events as document lists in the desk; homepage stays the pinned singleton). Run `pnpm typegen`. Create `__tests__/collections/schemas.test.ts`.
 
-**Schemas** (mirror the field names of the typed models so mapping is 1:1):
-- `richBlock` (object): `heading` (string, optional), `body` (text, required).
-- `story` (document): `title`, `slug` (from title), `location` (string list spain/tanzania/general), `excerpt` (text), `image` (image) + `alt` (string), `body` (array of `richBlock`), `placeholder` (boolean, initialValue false). Preview shows title + placeholder flag.
-- `appealEntry` (document): `title`, `slug`, `theme` (spain/tanzania/general/seasonal), `summary` (text), `image` + `alt`, `body` (array of `richBlock`), `donationNote` (text), `donorboxQuery` (object: `amount` number, `recurring` boolean, `default_interval` string list m/o), `relatedHref` (string), `placeholder` (boolean).
-- `event` (document): `title`, `slug`, `summary` (text), `dateLabel` (string, optional), `location` (string, optional), `image` + `alt`, `placeholder` (boolean).
-- Do NOT touch `sanity/schemas/objects/appeal.ts` or `homePage.ts`.
+**CRITICAL — the document type names and field names below are FIXED by the GROQ queries and mappers already shipped in Task 2 (`lib/sanity/{stories,appeals,events}.query.ts`). The Sanity `_type` and field names must match EXACTLY or the round-trip breaks. Bodies are plain text fields (NOT block/array). There is no `richBlock` object.**
 
-- [ ] **Step 1: Write failing test** `__tests__/collections/schemas.test.ts`: import the schema index; assert it includes type definitions named `story`, `appealEntry`, `event`, and `richBlock`, and that it STILL includes `homePage` and `appeal` (regression guard). Assert each new document defines a `slug` field and a `title` field.
+- `story` (document, `_type === 'story'`): `title` (string), `slug` (slug, source title), `location` (string, list: `tanzania`/`spain`/`general`), `excerpt` (text), `body` (text), `images` (array of `image`, each with an `alt` field if desired), `placeholder` (boolean, initialValue false). Preview shows title + placeholder flag.
+- `appealEntry` (document, `_type === 'appealEntry'`): `title` (string), `slug`, `theme` (string, list: `spain`/`tanzania`/`general`/`seasonal`), `blurb` (text), `body` (text), `image` (image), `alt` (string), `relatedHref` (string), `donationDesignation` (string), `donorboxQuery` (object with fields `amount` number, `recurring` boolean, `default_interval` string list `m`/`y`/`o`), `placeholder` (boolean).
+- `eventItem` (document, `_type === 'eventItem'`): `title` (string), `slug`, `summary` (text), `image` (image), `alt` (string), `dateLabel` (string, optional), `placeholder` (boolean).
+- Do NOT touch `sanity/schemas/objects/appeal.ts` or `homePage.ts` (the homepage `appeal` OBJECT and `homePage` singleton must remain registered and unchanged).
+
+- [ ] **Step 1: Write failing test** `__tests__/collections/schemas.test.ts`: import the schema index (the array registered in `sanity/schemas/index.ts`); assert it includes document type definitions named `story`, `appealEntry`, and `eventItem`, and that it STILL includes `homePage` and `appeal` (regression guard). Assert each new document defines a `slug` field and a `title` field. Assert `appealEntry` defines `blurb`, `body`, `relatedHref`, `donationDesignation`, and `donorboxQuery`; `story` defines `excerpt`, `body`, `images`; `eventItem` defines `summary`, `dateLabel`.
 - [ ] **Step 2: Run → FAIL.**
-- [ ] **Step 3: Implement** the schema files, register them, add the desk-structure entries.
-- [ ] **Step 4: Run → PASS.** Then `pnpm typegen` (regenerate types) and `pnpm build` (Studio at `/studio` must compile). Verify the homepage read still works (no change to `homePage`/`appeal`).
-- [ ] **Step 5: Commit.** `git commit -m "feat(sanity): story, appealEntry, event collections + Studio structure"`
+- [ ] **Step 3: Implement** the schema files, register them in the index, add the three desk-structure document-list entries.
+- [ ] **Step 4: Run → PASS.** Then `pnpm typegen` (regenerate types) and `pnpm build` (Studio at `/studio` must compile). Confirm `homePage`/`appeal` are still registered (regression test green).
+- [ ] **Step 5: Commit.** `git commit -m "feat(sanity): story, appealEntry, eventItem collections + Studio structure"`
 
 ---
 
