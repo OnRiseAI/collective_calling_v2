@@ -1,3 +1,4 @@
+import type { Metadata } from 'next'
 import { setRequestLocale } from 'next-intl/server'
 import { Link } from '@/i18n/navigation'
 import { PageHero } from '@/components/page/PageHero'
@@ -6,6 +7,22 @@ import { Button } from '@/components/ui/Button'
 import { CollectionCard } from '@/components/collections/CollectionCard'
 import { getStories } from '@/lib/content/stories'
 import { DONATE_HREF } from '@/lib/nav'
+import { pageMetadata } from '@/lib/seo'
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>
+}): Promise<Metadata> {
+  const { locale } = await params
+  return pageMetadata({
+    locale,
+    path: '/stories',
+    title: 'Lives reclaimed',
+    description:
+      'Every person Collective Calling serves has a story. Here are a few of the lives restored through our work in Spain and Tanzania.',
+  })
+}
 
 /**
  * Stories hub (/stories).

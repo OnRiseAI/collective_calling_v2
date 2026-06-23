@@ -1,9 +1,27 @@
+import type { Metadata } from 'next'
 import { setRequestLocale } from 'next-intl/server'
 import { PageHero } from '@/components/page/PageHero'
 import { Prose } from '@/components/page/Prose'
 import { TeamGrid } from '@/components/page/TeamGrid'
 import { Section } from '@/components/ui/Section'
 import { ourTeamContent } from '@/lib/content/pages/ourTeam'
+import { pageMetadata } from '@/lib/seo'
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>
+}): Promise<Metadata> {
+  const { locale } = await params
+  const { hero } = ourTeamContent
+  return pageMetadata({
+    locale,
+    path: '/about/our-team',
+    title: hero.title,
+    description: hero.lede,
+    image: hero.image,
+  })
+}
 
 /**
  * Our Team (/about/our-team).

@@ -1,3 +1,4 @@
+import type { Metadata } from 'next'
 import { setRequestLocale } from 'next-intl/server'
 import { Link } from '@/i18n/navigation'
 import { PageHero } from '@/components/page/PageHero'
@@ -7,6 +8,23 @@ import { Button } from '@/components/ui/Button'
 import { Eyebrow } from '@/components/ui/Eyebrow'
 import { DonorboxEmbed } from '@/components/donate/DonorboxEmbed'
 import { sponsorChildContent } from '@/lib/content/pages/sponsorChild'
+import { pageMetadata } from '@/lib/seo'
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>
+}): Promise<Metadata> {
+  const { locale } = await params
+  const { hero } = sponsorChildContent
+  return pageMetadata({
+    locale,
+    path: '/get-involved/sponsor-a-child',
+    title: hero.title,
+    description: hero.lede,
+    image: hero.image,
+  })
+}
 
 /**
  * Sponsor a Child (/get-involved/sponsor-a-child).

@@ -1,3 +1,4 @@
+import type { Metadata } from 'next'
 import { setRequestLocale } from 'next-intl/server'
 import { Link } from '@/i18n/navigation'
 import { PageHero } from '@/components/page/PageHero'
@@ -7,6 +8,22 @@ import { Button } from '@/components/ui/Button'
 import { WhereMoneyGoes } from '@/components/home/WhereMoneyGoes'
 import { DONATE_HREF } from '@/lib/nav'
 import { financialsContent } from '@/lib/content/pages/financials'
+import { pageMetadata } from '@/lib/seo'
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>
+}): Promise<Metadata> {
+  const { locale } = await params
+  const { hero } = financialsContent
+  return pageMetadata({
+    locale,
+    path: '/about/financial-accountability',
+    title: hero.title,
+    description: hero.lede,
+  })
+}
 
 /**
  * Financial Accountability page (/about/financial-accountability).

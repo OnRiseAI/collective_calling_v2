@@ -1,3 +1,4 @@
+import type { Metadata } from 'next'
 import { setRequestLocale } from 'next-intl/server'
 import { Link } from '@/i18n/navigation'
 import { PageHero } from '@/components/page/PageHero'
@@ -5,6 +6,23 @@ import { Prose } from '@/components/page/Prose'
 import { Section } from '@/components/ui/Section'
 import { Button } from '@/components/ui/Button'
 import { inviteToSpeakContent } from '@/lib/content/pages/inviteToSpeak'
+import { pageMetadata } from '@/lib/seo'
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>
+}): Promise<Metadata> {
+  const { locale } = await params
+  const { hero } = inviteToSpeakContent
+  return pageMetadata({
+    locale,
+    path: '/get-involved/invite-us-to-speak',
+    title: hero.title,
+    description: hero.lede,
+    image: hero.image,
+  })
+}
 
 /**
  * Invite us to speak (/get-involved/invite-us-to-speak).
