@@ -107,7 +107,11 @@ export default async function AppealDetailPage({
                   ? 'Read more about our work in Tanzania'
                   : appeal.relatedHref === '/donate'
                     ? 'Learn about all the ways to give'
-                    : 'Learn more about this programme'}
+                    : appeal.relatedHref === '/get-involved/sponsor-a-child'
+                      ? 'Read more about child sponsorship'
+                      : appeal.relatedHref.startsWith('/get-involved')
+                        ? 'Learn more about getting involved'
+                        : 'Learn more about this programme'}
             </Link>
           </div>
         </div>
