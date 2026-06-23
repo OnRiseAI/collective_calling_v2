@@ -23,6 +23,15 @@ vi.mock('@/lib/content/stories', () => ({
       images: ['/images/tanzania/caleb-before.jpg'],
       placeholder: false,
     },
+    {
+      slug: 'your-story-here',
+      title: 'Your Story Here',
+      location: 'tanzania',
+      excerpt: 'Placeholder story entry.',
+      body: '',
+      images: [],
+      placeholder: true,
+    },
   ]),
   getStory: vi.fn(async () => undefined),
 }))
@@ -67,6 +76,14 @@ describe('sitemap()', () => {
     const urls = entries.map((e) => e.url)
     const { SITE } = await import('@/lib/site')
     expect(urls).toContain(`${SITE.url}/stories/caleb`)
+  })
+
+  test('excludes placeholder story /stories/your-story-here', async () => {
+    const { default: sitemap } = await import('@/app/sitemap')
+    const entries = await sitemap()
+    const urls = entries.map((e) => e.url)
+    const hasPlaceholder = urls.some((u) => u.endsWith('/stories/your-story-here'))
+    expect(hasPlaceholder).toBe(false)
   })
 
   test('includes /appeals/spain-homelessness', async () => {

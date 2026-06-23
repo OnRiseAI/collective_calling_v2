@@ -42,19 +42,23 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   const [stories, appeals] = await Promise.all([getStories(), getAppeals()])
 
-  const storyEntries: MetadataRoute.Sitemap = stories.map((story) => ({
-    url: `${SITE.url}/stories/${story.slug}`,
-    lastModified: now,
-    changeFrequency: 'monthly' as const,
-    priority: 0.7,
-  }))
+  const storyEntries: MetadataRoute.Sitemap = stories
+    .filter((s) => !s.placeholder)
+    .map((story) => ({
+      url: `${SITE.url}/stories/${story.slug}`,
+      lastModified: now,
+      changeFrequency: 'monthly' as const,
+      priority: 0.7,
+    }))
 
-  const appealEntries: MetadataRoute.Sitemap = appeals.map((appeal) => ({
-    url: `${SITE.url}/appeals/${appeal.slug}`,
-    lastModified: now,
-    changeFrequency: 'monthly' as const,
-    priority: 0.7,
-  }))
+  const appealEntries: MetadataRoute.Sitemap = appeals
+    .filter((a) => !a.placeholder)
+    .map((appeal) => ({
+      url: `${SITE.url}/appeals/${appeal.slug}`,
+      lastModified: now,
+      changeFrequency: 'monthly' as const,
+      priority: 0.7,
+    }))
 
   return [...staticEntries, ...storyEntries, ...appealEntries]
 }
