@@ -15,6 +15,108 @@
 export declare const internalGroqTypeReferenceTo: unique symbol;
 
 // Source: sanity-schema.json
+export type SanityImageAssetReference = {
+  _ref: string;
+  _type: "reference";
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+};
+
+export type EventItem = {
+  _id: string;
+  _type: "eventItem";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  slug?: Slug;
+  summary?: string;
+  image?: {
+    asset?: SanityImageAssetReference;
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  };
+  alt?: string;
+  dateLabel?: string;
+  placeholder?: boolean;
+};
+
+export type SanityImageCrop = {
+  _type: "sanity.imageCrop";
+  top?: number;
+  bottom?: number;
+  left?: number;
+  right?: number;
+};
+
+export type SanityImageHotspot = {
+  _type: "sanity.imageHotspot";
+  x?: number;
+  y?: number;
+  height?: number;
+  width?: number;
+};
+
+export type Slug = {
+  _type: "slug";
+  current?: string;
+  source?: string;
+};
+
+export type AppealEntry = {
+  _id: string;
+  _type: "appealEntry";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  slug?: Slug;
+  theme?: "spain" | "tanzania" | "general" | "seasonal";
+  blurb?: string;
+  body?: string;
+  image?: {
+    asset?: SanityImageAssetReference;
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  };
+  alt?: string;
+  relatedHref?: string;
+  donationDesignation?: string;
+  donorboxQuery?: {
+    amount?: number;
+    recurring?: boolean;
+    default_interval?: "m" | "y" | "o";
+  };
+  placeholder?: boolean;
+};
+
+export type Story = {
+  _id: string;
+  _type: "story";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  slug?: Slug;
+  location?: "tanzania" | "spain" | "general";
+  excerpt?: string;
+  body?: string;
+  images?: Array<{
+    asset?: SanityImageAssetReference;
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    _type: "image";
+    _key: string;
+  }>;
+  placeholder?: boolean;
+};
+
 export type HomePage = {
   _id: string;
   _type: "homePage";
@@ -89,13 +191,6 @@ export type Mission = {
   body?: string;
 };
 
-export type SanityImageAssetReference = {
-  _ref: string;
-  _type: "reference";
-  _weak?: boolean;
-  [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-};
-
 export type HeroBlock = {
   _type: "heroBlock";
   eyebrow?: string;
@@ -131,22 +226,6 @@ export type ExploreCard = {
   };
   alt?: string;
   href?: string;
-};
-
-export type SanityImageCrop = {
-  _type: "sanity.imageCrop";
-  top?: number;
-  bottom?: number;
-  left?: number;
-  right?: number;
-};
-
-export type SanityImageHotspot = {
-  _type: "sanity.imageHotspot";
-  x?: number;
-  y?: number;
-  height?: number;
-  width?: number;
 };
 
 export type Testimonial = {
@@ -277,24 +356,22 @@ export type Geopoint = {
   alt?: number;
 };
 
-export type Slug = {
-  _type: "slug";
-  current?: string;
-  source?: string;
-};
-
 export type AllSanitySchemaTypes =
+  | SanityImageAssetReference
+  | EventItem
+  | SanityImageCrop
+  | SanityImageHotspot
+  | Slug
+  | AppealEntry
+  | Story
   | HomePage
   | Trust
   | MoneySplit
   | Scripture
   | Mission
-  | SanityImageAssetReference
   | HeroBlock
   | DonateTier
   | ExploreCard
-  | SanityImageCrop
-  | SanityImageHotspot
   | Testimonial
   | Appeal
   | ImpactStat
@@ -305,8 +382,53 @@ export type AllSanitySchemaTypes =
   | SanityFileAsset
   | SanityAssetSourceData
   | SanityImageAsset
-  | Geopoint
-  | Slug;
+  | Geopoint;
+
+// Source: lib/sanity/appeals.query.ts
+// Variable: APPEALS_QUERY
+// Query: *[_type == "appealEntry"] | order(_createdAt asc){  slug,  title,  theme,  blurb,  body,  image,  alt,  relatedHref,  donationDesignation,  donorboxQuery{ amount, recurring, default_interval },  placeholder}
+export type APPEALS_QUERY_RESULT = Array<{
+  slug: Slug | null;
+  title: string | null;
+  theme: "general" | "seasonal" | "spain" | "tanzania" | null;
+  blurb: string | null;
+  body: string | null;
+  image: {
+    asset?: SanityImageAssetReference;
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  } | null;
+  alt: string | null;
+  relatedHref: string | null;
+  donationDesignation: string | null;
+  donorboxQuery: {
+    amount: number | null;
+    recurring: boolean | null;
+    default_interval: "m" | "o" | "y" | null;
+  } | null;
+  placeholder: boolean | null;
+}>;
+
+// Source: lib/sanity/events.query.ts
+// Variable: EVENTS_QUERY
+// Query: *[_type == "eventItem"] | order(date asc, _createdAt asc){  slug,  title,  summary,  image,  alt,  dateLabel,  placeholder}
+export type EVENTS_QUERY_RESULT = Array<{
+  slug: Slug | null;
+  title: string | null;
+  summary: string | null;
+  image: {
+    asset?: SanityImageAssetReference;
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  } | null;
+  alt: string | null;
+  dateLabel: string | null;
+  placeholder: boolean | null;
+}>;
 
 // Source: lib/sanity/home.query.ts
 // Variable: HOME_QUERY
@@ -398,10 +520,28 @@ export type HOME_QUERY_RESULT = {
   } | null;
 } | null;
 
+// Source: lib/sanity/stories.query.ts
+// Variable: STORIES_QUERY
+// Query: *[_type == "story"] | order(_createdAt asc){  slug,  title,  location,  excerpt,  body,  images[]{ asset },  placeholder}
+export type STORIES_QUERY_RESULT = Array<{
+  slug: Slug | null;
+  title: string | null;
+  location: "general" | "spain" | "tanzania" | null;
+  excerpt: string | null;
+  body: string | null;
+  images: Array<{
+    asset: SanityImageAssetReference | null;
+  }> | null;
+  placeholder: boolean | null;
+}>;
+
 // Query TypeMap
 import "@sanity/client";
 declare module "@sanity/client" {
   interface SanityQueries {
+    '*[_type == "appealEntry"] | order(_createdAt asc){\n  slug,\n  title,\n  theme,\n  blurb,\n  body,\n  image,\n  alt,\n  relatedHref,\n  donationDesignation,\n  donorboxQuery{ amount, recurring, default_interval },\n  placeholder\n}': APPEALS_QUERY_RESULT;
+    '*[_type == "eventItem"] | order(date asc, _createdAt asc){\n  slug,\n  title,\n  summary,\n  image,\n  alt,\n  dateLabel,\n  placeholder\n}': EVENTS_QUERY_RESULT;
     '*[_type == "homePage"][0]{\n  hero{ eyebrow, headline, lede, image, alt },\n  impactStats[]{ icon, value, label },\n  appeals[]{ slug, title, blurb, image, alt, href, theme },\n  mission{ eyebrow, heading, body },\n  scripture{ quote, reference },\n  testimonials[]{ quote, attribution, placeholder },\n  exploreCards[]{ title, blurb, image, alt, href },\n  money{ programsPct, adminPct, programsLabel, adminLabel, note },\n  donate{\n    monthlyTiers[]{ amount, interval, impact },\n    onceTiers[]{ amount, interval, impact }\n  },\n  trust{ registration, statement, partners }\n}': HOME_QUERY_RESULT;
+    '*[_type == "story"] | order(_createdAt asc){\n  slug,\n  title,\n  location,\n  excerpt,\n  body,\n  images[]{ asset },\n  placeholder\n}': STORIES_QUERY_RESULT;
   }
 }
