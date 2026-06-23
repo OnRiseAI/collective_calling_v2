@@ -5,6 +5,7 @@ import { PageHero } from '@/components/page/PageHero'
 import { Prose } from '@/components/page/Prose'
 import { Section } from '@/components/ui/Section'
 import { DonorboxEmbed } from '@/components/donate/DonorboxEmbed'
+import { PlaceholderBadge } from '@/components/collections/PlaceholderBadge'
 import { getAppeals, getAppeal } from '@/lib/content/appeals'
 import { routing } from '@/i18n/routing'
 
@@ -68,6 +69,13 @@ export default async function AppealDetailPage({
             All appeals
           </Link>
         </div>
+
+        {/* PlaceholderBadge for seed entries. */}
+        {appeal.placeholder ? (
+          <div className="mb-6">
+            <PlaceholderBadge />
+          </div>
+        ) : null}
 
         {/* Body rendered as Prose paragraphs, split from the plain body string. */}
         <Prose>

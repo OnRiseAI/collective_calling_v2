@@ -1,14 +1,14 @@
 import type { Story } from '@/lib/content/types'
 import { defineQuery } from 'next-sanity'
 import { SEED_STORIES } from '@/lib/content/seed.collections'
+import { urlForImage } from '@/sanity/image'
 
 /**
  * GROQ query for the `story` document type.
  *
- * Images are projected as asset references (`images[]{ asset }`). The mapper
- * returns the raw `_ref` string for each image; if the Sanity document has no
- * images, it falls back to the seed image paths. `urlForImage` expansion is
- * deferred until the Sanity `story` schema exists (Task 3).
+ * Images are projected with their full object (including asset) so the mapper
+ * can resolve each one to a usable URL via urlForImage. If the Sanity document
+ * has no resolvable images, the mapper falls back to the seed story's images.
  *
  * Wrapped in defineQuery so Sanity TypeGen can generate its result type.
  *
@@ -20,7 +20,7 @@ export const STORIES_QUERY = defineQuery(`*[_type == "story"] | order(_createdAt
   location,
   excerpt,
   body,
-  images[]{ asset },
+  images[]{ ..., asset },
   placeholder
 }`)
 
@@ -36,18 +36,20 @@ function arr(value: unknown): unknown[] {
   return Array.isArray(value) ? value : []
 }
 
+function resolveImage(source: unknown, fallback: string | undefined): string | undefined {
+  if (typeof source === 'string') return source
+  if (!source) return fallback
+  return urlForImage(source as never) ?? fallback
+}
+
 export function mapSanityStory(raw: unknown, _index: number): Story {
   const doc = asRecord(raw)
   const slug = str(doc.slug) || str(asRecord(doc.slug).current)
   const seed = SEED_STORIES.find((s) => s.slug === slug)
 
   const images: string[] = arr(doc.images)
-    .map((img) => {
-      const imageRecord = asRecord(img)
-      const assetRecord = asRecord(imageRecord.asset)
-      return str(assetRecord._ref)
-    })
-    .filter(Boolean)
+    .map((img) => resolveImage(img, undefined))
+    .filter((url): url is string => typeof url === 'string' && url.length > 0)
 
   const result: Story = {
     slug,
