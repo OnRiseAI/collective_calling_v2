@@ -76,7 +76,7 @@ export function TrustSignals(props: { content: HomeContent['trust'] }): React.JS
 
         {/* Sub-label: small, light, uppercase. Quieter than the eyebrow so the
             hierarchy reads eyebrow > statement > sub-label. */}
-        <p className="mt-12 font-body text-xs uppercase tracking-[0.15em] text-slate-400">
+        <p className="mt-12 font-body text-xs uppercase tracking-[0.15em] text-muted">
           With thanks to our partners and supporters
         </p>
 

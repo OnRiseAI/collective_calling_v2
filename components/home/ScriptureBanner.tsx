@@ -152,7 +152,7 @@ export function ScriptureBanner(): React.JSX.Element {
                   {current.text}
                 </p>
                 <footer className="mt-6">
-                  <cite className="font-body text-sm font-bold uppercase not-italic tracking-[0.18em] text-brand-dark/70">
+                  <cite className="font-body text-sm font-bold uppercase not-italic tracking-[0.18em] text-brand-dark/80">
                     {current.reference}
                   </cite>
                 </footer>

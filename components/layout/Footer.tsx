@@ -167,7 +167,7 @@ export function Footer() {
                 ))}
               </ul>
 
-              <p className="mt-5 font-body text-[15px] leading-relaxed text-brand-dark/70">
+              <p className="mt-5 font-body text-[15px] leading-relaxed text-brand-dark/80">
                 © {LEGAL.year} {LEGAL.org} · {LEGAL.registration}
                 <br />
                 {LEGAL.address} ·{' '}
@@ -196,7 +196,7 @@ export function Footer() {
 
             {/* RIGHT: transparency statement. */}
             <div className="lg:max-w-[340px] lg:text-right">
-              <p className="font-body text-[15px] leading-relaxed text-brand-dark/70">
+              <p className="font-body text-[15px] leading-relaxed text-brand-dark/80">
                 {LEGAL.statement}
               </p>
             </div>

@@ -33,6 +33,7 @@ import { ScriptureBanner } from "@/components/home/ScriptureBanner";
 import { DonateWidget } from "@/components/home/DonateWidget";
 import { TrustSignals } from "@/components/home/TrustSignals";
 import { EmailSignup } from "@/components/home/EmailSignup";
+import { Reveal } from "@/components/ui/Reveal";
 
 /**
  * Collective Calling homepage.
@@ -73,18 +74,21 @@ export default async function Home({
 
   return (
     <>
+      {/* Hero stays un-wrapped: it is above the fold and the LCP element, so it
+          must render immediately rather than fade in. Every section below gets
+          one quiet scroll-in reveal (reduced-motion safe). */}
       <Hero content={content.hero} />
-      <AppealsCards appeals={content.appeals} />
-      <MissionBlurb content={content.mission} />
-      <FaithBand />
-      <Testimonials testimonials={content.testimonials} />
-      <ExploreCards cards={content.exploreCards} />
-      <ImpactStatBand />
-      <WhereMoneyGoes content={content.money} />
-      <ScriptureBanner />
-      <DonateWidget content={content.donate} />
-      <TrustSignals content={content.trust} />
-      <EmailSignup />
+      <Reveal><AppealsCards appeals={content.appeals} /></Reveal>
+      <Reveal><MissionBlurb content={content.mission} /></Reveal>
+      <Reveal><FaithBand /></Reveal>
+      <Reveal><Testimonials testimonials={content.testimonials} /></Reveal>
+      <Reveal><ExploreCards cards={content.exploreCards} /></Reveal>
+      <Reveal><ImpactStatBand /></Reveal>
+      <Reveal><WhereMoneyGoes content={content.money} /></Reveal>
+      <Reveal><ScriptureBanner /></Reveal>
+      <Reveal><DonateWidget content={content.donate} /></Reveal>
+      <Reveal><TrustSignals content={content.trust} /></Reveal>
+      <Reveal><EmailSignup /></Reveal>
     </>
   );
 }
