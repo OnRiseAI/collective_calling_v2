@@ -78,7 +78,7 @@ export function Card({
         <div
           className={cx(
             'relative w-full overflow-hidden bg-muted/10',
-            large ? 'aspect-[3/2]' : 'aspect-[16/9]',
+            large ? 'aspect-square' : 'aspect-[16/9]',
           )}
         >
           <Image
