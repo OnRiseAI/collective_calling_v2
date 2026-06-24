@@ -41,7 +41,7 @@ export const SEED_HOME: HomeContent = {
   ],
   exploreCards: [
     { title: 'Appeals', blurb: 'Stand with families in Spain and Tanzania through our current appeals.', image: '/images/spain-homelessness.jpg', alt: 'Outreach in Spain.', href: '/appeals' },
-    { title: 'Stories', blurb: 'Read how lives are being reclaimed, one person and one family at a time.', image: '/images/transform-5.png', alt: 'A life reclaimed.', href: '/stories' },
+    { title: 'Stories', blurb: 'Read how lives are being reclaimed, one person and one family at a time.', image: '/images/transform-5-stories.png', alt: 'A volunteer and a child hand in hand in Tanzania.', href: '/stories' },
     { title: 'Get involved', blurb: 'Sponsor a child, fundraise, pray, or invite us to speak.', image: '/images/speaking-event.jpg', alt: 'A Collective Calling speaking event.', href: '/get-involved' },
     { title: 'About us', blurb: 'Who we are, what we do, and how we stay accountable.', image: '/images/tanzania-children.jpg', alt: 'Children in Tanzania.', href: '/about' },
   ],
