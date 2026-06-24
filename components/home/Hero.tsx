@@ -62,7 +62,7 @@ export function Hero(props: { content: HomeContent['hero'] }): React.JSX.Element
 
       {/* Content column: left-aligned, constrained reading width, vertically
           centred in a generous ~80vh field. */}
-      <div className="relative mx-auto flex min-h-[78vh] w-full max-w-7xl flex-col justify-center px-6 py-24 sm:px-8 sm:py-28 lg:px-12">
+      <div className="relative mx-auto flex min-h-[78dvh] w-full max-w-7xl flex-col justify-center px-6 py-24 sm:px-8 sm:py-28 lg:px-12">
         {/* Solid white card holding the headline (Tearfund's hero pattern): the
             photo stays bright and the copy sits in a legible panel, bottom-left. */}
         <div className="max-w-xl rounded-md bg-paper p-8 shadow-xl sm:p-10">
