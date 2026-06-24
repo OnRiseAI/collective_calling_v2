@@ -1,7 +1,6 @@
 'use client'
 
 import * as React from 'react'
-import Image from 'next/image'
 import { Section } from '@/components/ui/Section'
 import { cx } from '@/lib/cx'
 
@@ -124,16 +123,13 @@ export function ScriptureBanner(): React.JSX.Element {
         onMouseEnter={() => setPaused(true)}
         onMouseLeave={() => setPaused(false)}
       >
-        {/* Faint navy heart-cross watermark behind the verse: decorative only,
-            adds the Christian note without competing with the words. */}
-        <Image
-          src="/images/heart-cross-navy.png"
-          alt=""
-          width={800}
-          height={781}
+        {/* Oversized decorative opening quote, faint navy, behind the verse. */}
+        <span
           aria-hidden="true"
-          className="pointer-events-none absolute left-1/2 top-1/2 z-0 h-auto w-[220px] -translate-x-1/2 -translate-y-1/2 select-none opacity-[0.10] sm:w-[300px]"
-        />
+          className="pointer-events-none absolute left-1/2 top-1/2 z-0 -translate-x-1/2 -translate-y-1/2 select-none font-serif text-[9rem] leading-none text-brand-dark/[0.07] sm:text-[13rem]"
+        >
+          &ldquo;
+        </span>
 
         <div className="relative z-10">
           {/* Short navy rule on the gold band. */}

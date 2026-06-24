@@ -130,22 +130,9 @@ export function Footer() {
           </div>
         </div>
 
-        {/* Quiet navy heart-cross mark — a small faith accent that also softly
-            divides the footer from the legal bar. Decorative. */}
-        <div className="mt-14 flex justify-center">
-          <Image
-            src="/images/heart-cross-navy.png"
-            alt=""
-            width={800}
-            height={781}
-            aria-hidden="true"
-            className="h-auto w-12"
-          />
-        </div>
-
         {/* Accountability bar: two columns aligned to the same top baseline.
             Left = socials + condensed legal run; right = transparency statement. */}
-        <div className="mt-8 border-t border-brand-dark/15 pt-8">
+        <div className="mt-14 border-t border-brand-dark/15 pt-8">
           <div className="flex flex-col gap-10 lg:flex-row lg:items-end lg:justify-between">
             {/* LEFT: larger social circles, then the condensed legal run. */}
             <div className="lg:max-w-2xl">

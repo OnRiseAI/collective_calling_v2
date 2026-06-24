@@ -1,5 +1,4 @@
 import * as React from 'react'
-import Image from 'next/image'
 import { Link } from '@/i18n/navigation'
 import { Section } from '@/components/ui/Section'
 import { Eyebrow } from '@/components/ui/Eyebrow'
@@ -9,9 +8,8 @@ import { noOrphan } from '@/lib/text'
  * "Because of Jesus" faith band for the Collective Calling homepage.
  *
  * A reverent, midnight-navy band that states the charity's Christian motivation
- * plainly and high on the page (right after the mission). The client's gold
- * brush-stroke heart-cross sits centred at the top as the single focal motif
- * (decorative), above white copy that names Jesus, with the 1 John 4:19 line.
+ * plainly and high on the page (right after the mission): a gold eyebrow, the
+ * heading, white copy that names Jesus, and the 1 John 4:19 line.
  *
  * Copy is held inline, exactly like ImpactStatBand and ScriptureBanner — this is
  * a fixed faith statement, not CMS-editable content. The hero owns the page h1,
@@ -21,17 +19,7 @@ export function FaithBand(): React.JSX.Element {
   return (
     <Section tone="dark" aria-label="Why we do this" className="pb-8 sm:pb-10 lg:pb-12">
       <div className="mx-auto max-w-2xl text-center">
-        {/* The gold heart-cross motif: decorative, so alt is empty. */}
-        <Image
-          src="/images/heart-cross-gold.png"
-          alt=""
-          width={800}
-          height={781}
-          className="mx-auto h-auto w-20 sm:w-24"
-          priority={false}
-        />
-
-        <Eyebrow tone="gold" align="center" className="mt-7">
+        <Eyebrow tone="gold" align="center">
           Why we do this
         </Eyebrow>
 
