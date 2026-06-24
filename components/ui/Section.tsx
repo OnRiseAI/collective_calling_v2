@@ -16,7 +16,13 @@ import { cx } from '@/lib/cx'
  * Set `container={false}` to lay out full-bleed content yourself.
  */
 
-export type SectionTone = 'paper' | 'indigo-tint' | 'clay-tint' | 'dark'
+export type SectionTone =
+  | 'paper'
+  | 'indigo-tint'
+  | 'clay-tint'
+  | 'dark'
+  | 'brand'
+  | 'accent'
 
 type SectionProps = {
   as?: React.ElementType
@@ -32,6 +38,9 @@ const tones: Record<SectionTone, string> = {
   'indigo-tint': 'bg-indigo-tint text-ink',
   'clay-tint': 'bg-clay-tint text-ink',
   dark: 'bg-brand-dark text-paper',
+  // Bold full-width saturated bands (Tearfund-style colour blocking, CC palette).
+  brand: 'bg-brand text-paper',
+  accent: 'bg-accent text-brand-dark',
 }
 
 // Generous, premium vertical pace that scales up on larger screens.

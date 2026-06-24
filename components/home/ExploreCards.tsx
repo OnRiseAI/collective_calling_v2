@@ -32,16 +32,18 @@ export function ExploreCards(props: { cards: ExploreCard[] }): React.JSX.Element
 
   return (
     <Section tone="indigo-tint" containerSize="wide">
-      {/* Eyebrow: gold, uppercase, with a short gold rule echoing the gala poster. */}
+      {/* Light band so the large white feature cards pop, sitting between the
+          navy testimonials and the navy big-number band. */}
       <Eyebrow align="center">Explore</Eyebrow>
 
       {/* Section heading. The hero owns the page h1, so this is an h2, and each
           Card title below is an h3 nested beneath it. NBSP holds "in action". */}
-      <h2 className="mx-auto mt-5 max-w-2xl text-balance text-center font-heading text-3xl font-medium leading-[1.15] text-ink sm:text-4xl">
+      <h2 className="mx-auto mt-5 max-w-2xl text-balance text-center font-heading text-3xl font-bold leading-[1.12] text-brand-dark sm:text-4xl lg:text-[2.75rem]">
         See your impact in&nbsp;action
       </h2>
+      <span aria-hidden="true" className="mx-auto mt-4 block h-1 w-12 rounded-full bg-accent" />
 
-      <ul className="mx-auto mt-14 grid max-w-6xl gap-8 sm:grid-cols-2 lg:grid-cols-4">
+      <ul className="mx-auto mt-14 grid max-w-5xl gap-8 sm:grid-cols-2">
         {cards.map((card) => (
           <li key={card.href} className="flex">
             <Card
@@ -50,6 +52,7 @@ export function ExploreCards(props: { cards: ExploreCard[] }): React.JSX.Element
               title={card.title}
               theme="general"
               href={card.href}
+              large
               className="w-full"
             >
               {card.blurb}

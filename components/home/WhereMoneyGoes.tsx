@@ -1,4 +1,5 @@
 import * as React from 'react'
+import Image from 'next/image'
 import { Link } from '@/i18n/navigation'
 import { Section } from '@/components/ui/Section'
 import { Button } from '@/components/ui/Button'
@@ -10,118 +11,132 @@ import type { HomeContent } from '@/lib/content/types'
 /**
  * "Where your money goes" for the Collective Calling homepage.
  *
- * A warm ivory paper band that answers the unspoken donor question with one
- * honest picture: most of every gift reaches the programs, and a smaller share
- * keeps the charity running and growing. Per the brand board this is a gold
- * eyebrow (H5, uppercase) above a Fraunces section heading, a single horizontal
- * split bar (brand indigo for programs, antique gold for running costs), two
- * labelled figures, the accountability note, and the one gold-led Donate moment.
+ * Split layout (Tearfund's "how we maximise every pound"): a Collective Calling
+ * photograph on one side and a white stat card on the other holding a donut of
+ * the programmes / running-costs split, a labelled figure with one supporting
+ * line each, the gold Donate action, and a link to Financial Accountability.
  *
- * The split is driven entirely from the content props (programsPct / adminPct),
- * never hardcoded, so the same component reports whatever the latest figures are.
- *
+ * The split is driven entirely from the content props (programsPct / adminPct).
  * Heading hierarchy: the hero owns the page h1, so this section heading is an h2.
  */
 
-const HEADING = 'Where your money goes'
+function Donut({
+  programsPct,
+  adminPct,
+  label,
+}: {
+  programsPct: number
+  adminPct: number
+  label: string
+}): React.JSX.Element {
+  const r = 42
+  const c = 2 * Math.PI * r
+  const programsLen = (programsPct / 100) * c
+  const adminLen = (adminPct / 100) * c
+
+  return (
+    <div className="relative mx-auto mt-8 h-44 w-44">
+      <svg viewBox="0 0 120 120" role="img" aria-label={label} className="h-full w-full">
+        <circle
+          cx="60"
+          cy="60"
+          r={r}
+          fill="none"
+          stroke="var(--color-brand)"
+          strokeWidth="18"
+          strokeDasharray={`${programsLen} ${c}`}
+          transform="rotate(-90 60 60)"
+        />
+        <circle
+          cx="60"
+          cy="60"
+          r={r}
+          fill="none"
+          stroke="var(--color-accent)"
+          strokeWidth="18"
+          strokeDasharray={`${adminLen} ${c}`}
+          strokeDashoffset={`-${programsLen}`}
+          transform="rotate(-90 60 60)"
+        />
+      </svg>
+      <span className="absolute right-0 top-4 rounded-full bg-brand px-3 py-1 text-sm font-bold text-paper shadow">
+        {programsPct}%
+      </span>
+      <span className="absolute bottom-5 left-0 rounded-full bg-accent px-3 py-1 text-sm font-bold text-brand-dark shadow">
+        {adminPct}%
+      </span>
+    </div>
+  )
+}
 
 export function WhereMoneyGoes(props: { content: HomeContent['money'] }): React.JSX.Element {
   const { content } = props
   const { programsPct, adminPct, programsLabel, adminLabel, note } = content
 
-  // A plain-language description of the split for assistive technology. The bar
-  // is purely visual, so its meaning lives entirely in this label.
-  const barLabel =
-    `${programsPct} percent ${programsLabel}, ` +
-    `${adminPct} percent ${adminLabel}.`
+  const splitLabel =
+    `${programsPct} percent ${programsLabel}, ` + `${adminPct} percent ${adminLabel}.`
 
   return (
-    <Section tone="paper">
-      <div className="max-w-3xl">
-        {/* Eyebrow: gold, uppercase, bold body face, with a short gold rule that
-            echoes the gala poster's warm gold lettering. */}
-        <Eyebrow>{HEADING}</Eyebrow>
-
-        {/* Section heading: Fraunces, text-balance, NBSP between the last two
-            words. h2 because the hero owns the page h1. */}
-        <h2 className="mt-5 text-balance font-heading text-3xl font-medium leading-[1.15] text-ink sm:text-4xl">
-          {noOrphan('Most of every gift reaches the people we serve')}
-        </h2>
-      </div>
-
-      {/* The split visual. The bar itself is a single image for assistive tech
-          (role="img" + aria-label); the captions around it repeat the same
-          information visually so nothing depends on colour alone. */}
-      <div className="mt-12 max-w-3xl">
-        <div
-          role="img"
-          aria-label={barLabel}
-          className="flex h-5 w-full overflow-hidden rounded-lg ring-1 ring-ink/10"
-        >
-          <span
-            aria-hidden="true"
-            className="block h-full bg-brand"
-            style={{ width: `${programsPct}%` }}
-          />
-          <span
-            aria-hidden="true"
-            className="block h-full bg-accent"
-            style={{ width: `${adminPct}%` }}
+    <Section tone="indigo-tint" containerSize="wide">
+      <div className="grid items-stretch gap-10 lg:grid-cols-2 lg:gap-14">
+        {/* Collective Calling photograph. */}
+        <div className="relative min-h-[300px] overflow-hidden rounded-md lg:min-h-[520px]">
+          <Image
+            src="/images/tanzania/caleb-after.jpg"
+            alt="A child cared for through Collective Calling's work in Tanzania."
+            fill
+            sizes="(min-width: 1024px) 50vw, 100vw"
+            className="object-cover object-center"
           />
         </div>
 
-        {/* Two labelled figures. A definition list keeps the figure (percentage)
-            and its meaning (label) bound together, with a colour key dot that
-            matches each bar segment. */}
-        <dl className="mt-8 grid gap-8 sm:grid-cols-2">
-          <div className="flex gap-4">
-            <span
-              aria-hidden="true"
-              className="mt-2 h-3.5 w-3.5 shrink-0 rounded-full bg-brand"
-            />
-            <div>
-              <dt className="font-heading text-4xl font-medium leading-none text-brand">
-                {programsPct}%
-              </dt>
-              <dd className="mt-2 font-body text-lg leading-snug text-ink">
-                {programsLabel}
-              </dd>
+        {/* White stat card. */}
+        <div className="flex items-center">
+          <div className="w-full rounded-md bg-paper p-8 shadow-[0_16px_40px_rgba(15,35,71,0.12)] sm:p-10">
+            <Eyebrow>Where your money goes</Eyebrow>
+            <h2 className="mt-5 text-balance font-heading text-3xl font-bold leading-[1.12] text-brand-dark sm:text-[2.25rem]">
+              {noOrphan('Most of every gift reaches the people we serve')}
+            </h2>
+            <span aria-hidden="true" className="mt-4 block h-1 w-12 rounded-full bg-accent" />
+
+            <Donut programsPct={programsPct} adminPct={adminPct} label={splitLabel} />
+
+            <dl className="mt-8 grid gap-6 sm:grid-cols-2">
+              <div>
+                <dt className="flex items-baseline gap-2 font-heading text-3xl font-bold leading-none text-brand">
+                  <span aria-hidden="true" className="h-3 w-3 self-center rounded-full bg-brand" />
+                  {programsPct}%
+                </dt>
+                <dd className="mt-2 font-body text-base leading-snug text-ink">{programsLabel}</dd>
+              </div>
+              <div>
+                <dt className="flex items-baseline gap-2 font-heading text-3xl font-bold leading-none text-brand-dark">
+                  <span aria-hidden="true" className="h-3 w-3 self-center rounded-full bg-accent" />
+                  {adminPct}%
+                </dt>
+                <dd className="mt-2 font-body text-base leading-snug text-ink">{adminLabel}</dd>
+              </div>
+            </dl>
+
+            <p className="mt-8 font-body text-sm leading-relaxed text-muted">{note}</p>
+
+            <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-4">
+              <Button
+                as={Link}
+                href={DONATE_HREF}
+                size="lg"
+                className="bg-accent! font-bold text-brand-dark! hover:bg-accent/90!"
+              >
+                Donate
+              </Button>
+              <Link
+                href="/about/financial-accountability"
+                className="font-body font-semibold text-brand underline decoration-2 decoration-transparent underline-offset-4 transition-colors hover:decoration-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-paper"
+              >
+                Read more about where your money goes
+              </Link>
             </div>
           </div>
-
-          <div className="flex gap-4">
-            <span
-              aria-hidden="true"
-              className="mt-2 h-3.5 w-3.5 shrink-0 rounded-full bg-accent"
-            />
-            <div>
-              <dt className="font-heading text-4xl font-medium leading-none text-ink">
-                {adminPct}%
-              </dt>
-              <dd className="mt-2 font-body text-lg leading-snug text-ink">
-                {adminLabel}
-              </dd>
-            </div>
-          </div>
-        </dl>
-
-        {/* Accountability note: Mulish, quiet, in warm muted ink. */}
-        <p className="mt-10 font-body text-base leading-relaxed text-muted">
-          {note}
-        </p>
-
-        {/* The one gold-led action on this calm band. Gold background on the
-            light paper surface so the most invited action is also the warmest.
-            Important modifiers override the primary variant's indigo fill. */}
-        <div className="mt-8">
-          <Button
-            as={Link}
-            href={DONATE_HREF}
-            size="lg"
-            className="bg-accent! text-brand-dark! hover:bg-accent/90!"
-          >
-            Donate
-          </Button>
         </div>
       </div>
     </Section>

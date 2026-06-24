@@ -56,28 +56,27 @@ export function Hero(props: { content: HomeContent['hero'] }): React.JSX.Element
         className="absolute inset-0"
         style={{
           backgroundImage:
-            'linear-gradient(to top, rgba(15,35,71,0.92) 0%, rgba(15,35,71,0.78) 22%, rgba(15,35,71,0.45) 52%, rgba(15,35,71,0.20) 78%, rgba(15,35,71,0.10) 100%), ' +
-            'linear-gradient(to right, rgba(15,35,71,0.55) 0%, rgba(15,35,71,0.15) 45%, transparent 72%)',
+            'linear-gradient(to right, rgba(15,35,71,0.30) 0%, rgba(15,35,71,0.10) 45%, transparent 70%)',
         }}
       />
 
       {/* Content column: left-aligned, constrained reading width, vertically
           centred in a generous ~80vh field. */}
-      <div className="relative mx-auto flex min-h-[80vh] w-full max-w-7xl flex-col justify-center px-6 py-24 sm:px-8 sm:py-28 lg:px-12">
-        <div className="max-w-2xl">
-          {/* Eyebrow: gold, uppercase, bold body face, with a short gold rule that
-              echoes the gala poster's gold lettering. */}
+      <div className="relative mx-auto flex min-h-[78vh] w-full max-w-7xl flex-col justify-center px-6 py-24 sm:px-8 sm:py-28 lg:px-12">
+        {/* Solid white card holding the headline (Tearfund's hero pattern): the
+            photo stays bright and the copy sits in a legible panel, bottom-left. */}
+        <div className="max-w-xl rounded-md bg-paper p-8 shadow-xl sm:p-10">
           <Eyebrow>{content.eyebrow}</Eyebrow>
 
-          <h1 className="mt-6 text-balance font-heading text-4xl font-medium leading-[1.05] text-paper sm:text-5xl lg:text-[4rem]">
+          <h1 className="mt-5 text-balance font-heading text-4xl font-bold leading-[1.05] text-brand-dark sm:text-5xl lg:text-[3.5rem]">
             {noOrphan(content.headline)}
           </h1>
 
-          <p className="mt-7 max-w-xl text-balance font-body text-lg leading-relaxed text-paper/85">
+          <p className="mt-5 text-balance font-body text-lg leading-relaxed text-ink/85">
             {content.lede}
           </p>
 
-          <div className="mt-10 flex flex-wrap items-center gap-x-8 gap-y-4">
+          <div className="mt-8 flex flex-wrap items-center gap-x-8 gap-y-4">
             {/* Donate: the one place gold leads. Important modifiers ensure the gold
                 fill wins over the primary variant background (brand board section 6). */}
             <Button
@@ -93,7 +92,7 @@ export function Hero(props: { content: HomeContent['hero'] }): React.JSX.Element
                 underline grows on hover; gold focus ring offset against navy. */}
             <Link
               href="/appeals"
-              className="group inline-flex items-center gap-2 font-body font-semibold text-paper underline decoration-2 decoration-transparent underline-offset-[6px] transition-[color,text-decoration-color] duration-200 hover:decoration-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-brand-dark"
+              className="group inline-flex items-center gap-2 font-body font-semibold text-brand underline decoration-2 decoration-transparent underline-offset-[6px] transition-[color,text-decoration-color] duration-200 hover:decoration-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-paper"
             >
               See our appeals
               <svg

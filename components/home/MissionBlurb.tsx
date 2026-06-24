@@ -25,22 +25,20 @@ export function MissionBlurb(props: { content: HomeContent['mission'] }): React.
   const { content } = props
 
   return (
-    <Section tone="paper">
-      {/* Prose width: a single comfortable reading column, left aligned for a
-          calm editorial feel. */}
+    <Section tone="accent">
+      {/* Bold full-width gold band (the CC analog of Tearfund's yellow mission
+          band). Dark navy text and eyebrow for contrast on gold. */}
       <div className="max-w-2xl">
-        {/* Eyebrow: gold, uppercase, bold body face, with a short gold rule that
-            echoes the gala poster's warm gold lettering. */}
-        <Eyebrow>{content.eyebrow}</Eyebrow>
+        <Eyebrow tone="dark">{content.eyebrow}</Eyebrow>
 
-        {/* Section heading: Fraunces, text-balance, NBSP between the last two
-            words. h2 because the hero owns the page h1. */}
-        <h2 className="mt-5 text-balance font-heading text-3xl font-medium leading-[1.15] text-ink sm:text-4xl">
+        {/* Section heading: text-balance, NBSP between the last two words. h2
+            because the hero owns the page h1. */}
+        <h2 className="mt-5 text-balance font-heading text-3xl font-bold leading-[1.12] text-brand-dark sm:text-4xl lg:text-[2.75rem]">
           {noOrphan(content.heading)}
         </h2>
 
-        {/* Body: Mulish, generous line height for a calm long passage. */}
-        <p className="mt-6 font-body text-lg leading-relaxed text-ink/90">
+        {/* Body: dark navy on gold, generous line height. */}
+        <p className="mt-6 font-body text-lg leading-relaxed text-brand-dark/85">
           {content.body}
         </p>
 

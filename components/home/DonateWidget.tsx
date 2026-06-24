@@ -1,8 +1,8 @@
 'use client'
 
 import * as React from 'react'
+import Image from 'next/image'
 import { cx } from '@/lib/cx'
-import { Section } from '@/components/ui/Section'
 import { donorboxUrl } from '@/lib/donate'
 import type { DonateTier, HomeContent } from '@/lib/content/types'
 
@@ -112,28 +112,43 @@ export function DonateWidget(props: { content: HomeContent['donate'] }): React.J
   const donateLabel = `Donate ${euros(selectedAmount)} ${interval === 'monthly' ? 'monthly' : 'once'}`
 
   return (
-    <Section tone="dark">
-      <div className="mx-auto max-w-2xl text-center">
-        {/* Eyebrow: gold, uppercase, with a short gold rule echoing the gala
-            poster's warm lettering. On dark, gold reads as warm light. */}
-        <p className="flex items-center justify-center gap-3 font-body text-sm font-bold uppercase tracking-[0.18em] text-accent">
-          <span aria-hidden="true" className="h-px w-8 bg-accent" />
-          Give today
-          <span aria-hidden="true" className="h-px w-8 bg-accent" />
-        </p>
+    <section className="relative isolate overflow-hidden bg-brand-dark text-paper">
+      {/* Full-bleed beneficiary photograph behind a navy wash, so the section
+          reads as a photo band rather than a card floating on white. */}
+      <Image
+        src="/images/spain/outreach.jpg"
+        alt="Collective Calling outreach to people sleeping rough in Spain."
+        fill
+        sizes="100vw"
+        className="object-cover object-center opacity-40"
+      />
+      <div
+        aria-hidden="true"
+        className="absolute inset-0"
+        style={{
+          backgroundImage:
+            'linear-gradient(to right, rgba(15,35,71,0.92) 0%, rgba(15,35,71,0.72) 45%, rgba(15,35,71,0.55) 100%)',
+        }}
+      />
 
-        {/* Section heading: Fraunces, text-balance, NBSP before the last word so
-            it never orphans. h2 because the hero owns the page h1. */}
-        <h2 className="mt-5 text-balance font-heading text-3xl font-medium leading-[1.15] text-paper sm:text-4xl">
-          Give once, or walk with us every&nbsp;month
-        </h2>
-        <p className="mx-auto mt-4 max-w-xl font-body text-lg leading-relaxed text-paper/80">
-          Choose a gift that fits you. Every amount goes straight to restoring
-          dignity in Spain and reuniting families in Tanzania.
-        </p>
-      </div>
+      <div className="relative mx-auto grid w-full max-w-7xl items-center gap-10 px-6 py-20 sm:px-8 lg:grid-cols-2 lg:gap-16 lg:py-28">
+        {/* Left: the invitation. */}
+        <div className="max-w-xl">
+          <p className="flex items-center gap-3 font-body text-sm font-bold uppercase tracking-[0.18em] text-accent">
+            <span aria-hidden="true" className="h-px w-8 bg-accent" />
+            Give today
+          </p>
+          <h2 className="mt-5 text-balance font-heading text-3xl font-bold leading-[1.12] text-paper sm:text-4xl lg:text-[2.75rem]">
+            Give once, or walk with us every&nbsp;month
+          </h2>
+          <p className="mt-5 max-w-lg font-body text-lg leading-relaxed text-paper/85">
+            Choose a gift that fits you. Every amount goes straight to restoring
+            dignity in Spain and reuniting families in Tanzania.
+          </p>
+        </div>
 
-      <div className="mx-auto mt-10 max-w-xl">
+        {/* Right: the donation form, in a solid navy card over the photo. */}
+        <div className="w-full rounded-md bg-brand-dark/90 p-6 shadow-2xl ring-1 ring-paper/10 backdrop-blur sm:p-8">
         {/* Monthly / Once segmented toggle as a radiogroup. */}
         <div
           role="radiogroup"
@@ -235,7 +250,8 @@ export function DonateWidget(props: { content: HomeContent['donate'] }): React.J
           </p>
         </div>
       </div>
-    </Section>
+      </div>
+    </section>
   )
 }
 

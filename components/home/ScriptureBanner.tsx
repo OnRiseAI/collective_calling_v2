@@ -21,20 +21,18 @@ export function ScriptureBanner(props: { content: HomeContent['scripture'] }): R
   const { content } = props
 
   return (
-    <Section tone="dark" containerSize="prose">
+    <Section tone="accent" containerSize="prose">
       <figure className="mx-auto max-w-3xl text-center">
-        {/* Short gold rule: a quiet anchor echoing the gala poster's gold. */}
-        <span aria-hidden="true" className="mx-auto block h-px w-12 bg-accent" />
+        {/* Short navy rule on the gold band. */}
+        <span aria-hidden="true" className="mx-auto block h-px w-12 bg-brand-dark" />
 
-        {/* The verse: a quotation, set large in Fraunces. text-balance keeps the
+        {/* The verse: a quotation, set large and italic. text-balance keeps the
             lines even; leading is open for a reverent, unhurried read. */}
-        <blockquote className="mt-8 text-balance font-heading text-2xl font-medium italic leading-[1.4] text-paper sm:text-3xl lg:text-[2.25rem] lg:leading-[1.35]">
+        <blockquote className="mt-8 text-balance font-heading text-2xl font-medium italic leading-[1.4] text-brand-dark sm:text-3xl lg:text-[2.25rem] lg:leading-[1.35]">
           {content.quote}
         </blockquote>
 
-        {/* Reference in warm gold. On brand-dark, gold reads as warm light, the
-            one place gold may carry a small text line. */}
-        <figcaption className="mt-7 font-body text-sm font-bold uppercase tracking-[0.18em] text-accent">
+        <figcaption className="mt-7 font-body text-sm font-bold uppercase tracking-[0.18em] text-brand-dark/70">
           {content.reference}
         </figcaption>
       </figure>

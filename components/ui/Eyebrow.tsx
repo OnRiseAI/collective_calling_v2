@@ -11,24 +11,41 @@ import { cx } from '@/lib/cx'
  *   <Eyebrow align="center">How you can help</Eyebrow>
  *   <Eyebrow className="mb-4">Give now</Eyebrow>
  */
+type EyebrowTone = 'gold' | 'dark' | 'light'
+
+const eyebrowText: Record<EyebrowTone, string> = {
+  gold: 'text-accent',
+  dark: 'text-brand-dark',
+  light: 'text-paper',
+}
+
+const eyebrowRule: Record<EyebrowTone, string> = {
+  gold: 'bg-accent',
+  dark: 'bg-brand-dark',
+  light: 'bg-paper',
+}
+
 export function Eyebrow({
   children,
   align,
+  tone = 'gold',
   className,
 }: {
   children: React.ReactNode
   align?: 'left' | 'center'
+  tone?: EyebrowTone
   className?: string
 }): React.JSX.Element {
   return (
     <p
       className={cx(
-        'flex items-center gap-3 font-body text-sm font-bold uppercase tracking-[0.18em] text-accent',
+        'flex items-center gap-3 font-body text-sm font-bold uppercase tracking-[0.18em]',
+        eyebrowText[tone],
         align === 'center' && 'justify-center',
         className,
       )}
     >
-      <span aria-hidden="true" className="h-px w-8 bg-accent" />
+      <span aria-hidden="true" className={cx('h-px w-8', eyebrowRule[tone])} />
       {children}
     </p>
   )

@@ -1,0 +1,10 @@
+import { chromium } from '@playwright/test'
+const b = await chromium.launch()
+const p = await b.newPage({ viewport: { width: 1280, height: 1000 } })
+await p.goto('http://localhost:3000/en', { waitUntil: 'domcontentloaded' })
+const el = p.locator('section', { hasText: 'How we maximise every gift' }).first()
+await el.scrollIntoViewIfNeeded()
+await p.waitForTimeout(500)
+await el.screenshot({ path: '.firecrawl/cc-money.png' })
+await b.close()
+console.log('done')

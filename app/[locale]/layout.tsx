@@ -1,28 +1,21 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { Fraunces, Mulish } from "next/font/google";
+import { Lexend } from "next/font/google";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages, setRequestLocale } from "next-intl/server";
 import { routing } from "@/i18n/routing";
 import { Header } from "@/components/layout/Header";
+import { AppealTicker } from "@/components/layout/AppealTicker";
 import { Footer } from "@/components/layout/Footer";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { SITE, isIndexable } from "@/lib/site";
 import { organizationJsonLd } from "@/lib/jsonld";
 import "../globals.css";
 
-// Headings: Fraunces, an old-style serif with optical sizing (opsz 9..144).
-// Variable font keeps weights 400/500/600 available without separate files.
-const fraunces = Fraunces({
-  variable: "--font-fraunces",
-  subsets: ["latin"],
-  display: "swap",
-  axes: ["opsz"],
-});
-
-// Body: Mulish, a calm humanist sans for reading (weights 400/500/600/700).
-const mulish = Mulish({
-  variable: "--font-mulish",
+// Single humanist sans for the whole site (headings and body), a free near-match
+// for Tearfund's FS Me. Lexend is accessibility-designed with open apertures.
+const lexend = Lexend({
+  variable: "--font-lexend",
   subsets: ["latin"],
   display: "swap",
 });
@@ -84,12 +77,13 @@ export default async function LocaleLayout({
   return (
     <html
       lang={locale}
-      className={`${fraunces.variable} ${mulish.variable} h-full antialiased`}
+      className={`${lexend.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
         <NextIntlClientProvider messages={messages}>
           <JsonLd data={organizationJsonLd()} />
           <Header />
+          <AppealTicker />
           <main className="flex-1">{children}</main>
           <Footer />
         </NextIntlClientProvider>

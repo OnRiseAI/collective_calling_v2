@@ -27,10 +27,12 @@ import { AppealsCards } from "@/components/home/AppealsCards";
 import { MissionBlurb } from "@/components/home/MissionBlurb";
 import { Testimonials } from "@/components/home/Testimonials";
 import { ExploreCards } from "@/components/home/ExploreCards";
+import { ImpactStatBand } from "@/components/home/ImpactStatBand";
 import { WhereMoneyGoes } from "@/components/home/WhereMoneyGoes";
 import { ScriptureBanner } from "@/components/home/ScriptureBanner";
 import { DonateWidget } from "@/components/home/DonateWidget";
 import { TrustSignals } from "@/components/home/TrustSignals";
+import { EmailSignup } from "@/components/home/EmailSignup";
 
 /**
  * Collective Calling homepage.
@@ -73,10 +75,12 @@ export default async function Home({
       <MissionBlurb content={content.mission} />
       <Testimonials testimonials={content.testimonials} />
       <ExploreCards cards={content.exploreCards} />
+      <ImpactStatBand />
       <WhereMoneyGoes content={content.money} />
       <ScriptureBanner content={content.scripture} />
       <DonateWidget content={content.donate} />
       <TrustSignals content={content.trust} />
+      <EmailSignup />
     </>
   );
 }

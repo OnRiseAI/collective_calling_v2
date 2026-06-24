@@ -1,6 +1,7 @@
 'use client'
 
 import * as React from 'react'
+import Image from 'next/image'
 import { Link } from '@/i18n/navigation'
 import { type NavSection } from '@/lib/nav'
 
@@ -17,15 +18,17 @@ import { type NavSection } from '@/lib/nav'
  * - nothing is trapped: Tab moves naturally through the panel and onward.
  */
 
-// A short, dignified teaser per section. Programme accent follows the brand
-// board cue (clay = Tanzania, indigo = Spain, gold = general). Kept calm.
+// A featured teaser per section (Tearfund's coloured-panel-with-photo pattern):
+// a real photograph on top of a bold indigo panel, a short dignified blurb, and
+// an outlined call to action.
 type Teaser = {
   eyebrow: string
   title: string
   body: string
   cta: string
   href: string
-  accent: 'gold' | 'clay' | 'indigo'
+  image: string
+  imageAlt: string
 }
 
 const TEASERS: Record<string, Teaser> = {
@@ -35,7 +38,8 @@ const TEASERS: Record<string, Teaser> = {
     body: 'Spain and Tanzania: two countries, one calling to bring people home to each other.',
     cta: 'See all appeals',
     href: '/appeals',
-    accent: 'gold',
+    image: '/images/spain/hero-mobile-shower.jpg',
+    imageAlt: "Collective Calling's mobile shower unit serving people sleeping rough in Spain.",
   },
   stories: {
     eyebrow: 'Real moments',
@@ -43,7 +47,8 @@ const TEASERS: Record<string, Teaser> = {
     body: 'Honest stories from the shower van in Marbella to the Centre of Hope in Tanzania.',
     cta: 'Read the stories',
     href: '/stories',
-    accent: 'clay',
+    image: '/images/tanzania/caleb-after.jpg',
+    imageAlt: 'A child reunited with family through Collective Calling in Tanzania.',
   },
   'get-involved': {
     eyebrow: 'Join in',
@@ -51,7 +56,8 @@ const TEASERS: Record<string, Teaser> = {
     body: 'Sponsor a child, fundraise, pray, or invite us to speak. Every part matters.',
     cta: 'Find your way in',
     href: '/get-involved',
-    accent: 'indigo',
+    image: '/images/speaking-event.jpg',
+    imageAlt: 'Collective Calling speaking at a church event.',
   },
   about: {
     eyebrow: 'Who we are',
@@ -59,20 +65,9 @@ const TEASERS: Record<string, Teaser> = {
     body: 'Our team, our impact, and full financial accountability, all in the open.',
     cta: 'About Collective Calling',
     href: '/about',
-    accent: 'gold',
+    image: '/images/about/hero-group.jpg',
+    imageAlt: 'The Collective Calling team and the people they serve.',
   },
-}
-
-const accentRule: Record<Teaser['accent'], string> = {
-  gold: 'before:bg-accent',
-  clay: 'before:bg-clay',
-  indigo: 'before:bg-brand',
-}
-
-const accentTint: Record<Teaser['accent'], string> = {
-  gold: 'bg-paper',
-  clay: 'bg-clay-tint',
-  indigo: 'bg-indigo-tint',
 }
 
 function SectionMenu({
@@ -174,13 +169,13 @@ function SectionMenu({
         hidden={!open}
         className={`absolute top-full z-50 pt-3 ${align === 'right' ? 'right-0' : 'left-0'}`}
       >
-        <div className="grid w-[34rem] grid-cols-[1fr_1.1fr] overflow-hidden rounded-xl border border-muted/20 bg-paper text-ink shadow-[0_18px_44px_rgba(15,35,71,0.22)]">
-          <ul className="flex flex-col gap-1 p-4">
+        <div className="grid w-[40rem] grid-cols-[1fr_1.05fr] overflow-hidden rounded-md border border-muted/15 bg-paper text-ink shadow-[0_18px_44px_rgba(15,35,71,0.22)]">
+          <ul className="flex flex-col gap-1 p-5">
             {section.items.map((item) => (
               <li key={item.href}>
                 <Link
                   href={item.href}
-                  className="block rounded-md px-3 py-2 text-base text-ink/90 transition-colors hover:bg-indigo-tint hover:text-brand focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+                  className="block rounded-md px-3 py-2.5 text-base font-medium text-ink/90 transition-colors hover:bg-indigo-tint hover:text-brand focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
                 >
                   {item.label}
                 </Link>
@@ -191,19 +186,32 @@ function SectionMenu({
           {teaser ? (
             <Link
               href={teaser.href}
-              className={`group relative flex flex-col justify-end gap-2 p-5 ${accentTint[teaser.accent]} before:absolute before:inset-y-5 before:left-0 before:w-1 before:rounded-full ${accentRule[teaser.accent]} focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent`}
+              className="group flex flex-col bg-brand text-paper focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-inset"
             >
-              <span className="font-body text-xs font-bold uppercase tracking-[0.12em] text-clay">
-                {teaser.eyebrow}
+              {/* Real photograph at the top of the panel. */}
+              <span className="relative block h-36 w-full overflow-hidden">
+                <Image
+                  src={teaser.image}
+                  alt={teaser.imageAlt}
+                  fill
+                  sizes="320px"
+                  className="object-cover object-center"
+                />
               </span>
-              <span className="text-balance font-heading text-xl leading-tight text-brand-dark">
-                {teaser.title}
-              </span>
-              <span className="text-sm leading-relaxed text-muted">{teaser.body}</span>
-              <span className="mt-1 inline-flex items-center gap-1 text-sm font-semibold text-brand">
-                {teaser.cta}
-                <span aria-hidden="true" className="transition-transform duration-200 group-hover:translate-x-0.5">
-                  &rarr;
+
+              <span className="flex flex-1 flex-col gap-2 p-5">
+                <span className="font-body text-xs font-bold uppercase tracking-[0.14em] text-accent">
+                  {teaser.eyebrow}
+                </span>
+                <span className="text-balance font-heading text-xl font-bold leading-tight text-paper">
+                  {teaser.title}
+                </span>
+                <span className="text-sm leading-relaxed text-paper/80">{teaser.body}</span>
+                <span className="mt-3 inline-flex items-center justify-center gap-2 self-start rounded-md border-[1.5px] border-paper px-4 py-2 text-sm font-semibold text-paper transition-colors duration-200 group-hover:bg-paper group-hover:text-brand">
+                  {teaser.cta}
+                  <span aria-hidden="true" className="transition-transform duration-200 group-hover:translate-x-0.5">
+                    &rarr;
+                  </span>
                 </span>
               </span>
             </Link>

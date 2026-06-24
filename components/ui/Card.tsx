@@ -30,6 +30,9 @@ export type CardProps = {
   title: string
   children?: React.ReactNode
   className?: string
+  // `large` makes a more prominent card: a taller image, roomier padding and a
+  // bigger title (used for the homepage "see your impact" feature cards).
+  large?: boolean
 }
 
 // Thin top rule colour per programme theme.
@@ -49,6 +52,7 @@ export function Card({
   title,
   children,
   className,
+  large = false,
 }: CardProps) {
   const isLink = href !== undefined
 
@@ -71,18 +75,23 @@ export function Card({
       <span aria-hidden className={cx('h-1 w-full shrink-0', themeRule[theme])} />
 
       {image ? (
-        <div className="relative aspect-[16/9] w-full overflow-hidden bg-muted/10">
+        <div
+          className={cx(
+            'relative w-full overflow-hidden bg-muted/10',
+            large ? 'aspect-[3/2]' : 'aspect-[16/9]',
+          )}
+        >
           <Image
             src={image}
             alt={alt ?? ''}
             fill
-            sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+            sizes={large ? '(min-width: 640px) 50vw, 100vw' : '(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw'}
             className="object-cover transition-transform duration-300 ease-out group-hover:scale-[1.03]"
           />
         </div>
       ) : null}
 
-      <div className="flex flex-1 flex-col gap-2 p-6">
+      <div className={cx('flex flex-1 flex-col gap-2', large ? 'p-8' : 'p-6')}>
         {eyebrow ? (
           <span className="font-body text-sm font-bold uppercase tracking-[0.08em] text-muted">
             {eyebrow}
@@ -91,7 +100,8 @@ export function Card({
 
         <h3
           className={cx(
-            'font-heading text-[1.375rem] leading-[1.3] font-semibold text-ink',
+            'font-heading leading-[1.25] font-bold text-ink',
+            large ? 'text-2xl sm:text-[1.75rem]' : 'text-[1.375rem]',
             isLink &&
               'underline decoration-accent decoration-2 underline-offset-4 ' +
                 'decoration-transparent transition-[text-decoration-color] duration-200 ' +

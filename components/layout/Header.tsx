@@ -60,11 +60,13 @@ export function Header() {
           <Button
             as={Link}
             href={DONATE_HREF}
-            // Donate is the one place gold leads (brand board section 6). The
-            // important modifiers ensure the gold fill wins over the primary
-            // variant's brand background regardless of generated CSS order.
-            className="hidden bg-accent! text-brand-dark! hover:bg-accent/90! sm:inline-flex"
+            // Donate is the one place gold leads. A heart icon and a chunkier
+            // weight echo Tearfund's persistent donate affordance.
+            className="hidden gap-2 bg-accent! font-bold text-brand-dark! hover:bg-accent/90! sm:inline-flex"
           >
+            <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 21s-7.5-4.6-10-9.2C.7 9.2 1.6 5.7 4.8 4.9c2-.5 3.8.5 4.9 2 1.1-1.5 2.9-2.5 4.9-2 3.2.8 4.1 4.3 2.8 6.9C19.5 16.4 12 21 12 21z" />
+            </svg>
             Donate
           </Button>
 

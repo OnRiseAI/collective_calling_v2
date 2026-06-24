@@ -8,40 +8,53 @@
  * and the brand board (secondary colours documented there for later UI).
  */
 @theme {
-  /* Core palette (brand/design-tokens.json). */
-  --color-brand: #1b3a6b; /* Dignified Indigo */
-  --color-brand-dark: #0f2347; /* Midnight Navy */
-  --color-accent: #c8922a; /* Antique Gold */
-  --color-ink: #1f1b16; /* Warm Ink */
-  --color-paper: #fbf7f0; /* Warm Ivory */
-  --color-muted: #6e6258; /* Warm Taupe */
+  /*
+   * Collective Calling wearing Tearfund's design system: CC's own brand colours
+   * (indigo / navy / gold) applied in Tearfund's light, high-contrast, white-page
+   * idiom. Single humanist sans (Lexend, a free FS Me near-match) for everything,
+   * large readable body type, 6px radius.
+   */
 
-  /* Secondary palette (brand board, for later tasks). */
-  --color-clay: #b05a38; /* Terracotta Clay */
+  /* Brand colours (CC's own, kept). */
+  --color-brand: #1b3a6b; /* Dignified Indigo (primary) */
+  --color-brand-dark: #0f2347; /* Midnight Navy (dark bands / header) */
+  --color-accent: #f3b007; /* Vivid Gold (CTAs + accent bands, the CC analog of Tearfund yellow) */
+
+  /* Neutrals, Tearfund-style: white page, neutral-dark text, cool muted. */
+  --color-ink: #2d2f33; /* Neutral near-black text (was warm ink) */
+  --color-paper: #ffffff; /* White page surface (was warm ivory) */
+  --color-muted: #5b6573; /* Cool muted grey for secondary text */
+
+  /* Light section bands (alternate with white, like Tearfund). */
+  --color-clay: #b05a38; /* Terracotta Clay (retained for programme accents) */
   --color-clay-tint: #f3e7dc; /* Soft warm band */
-  --color-indigo-tint: #e7ecf4; /* Soft cool band */
+  --color-indigo-tint: #eef2f7; /* Soft cool band */
 
-  /* Type families wired to the next/font CSS variables. */
-  --font-heading: var(--font-fraunces), Georgia, "Times New Roman", serif;
-  --font-body: var(--font-mulish), system-ui, -apple-system, sans-serif;
+  /* Single humanist sans for headings and body (Lexend ~ FS Me). */
+  --font-heading: var(--font-lexend), system-ui, -apple-system, sans-serif;
+  --font-body: var(--font-lexend), system-ui, -apple-system, sans-serif;
 
-  /* Base radius. */
-  --radius: 0.5rem;
+  /* Tearfund uses a 6px radius throughout. */
+  --radius: 0.375rem;
 }
 
-/* Sensible page defaults: warm ivory paper, warm ink text, body font. */
+/* Page defaults: white page, neutral-dark text, large readable humanist type. */
 body {
   background-color: var(--color-paper);
   color: var(--color-ink);
   font-family: var(--font-body);
+  font-size: 1.125rem; /* ~18px base, toward Tearfund's large, accessible body */
+  line-height: 1.6;
 }
 
-/* Headings default to the display serif. */
+/* Headings: same humanist sans, heavier weight and tight tracking (Tearfund feel). */
 h1,
 h2,
 h3,
 h4 {
   font-family: var(--font-heading);
+  font-weight: 700;
+  letter-spacing: -0.01em;
 }
 
 /*
@@ -56,5 +69,34 @@ h4 {
   }
   to {
     opacity: 1;
+  }
+}
+
+/*
+ * Appeals ticker marquee. The track holds two identical copies of the phrase
+ * list; translating it by -50% loops seamlessly. Pauses on hover, and holds
+ * static for readers who ask for reduced motion.
+ */
+@keyframes ticker-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.ticker-track {
+  animation: ticker-scroll 30s linear infinite;
+}
+
+.ticker-track:hover {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ticker-track {
+    animation: none;
+    transform: none;
   }
 }

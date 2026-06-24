@@ -5,38 +5,23 @@ import { Button } from '@/components/ui/Button'
 import { NAV_SECTIONS, DONATE_HREF } from '@/lib/nav'
 
 /**
- * Global site footer.
+ * Global site footer (Tearfund's bold footer pattern, CC palette).
  *
- * Two parts on the brand's deep midnight-navy field (the white-on-transparent
- * logo and white socials must sit on a dark field, brand board section 4):
+ * A full-width gold block with navy text, the shared IA link columns, and a
+ * navy "answer the call" CTA card (the white-on-transparent logo and Donate
+ * live inside that dark card, since the logo must never sit on a light field).
+ * A quiet bottom row carries the socials, the charity registration line, and
+ * the policy links.
  *
- * 1. A closing donate CTA band. Gold leads here, the one warmest, most invited
- *    action (brand board section 6). The Donate Button renders the locale-aware
- *    Link via `as` so the route stays prefixed per locale.
- * 2. The footer body: the logo, link columns built from NAV_SECTIONS plus a
- *    Policies column, real social profiles (plain external anchors, never
- *    locale-prefixed), and the charity registration line.
- *
- * It is a server component. NAV_SECTIONS is the single IA source shared with
- * the Header. Hrefs are future routes and may 404 until their plans land.
+ * Server component. NAV_SECTIONS is the single IA source shared with the Header.
  */
 
-// Policies live outside NAV_SECTIONS (they are not top-level IA), so they are
-// composed here. Privacy is the one required policy page for the shell.
 const POLICY_LINKS = [{ label: 'Privacy', href: '/privacy' }]
 
-// A handful of NAV items read better with a slightly different label in the
-// dense footer context than in the header mega-menu. Keyed by href so the
-// destination is always the canonical NAV_SECTIONS route. This also keeps the
-// footer's accessible link names distinct from the header's, so the two navs
-// stay unambiguous for anything (assistive tech or tests) querying links by
-// name across the whole page.
 const FOOTER_LABEL_OVERRIDES: Record<string, string> = {
   '/about/financial-accountability': 'Finances & accountability',
 }
 
-// Real Collective Calling profiles. External, so plain anchors that open in a
-// new tab with safe rel, never the locale-aware Link.
 const SOCIAL_LINKS = [
   {
     label: 'Facebook',
@@ -57,39 +42,17 @@ const SOCIAL_LINKS = [
 
 export function Footer() {
   return (
-    <footer className="mt-auto bg-brand-dark text-paper">
-      {/* Closing donate band. Gold leads. */}
-      <div className="border-b border-paper/10">
-        <Container size="wide" className="py-14 sm:py-16">
-          <div className="flex flex-col items-start gap-6 lg:flex-row lg:items-center lg:justify-between">
-            <div className="max-w-2xl">
-              <p className="font-body text-xs font-bold uppercase tracking-[0.18em] text-accent">
-                Answer the call
-              </p>
-              <p className="mt-3 font-heading text-2xl leading-tight text-paper sm:text-[2rem]">
-                Your gift restores dignity and rebuilds&nbsp;families.
-              </p>
-            </div>
-            <Button
-              as={Link}
-              href={DONATE_HREF}
-              size="lg"
-              // Donate is the one place gold leads (brand board section 6). The
-              // important modifiers ensure the gold fill wins over the primary
-              // variant's brand background regardless of CSS source order.
-              className="bg-accent! text-brand-dark! hover:bg-accent/90!"
-            >
-              Donate
-            </Button>
-          </div>
-        </Container>
-      </div>
+    <footer className="mt-auto bg-accent text-brand-dark">
+      <Container size="wide" className="py-16 sm:py-20">
+        <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-[repeat(4,minmax(0,1fr))_1.5fr] lg:gap-12">
+          {/* Link columns built from the shared IA. */}
+          {NAV_SECTIONS.map((section) => (
+            <FooterColumn key={section.key} heading={section.label} items={section.items} />
+          ))}
 
-      {/* Footer body: logo, link columns, socials. */}
-      <Container size="wide" className="py-14 sm:py-16">
-        <div className="grid gap-10 md:grid-cols-[1.2fr_repeat(3,minmax(0,1fr))] lg:gap-12">
-          {/* Brand column: logo on the navy field, short line, socials. */}
-          <div>
+          {/* Navy "answer the call" CTA card. The white logo and Donate live on
+              this dark field, where they belong. */}
+          <div className="rounded-md bg-brand-dark p-8 text-paper md:col-span-2 lg:col-span-1">
             <Link
               href="/"
               aria-label="Collective Calling home"
@@ -100,18 +63,33 @@ export function Footer() {
                 alt="Collective Calling"
                 width={271}
                 height={86}
-                // Same small static logo the header already renders. Skip the
-                // optimizer for this second instance: it is a tiny transparent
-                // PNG that needs no resizing, and reusing the raw asset avoids a
-                // duplicate /_next/image request for an identical source.
                 unoptimized
-                className="h-10 w-auto"
+                className="h-9 w-auto"
               />
             </Link>
-            <p className="mt-5 max-w-xs font-body text-[0.95rem] leading-relaxed text-paper/75">
-              Restoring dignity and strengthening families in Spain and Tanzania.
+            <p className="mt-6 font-body text-xs font-bold uppercase tracking-[0.18em] text-accent">
+              Answer the call
             </p>
-            <ul className="mt-6 flex items-center gap-3">
+            <p className="mt-3 font-heading text-2xl font-bold leading-tight text-paper">
+              Your gift restores dignity and rebuilds&nbsp;families.
+            </p>
+            <div className="mt-6">
+              <Button
+                as={Link}
+                href={DONATE_HREF}
+                size="lg"
+                className="bg-accent! font-bold text-brand-dark! hover:bg-accent/90!"
+              >
+                Donate
+              </Button>
+            </div>
+          </div>
+        </div>
+
+        {/* Quiet bottom row: socials, registration, policies, all in navy on gold. */}
+        <div className="mt-14 border-t border-brand-dark/15 pt-7">
+          <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
+            <ul className="flex items-center gap-3">
               {SOCIAL_LINKS.map((social) => (
                 <li key={social.label}>
                   <a
@@ -119,7 +97,7 @@ export function Footer() {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={social.label}
-                    className="inline-flex h-10 w-10 items-center justify-center rounded-md text-paper/80 transition-colors hover:bg-paper/10 hover:text-paper focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-brand-dark"
+                    className="inline-flex h-10 w-10 items-center justify-center rounded-md text-brand-dark transition-colors hover:bg-brand-dark/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-dark focus-visible:ring-offset-2 focus-visible:ring-offset-accent"
                   >
                     <svg aria-hidden="true" width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
                       <path d={social.path} />
@@ -128,30 +106,18 @@ export function Footer() {
                 </li>
               ))}
             </ul>
-          </div>
 
-          {/* Link columns built from the shared IA. */}
-          {NAV_SECTIONS.map((section) => (
-            <FooterColumn
-              key={section.key}
-              heading={section.label}
-              items={section.items}
-            />
-          ))}
-        </div>
-
-        {/* Policies row plus the charity registration line. */}
-        <div className="mt-12 border-t border-paper/10 pt-7">
-          <div className="flex flex-col-reverse gap-5 sm:flex-row sm:items-center sm:justify-between">
-            <p className="font-body text-sm text-paper/60">
-              Registered nonprofit · Reg. 611.510 · CIF G93524130
+            <p className="font-body text-sm text-brand-dark/75">
+              Restoring dignity and strengthening families in Spain and Tanzania. Registered
+              nonprofit · Reg. 611.510 · CIF G93524130
             </p>
+
             <ul className="flex flex-wrap items-center gap-x-6 gap-y-2">
               {POLICY_LINKS.map((policy) => (
                 <li key={policy.href}>
                   <Link
                     href={policy.href}
-                    className="font-body text-sm text-paper/70 underline-offset-4 transition-colors hover:text-paper hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-brand-dark"
+                    className="font-body text-sm font-medium text-brand-dark underline-offset-4 transition-colors hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-dark focus-visible:ring-offset-2 focus-visible:ring-offset-accent"
                   >
                     {policy.label}
                   </Link>
@@ -172,13 +138,9 @@ function FooterColumn({
   heading: string
   items: { label: string; href: string }[]
 }) {
-  // The heading is plain text, not a link. The header already exposes a
-  // top-level link per section, so making the footer heading a link too would
-  // create duplicate accessible names for the same destination. The navigable
-  // targets are the items listed beneath.
   return (
     <nav aria-label={heading}>
-      <h2 className="font-body text-xs font-bold uppercase tracking-[0.14em] text-accent">
+      <h2 className="font-body text-xs font-bold uppercase tracking-[0.14em] text-brand-dark">
         {heading}
       </h2>
       <ul className="mt-4 space-y-2.5">
@@ -186,7 +148,7 @@ function FooterColumn({
           <li key={item.href + item.label}>
             <Link
               href={item.href}
-              className="font-body text-[0.95rem] text-paper/75 underline-offset-4 transition-colors hover:text-paper hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-brand-dark"
+              className="font-body text-[0.95rem] font-medium text-brand-dark/80 underline-offset-4 transition-colors hover:text-brand-dark hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-dark focus-visible:ring-offset-2 focus-visible:ring-offset-accent"
             >
               {FOOTER_LABEL_OVERRIDES[item.href] ?? item.label}
             </Link>

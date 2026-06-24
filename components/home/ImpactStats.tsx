@@ -35,7 +35,7 @@ const icons: Record<ImpactStat['icon'], (props: IconProps) => React.JSX.Element>
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
-      strokeWidth={1.5}
+      strokeWidth={2}
       strokeLinecap="round"
       strokeLinejoin="round"
       aria-hidden="true"
@@ -52,7 +52,7 @@ const icons: Record<ImpactStat['icon'], (props: IconProps) => React.JSX.Element>
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
-      strokeWidth={1.5}
+      strokeWidth={2}
       strokeLinecap="round"
       strokeLinejoin="round"
       aria-hidden="true"
@@ -69,7 +69,7 @@ const icons: Record<ImpactStat['icon'], (props: IconProps) => React.JSX.Element>
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
-      strokeWidth={1.5}
+      strokeWidth={2}
       strokeLinecap="round"
       strokeLinejoin="round"
       aria-hidden="true"
@@ -89,27 +89,31 @@ export function ImpactStats(props: { stats: ImpactStat[] }): React.JSX.Element {
       <Eyebrow align="center">Our impact</Eyebrow>
 
       {/* Section heading. The hero owns the page h1, so this is an h2. */}
-      <h2 className="mx-auto mt-5 max-w-2xl text-balance text-center font-heading text-3xl font-medium leading-[1.15] text-ink sm:text-4xl">
+      <h2 className="mx-auto mt-5 max-w-2xl text-balance text-center font-heading text-3xl font-bold leading-[1.12] text-brand-dark sm:text-4xl">
         The difference your support makes
       </h2>
+      <span aria-hidden="true" className="mx-auto mt-4 block h-1 w-12 rounded-full bg-accent" />
 
-      <ul className="mx-auto mt-14 grid max-w-4xl gap-x-10 gap-y-12 sm:grid-cols-3 sm:gap-y-0">
+      <ul className="mx-auto mt-14 grid max-w-5xl gap-6 sm:grid-cols-3">
         {stats.map((stat) => {
           const Icon = icons[stat.icon]
           return (
-            <li key={stat.icon} className="flex flex-col items-center text-center">
-              {/* Gold inline icon in a soft, calm ring. */}
-              <span className="flex h-14 w-14 items-center justify-center rounded-full bg-accent/10 text-accent ring-1 ring-accent/20">
-                <Icon className="h-7 w-7" />
+            <li
+              key={stat.icon}
+              className="flex flex-col items-center rounded-md bg-paper p-8 text-center shadow-[0_12px_32px_rgba(15,35,71,0.08)] ring-1 ring-ink/5"
+            >
+              {/* Solid gold icon badge with a dark navy glyph: punchy, on-brand. */}
+              <span className="flex h-16 w-16 items-center justify-center rounded-full bg-accent text-brand-dark">
+                <Icon className="h-8 w-8" />
               </span>
 
-              {/* Large Fraunces value. Not interactive. */}
-              <p className="mt-6 font-heading text-3xl font-medium leading-tight text-brand sm:text-[2.25rem]">
+              {/* Large, bold value. Not interactive. */}
+              <p className="mt-6 font-heading text-4xl font-bold leading-tight text-brand">
                 {stat.value}
               </p>
 
-              {/* Mulish label in warm taupe. */}
-              <p className="mt-3 max-w-[22rem] font-body text-base leading-relaxed text-muted">
+              {/* Supporting label. */}
+              <p className="mt-3 font-body text-base leading-relaxed text-muted">
                 {stat.label}
               </p>
             </li>
