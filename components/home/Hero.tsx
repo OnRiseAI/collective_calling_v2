@@ -68,7 +68,7 @@ export function Hero(props: { content: HomeContent['hero'] }): React.JSX.Element
         <div className="max-w-xl rounded-md bg-paper p-8 shadow-xl sm:p-10">
           <Eyebrow>{content.eyebrow}</Eyebrow>
 
-          <h1 className="mt-5 text-balance font-heading text-4xl font-bold leading-[1.05] text-brand-dark sm:text-5xl lg:text-[3.5rem]">
+          <h1 className="mt-5 text-balance font-heading text-[38px] font-bold leading-[1.05] text-brand-dark sm:text-5xl lg:text-[3.5rem]">
             {noOrphan(content.headline)}
           </h1>
 

@@ -19,10 +19,10 @@ export function Testimonials(props: { testimonials: Testimonial[] }): React.JSX.
   if (!testimonials || testimonials.length === 0) return null
 
   return (
-    <Section tone="dark">
+    <Section tone="dark" className="pt-8 sm:pt-10 lg:pt-12">
       <div className="text-center">
         <Eyebrow align="center">Why our supporters give</Eyebrow>
-        <h2 className="mx-auto mt-5 max-w-2xl text-balance font-heading text-3xl font-bold leading-[1.12] text-paper sm:text-4xl">
+        <h2 className="mx-auto mt-5 max-w-2xl text-balance font-heading text-3xl font-bold leading-[1.12] text-paper sm:text-[38px]">
           The people who stand with us
         </h2>
         <span aria-hidden="true" className="mx-auto mt-4 block h-1 w-12 rounded-full bg-accent" />

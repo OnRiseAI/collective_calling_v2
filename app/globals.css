@@ -34,6 +34,9 @@
   --font-heading: var(--font-lexend), system-ui, -apple-system, sans-serif;
   --font-body: var(--font-lexend), system-ui, -apple-system, sans-serif;
 
+  /* Warm handwritten accent (Caveat ~ Tearfund's script "Appeal" word). */
+  --font-script: var(--font-caveat), "Segoe Script", cursive;
+
   /* Tearfund uses a 6px radius throughout. */
   --radius: 0.375rem;
 }
@@ -69,34 +72,5 @@ h4 {
   }
   to {
     opacity: 1;
-  }
-}
-
-/*
- * Appeals ticker marquee. The track holds two identical copies of the phrase
- * list; translating it by -50% loops seamlessly. Pauses on hover, and holds
- * static for readers who ask for reduced motion.
- */
-@keyframes ticker-scroll {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-50%);
-  }
-}
-
-.ticker-track {
-  animation: ticker-scroll 30s linear infinite;
-}
-
-.ticker-track:hover {
-  animation-play-state: paused;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .ticker-track {
-    animation: none;
-    transform: none;
   }
 }

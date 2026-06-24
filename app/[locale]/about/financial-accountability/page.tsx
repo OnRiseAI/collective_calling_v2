@@ -86,7 +86,7 @@ export default async function FinancialAccountabilityPage({
           <p className="font-body text-lg font-bold uppercase tracking-[0.08em] text-accent">
             {commitments.eyebrow}
           </p>
-          <h2 className="mt-3 font-heading text-[2.25rem] leading-[1.15] font-medium text-balance text-ink">
+          <h2 className="mt-3 font-heading text-[38px] leading-[1.15] font-medium text-balance text-ink">
             {commitments.heading}
           </h2>
         </div>
@@ -115,7 +115,7 @@ export default async function FinancialAccountabilityPage({
           <p className="font-body text-lg font-bold uppercase tracking-[0.08em] text-clay">
             {accountability.eyebrow}
           </p>
-          <h2 className="mt-3 font-heading text-[2.25rem] leading-[1.15] font-medium text-balance text-ink">
+          <h2 className="mt-3 font-heading text-[38px] leading-[1.15] font-medium text-balance text-ink">
             {accountability.heading}
           </h2>
           <Prose className="mt-6">
@@ -136,7 +136,7 @@ export default async function FinancialAccountabilityPage({
           <p className="font-body text-lg font-bold uppercase tracking-[0.08em] text-accent">
             {donate.eyebrow}
           </p>
-          <h2 className="mt-3 font-heading text-[2.25rem] leading-[1.15] font-medium text-balance text-paper">
+          <h2 className="mt-3 font-heading text-[38px] leading-[1.15] font-medium text-balance text-paper">
             {donate.heading}
           </h2>
           <p className="mt-6 font-body text-lg leading-[1.65] text-paper/85">

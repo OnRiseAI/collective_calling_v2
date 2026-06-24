@@ -108,7 +108,7 @@ export default async function StoriesPage({
           <p className="font-body text-lg font-bold uppercase tracking-[0.08em] text-accent">
             Be part of the story
           </p>
-          <h2 className="mt-3 font-heading text-[2.25rem] leading-[1.15] font-medium text-balance text-paper">
+          <h2 className="mt-3 font-heading text-[38px] leading-[1.15] font-medium text-balance text-paper">
             Your gift writes the next chapter
           </h2>
           <p className="mt-6 font-body text-lg leading-[1.65] text-paper/85">

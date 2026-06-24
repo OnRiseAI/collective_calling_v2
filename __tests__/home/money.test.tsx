@@ -25,9 +25,10 @@ const money: HomeContent['money'] = {
 
 test('shows both percentages', () => {
   renderWithLocale(<WhereMoneyGoes content={money} />)
-  // Both figures appear (the note also mentions 83%, so allow multiple matches).
+  // Each figure appears more than once (donut badge + stat callout, and the note
+  // also mentions 83%), so allow multiple matches.
   expect(screen.getAllByText(/83%/).length).toBeGreaterThan(0)
-  expect(screen.getByText(/17%/)).toBeInTheDocument()
+  expect(screen.getAllByText(/17%/).length).toBeGreaterThan(0)
 })
 
 test('renders the accountability note', () => {
@@ -43,7 +44,9 @@ test('offers a Donate link to the donate route', () => {
 
 test('split bar is an image with an aria-label describing the 83/17 split', () => {
   renderWithLocale(<WhereMoneyGoes content={money} />)
-  const bar = screen.getByRole('img')
+  // Select the donut specifically (its accessible name carries the split), not
+  // the photograph, which also has the img role.
+  const bar = screen.getByRole('img', { name: /83/ })
   const label = bar.getAttribute('aria-label') ?? ''
   expect(label).toMatch(/83/)
   expect(label).toMatch(/17/)

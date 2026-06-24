@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { Lexend } from "next/font/google";
+import { Lexend, Caveat } from "next/font/google";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages, setRequestLocale } from "next-intl/server";
 import { routing } from "@/i18n/routing";
@@ -17,6 +17,15 @@ import "../globals.css";
 const lexend = Lexend({
   variable: "--font-lexend",
   subsets: ["latin"],
+  display: "swap",
+});
+
+// Warm handwritten accent — the CC analog of Tearfund's script "Appeal" word.
+// Used sparingly (appeal ticker, expressive accents), never for body or headings.
+const caveat = Caveat({
+  variable: "--font-caveat",
+  subsets: ["latin"],
+  weight: ["700"],
   display: "swap",
 });
 
@@ -77,7 +86,7 @@ export default async function LocaleLayout({
   return (
     <html
       lang={locale}
-      className={`${lexend.variable} h-full antialiased`}
+      className={`${lexend.variable} ${caveat.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
         <NextIntlClientProvider messages={messages}>

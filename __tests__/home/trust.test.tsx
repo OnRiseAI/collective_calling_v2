@@ -19,13 +19,21 @@ test('shows the registration line containing the reg number', () => {
   expect(screen.getByText(/611\.510/)).toBeInTheDocument()
 })
 
-test('shows the accountability statement', () => {
+test('shows the accountability statement as a heading + supporting line', () => {
   render(<TrustSignals content={trust} />)
-  expect(screen.getByText(trust.statement)).toBeInTheDocument()
+  // The first sentence becomes the section heading, the rest the supporting line.
+  expect(
+    screen.getByRole('heading', { name: /we are transparent and accountable/i }),
+  ).toBeInTheDocument()
+  expect(screen.getByText(/no donation is too small/i)).toBeInTheDocument()
 })
 
-test('shows both partner names', () => {
+test('shows the partners and supporters logo strip', () => {
   render(<TrustSignals content={trust} />)
-  expect(screen.getByText('Rotary Club Guadalmina Marbella')).toBeInTheDocument()
-  expect(screen.getByText('Ayuntamiento de Marbella')).toBeInTheDocument()
+  // The supporters label introduces the strip, and each sponsor logo carries
+  // its organisation name as alt text.
+  expect(screen.getByText(/partners and supporters/i)).toBeInTheDocument()
+  expect(screen.getByAltText('Junta de Andalucía')).toBeInTheDocument()
+  expect(screen.getByAltText('SANA Catering')).toBeInTheDocument()
+  expect(screen.getByAltText('Rotary Club Marbella-Guadalmina')).toBeInTheDocument()
 })

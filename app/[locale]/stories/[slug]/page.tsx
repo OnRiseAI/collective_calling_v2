@@ -121,7 +121,7 @@ export default async function StoryDetailPage({
           <p className="font-body text-lg font-bold uppercase tracking-[0.08em] text-accent">
             Make a difference
           </p>
-          <h2 className="mt-3 font-heading text-[2.25rem] leading-[1.15] font-medium text-balance text-paper">
+          <h2 className="mt-3 font-heading text-[38px] leading-[1.15] font-medium text-balance text-paper">
             Help us write more stories like this
           </h2>
           <p className="mt-6 font-body text-lg leading-[1.65] text-paper/85">

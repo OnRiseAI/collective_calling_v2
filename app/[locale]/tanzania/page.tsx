@@ -71,7 +71,7 @@ export default async function TanzaniaPage({
           <p className="font-body text-lg font-bold uppercase tracking-[0.08em] text-clay">
             Why it matters
           </p>
-          <h2 className="mt-3 font-heading text-[2.25rem] leading-[1.15] font-medium text-balance text-ink">
+          <h2 className="mt-3 font-heading text-[38px] leading-[1.15] font-medium text-balance text-ink">
             {statistic.heading}
           </h2>
           <Prose className="mt-6">
@@ -90,7 +90,7 @@ export default async function TanzaniaPage({
             <p className="font-body text-lg font-bold uppercase tracking-[0.08em] text-clay">
               In Kasulu
             </p>
-            <h2 className="mt-3 font-heading text-[2.25rem] leading-[1.15] font-medium text-balance text-ink">
+            <h2 className="mt-3 font-heading text-[38px] leading-[1.15] font-medium text-balance text-ink">
               {centre.heading}
             </h2>
             <Prose className="mt-6">
@@ -118,7 +118,7 @@ export default async function TanzaniaPage({
           <p className="font-body text-lg font-bold uppercase tracking-[0.08em] text-clay">
             {reunification.eyebrow}
           </p>
-          <h2 className="mt-3 font-heading text-[2.25rem] leading-[1.15] font-medium text-balance text-ink">
+          <h2 className="mt-3 font-heading text-[38px] leading-[1.15] font-medium text-balance text-ink">
             {reunification.heading}
           </h2>
           <Prose className="mt-6">
@@ -158,7 +158,7 @@ export default async function TanzaniaPage({
             <p className="font-body text-lg font-bold uppercase tracking-[0.08em] text-clay">
               {caleb.eyebrow}
             </p>
-            <h2 className="mt-3 font-heading text-[2.25rem] leading-[1.15] font-medium text-balance text-ink">
+            <h2 className="mt-3 font-heading text-[38px] leading-[1.15] font-medium text-balance text-ink">
               {caleb.heading}
             </h2>
             <Prose className="mt-6">
@@ -175,7 +175,7 @@ export default async function TanzaniaPage({
           <p className="font-body text-lg font-bold uppercase tracking-[0.08em] text-accent">
             {donate.eyebrow}
           </p>
-          <h2 className="mt-3 font-heading text-[2.25rem] leading-[1.15] font-medium text-balance text-paper">
+          <h2 className="mt-3 font-heading text-[38px] leading-[1.15] font-medium text-balance text-paper">
             {donate.heading}
           </h2>
           <p className="mt-6 font-body text-lg leading-[1.65] text-paper/85">

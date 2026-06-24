@@ -54,7 +54,7 @@ export default async function WhoWeArePage({
         <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.9fr)] lg:gap-16">
           {/* Mission narrative. */}
           <div>
-            <h2 className="font-heading text-[2.25rem] leading-[1.15] font-medium text-balance text-ink">
+            <h2 className="font-heading text-[38px] leading-[1.15] font-medium text-balance text-ink">
               Our mission
             </h2>
             <Prose className="mt-6">
@@ -66,7 +66,7 @@ export default async function WhoWeArePage({
 
           {/* Vision: a dignified quote resting on scripture. */}
           <div className="lg:pt-2">
-            <h2 className="font-heading text-[2.25rem] leading-[1.15] font-medium text-balance text-ink">
+            <h2 className="font-heading text-[38px] leading-[1.15] font-medium text-balance text-ink">
               Our vision
             </h2>
             <figure className="mt-6 border-l-2 border-accent pl-6">

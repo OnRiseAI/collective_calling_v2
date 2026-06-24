@@ -138,7 +138,7 @@ export function DonateWidget(props: { content: HomeContent['donate'] }): React.J
             <span aria-hidden="true" className="h-px w-8 bg-accent" />
             Give today
           </p>
-          <h2 className="mt-5 text-balance font-heading text-3xl font-bold leading-[1.12] text-paper sm:text-4xl lg:text-[2.75rem]">
+          <h2 className="mt-5 text-balance font-heading text-3xl font-bold leading-[1.12] text-paper sm:text-[38px] lg:text-[2.75rem]">
             Give once, or walk with us every&nbsp;month
           </h2>
           <p className="mt-5 max-w-lg font-body text-lg leading-relaxed text-paper/85">

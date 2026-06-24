@@ -57,7 +57,7 @@ export default async function WhatWeDoPage({
 
       {/* Overview of the two-country model, with links to the programme hubs. */}
       <Section tone="paper">
-        <h2 className="font-heading text-[2.25rem] leading-[1.15] font-medium text-balance text-ink">
+        <h2 className="font-heading text-[38px] leading-[1.15] font-medium text-balance text-ink">
           Two countries, one calling
         </h2>
         <Prose className="mt-6">
@@ -81,7 +81,7 @@ export default async function WhatWeDoPage({
         <p className="font-body text-lg font-bold uppercase tracking-[0.08em] text-accent">
           {principlesEyebrow}
         </p>
-        <h2 className="mt-3 max-w-2xl font-heading text-[2.25rem] leading-[1.15] font-medium text-balance text-ink">
+        <h2 className="mt-3 max-w-2xl font-heading text-[38px] leading-[1.15] font-medium text-balance text-ink">
           {principlesHeading}
         </h2>
       </Section>
@@ -93,7 +93,7 @@ export default async function WhatWeDoPage({
           <p className="font-body text-lg font-bold uppercase tracking-[0.08em] text-accent">
             {donate.eyebrow}
           </p>
-          <h2 className="mt-3 font-heading text-[2.25rem] leading-[1.15] font-medium text-balance text-paper">
+          <h2 className="mt-3 font-heading text-[38px] leading-[1.15] font-medium text-balance text-paper">
             {donate.heading}
           </h2>
           <p className="mt-6 font-body text-lg leading-[1.65] text-paper/85">

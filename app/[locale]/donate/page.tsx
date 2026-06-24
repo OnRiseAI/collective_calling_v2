@@ -80,7 +80,7 @@ export default async function DonatePage({
       <Section tone="indigo-tint">
         <div className="max-w-2xl">
           <Eyebrow>{giftDoes.eyebrow}</Eyebrow>
-          <h2 className="mt-5 text-balance font-heading text-3xl font-medium leading-[1.15] text-ink sm:text-4xl">
+          <h2 className="mt-5 text-balance font-heading text-3xl font-medium leading-[1.15] text-ink sm:text-[38px]">
             {giftDoes.heading}
           </h2>
         </div>
@@ -127,7 +127,7 @@ export default async function DonatePage({
           <p className="font-body text-lg font-bold uppercase tracking-[0.08em] text-accent">
             {reassurance.eyebrow}
           </p>
-          <h2 className="mt-3 text-balance font-heading text-[2.25rem] font-medium leading-[1.15] text-paper">
+          <h2 className="mt-3 text-balance font-heading text-[38px] font-medium leading-[1.15] text-paper">
             {reassurance.heading}
           </h2>
           <p className="mt-6 font-body text-lg leading-[1.65] text-paper/85">
@@ -168,7 +168,7 @@ export default async function DonatePage({
           <p className="font-body text-lg font-bold uppercase tracking-[0.08em] text-clay">
             {more.eyebrow}
           </p>
-          <h2 className="mt-3 text-balance font-heading text-[2.25rem] font-medium leading-[1.15] text-ink">
+          <h2 className="mt-3 text-balance font-heading text-[38px] font-medium leading-[1.15] text-ink">
             {more.heading}
           </h2>
           <p className="mt-6 font-body text-lg leading-[1.65] text-ink">{more.body}</p>

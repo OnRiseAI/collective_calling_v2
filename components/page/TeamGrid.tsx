@@ -113,7 +113,7 @@ export function TeamGrid({ groups }: TeamGridProps) {
         return (
           <Section key={group.label} tone={tone} aria-label={group.label}>
             <div className="mb-10 lg:mb-12">
-              <h2 className="font-heading text-[2.25rem] leading-[1.15] font-medium text-balance text-ink">
+              <h2 className="font-heading text-[38px] leading-[1.15] font-medium text-balance text-ink">
                 {group.label}
               </h2>
               {/* Thin antique-gold rule under each group label. */}

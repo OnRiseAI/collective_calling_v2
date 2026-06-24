@@ -20,7 +20,7 @@ export const SEED_HOME: HomeContent = {
     { icon: 'heart', value: '83%', label: 'of every euro goes directly to our programs.' },
   ],
   appeals: [
-    { slug: 'spain', title: 'Restoring dignity in Spain', blurb: 'Our mobile shower unit and outreach bring hygiene, warmth, and human connection to people sleeping rough.', image: '/images/spain-mobile-shower.jpg', alt: 'The Collective Calling mobile shower unit serving people in Spain.', href: '/spain', theme: 'spain' },
+    { slug: 'spain', title: 'Restoring dignity in Spain', blurb: "Spain's first mobile shower unit and our street outreach bring hygiene, warmth, and human connection to people sleeping rough in Marbella.", image: '/images/spain-mobile-shower.jpg', alt: 'The Collective Calling mobile shower unit serving people in Spain.', href: '/spain', theme: 'spain' },
     { slug: 'tanzania', title: 'Rebuilding families in Tanzania', blurb: 'Through our Centre of Hope we rescue, restore, and reunite street-connected children with safe, loving homes.', image: '/images/tanzania-children.jpg', alt: 'Children at the Centre of Hope in Tanzania.', href: '/tanzania', theme: 'tanzania' },
     { slug: 'sponsor', title: 'Sponsor a child', blurb: 'For 58 euros a month you can give a child food, shelter, education, and the chance of a future.', image: '/images/speaking-event.jpg', alt: 'A Collective Calling gathering.', href: '/get-involved/sponsor-a-child', theme: 'general' },
   ],

@@ -2,6 +2,7 @@ import * as React from 'react'
 import Image from 'next/image'
 import { Link } from '@/i18n/navigation'
 import { Section } from '@/components/ui/Section'
+import { Container } from '@/components/ui/Container'
 import { Button } from '@/components/ui/Button'
 import { Eyebrow } from '@/components/ui/Eyebrow'
 import { DONATE_HREF } from '@/lib/nav'
@@ -77,10 +78,12 @@ export function WhereMoneyGoes(props: { content: HomeContent['money'] }): React.
     `${programsPct} percent ${programsLabel}, ` + `${adminPct} percent ${adminLabel}.`
 
   return (
-    <Section tone="indigo-tint" containerSize="wide">
-      <div className="grid items-stretch gap-10 lg:grid-cols-2 lg:gap-14">
-        {/* Collective Calling photograph. */}
-        <div className="relative min-h-[300px] overflow-hidden rounded-md lg:min-h-[520px]">
+    <Section tone="indigo-tint" container={false} className="overflow-x-clip">
+      <Container size="wide" className="relative">
+        {/* Collective Calling photograph. Full-bleed across the top on mobile;
+            on desktop it bleeds to the left viewport edge (square left, rounded
+            right) while its right edge meets the contained grid at centre. */}
+        <div className="relative -mx-6 h-[300px] overflow-hidden sm:-mx-8 sm:h-[340px] lg:absolute lg:inset-y-0 lg:left-[calc(50%_-_50vw)] lg:mx-0 lg:h-auto lg:w-[50vw] lg:rounded-r-2xl">
           <Image
             src="/images/tanzania/caleb-after.jpg"
             alt="A child cared for through Collective Calling's work in Tanzania."
@@ -90,11 +93,12 @@ export function WhereMoneyGoes(props: { content: HomeContent['money'] }): React.
           />
         </div>
 
-        {/* White stat card. */}
-        <div className="flex items-center">
-          <div className="w-full rounded-md bg-paper p-8 shadow-[0_16px_40px_rgba(15,35,71,0.12)] sm:p-10">
+        {/* White stat card: stays in the contained grid on the right, its right
+            edge aligned with the other contained sections. */}
+        <div className="lg:ml-auto lg:flex lg:min-h-[560px] lg:w-1/2 lg:items-center lg:pl-12">
+          <div className="mx-auto mt-10 w-full max-w-[560px] rounded-md bg-paper p-8 shadow-[0_16px_40px_rgba(15,35,71,0.12)] sm:p-10 lg:mx-0 lg:mt-0">
             <Eyebrow>Where your money goes</Eyebrow>
-            <h2 className="mt-5 text-balance font-heading text-3xl font-bold leading-[1.12] text-brand-dark sm:text-[2.25rem]">
+            <h2 className="mt-5 text-balance font-heading text-3xl font-bold leading-[1.12] text-brand-dark sm:text-[38px]">
               {noOrphan('Most of every gift reaches the people we serve')}
             </h2>
             <span aria-hidden="true" className="mt-4 block h-1 w-12 rounded-full bg-accent" />
@@ -138,7 +142,7 @@ export function WhereMoneyGoes(props: { content: HomeContent['money'] }): React.
             </div>
           </div>
         </div>
-      </div>
+      </Container>
     </Section>
   )
 }

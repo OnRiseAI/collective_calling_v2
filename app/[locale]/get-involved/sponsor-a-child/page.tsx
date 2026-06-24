@@ -81,7 +81,7 @@ export default async function SponsorChildPage({
           <span aria-hidden="true" className="h-px w-8 bg-clay" />
           {provides.eyebrow}
         </p>
-        <h2 className="mt-5 max-w-2xl text-balance font-heading text-3xl font-medium leading-[1.15] text-ink sm:text-4xl">
+        <h2 className="mt-5 max-w-2xl text-balance font-heading text-3xl font-medium leading-[1.15] text-ink sm:text-[38px]">
           {provides.heading}
         </h2>
         <p className="mt-6 max-w-prose font-body text-lg leading-[1.65] text-ink">
@@ -114,7 +114,7 @@ export default async function SponsorChildPage({
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-[1fr_minmax(0,33rem)] lg:items-start lg:gap-16">
           <div className="max-w-prose">
             <Eyebrow>{form.eyebrow}</Eyebrow>
-            <h2 className="mt-5 text-balance font-heading text-3xl font-medium leading-[1.15] text-ink sm:text-4xl">
+            <h2 className="mt-5 text-balance font-heading text-3xl font-medium leading-[1.15] text-ink sm:text-[38px]">
               {form.heading}
             </h2>
             <p className="mt-6 font-body text-lg leading-[1.65] text-ink">
@@ -145,7 +145,7 @@ export default async function SponsorChildPage({
           <p className="font-body text-lg font-bold uppercase tracking-[0.08em] text-accent">
             {closing.eyebrow}
           </p>
-          <h2 className="mt-3 text-balance font-heading text-[2.25rem] font-medium leading-[1.15] text-paper">
+          <h2 className="mt-3 text-balance font-heading text-[38px] font-medium leading-[1.15] text-paper">
             {closing.heading}
           </h2>
           <p className="mt-6 font-body text-lg leading-[1.65] text-paper/85">

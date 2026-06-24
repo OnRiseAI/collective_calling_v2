@@ -225,7 +225,7 @@ function SectionMenu({
 export function MegaMenu({ sections }: { sections: NavSection[] }) {
   return (
     <nav aria-label="Primary" className="hidden lg:block">
-      <ul className="flex items-center gap-7 font-body text-base font-medium">
+      <ul className="flex items-center gap-9 font-body text-xl font-medium">
         {sections.map((section, i) => (
           <SectionMenu
             key={section.key}

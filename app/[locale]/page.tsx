@@ -22,9 +22,9 @@ export async function generateMetadata({
   })
 }
 import { Hero } from "@/components/home/Hero";
-import { ImpactStats } from "@/components/home/ImpactStats";
 import { AppealsCards } from "@/components/home/AppealsCards";
 import { MissionBlurb } from "@/components/home/MissionBlurb";
+import { FaithBand } from "@/components/home/FaithBand";
 import { Testimonials } from "@/components/home/Testimonials";
 import { ExploreCards } from "@/components/home/ExploreCards";
 import { ImpactStatBand } from "@/components/home/ImpactStatBand";
@@ -45,15 +45,19 @@ import { EmailSignup } from "@/components/home/EmailSignup";
  *
  * Section order (spec section 6):
  *  1. Hero (gold-led Donate, the page h1)
- *  2. Impact stats
- *  3. Appeals cards (Spain, Tanzania, Sponsor a child)
- *  4. Mission blurb
- *  5. Testimonials (client island)
- *  6. Explore cards
- *  7. Where your money goes
- *  8. Scripture banner
- *  9. Donate widget (client island)
- * 10. Trust signals
+ *  2. Appeals cards (Spain, Tanzania, Sponsor a child) — the single upper card row
+ *  3. Mission blurb
+ *  4. Testimonials (client island)
+ *  5. Explore cards
+ *  6. Where your money goes (the sole home for the 83% programmes figure)
+ *  7. Scripture banner
+ *  8. Donate widget (client island)
+ *  9. Trust signals
+ *
+ * The standalone "Our impact" cards (Spain's first / Centre of Hope / 83%) were
+ * removed: their content is already carried by the appeals cards above and the
+ * "Where your money goes" donut below, so the page no longer stacks three
+ * near-identical card grids near the top.
  *
  * The Plan 1 placeholder hero is gone; the Hero component is now the only hero.
  */
@@ -70,14 +74,14 @@ export default async function Home({
   return (
     <>
       <Hero content={content.hero} />
-      <ImpactStats stats={content.impactStats} />
       <AppealsCards appeals={content.appeals} />
       <MissionBlurb content={content.mission} />
+      <FaithBand />
       <Testimonials testimonials={content.testimonials} />
       <ExploreCards cards={content.exploreCards} />
       <ImpactStatBand />
       <WhereMoneyGoes content={content.money} />
-      <ScriptureBanner content={content.scripture} />
+      <ScriptureBanner />
       <DonateWidget content={content.donate} />
       <TrustSignals content={content.trust} />
       <EmailSignup />

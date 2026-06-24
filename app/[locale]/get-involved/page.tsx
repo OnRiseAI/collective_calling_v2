@@ -60,7 +60,7 @@ export default async function GetInvolvedPage({
           <p className="font-body text-lg font-bold uppercase tracking-[0.08em] text-accent">
             {intro.eyebrow}
           </p>
-          <h2 className="mt-3 font-heading text-[2.25rem] leading-[1.15] font-medium text-balance text-ink">
+          <h2 className="mt-3 font-heading text-[38px] leading-[1.15] font-medium text-balance text-ink">
             {intro.heading}
           </h2>
           <Prose className="mt-6">
@@ -76,7 +76,7 @@ export default async function GetInvolvedPage({
         <p className="font-body text-lg font-bold uppercase tracking-[0.08em] text-accent">
           {subNav.eyebrow}
         </p>
-        <h2 className="mt-3 max-w-2xl font-heading text-[2.25rem] leading-[1.15] font-medium text-balance text-ink">
+        <h2 className="mt-3 max-w-2xl font-heading text-[38px] leading-[1.15] font-medium text-balance text-ink">
           {subNav.heading}
         </h2>
         <div className="mt-10">
@@ -90,7 +90,7 @@ export default async function GetInvolvedPage({
           <p className="font-body text-lg font-bold uppercase tracking-[0.08em] text-accent">
             Stand with us
           </p>
-          <h2 className="mt-3 font-heading text-[2.25rem] leading-[1.15] font-medium text-balance text-paper">
+          <h2 className="mt-3 font-heading text-[38px] leading-[1.15] font-medium text-balance text-paper">
             No donation is too small
           </h2>
           <p className="mt-6 font-body text-lg leading-[1.65] text-paper/85">

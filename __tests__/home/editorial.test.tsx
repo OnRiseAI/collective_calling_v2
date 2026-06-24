@@ -23,11 +23,6 @@ const sampleMission: HomeContent['mission'] = {
   body: 'Collective Calling restores dignity and strengthens families across Spain and Tanzania.',
 }
 
-const sampleScripture: HomeContent['scripture'] = {
-  quote: 'Beloved, if God so loved us, we also ought to love one another.',
-  reference: '1 John 4:11',
-}
-
 test('mission blurb renders the heading as an h2', () => {
   renderWithLocale(<MissionBlurb content={sampleMission} />)
   const heading = screen.getByRole('heading', { level: 2 })
@@ -40,14 +35,14 @@ test('mission blurb links to the about page', () => {
   expect(link).toHaveAttribute('href', expect.stringContaining('/about'))
 })
 
-test('scripture banner shows the quote and reference', () => {
-  render(<ScriptureBanner content={sampleScripture} />)
+test('scripture banner shows the first verse and reference', () => {
+  render(<ScriptureBanner />)
   expect(screen.getByText(/love one another/i)).toBeInTheDocument()
   expect(screen.getByText('1 John 4:11')).toBeInTheDocument()
 })
 
 test('scripture banner wraps the quote in a blockquote element', () => {
-  const { container } = render(<ScriptureBanner content={sampleScripture} />)
+  const { container } = render(<ScriptureBanner />)
   const blockquote = container.querySelector('blockquote')
   expect(blockquote).not.toBeNull()
   expect(blockquote).toHaveTextContent(/love one another/i)

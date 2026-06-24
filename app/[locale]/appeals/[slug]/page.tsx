@@ -108,7 +108,7 @@ export default async function AppealDetailPage({
       <Section tone="indigo-tint">
         <div className="max-w-2xl">
           <Eyebrow>Give now</Eyebrow>
-          <h2 className="mt-5 text-balance font-heading text-3xl font-medium leading-[1.15] text-ink sm:text-4xl">
+          <h2 className="mt-5 text-balance font-heading text-3xl font-medium leading-[1.15] text-ink sm:text-[38px]">
             Support this appeal
           </h2>
           <p className="mt-6 font-body text-lg leading-[1.65] text-ink">

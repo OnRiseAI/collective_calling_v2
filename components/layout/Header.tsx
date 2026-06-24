@@ -19,7 +19,7 @@ import { NAV_SECTIONS, DONATE_HREF } from '@/lib/nav'
 export function Header() {
   return (
     <header className="sticky top-0 z-40 bg-brand-dark text-paper">
-      <Container size="wide" className="flex items-center justify-between gap-6 py-3">
+      <Container size="wide" className="flex items-center justify-between gap-8 py-4 sm:py-5">
         <Link
           href="/"
           aria-label="Collective Calling home"
@@ -31,7 +31,7 @@ export function Header() {
             width={271}
             height={86}
             priority
-            className="h-9 w-auto sm:h-10"
+            className="h-11 w-auto sm:h-14"
           />
         </Link>
 
@@ -43,9 +43,9 @@ export function Header() {
           <button
             type="button"
             aria-label="Search"
-            className="inline-flex h-10 w-10 items-center justify-center rounded-md text-paper/90 transition-colors hover:bg-paper/10 hover:text-paper focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-brand-dark"
+            className="inline-flex h-12 w-12 items-center justify-center rounded-md text-paper/90 transition-colors hover:bg-paper/10 hover:text-paper focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-brand-dark"
           >
-            <svg aria-hidden="true" width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <svg aria-hidden="true" width="24" height="24" viewBox="0 0 20 20" fill="none">
               <circle cx="9" cy="9" r="6" stroke="currentColor" strokeWidth="1.75" />
               <path
                 d="M13.5 13.5 17 17"
@@ -60,6 +60,7 @@ export function Header() {
           <Button
             as={Link}
             href={DONATE_HREF}
+            size="lg"
             // Donate is the one place gold leads. A heart icon and a chunkier
             // weight echo Tearfund's persistent donate affordance.
             className="hidden gap-2 bg-accent! font-bold text-brand-dark! hover:bg-accent/90! sm:inline-flex"

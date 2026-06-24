@@ -77,7 +77,7 @@ export default async function OurImpactPage({
           <p className="font-body text-lg font-bold uppercase tracking-[0.08em] text-accent">
             {figures.eyebrow}
           </p>
-          <h2 className="mt-3 font-heading text-[2.25rem] leading-[1.15] font-medium text-balance text-ink">
+          <h2 className="mt-3 font-heading text-[38px] leading-[1.15] font-medium text-balance text-ink">
             {figures.heading}
           </h2>
         </div>
@@ -104,7 +104,7 @@ export default async function OurImpactPage({
       <Section tone="paper">
         <div className="grid grid-cols-1 gap-10 lg:grid-cols-2 lg:gap-16">
           <article className="border-t-2 border-brand pt-8">
-            <h2 className="font-heading text-[2.25rem] leading-[1.15] font-medium text-balance text-ink">
+            <h2 className="font-heading text-[38px] leading-[1.15] font-medium text-balance text-ink">
               {spain.heading}
             </h2>
             <Prose className="mt-6">
@@ -118,7 +118,7 @@ export default async function OurImpactPage({
           </article>
 
           <article className="border-t-2 border-clay pt-8">
-            <h2 className="font-heading text-[2.25rem] leading-[1.15] font-medium text-balance text-ink">
+            <h2 className="font-heading text-[38px] leading-[1.15] font-medium text-balance text-ink">
               {tanzania.heading}
             </h2>
             <Prose className="mt-6">
@@ -140,7 +140,7 @@ export default async function OurImpactPage({
           <p className="font-body text-lg font-bold uppercase tracking-[0.08em] text-clay">
             {stewardship.eyebrow}
           </p>
-          <h2 className="mt-3 font-heading text-[2.25rem] leading-[1.15] font-medium text-balance text-ink">
+          <h2 className="mt-3 font-heading text-[38px] leading-[1.15] font-medium text-balance text-ink">
             {stewardship.heading}
           </h2>
           <Prose className="mt-6">
@@ -157,7 +157,7 @@ export default async function OurImpactPage({
           <p className="font-body text-lg font-bold uppercase tracking-[0.08em] text-accent">
             {donate.eyebrow}
           </p>
-          <h2 className="mt-3 font-heading text-[2.25rem] leading-[1.15] font-medium text-balance text-paper">
+          <h2 className="mt-3 font-heading text-[38px] leading-[1.15] font-medium text-balance text-paper">
             {donate.heading}
           </h2>
           <p className="mt-6 font-body text-lg leading-[1.65] text-paper/85">

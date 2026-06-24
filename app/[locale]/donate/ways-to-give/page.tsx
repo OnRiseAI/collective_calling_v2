@@ -79,7 +79,7 @@ export default async function WaysToGivePage({
             One column on small screens, two from sm, three from lg. */}
         <div className="mt-12">
           <Eyebrow>{ways.eyebrow}</Eyebrow>
-          <h2 className="mt-5 max-w-2xl text-balance font-heading text-3xl font-medium leading-[1.15] text-ink sm:text-4xl">
+          <h2 className="mt-5 max-w-2xl text-balance font-heading text-3xl font-medium leading-[1.15] text-ink sm:text-[38px]">
             {ways.heading}
           </h2>
 
@@ -129,7 +129,7 @@ export default async function WaysToGivePage({
           <p className="font-body text-lg font-bold uppercase tracking-[0.08em] text-accent">
             {closing.eyebrow}
           </p>
-          <h2 className="mt-3 text-balance font-heading text-[2.25rem] font-medium leading-[1.15] text-paper">
+          <h2 className="mt-3 text-balance font-heading text-[38px] font-medium leading-[1.15] text-paper">
             {closing.heading}
           </h2>
           <p className="mt-6 font-body text-lg leading-[1.65] text-paper/85">

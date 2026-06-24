@@ -17,7 +17,7 @@ import { noOrphan } from '@/lib/text'
 export function ImpactStatBand(): React.JSX.Element {
   return (
     <Section tone="dark" className="text-center">
-      <p className="mx-auto max-w-3xl font-heading text-3xl font-bold leading-[1.2] sm:text-4xl lg:text-[2.75rem]">
+      <p className="mx-auto max-w-3xl font-heading text-3xl font-bold leading-[1.2] sm:text-[38px] lg:text-[2.75rem]">
         <span className="text-accent">18 children</span>{' '}
         <span className="text-paper">
           {noOrphan(

@@ -35,7 +35,7 @@ export function AppealsCards(props: { appeals: Appeal[] }): React.JSX.Element {
 
       {/* Section heading. The hero owns the page h1, so this is an h2, and each
           Card title below is an h3 nested beneath it. NBSP holds "of love". */}
-      <h2 className="mx-auto mt-5 max-w-2xl text-balance text-center font-heading text-3xl font-bold leading-[1.12] text-brand-dark sm:text-4xl">
+      <h2 className="mx-auto mt-5 max-w-2xl text-balance text-center font-heading text-3xl font-bold leading-[1.12] text-brand-dark sm:text-[38px]">
         Answer the call of&nbsp;love
       </h2>
       <span aria-hidden="true" className="mx-auto mt-4 block h-1 w-12 rounded-full bg-accent" />

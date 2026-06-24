@@ -62,7 +62,7 @@ export default async function SpainPage({
       <Section tone="paper">
         <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-2 lg:gap-16">
           <div>
-            <h2 className="font-heading text-[2.25rem] leading-[1.15] font-medium text-balance text-ink">
+            <h2 className="font-heading text-[38px] leading-[1.15] font-medium text-balance text-ink">
               Spain’s first mobile shower for the homeless
             </h2>
             <Prose className="mt-6">
@@ -99,7 +99,7 @@ export default async function SpainPage({
           <p className="font-body text-lg font-bold uppercase tracking-[0.08em] text-accent">
             {involve.eyebrow}
           </p>
-          <h2 className="mt-3 font-heading text-[2.25rem] leading-[1.15] font-medium text-balance text-ink">
+          <h2 className="mt-3 font-heading text-[38px] leading-[1.15] font-medium text-balance text-ink">
             {involve.heading}
           </h2>
           <Prose className="mt-6">
@@ -116,7 +116,7 @@ export default async function SpainPage({
           <p className="font-body text-lg font-bold uppercase tracking-[0.08em] text-accent">
             {donate.eyebrow}
           </p>
-          <h2 className="mt-3 font-heading text-[2.25rem] leading-[1.15] font-medium text-balance text-paper">
+          <h2 className="mt-3 font-heading text-[38px] leading-[1.15] font-medium text-balance text-paper">
             {donate.heading}
           </h2>
           <p className="mt-6 font-body text-lg leading-[1.65] text-paper/85">
