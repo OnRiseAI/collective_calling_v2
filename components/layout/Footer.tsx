@@ -1,49 +1,57 @@
 import Image from 'next/image'
 import { Link } from '@/i18n/navigation'
 import { Container } from '@/components/ui/Container'
-import { Button } from '@/components/ui/Button'
-import { NAV_SECTIONS, DONATE_HREF } from '@/lib/nav'
+import { DONATE_HREF, GET_INVOLVED_HREF } from '@/lib/nav'
+import { NewsletterForm } from '@/components/layout/NewsletterForm'
 
 /**
- * Global site footer (Tearfund's bold footer pattern, CC palette).
+ * Global site footer (design-theme mockup): deepest-charcoal field, four link
+ * columns (Explore / About / Get Involved / Contact), a Stay Connected block
+ * with socials and the newsletter input, then the legal bar with the charity's
+ * real registration details.
  *
- * A full-width gold block with navy text. The link columns fill the left of the
- * container and a navy "answer the call" CTA card is pinned right (the
- * white-on-transparent logo and Donate live on that dark field, where they
- * belong). Beneath, the accountability bar earns the site's "Accountable to you"
- * theme: registered address, contact details, registration numbers, a plain
- * transparency statement, and partner endorsement marks.
- *
- * Server component. NAV_SECTIONS is the single IA source shared with the Header.
+ * Server component; the newsletter input is a small client island.
  */
 
-const FOOTER_LABEL_OVERRIDES: Record<string, string> = {
-  '/about/financial-accountability': 'Finances & accountability',
-}
-
-/**
- * Footer-local column model derived from the shared IA. Stories has only one
- * page ("All stories"), which looks broken as a lone item under a bold header,
- * so in the footer it is merged into the Appeals column ("Appeals & stories")
- * rather than standing alone. This is a footer-only presentation choice; it does
- * not mutate NAV_SECTIONS (the Header keeps its own Stories section + teaser).
- */
-const FOOTER_COLUMNS = NAV_SECTIONS.filter((section) => section.key !== 'stories').map(
-  (section) => {
-    if (section.key !== 'appeals') return section
-    const stories = NAV_SECTIONS.find((s) => s.key === 'stories')
-    return {
-      ...section,
-      label: 'Appeals & stories',
-      items: stories ? [...section.items, ...stories.items] : section.items,
-    }
+const FOOTER_COLUMNS: { heading: string; items: { label: string; href: string }[] }[] = [
+  {
+    heading: 'Explore',
+    items: [
+      { label: 'Impact', href: '/about/our-impact' },
+      { label: 'Values in Action', href: '/get-involved/partner' },
+      { label: 'Stories', href: '/stories' },
+      { label: 'Events', href: '/events' },
+      { label: 'Charity shops', href: '/charity-shops' },
+    ],
   },
-)
+  {
+    heading: 'About',
+    items: [
+      { label: 'Our story', href: '/about/who-we-are' },
+      { label: 'Our team', href: '/about/our-team' },
+      { label: 'What we do', href: '/about/what-we-do' },
+      { label: 'Finances & accountability', href: '/about/financial-accountability' },
+    ],
+  },
+  {
+    heading: 'Get Involved',
+    items: [
+      { label: 'Donate', href: DONATE_HREF },
+      { label: 'Volunteer', href: GET_INVOLVED_HREF },
+      { label: 'Partner with us', href: '/get-involved/partner' },
+      { label: 'Sponsor a child', href: '/get-involved/sponsor-a-child' },
+    ],
+  },
+  {
+    heading: 'Contact',
+    items: [
+      { label: 'Get in touch', href: '/contact' },
+      { label: 'Invite us to speak', href: '/get-involved/invite-us-to-speak' },
+    ],
+  },
+]
 
 // The charity's real, confirmed details (mirrors lib/content/pages/contact.ts).
-// Registered office = the confirmed contact address. No formal third-party
-// certifier is held, so the accountability line stays a plain transparency
-// statement (no fabricated seals).
 const LEGAL = {
   org: 'Collective Calling',
   year: 2026,
@@ -76,155 +84,114 @@ const SOCIAL_LINKS = [
 
 export function Footer() {
   return (
-    <footer className="mt-auto bg-accent text-brand-dark">
-      {/* Extra bottom padding leaves clear space at the bottom-left for a fixed
-          chat widget (third-party overlay) so it never collides with the social
-          icons or legal row. */}
-      <Container size="wide" className="pt-16 pb-28 sm:pt-20 sm:pb-28">
-        {/* Full-width 12-col grid: link columns fill the left, CTA card pinned
-            right. The leftmost column starts at the container's left edge. */}
-        <div className="grid grid-cols-1 gap-10 lg:grid-cols-12 lg:gap-8">
-          <div className="lg:col-span-8">
-            <div className="grid grid-cols-2 gap-8 sm:grid-cols-3">
-              {FOOTER_COLUMNS.map((section) => (
-                <FooterColumn key={section.key} heading={section.label} items={section.items} />
+    <footer className="mt-auto bg-footer text-paper">
+      <Container size="wide" className="pt-16 pb-24 sm:pt-20">
+        <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-8">
+          {/* Brand block */}
+          <div className="lg:col-span-3">
+            <Link
+              href="/"
+              aria-label="Collective Calling home"
+              className="inline-flex w-fit rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-footer"
+            >
+              <Image
+                src="/cc-logo.png"
+                alt="Collective Calling"
+                width={271}
+                height={86}
+                unoptimized
+                className="h-10 w-auto"
+              />
+            </Link>
+            <p className="mt-4 font-body text-xs uppercase tracking-[0.2em] text-accent">
+              Where values become visible
+            </p>
+            <p className="mt-5 font-body text-sm leading-relaxed text-paper/60">
+              A life lived beyond ourselves creates lasting change.
+            </p>
+          </div>
+
+          {/* Link columns */}
+          <div className="lg:col-span-6">
+            <div className="grid grid-cols-2 gap-8 sm:grid-cols-4">
+              {FOOTER_COLUMNS.map((column) => (
+                <div key={column.heading}>
+                  <p className="font-body text-sm font-semibold uppercase tracking-wider text-paper/90">
+                    {column.heading}
+                  </p>
+                  <ul className="mt-4 space-y-2.5">
+                    {column.items.map((item) => (
+                      <li key={item.label}>
+                        <Link
+                          href={item.href}
+                          className="font-body text-sm text-paper/60 transition-colors hover:text-paper focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+                        >
+                          {item.label}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               ))}
             </div>
           </div>
 
-          {/* Navy "answer the call" CTA card, one tight vertically-centred block. */}
-          <div className="lg:col-span-4">
-            <div className="flex h-full flex-col justify-center rounded-md bg-brand-dark p-8 text-paper">
-              <Link
-                href="/"
-                aria-label="Collective Calling home"
-                className="inline-flex w-fit rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-brand-dark"
-              >
-                <Image
-                  src="/cc-logo.png"
-                  alt="Collective Calling"
-                  width={271}
-                  height={86}
-                  unoptimized
-                  className="h-9 w-auto"
-                />
-              </Link>
-              <p className="mt-5 font-body text-xs font-bold uppercase tracking-[0.18em] text-accent">
-                Answer the call
-              </p>
-              <p className="mt-2 font-body text-2xl font-extrabold leading-tight text-paper">
-                Your gift restores <span className="text-accent">dignity</span> and rebuilds
-                families.
-              </p>
-              <div className="mt-5">
-                <Button
-                  as={Link}
-                  href={DONATE_HREF}
-                  size="lg"
-                  className="bg-accent! font-bold text-brand-dark! hover:bg-accent/90!"
-                >
-                  Donate
-                </Button>
-              </div>
-            </div>
+          {/* Stay connected */}
+          <div className="lg:col-span-3">
+            <p className="font-body text-sm font-semibold uppercase tracking-wider text-paper/90">
+              Stay connected
+            </p>
+            <ul className="mt-4 flex items-center gap-3">
+              {SOCIAL_LINKS.map((social) => (
+                <li key={social.label}>
+                  <a
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={social.label}
+                    className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-paper/20 text-paper/80 transition-colors hover:border-accent hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+                  >
+                    <svg aria-hidden="true" width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                      <path d={social.path} />
+                    </svg>
+                  </a>
+                </li>
+              ))}
+            </ul>
+            <p className="mt-6 font-body text-sm text-paper/60">Join our newsletter</p>
+            <NewsletterForm />
           </div>
         </div>
 
-        {/* Accountability bar: two columns aligned to the same top baseline.
-            Left = socials + condensed legal run; right = transparency statement.
-            The philosophy line leads the bar sitewide (spec 2026-07-22 §7). */}
-        <div className="mt-14 border-t border-brand-dark/15 pt-8">
-          <p className="mb-8 font-heading text-lg font-semibold">
-            A life lived beyond ourselves creates lasting change.
-          </p>
-          <div className="flex flex-col gap-10 lg:flex-row lg:items-end lg:justify-between">
-            {/* LEFT: larger social circles, then the condensed legal run. */}
-            <div className="lg:max-w-2xl">
-              <ul className="flex items-center gap-3">
-                {SOCIAL_LINKS.map((social) => (
-                  <li key={social.label}>
-                    <a
-                      href={social.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label={social.label}
-                      className="inline-flex h-14 w-14 items-center justify-center rounded-full bg-brand-dark text-paper transition-colors hover:bg-brand focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-dark focus-visible:ring-offset-2 focus-visible:ring-offset-accent"
-                    >
-                      <svg aria-hidden="true" width="28" height="28" viewBox="0 0 20 20" fill="currentColor">
-                        <path d={social.path} />
-                      </svg>
-                    </a>
-                  </li>
-                ))}
-              </ul>
-
-              <p className="mt-5 font-body text-[15px] leading-relaxed text-brand-dark/80">
-                © {LEGAL.year} {LEGAL.org} · {LEGAL.registration}
-                <br />
-                {LEGAL.address} ·{' '}
-                <a
-                  href={LEGAL.phoneHref}
-                  className="font-semibold text-brand-dark/90 underline-offset-4 transition-colors hover:text-brand-dark hover:underline"
-                >
-                  {LEGAL.phone}
-                </a>{' '}
-                ·{' '}
-                <a
-                  href={`mailto:${LEGAL.email}`}
-                  className="font-semibold text-brand-dark/90 underline-offset-4 transition-colors hover:text-brand-dark hover:underline"
-                >
-                  {LEGAL.email}
-                </a>{' '}
-                ·{' '}
-                <Link
-                  href="/privacy"
-                  className="underline-offset-4 transition-colors hover:text-brand-dark hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-dark focus-visible:ring-offset-2 focus-visible:ring-offset-accent"
-                >
-                  Privacy
-                </Link>
-              </p>
-            </div>
-
-            {/* RIGHT: transparency statement. */}
-            <div className="lg:max-w-[340px] lg:text-right">
-              <p className="font-body text-[15px] leading-relaxed text-brand-dark/80">
-                {LEGAL.statement}
-              </p>
-            </div>
+        {/* Legal bar */}
+        <div className="mt-14 border-t border-paper/10 pt-8">
+          <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
+            <p className="font-body text-[13px] leading-relaxed text-paper/50">
+              © {LEGAL.year} {LEGAL.org} · {LEGAL.registration}
+              <br />
+              {LEGAL.address} ·{' '}
+              <a href={LEGAL.phoneHref} className="text-paper/70 hover:text-paper hover:underline">
+                {LEGAL.phone}
+              </a>{' '}
+              ·{' '}
+              <a
+                href={`mailto:${LEGAL.email}`}
+                className="text-paper/70 hover:text-paper hover:underline"
+              >
+                {LEGAL.email}
+              </a>{' '}
+              ·{' '}
+              <Link href="/privacy" className="hover:text-paper hover:underline">
+                Privacy
+              </Link>
+            </p>
+            <p className="max-w-md font-body text-[13px] leading-relaxed text-paper/50">
+              {LEGAL.statement}
+            </p>
           </div>
         </div>
       </Container>
     </footer>
-  )
-}
-
-function FooterColumn({
-  heading,
-  items,
-}: {
-  heading: string
-  items: { label: string; href: string }[]
-}) {
-  return (
-    <nav aria-label={heading}>
-      {/* Title Case, 20px extrabold navy, with a thin rule under the full column
-          width so each header clearly leads its column. */}
-      <h2 className="mb-4 border-b border-brand-dark/15 pb-3 font-body text-xl font-extrabold text-brand-dark">
-        {heading}
-      </h2>
-      <ul className="space-y-1">
-        {items.map((item) => (
-          <li key={item.href + item.label}>
-            <Link
-              href={item.href}
-              className="font-body text-base font-normal leading-7 text-brand-dark transition-opacity hover:opacity-70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-dark focus-visible:ring-offset-2 focus-visible:ring-offset-accent"
-            >
-              {FOOTER_LABEL_OVERRIDES[item.href] ?? item.label}
-            </Link>
-          </li>
-        ))}
-      </ul>
-    </nav>
   )
 }
 

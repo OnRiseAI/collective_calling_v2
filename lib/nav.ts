@@ -1,10 +1,10 @@
 /**
- * Collective Calling information architecture.
+ * Collective Calling information architecture (design-theme mockup, spec v2).
  *
- * Single source of truth for the global navigation, shared by the Header
- * (Task 5) and the Footer (Task 6) and consumed by later content tasks for
- * link targets. Hrefs are future routes: most of these pages do not exist yet,
- * so links may 404 until their plans land. That is expected.
+ * Single source of truth for the global navigation, shared by the Header and
+ * the Footer. The header renders the top-level section links flat (no
+ * mega-menu, per the mockup); the mobile panel and footer columns use the
+ * sub-items.
  *
  * Labels are English here. Locale-aware routing is applied at render time by
  * the Link component from "@/i18n/navigation" (it prefixes the active locale).
@@ -24,14 +24,19 @@ export type NavSection = {
 
 export const NAV_SECTIONS: NavSection[] = [
   {
-    key: 'appeals',
-    label: 'Appeals',
-    href: '/appeals',
+    key: 'impact',
+    label: 'Impact',
+    href: '/about/our-impact',
     items: [
-      { label: 'Spain', href: '/spain' },
-      { label: 'Tanzania', href: '/tanzania' },
-      { label: 'All appeals', href: '/appeals' },
+      { label: 'Our impact', href: '/about/our-impact' },
+      { label: 'Financial accountability', href: '/about/financial-accountability' },
     ],
+  },
+  {
+    key: 'values-in-action',
+    label: 'Values in Action',
+    href: '/get-involved/partner',
+    items: [{ label: 'Values in Action', href: '/get-involved/partner' }],
   },
   {
     key: 'stories',
@@ -40,33 +45,38 @@ export const NAV_SECTIONS: NavSection[] = [
     items: [{ label: 'All stories', href: '/stories' }],
   },
   {
-    key: 'get-involved',
-    label: 'Get Involved',
-    href: '/get-involved',
-    items: [
-      { label: 'Sponsor a child', href: '/get-involved/sponsor-a-child' },
-      { label: 'Fundraise', href: '/get-involved/fundraise' },
-      { label: 'Events', href: '/events' },
-      { label: 'Invite us to speak', href: '/get-involved/invite-us-to-speak' },
-      { label: 'Pray', href: '/get-involved/pray' },
-      { label: 'Partner with us', href: '/get-involved/partner' },
-    ],
+    key: 'events',
+    label: 'Events',
+    href: '/events',
+    items: [{ label: 'Events', href: '/events' }],
+  },
+  {
+    key: 'charity-shops',
+    label: 'Charity Shops',
+    href: '/charity-shops',
+    items: [{ label: 'Charity shops', href: '/charity-shops' }],
   },
   {
     key: 'about',
-    label: 'About Us',
+    label: 'About',
     href: '/about',
     items: [
       { label: 'Who we are', href: '/about/who-we-are' },
       { label: 'What we do', href: '/about/what-we-do' },
-      { label: 'Our impact', href: '/about/our-impact' },
       { label: 'Our team', href: '/about/our-team' },
-      { label: 'Financial accountability', href: '/about/financial-accountability' },
       { label: 'Partners', href: '/about/partners' },
-      { label: 'Contact', href: '/contact' },
     ],
+  },
+  {
+    key: 'contact',
+    label: 'Contact',
+    href: '/contact',
+    items: [{ label: 'Contact', href: '/contact' }],
   },
 ]
 
-// The persistent Donate action. Header and Footer share this one target.
+// The persistent Donate action (footer, donate journeys).
 export const DONATE_HREF = '/donate'
+
+// The header's single CTA (mockup): the invitation, not the ask.
+export const GET_INVOLVED_HREF = '/get-involved'
