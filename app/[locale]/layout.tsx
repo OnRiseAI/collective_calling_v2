@@ -1,31 +1,30 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { Lexend, Caveat } from "next/font/google";
+import { Lexend, Playfair_Display } from "next/font/google";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages, setRequestLocale } from "next-intl/server";
 import { routing } from "@/i18n/routing";
 import { Header } from "@/components/layout/Header";
-import { AppealTicker } from "@/components/layout/AppealTicker";
 import { Footer } from "@/components/layout/Footer";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { SITE, isIndexable } from "@/lib/site";
 import { organizationJsonLd } from "@/lib/jsonld";
 import "../globals.css";
 
-// Single humanist sans for the whole site (headings and body), a free near-match
-// for Tearfund's FS Me. Lexend is accessibility-designed with open apertures.
+// Humanist sans for body and UI. Lexend is accessibility-designed with open
+// apertures; it reads quietly under the serif display face.
 const lexend = Lexend({
   variable: "--font-lexend",
   subsets: ["latin"],
   display: "swap",
 });
 
-// Warm handwritten accent — the CC analog of Tearfund's script "Appeal" word.
-// Used sparingly (appeal ticker, expressive accents), never for body or headings.
-const caveat = Caveat({
-  variable: "--font-caveat",
+// High-contrast serif display face for headlines (design-theme mockup): elegant,
+// editorial, with the gold italic accent word in the hero.
+const playfair = Playfair_Display({
+  variable: "--font-playfair",
   subsets: ["latin"],
-  weight: ["700"],
+  style: ["normal", "italic"],
   display: "swap",
 });
 
@@ -86,13 +85,12 @@ export default async function LocaleLayout({
   return (
     <html
       lang={locale}
-      className={`${lexend.variable} ${caveat.variable} h-full antialiased`}
+      className={`${lexend.variable} ${playfair.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
         <NextIntlClientProvider messages={messages}>
           <JsonLd data={organizationJsonLd()} />
           <Header />
-          <AppealTicker />
           <main className="flex-1">{children}</main>
           <Footer />
         </NextIntlClientProvider>

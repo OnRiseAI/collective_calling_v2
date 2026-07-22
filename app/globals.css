@@ -9,36 +9,34 @@
  */
 @theme {
   /*
-   * Collective Calling wearing Tearfund's design system: CC's own brand colours
-   * (indigo / navy / gold) applied in Tearfund's light, high-contrast, white-page
-   * idiom. Single humanist sans (Lexend, a free FS Me near-match) for everything,
-   * large readable body type, 6px radius.
+   * Collective Calling design-theme mockup (spec 2026-07-22 v2): warm cream
+   * page, near-black charcoal bands, antique gold accent, serif display face
+   * over a quiet humanist sans. Elegant and editorial, not charity-template.
    */
 
-  /* Brand colours (CC's own, kept). */
-  --color-brand: #1b3a6b; /* Dignified Indigo (primary) */
-  --color-brand-dark: #0f2347; /* Midnight Navy (dark bands / header) */
-  --color-accent: #f3b007; /* Vivid Gold (CTAs + accent bands, the CC analog of Tearfund yellow) */
+  /* Brand colours (mockup). `brand` doubles as the charcoal primary so legacy
+     text-brand usages stay legible on cream. */
+  --color-brand: #1a2029; /* Warm charcoal (primary text/links on cream) */
+  --color-brand-dark: #0f1620; /* Near-black charcoal (dark bands / header) */
+  --color-footer: #0b1119; /* Deepest charcoal (footer) */
+  --color-accent: #c9a45c; /* Antique gold (eyebrows, rules, icons, CTAs) */
 
-  /* Neutrals, Tearfund-style: white page, neutral-dark text, cool muted. */
-  --color-ink: #2d2f33; /* Neutral near-black text (was warm ink) */
-  --color-paper: #ffffff; /* White page surface (was warm ivory) */
-  --color-muted: #5b6573; /* Cool muted grey for secondary text */
+  /* Warm neutrals. */
+  --color-ink: #1a2029; /* Charcoal text on cream */
+  --color-paper: #f3efe6; /* Warm cream page surface */
+  --color-card: #faf8f2; /* Lighter cream card surface */
+  --color-muted: #5d6470; /* Muted grey for secondary text */
 
-  /* Light section bands (alternate with white, like Tearfund). */
-  --color-clay: #b05a38; /* Terracotta Clay (retained for programme accents) */
-  --color-clay-tint: #f3e7dc; /* Soft warm band */
-  --color-indigo-tint: #eef2f7; /* Soft cool band */
+  /* Retained band tints (inner pages still reference them); warmed to sit on cream. */
+  --color-clay: #a5713f; /* Warm tan programme accent */
+  --color-clay-tint: #ece5d6; /* Soft warm band */
+  --color-indigo-tint: #eae7de; /* Soft neutral band (was cool blue) */
 
-  /* Single humanist sans for headings and body (Lexend ~ FS Me). */
-  --font-heading: var(--font-lexend), system-ui, -apple-system, sans-serif;
+  /* Serif display over humanist sans body. */
+  --font-heading: var(--font-playfair), Georgia, "Times New Roman", serif;
   --font-body: var(--font-lexend), system-ui, -apple-system, sans-serif;
 
-  /* Warm handwritten accent (Caveat ~ Tearfund's script "Appeal" word). */
-  --font-script: var(--font-caveat), "Segoe Script", cursive;
-
-  /* Tearfund uses a 6px radius throughout. */
-  --radius: 0.375rem;
+  --radius: 0.25rem;
 }
 
 /* Page defaults: white page, neutral-dark text, large readable humanist type. */
@@ -50,14 +48,15 @@ body {
   line-height: 1.6;
 }
 
-/* Headings: same humanist sans, heavier weight and tight tracking (Tearfund feel). */
+/* Headings: serif display face at a medium weight (the mockup's headlines are
+   elegant rather than heavy). */
 h1,
 h2,
 h3,
 h4 {
   font-family: var(--font-heading);
-  font-weight: 700;
-  letter-spacing: -0.01em;
+  font-weight: 600;
+  letter-spacing: 0;
 }
 
 /* In-page journey anchors glide rather than jump, but never for readers who
