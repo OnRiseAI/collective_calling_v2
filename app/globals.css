@@ -60,6 +60,14 @@ h4 {
   letter-spacing: -0.01em;
 }
 
+/* In-page journey anchors glide rather than jump, but never for readers who
+   ask for reduced motion. */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
 /*
  * Testimonials carousel cross-fade. A quiet, brief fade used when the active
  * supporter quote changes. Applied only under motion-safe (prefers-reduced-motion:
