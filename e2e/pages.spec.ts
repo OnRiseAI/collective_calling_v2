@@ -148,18 +148,18 @@ test('homepage gold Donate CTA points at /donate and that route resolves', async
   await expect(page.getByRole('heading', { level: 1 })).toHaveCount(1)
 })
 
-test('homepage hero "See our appeals" link is present and reaches a real page', async ({
+test('homepage expression link "See Their Stories" reaches a real page', async ({
   page,
 }) => {
   await page.goto('/')
 
-  const hero = page.locator('section').first()
-  const seeAppeals = hero.getByRole('link', { name: /see our appeals/i })
-  await expect(seeAppeals).toBeVisible()
+  const storiesLink = page.getByRole('link', { name: /see their stories/i })
+  await storiesLink.scrollIntoViewIfNeeded()
+  await expect(storiesLink).toBeVisible()
 
   // Following it must not 404. The target resolves to a real page.
-  const response = await seeAppeals.click().then(() => page.waitForLoadState())
-  void response
+  await storiesLink.click()
+  await page.waitForLoadState()
   await expect(page.getByRole('heading', { level: 1 })).toHaveCount(1)
 })
 

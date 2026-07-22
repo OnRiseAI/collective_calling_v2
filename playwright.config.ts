@@ -10,6 +10,11 @@ import { defineConfig, devices } from '@playwright/test'
 // renders but a subresource stays pending). A prebuilt prod server has no
 // per-request compile, so navigations resolve quickly and reliably. This is a
 // stability fix only; it does not change what the specs assert.
+// The port is overridable (E2E_PORT) and defaults to 3100 rather than 3000:
+// with reuseExistingServer enabled locally, a stray dev server from another
+// project on 3000 would otherwise be silently tested instead of this app.
+const PORT = process.env.E2E_PORT ?? '3100'
+
 export default defineConfig({
   testDir: './e2e',
   fullyParallel: true,
@@ -31,12 +36,12 @@ export default defineConfig({
   // assertions. (Companion to the webServer `build && start` stability choice.)
   workers: 1,
   use: {
-    baseURL: 'http://localhost:3000',
+    baseURL: `http://localhost:${PORT}`,
     navigationTimeout: 45_000,
   },
   webServer: {
-    command: 'pnpm build && pnpm start',
-    url: 'http://localhost:3000',
+    command: `pnpm build && pnpm start --port ${PORT}`,
+    url: `http://localhost:${PORT}`,
     reuseExistingServer: !process.env.CI,
     timeout: 180_000,
   },
