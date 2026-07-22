@@ -54,8 +54,8 @@ export const SEED_HOME: HomeContent = {
     heading: 'When values lead, business becomes a force for good.',
     body: 'We partner with business leaders who want to create impact that matters – for people, communities and the world we share.',
     cta: { label: 'Discover VIA', href: '/get-involved/partner' },
-    image: '/images/transform-5.png',
-    alt: 'Collective Calling working alongside partners.',
+    image: '/images/speaking-event.jpg',
+    alt: 'Collective Calling presenting to business partners at a speaking event.',
   },
   storiesIntro: {
     heading: 'Stories That Inspire',
