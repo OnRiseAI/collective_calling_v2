@@ -45,7 +45,9 @@ export function HeroChapter({
       />
       <div className="relative mx-auto flex min-h-dvh w-full max-w-7xl flex-col justify-end px-6 pb-24 pt-32 sm:px-8 lg:px-12 lg:pb-28">
         <div className="max-w-3xl">
-          <h1 className="text-balance font-heading text-5xl font-bold leading-[1.04] sm:text-6xl lg:text-[4.5rem]">
+          {/* text-4xl at the smallest size: noOrphan glues "Beyond Ourselves"
+              into one unbreakable unit, which overflows 390px at text-5xl. */}
+          <h1 className="text-balance font-heading text-4xl font-bold leading-[1.06] sm:text-5xl md:text-6xl lg:text-[4.5rem] lg:leading-[1.04]">
             {noOrphan(content.headline)}
           </h1>
           {content.text.map((paragraph, index) => (
