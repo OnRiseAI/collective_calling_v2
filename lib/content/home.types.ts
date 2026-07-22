@@ -24,6 +24,15 @@ export type WayCard = {
   href: string
 }
 
+/** One curated story card in the Stories That Inspire row. */
+export type StoryCard = {
+  title: string
+  blurb: string
+  image: string
+  alt: string
+  href: string
+}
+
 /** One impact-snapshot stat. */
 export type SnapshotStat = {
   icon: 'people' | 'education' | 'projects' | 'shop' | 'partners'
@@ -68,6 +77,8 @@ export type HomeContent = {
     heading: string
     subline: string
     viewAll: { label: string; href: string }
+    /** The mockup's three curated story cards (not a CMS story feed). */
+    cards: StoryCard[]
   }
   snapshot: {
     heading: string

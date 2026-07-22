@@ -45,18 +45,22 @@ const ICONS: Record<SnapshotStat['icon'], React.JSX.Element> = {
 
 export function SnapshotBand({ content }: { content: HomeContent['snapshot'] }): React.JSX.Element {
   return (
-    <section className="bg-brand-dark py-16 text-paper sm:py-20">
+    <section className="bg-brand-dark py-12 text-paper sm:py-14">
       <div className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-12">
-        <div className="flex flex-col gap-10 lg:flex-row lg:items-center lg:gap-14">
-          <h2 className="max-w-[12rem] shrink-0 text-balance font-heading text-2xl leading-snug sm:text-3xl">
+        <div className="flex flex-col gap-8 lg:flex-row lg:items-center lg:gap-10">
+          <h2 className="max-w-[10rem] shrink-0 text-balance font-heading text-2xl leading-snug sm:text-[1.7rem]">
             {noOrphan(content.heading)}
           </h2>
-          <dl className="grid flex-1 grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-3 lg:grid-cols-5">
+          {/* Vertical hairline dividers between stats (mockup) at lg. */}
+          <dl className="grid flex-1 grid-cols-2 gap-x-6 gap-y-8 sm:grid-cols-3 lg:grid-cols-5 lg:gap-x-0 lg:divide-x lg:divide-paper/10">
             {content.stats.map((stat) => (
-              <div key={stat.label} className="flex flex-col items-center gap-3 text-center">
+              <div
+                key={stat.label}
+                className="flex flex-col items-center gap-2.5 text-center lg:px-4"
+              >
                 <span className="text-accent">{ICONS[stat.icon]}</span>
-                <dd className="font-heading text-2xl text-paper sm:text-3xl">{stat.value}</dd>
-                <dt className="font-body text-xs uppercase tracking-wider text-paper/60">
+                <dd className="font-heading text-2xl text-paper sm:text-[1.6rem]">{stat.value}</dd>
+                <dt className="font-body text-[11px] uppercase tracking-wider text-paper/60">
                   {stat.label}
                 </dt>
               </div>

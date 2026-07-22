@@ -11,8 +11,9 @@ test('hero renders the mockup headline as the page h1', async ({ page }) => {
   await page.goto('/')
   const h1 = page.getByRole('heading', { level: 1 })
   await expect(h1).toBeVisible()
-  // \s (not literal spaces): noOrphan glues headline words with NBSP.
-  await expect(h1).toContainText(/where\svalues\sbecome/i)
+  // \s* between words: the headline words render as stacked block spans, so
+  // the text content may carry no whitespace between them.
+  await expect(h1).toContainText(/where\s*values\s*become/i)
   await expect(h1).toContainText(/visible\./i)
 })
 

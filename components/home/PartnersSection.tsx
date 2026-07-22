@@ -14,7 +14,7 @@ export function PartnersSection({
   content: HomeContent['partners']
 }): React.JSX.Element {
   return (
-    <section className="border-t border-ink/10 bg-paper py-16 text-ink sm:py-20">
+    <section className="border-t border-ink/10 bg-paper py-10 text-ink sm:py-12">
       <div className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-12">
         <div className="flex flex-col gap-10 lg:flex-row lg:items-center lg:gap-16">
           <div className="max-w-xs shrink-0">
@@ -33,17 +33,14 @@ export function PartnersSection({
             </Link>
           </div>
 
-          <ul className="grid flex-1 grid-cols-2 items-center gap-x-8 gap-y-8 sm:grid-cols-3 lg:grid-cols-5">
+          <ul className="flex flex-1 flex-wrap items-center justify-between gap-x-8 gap-y-6">
             {content.names.map((name) => (
-              <li
-                key={name}
-                className="text-center font-heading text-lg leading-tight text-ink/70"
-              >
+              <li key={name} className="font-heading text-lg leading-tight text-ink/70">
                 {name}
               </li>
             ))}
-            <li className="flex items-center justify-center">
-              <span className="border border-dashed border-ink/30 px-5 py-3 text-center font-body text-xs uppercase tracking-wider text-muted">
+            <li>
+              <span className="inline-block border border-dashed border-ink/30 px-5 py-3 text-center font-body text-[11px] uppercase tracking-wider text-muted">
                 {content.logoSlot}
               </span>
             </li>

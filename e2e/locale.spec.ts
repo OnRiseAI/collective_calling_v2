@@ -3,9 +3,10 @@ import { test, expect } from '@playwright/test'
 test('en home loads at /', async ({ page }) => {
   await page.goto('/')
   // The hero owns the single page h1, which carries the mockup headline.
-  // \s (not literal spaces): noOrphan glues headline words with NBSP.
+  // \s* between words: the headline renders as stacked block spans, so the
+  // text content may carry no whitespace between them.
   await expect(page.getByRole('heading', { level: 1 })).toContainText(
-    /where\svalues\sbecome/i
+    /where\s*values\s*become/i
   )
 })
 

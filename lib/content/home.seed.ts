@@ -61,6 +61,29 @@ export const SEED_HOME: HomeContent = {
     heading: 'Stories That Inspire',
     subline: 'Real people. Real journeys. Real impact.',
     viewAll: { label: 'View all stories', href: '/stories' },
+    cards: [
+      {
+        title: "Nacho's Story",
+        blurb: 'A journey of hope and opportunity.',
+        image: '/images/spain-homelessness.jpg',
+        alt: 'Collective Calling outreach on the streets of Spain.',
+        href: '/stories',
+      },
+      {
+        title: 'Mobile Shower Unit',
+        blurb: 'Dignity on the streets of the Costa del Sol.',
+        image: '/images/spain-mobile-shower.jpg',
+        alt: 'The Collective Calling mobile shower unit.',
+        href: '/spain',
+      },
+      {
+        title: 'Business in Action',
+        blurb: 'How values drive real change.',
+        image: '/images/transform-5-stories.png',
+        alt: 'A volunteer and a child hand in hand in Tanzania.',
+        href: '/get-involved/partner',
+      },
+    ],
   },
   snapshot: {
     heading: 'Our Impact Snapshot',

@@ -1,7 +1,6 @@
 import type { Metadata } from 'next'
 import { setRequestLocale } from 'next-intl/server'
 import { getHomeContent } from '@/lib/content/home'
-import { getStories } from '@/lib/content/stories'
 import { pageMetadata } from '@/lib/seo'
 import { SITE } from '@/lib/site'
 import { HeroSection } from '@/components/home/HeroSection'
@@ -43,14 +42,14 @@ export default async function Home({
   const { locale } = await params
   setRequestLocale(locale)
 
-  const [content, stories] = await Promise.all([getHomeContent(), getStories()])
+  const content = await getHomeContent()
 
   return (
     <>
       <HeroSection content={content.hero} />
       <WaysSection content={content.ways} />
       <ViaBand content={content.via} />
-      <StoriesSection content={content.storiesIntro} stories={stories} />
+      <StoriesSection content={content.storiesIntro} />
       <SnapshotBand content={content.snapshot} />
       <PartnersSection content={content.partners} />
       <InvolveBand content={content.involve} />

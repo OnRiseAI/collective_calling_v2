@@ -3,6 +3,7 @@ import type {
   HomeContent,
   InvolveAction,
   SnapshotStat,
+  StoryCard,
   WayCard,
 } from '@/lib/content/home.types'
 import { SEED_HOME } from '@/lib/content/home.seed'
@@ -18,7 +19,7 @@ export const HOME_QUERY = defineQuery(`*[_type == "homePage"][0]{
   hero{ eyebrow, headlineLead, headlineAccent, lede, image, alt, primaryCta{ label, href }, secondaryCta{ label, href }, scrollCue },
   ways{ heading, cards[]{ key, title, body, image, alt, href } },
   via{ eyebrow, heading, body, cta{ label, href }, image, alt },
-  storiesIntro{ heading, subline, viewAll{ label, href } },
+  storiesIntro{ heading, subline, viewAll{ label, href }, cards[]{ title, blurb, image, alt, href } },
   snapshot{ heading, stats[]{ icon, value, label } },
   partners{ heading, body, names, logoSlot, cta{ label, href } },
   involve{ heading, body, actions[]{ icon, title, blurb, href }, image, alt, shops{ heading, body, cta{ label, href } } }
@@ -67,6 +68,7 @@ export function mapSanityHome(raw: unknown): HomeContent {
   const shops = asRecord(involve.shops)
 
   const wayDocs = Array.isArray(ways.cards) ? ways.cards : []
+  const storyCardDocs = Array.isArray(storiesIntro.cards) ? storiesIntro.cards : []
   const statDocs = Array.isArray(snapshot.stats) ? snapshot.stats : []
   const actionDocs = Array.isArray(involve.actions) ? involve.actions : []
 
@@ -76,6 +78,17 @@ export function mapSanityHome(raw: unknown): HomeContent {
       key: seed.key,
       title: str(card.title, seed.title),
       body: str(card.body, seed.body),
+      image: resolveImage(card.image, seed.image),
+      alt: str(card.alt, seed.alt),
+      href: str(card.href, seed.href),
+    }
+  }
+
+  const mapStoryCard = (value: unknown, seed: StoryCard): StoryCard => {
+    const card = asRecord(value)
+    return {
+      title: str(card.title, seed.title),
+      blurb: str(card.blurb, seed.blurb),
       image: resolveImage(card.image, seed.image),
       alt: str(card.alt, seed.alt),
       href: str(card.href, seed.href),
@@ -129,6 +142,9 @@ export function mapSanityHome(raw: unknown): HomeContent {
       heading: str(storiesIntro.heading, SEED_HOME.storiesIntro.heading),
       subline: str(storiesIntro.subline, SEED_HOME.storiesIntro.subline),
       viewAll: cta(storiesIntro.viewAll, SEED_HOME.storiesIntro.viewAll),
+      cards: SEED_HOME.storiesIntro.cards.map((seed, index) =>
+        mapStoryCard(storyCardDocs[index], seed),
+      ),
     },
     snapshot: {
       heading: str(snapshot.heading, SEED_HOME.snapshot.heading),

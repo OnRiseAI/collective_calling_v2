@@ -28,7 +28,7 @@ export function ViaBand({ content }: { content: HomeContent['via'] }): React.JSX
         />
       </div>
 
-      <div className="relative mx-auto max-w-7xl px-6 py-20 sm:px-8 sm:py-24 lg:px-12">
+      <div className="relative mx-auto max-w-7xl px-6 py-16 sm:px-8 sm:py-20 lg:px-12">
         <div className="max-w-xl">
           <p className="font-body text-xs font-semibold uppercase tracking-[0.25em] text-accent">
             {content.eyebrow}

@@ -62,6 +62,20 @@ async function main(): Promise<void> {
     })
   }
 
+  const storyCards = []
+  for (const card of home.storiesIntro.cards) {
+    const assetId = await uploadImage(card.image, cache)
+    storyCards.push({
+      _type: 'storyCard',
+      _key: nextKey('storycard'),
+      title: card.title,
+      blurb: card.blurb,
+      image: imageRef(assetId),
+      alt: card.alt,
+      href: card.href,
+    })
+  }
+
   const doc = {
     _id: 'homePage',
     _type: 'homePage',
@@ -96,6 +110,7 @@ async function main(): Promise<void> {
       heading: home.storiesIntro.heading,
       subline: home.storiesIntro.subline,
       viewAll: { _type: 'linkCta', ...home.storiesIntro.viewAll },
+      cards: storyCards,
     },
     snapshot: {
       _type: 'homeSnapshot',

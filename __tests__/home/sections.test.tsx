@@ -10,7 +10,6 @@ import { SnapshotBand } from '@/components/home/SnapshotBand'
 import { PartnersSection } from '@/components/home/PartnersSection'
 import { InvolveBand } from '@/components/home/InvolveBand'
 import { SEED_HOME } from '@/lib/content/home.seed'
-import type { Story } from '@/lib/content/types'
 
 function renderWithLocale(ui: React.ReactNode) {
   return render(
@@ -23,7 +22,9 @@ function renderWithLocale(ui: React.ReactNode) {
 test('hero renders the mockup headline as h1 with the gold accent word', () => {
   renderWithLocale(<HeroSection content={SEED_HOME.hero} />)
   const h1 = screen.getByRole('heading', { level: 1 })
-  expect(h1).toHaveTextContent(/where values become/i)
+  // \s* between words: the headline words render as stacked blocks, so jsdom
+  // textContent carries no whitespace between them.
+  expect(h1).toHaveTextContent(/where\s*values\s*become/i)
   expect(h1).toHaveTextContent(/visible\./i)
   expect(screen.getByRole('link', { name: /explore our impact/i })).toHaveAttribute(
     'href',
@@ -54,17 +55,20 @@ test('via band carries the mockup heading and CTA', () => {
   )
 })
 
-test('stories section renders real stories only', () => {
-  const stories: Story[] = [
-    { slug: 'caleb', title: 'Caleb comes home', location: 'tanzania', excerpt: 'x', body: '' },
-    { slug: 'ph', title: 'Your story', location: 'general', excerpt: 'x', body: '', placeholder: true },
-  ]
-  renderWithLocale(<StoriesSection content={SEED_HOME.storiesIntro} stories={stories} />)
-  expect(screen.getByRole('link', { name: /caleb comes home/i })).toHaveAttribute(
+test('stories section renders the three curated mockup cards', () => {
+  renderWithLocale(<StoriesSection content={SEED_HOME.storiesIntro} />)
+  expect(screen.getByRole('link', { name: /nacho's story/i })).toHaveAttribute(
     'href',
-    expect.stringMatching(/\/stories\/caleb$/),
+    expect.stringMatching(/\/stories$/),
   )
-  expect(screen.queryByText(/your story/i)).not.toBeInTheDocument()
+  expect(screen.getByRole('link', { name: /mobile shower unit/i })).toHaveAttribute(
+    'href',
+    expect.stringMatching(/\/spain$/),
+  )
+  expect(screen.getByRole('link', { name: /business in action/i })).toHaveAttribute(
+    'href',
+    expect.stringMatching(/\/get-involved\/partner$/),
+  )
 })
 
 test('snapshot band renders all five mockup stats', () => {

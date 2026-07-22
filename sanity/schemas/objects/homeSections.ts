@@ -77,14 +77,33 @@ export const homeVia = defineType({
   ],
 })
 
+export const storyCard = defineType({
+  name: 'storyCard',
+  title: 'Story card',
+  type: 'object',
+  fields: [
+    defineField({ name: 'title', title: 'Title', type: 'string' }),
+    defineField({ name: 'blurb', title: 'Blurb', type: 'string' }),
+    defineField({ name: 'image', title: 'Image', type: 'image' }),
+    defineField({ name: 'alt', title: 'Image alt text', type: 'string' }),
+    defineField({ name: 'href', title: 'Href', type: 'string' }),
+  ],
+})
+
 export const homeStoriesIntro = defineType({
   name: 'homeStoriesIntro',
-  title: 'Stories intro',
+  title: 'Stories That Inspire',
   type: 'object',
   fields: [
     defineField({ name: 'heading', title: 'Heading', type: 'string' }),
     defineField({ name: 'subline', title: 'Subline', type: 'string' }),
     defineField({ name: 'viewAll', title: 'View-all CTA', type: 'linkCta' }),
+    defineField({
+      name: 'cards',
+      title: 'Cards',
+      type: 'array',
+      of: [defineArrayMember({ type: 'storyCard' })],
+    }),
   ],
 })
 

@@ -36,13 +36,13 @@ const ICONS: Record<WayCard['key'], React.JSX.Element> = {
 
 export function WaysSection({ content }: { content: HomeContent['ways'] }): React.JSX.Element {
   return (
-    <section className="bg-paper py-20 text-ink sm:py-28">
+    <section className="bg-paper py-14 text-ink sm:py-16">
       <div className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-12">
         <h2 className="text-balance text-center font-heading text-3xl text-brand-dark sm:text-4xl">
           {noOrphan(content.heading)}
         </h2>
 
-        <div className="mt-14 grid gap-8 md:grid-cols-3">
+        <div className="mt-10 grid gap-7 md:grid-cols-3">
           {content.cards.map((card) => (
             <Reveal key={card.key}>
               <article className="flex h-full flex-col border border-ink/10 bg-card">

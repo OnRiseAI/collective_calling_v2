@@ -11,6 +11,7 @@ import {
   homePartners,
   involveAction,
   homeInvolve,
+  storyCard,
 } from './objects/homeSections'
 import { story } from './documents/story'
 import { appealEntry } from './documents/appealEntry'
@@ -27,6 +28,7 @@ export const schemaTypes = [
   wayCard,
   homeWays,
   homeVia,
+  storyCard,
   homeStoriesIntro,
   snapshotStat,
   homeSnapshot,

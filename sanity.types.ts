@@ -182,6 +182,11 @@ export type HomeStoriesIntro = {
   heading?: string;
   subline?: string;
   viewAll?: LinkCta;
+  cards?: Array<
+    {
+      _key: string;
+    } & StoryCard
+  >;
 };
 
 export type HomeVia = {
@@ -248,6 +253,21 @@ export type SnapshotStat = {
   icon?: string;
   value?: string;
   label?: string;
+};
+
+export type StoryCard = {
+  _type: "storyCard";
+  title?: string;
+  blurb?: string;
+  image?: {
+    asset?: SanityImageAssetReference;
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  };
+  alt?: string;
+  href?: string;
 };
 
 export type WayCard = {
@@ -383,6 +403,7 @@ export type AllSanitySchemaTypes =
   | LinkCta
   | InvolveAction
   | SnapshotStat
+  | StoryCard
   | WayCard
   | SanityImagePaletteSwatch
   | SanityImagePalette
@@ -441,7 +462,7 @@ export type EVENTS_QUERY_RESULT = Array<{
 
 // Source: lib/sanity/home.query.ts
 // Variable: HOME_QUERY
-// Query: *[_type == "homePage"][0]{  hero{ eyebrow, headlineLead, headlineAccent, lede, image, alt, primaryCta{ label, href }, secondaryCta{ label, href }, scrollCue },  ways{ heading, cards[]{ key, title, body, image, alt, href } },  via{ eyebrow, heading, body, cta{ label, href }, image, alt },  storiesIntro{ heading, subline, viewAll{ label, href } },  snapshot{ heading, stats[]{ icon, value, label } },  partners{ heading, body, names, logoSlot, cta{ label, href } },  involve{ heading, body, actions[]{ icon, title, blurb, href }, image, alt, shops{ heading, body, cta{ label, href } } }}
+// Query: *[_type == "homePage"][0]{  hero{ eyebrow, headlineLead, headlineAccent, lede, image, alt, primaryCta{ label, href }, secondaryCta{ label, href }, scrollCue },  ways{ heading, cards[]{ key, title, body, image, alt, href } },  via{ eyebrow, heading, body, cta{ label, href }, image, alt },  storiesIntro{ heading, subline, viewAll{ label, href }, cards[]{ title, blurb, image, alt, href } },  snapshot{ heading, stats[]{ icon, value, label } },  partners{ heading, body, names, logoSlot, cta{ label, href } },  involve{ heading, body, actions[]{ icon, title, blurb, href }, image, alt, shops{ heading, body, cta{ label, href } } }}
 export type HOME_QUERY_RESULT = {
   hero: {
     eyebrow: string | null;
@@ -507,6 +528,19 @@ export type HOME_QUERY_RESULT = {
       label: string | null;
       href: string | null;
     } | null;
+    cards: Array<{
+      title: string | null;
+      blurb: string | null;
+      image: {
+        asset?: SanityImageAssetReference;
+        media?: unknown;
+        hotspot?: SanityImageHotspot;
+        crop?: SanityImageCrop;
+        _type: "image";
+      } | null;
+      alt: string | null;
+      href: string | null;
+    }> | null;
   } | null;
   snapshot: {
     heading: string | null;
@@ -581,7 +615,7 @@ declare module "@sanity/client" {
   interface SanityQueries {
     '*[_type == "appealEntry"] | order(_createdAt asc){\n  slug,\n  title,\n  theme,\n  blurb,\n  body,\n  image,\n  alt,\n  relatedHref,\n  donationDesignation,\n  donorboxQuery{ amount, recurring, default_interval },\n  placeholder\n}': APPEALS_QUERY_RESULT;
     '*[_type == "eventItem"] | order(date asc, _createdAt asc){\n  slug,\n  title,\n  summary,\n  image,\n  alt,\n  dateLabel,\n  placeholder\n}': EVENTS_QUERY_RESULT;
-    '*[_type == "homePage"][0]{\n  hero{ eyebrow, headlineLead, headlineAccent, lede, image, alt, primaryCta{ label, href }, secondaryCta{ label, href }, scrollCue },\n  ways{ heading, cards[]{ key, title, body, image, alt, href } },\n  via{ eyebrow, heading, body, cta{ label, href }, image, alt },\n  storiesIntro{ heading, subline, viewAll{ label, href } },\n  snapshot{ heading, stats[]{ icon, value, label } },\n  partners{ heading, body, names, logoSlot, cta{ label, href } },\n  involve{ heading, body, actions[]{ icon, title, blurb, href }, image, alt, shops{ heading, body, cta{ label, href } } }\n}': HOME_QUERY_RESULT;
+    '*[_type == "homePage"][0]{\n  hero{ eyebrow, headlineLead, headlineAccent, lede, image, alt, primaryCta{ label, href }, secondaryCta{ label, href }, scrollCue },\n  ways{ heading, cards[]{ key, title, body, image, alt, href } },\n  via{ eyebrow, heading, body, cta{ label, href }, image, alt },\n  storiesIntro{ heading, subline, viewAll{ label, href }, cards[]{ title, blurb, image, alt, href } },\n  snapshot{ heading, stats[]{ icon, value, label } },\n  partners{ heading, body, names, logoSlot, cta{ label, href } },\n  involve{ heading, body, actions[]{ icon, title, blurb, href }, image, alt, shops{ heading, body, cta{ label, href } } }\n}': HOME_QUERY_RESULT;
     '*[_type == "story"] | order(_createdAt asc){\n  slug,\n  title,\n  location,\n  excerpt,\n  body,\n  images[]{ ..., asset },\n  placeholder\n}': STORIES_QUERY_RESULT;
   }
 }
