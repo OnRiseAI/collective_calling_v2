@@ -77,7 +77,9 @@ continues to live on `/donate` and `/about/financial-accountability`.
 
 ## 4. Visual language
 
-- **Type:** Poppins display / Inter body (site defaults). Chapter headlines clamp
+- **Type:** Lexend for headings and body with the Caveat script accent — the site's
+  established token system (`--font-heading`/`--font-body` in `app/globals.css`); we do not
+  introduce new fonts. Chapter headlines clamp
   ~2.5–4.5rem, sentence case, generous line-height, large inter-chapter whitespace.
   No caps font-black, no gradient text, no glows, no icon pills.
 - **Colour:** existing CC palette; tonal arc across the page — warm-dark hero → light
