@@ -44,21 +44,21 @@ async function main(): Promise<void> {
   const cache = new Map<string, string>()
 
   const heroAssetId = await uploadImage(home.hero.image, cache)
+  const viaAssetId = await uploadImage(home.via.image, cache)
+  const involveAssetId = await uploadImage(home.involve.image, cache)
 
-  const rows = []
-  for (const row of home.expressions.rows) {
-    const assetId = await uploadImage(row.image, cache)
-    rows.push({
-      _type: 'expressionRow',
-      _key: nextKey('expression'),
-      key: row.key,
-      eyebrow: row.eyebrow,
-      heading: row.heading,
-      belief: row.belief,
-      body: row.body,
+  const cards = []
+  for (const card of home.ways.cards) {
+    const assetId = await uploadImage(card.image, cache)
+    cards.push({
+      _type: 'wayCard',
+      _key: nextKey('way'),
+      key: card.key,
+      title: card.title,
+      body: card.body,
       image: imageRef(assetId),
-      alt: row.alt,
-      cta: { _type: 'linkCta', ...row.cta },
+      alt: card.alt,
+      href: card.href,
     })
   }
 
@@ -66,49 +66,75 @@ async function main(): Promise<void> {
     _id: 'homePage',
     _type: 'homePage',
     hero: {
-      _type: 'heroChapter',
-      headline: home.hero.headline,
-      text: home.hero.text,
+      _type: 'homeHero',
+      eyebrow: home.hero.eyebrow,
+      headlineLead: home.hero.headlineLead,
+      headlineAccent: home.hero.headlineAccent,
+      lede: home.hero.lede,
       image: imageRef(heroAssetId),
       alt: home.hero.alt,
-      primaryCta: { _type: 'anchorCta', ...home.hero.primaryCta },
-      secondaryCta: { _type: 'anchorCta', ...home.hero.secondaryCta },
+      primaryCta: { _type: 'linkCta', ...home.hero.primaryCta },
+      secondaryCta: { _type: 'linkCta', ...home.hero.secondaryCta },
+      scrollCue: home.hero.scrollCue,
     },
-    philosophy: {
-      _type: 'philosophyChapter',
-      headline: home.philosophy.headline,
-      body: home.philosophy.body,
-      pullLine: home.philosophy.pullLine,
+    ways: {
+      _type: 'homeWays',
+      heading: home.ways.heading,
+      cards,
     },
-    expressions: {
-      _type: 'expressionsChapter',
-      headline: home.expressions.headline,
-      intro: home.expressions.intro,
-      credo: home.expressions.credo,
-      rows,
+    via: {
+      _type: 'homeVia',
+      eyebrow: home.via.eyebrow,
+      heading: home.via.heading,
+      body: home.via.body,
+      cta: { _type: 'linkCta', ...home.via.cta },
+      image: imageRef(viaAssetId),
+      alt: home.via.alt,
     },
-    possible: {
-      _type: 'possibleChapter',
-      headline: home.possible.headline,
-      intro: home.possible.intro,
-      moments: home.possible.moments,
-      outro: home.possible.outro,
+    storiesIntro: {
+      _type: 'homeStoriesIntro',
+      heading: home.storiesIntro.heading,
+      subline: home.storiesIntro.subline,
+      viewAll: { _type: 'linkCta', ...home.storiesIntro.viewAll },
     },
-    impact: {
-      _type: 'impactChapter',
-      headline: home.impact.headline,
-      intro: home.impact.intro,
-      moments: home.impact.moments,
-      outro: home.impact.outro,
-      cta: { _type: 'linkCta', ...home.impact.cta },
+    snapshot: {
+      _type: 'homeSnapshot',
+      heading: home.snapshot.heading,
+      stats: home.snapshot.stats.map((stat) => ({
+        _type: 'snapshotStat',
+        _key: nextKey('stat'),
+        icon: stat.icon,
+        value: stat.value,
+        label: stat.label,
+      })),
     },
-    invitation: {
-      _type: 'invitationChapter',
-      headline: home.invitation.headline,
-      intro: home.invitation.intro,
-      bring: home.invitation.bring,
-      outro: home.invitation.outro,
-      cta: { _type: 'linkCta', ...home.invitation.cta },
+    partners: {
+      _type: 'homePartners',
+      heading: home.partners.heading,
+      body: home.partners.body,
+      names: home.partners.names,
+      logoSlot: home.partners.logoSlot,
+      cta: { _type: 'linkCta', ...home.partners.cta },
+    },
+    involve: {
+      _type: 'homeInvolve',
+      heading: home.involve.heading,
+      body: home.involve.body,
+      actions: home.involve.actions.map((action) => ({
+        _type: 'involveAction',
+        _key: nextKey('action'),
+        icon: action.icon,
+        title: action.title,
+        blurb: action.blurb,
+        href: action.href,
+      })),
+      image: imageRef(involveAssetId),
+      alt: home.involve.alt,
+      shops: {
+        heading: home.involve.shops.heading,
+        body: home.involve.shops.body,
+        cta: { _type: 'linkCta', ...home.involve.shops.cta },
+      },
     },
   }
 

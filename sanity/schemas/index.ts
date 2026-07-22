@@ -1,15 +1,17 @@
 import { homePage } from './homePage'
 import {
-  anchorCta,
   linkCta,
-  heroChapter,
-  philosophyChapter,
-  expressionRow,
-  expressionsChapter,
-  possibleChapter,
-  impactChapter,
-  invitationChapter,
-} from './objects/homeChapters'
+  homeHero,
+  wayCard,
+  homeWays,
+  homeVia,
+  homeStoriesIntro,
+  snapshotStat,
+  homeSnapshot,
+  homePartners,
+  involveAction,
+  homeInvolve,
+} from './objects/homeSections'
 import { story } from './documents/story'
 import { appealEntry } from './documents/appealEntry'
 import { eventItem } from './documents/eventItem'
@@ -20,15 +22,17 @@ import { eventItem } from './documents/eventItem'
  * documents (story, appealEntry, eventItem) are registered last.
  */
 export const schemaTypes = [
-  anchorCta,
   linkCta,
-  heroChapter,
-  philosophyChapter,
-  expressionRow,
-  expressionsChapter,
-  possibleChapter,
-  impactChapter,
-  invitationChapter,
+  homeHero,
+  wayCard,
+  homeWays,
+  homeVia,
+  homeStoriesIntro,
+  snapshotStat,
+  homeSnapshot,
+  homePartners,
+  involveAction,
+  homeInvolve,
   homePage,
   story,
   appealEntry,

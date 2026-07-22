@@ -148,12 +148,12 @@ test('homepage gold Donate CTA points at /donate and that route resolves', async
   await expect(page.getByRole('heading', { level: 1 })).toHaveCount(1)
 })
 
-test('homepage expression link "See Their Stories" reaches a real page', async ({
+test('homepage "View all stories" link reaches a real page', async ({
   page,
 }) => {
   await page.goto('/')
 
-  const storiesLink = page.getByRole('link', { name: /see their stories/i })
+  const storiesLink = page.getByRole('link', { name: /view all stories/i })
   await storiesLink.scrollIntoViewIfNeeded()
   await expect(storiesLink).toBeVisible()
 

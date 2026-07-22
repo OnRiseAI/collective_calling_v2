@@ -1,37 +1,50 @@
 import { describe, expect, test } from 'vitest'
 import { SEED_HOME } from '@/lib/content/home.seed'
 
-describe('experience-led homepage seed', () => {
-  test('hero carries the client headline and scroll targets', () => {
-    expect(SEED_HOME.hero.headline).toBe('A Life Beyond Ourselves')
-    expect(SEED_HOME.hero.primaryCta).toEqual({ label: 'Start Your Journey', targetId: 'participation' })
-    expect(SEED_HOME.hero.secondaryCta).toEqual({ label: 'See What’s Possible', targetId: 'possibility' })
+describe('mockup-theme homepage seed', () => {
+  test('hero carries the mockup headline with the gold accent word', () => {
+    expect(SEED_HOME.hero.headlineLead).toBe('Where Values Become')
+    expect(SEED_HOME.hero.headlineAccent).toBe('Visible.')
+    expect(SEED_HOME.hero.primaryCta.href).toBe('/about/our-impact')
+    expect(SEED_HOME.hero.secondaryCta.href).toBe('/get-involved/partner')
   })
 
-  test('expressions carry the three branches with real routes', () => {
-    const hrefs = SEED_HOME.expressions.rows.map((r) => r.cta.href)
-    expect(hrefs).toEqual(['/stories', '/spain', '/get-involved/partner'])
-    expect(SEED_HOME.expressions.rows.map((r) => r.key)).toEqual([
-      'children-families',
-      'community',
-      'business',
+  test('three ways cards route to their real pages', () => {
+    expect(SEED_HOME.ways.cards.map((c) => c.href)).toEqual([
+      '/spain',
+      '/tanzania',
+      '/get-involved/partner',
     ])
   })
 
-  test('impact lists the five coming-together moments in order', () => {
-    expect(SEED_HOME.impact.moments).toHaveLength(5)
-    expect(SEED_HOME.impact.moments[0]).toBe('A person shares their time.')
-    expect(SEED_HOME.impact.moments[4]).toBe('A simple action becomes part of something bigger.')
+  test('snapshot carries the five mockup stats in order', () => {
+    expect(SEED_HOME.snapshot.stats).toHaveLength(5)
+    expect(SEED_HOME.snapshot.stats[0]).toEqual({
+      icon: 'people',
+      value: '10,000+',
+      label: 'People Supported',
+    })
+    expect(SEED_HOME.snapshot.stats[3].value).toBe('2')
   })
 
-  test('invitation routes to get-involved', () => {
-    expect(SEED_HOME.invitation.cta).toEqual({ label: 'Start Your Journey', href: '/get-involved' })
+  test('involve band routes donate/volunteer/partner and the shops panel', () => {
+    expect(SEED_HOME.involve.actions.map((a) => a.href)).toEqual([
+      '/donate',
+      '/get-involved',
+      '/get-involved/partner',
+    ])
+    expect(SEED_HOME.involve.shops.cta.href).toBe('/charity-shops')
   })
 
   test('every seeded image path exists under public/', async () => {
     const { existsSync } = await import('node:fs')
     const { join } = await import('node:path')
-    const images = [SEED_HOME.hero.image, ...SEED_HOME.expressions.rows.map((r) => r.image)]
+    const images = [
+      SEED_HOME.hero.image,
+      SEED_HOME.via.image,
+      SEED_HOME.involve.image,
+      ...SEED_HOME.ways.cards.map((c) => c.image),
+    ]
     for (const image of images) {
       expect(existsSync(join(process.cwd(), 'public', image)), image).toBe(true)
     }

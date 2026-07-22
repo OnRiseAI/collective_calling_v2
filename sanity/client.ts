@@ -11,6 +11,9 @@ export const sanityClient: SanityClient | null = isSanityConfigured()
       projectId,
       dataset,
       apiVersion,
-      useCdn: true,
+      // The site is fully static: every Sanity read happens at build time, so
+      // the CDN saves nothing and its cache lag can bake a stale document into
+      // a build (observed after re-seeding). Read the live API instead.
+      useCdn: false,
     })
   : null

@@ -4,13 +4,13 @@ import { getHomeContent } from '@/lib/content/home'
 import { getStories } from '@/lib/content/stories'
 import { pageMetadata } from '@/lib/seo'
 import { SITE } from '@/lib/site'
-import { HeroChapter } from '@/components/home/HeroChapter'
-import { PhilosophyChapter } from '@/components/home/PhilosophyChapter'
-import { ExpressionsChapter } from '@/components/home/ExpressionsChapter'
-import { PossibleChapter } from '@/components/home/PossibleChapter'
-import { ImpactChapter } from '@/components/home/ImpactChapter'
-import { InvitationChapter } from '@/components/home/InvitationChapter'
-import { JourneyRail } from '@/components/home/JourneyRail'
+import { HeroSection } from '@/components/home/HeroSection'
+import { WaysSection } from '@/components/home/WaysSection'
+import { ViaBand } from '@/components/home/ViaBand'
+import { StoriesSection } from '@/components/home/StoriesSection'
+import { SnapshotBand } from '@/components/home/SnapshotBand'
+import { PartnersSection } from '@/components/home/PartnersSection'
+import { InvolveBand } from '@/components/home/InvolveBand'
 
 export async function generateMetadata({
   params,
@@ -24,17 +24,16 @@ export async function generateMetadata({
     path: '/',
     // The homepage title is the hero headline; the root layout template wraps
     // it with " | Collective Calling" so the full tab title identifies the site.
-    title: content.hero.headline,
+    title: `${content.hero.headlineLead} ${content.hero.headlineAccent}`,
     description: SITE.description,
     image: content.hero.image,
   })
 }
 
 /**
- * The experience-led homepage (spec 2026-07-22): six chapters walking the
- * journey Understanding -> Connection -> Possibility -> Participation, with a
- * fixed journey rail on large screens. The hero owns the page h1 and renders
- * without a reveal (LCP); every other chapter manages its own motion.
+ * The Collective Calling homepage (design-theme mockup, spec v2): seven bands
+ * mirroring the client's mockup — hero, three ways, Values In Action, stories,
+ * impact snapshot, partners, and the get-involved / charity-shops closer.
  */
 export default async function Home({
   params,
@@ -48,18 +47,13 @@ export default async function Home({
 
   return (
     <>
-      <JourneyRail />
-      <HeroChapter content={content.hero} id="understanding" stage="understanding" />
-      <PhilosophyChapter content={content.philosophy} id="philosophy" stage="understanding" />
-      <ExpressionsChapter content={content.expressions} id="connection" stage="connection" />
-      <PossibleChapter
-        content={content.possible}
-        stories={stories}
-        id="possibility"
-        stage="possibility"
-      />
-      <ImpactChapter content={content.impact} id="impact" stage="possibility" />
-      <InvitationChapter content={content.invitation} id="participation" stage="participation" />
+      <HeroSection content={content.hero} />
+      <WaysSection content={content.ways} />
+      <ViaBand content={content.via} />
+      <StoriesSection content={content.storiesIntro} stories={stories} />
+      <SnapshotBand content={content.snapshot} />
+      <PartnersSection content={content.partners} />
+      <InvolveBand content={content.involve} />
     </>
   )
 }

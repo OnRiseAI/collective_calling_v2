@@ -1,7 +1,7 @@
 import { defineField, defineType } from 'sanity'
 
 /**
- * The homepage singleton, six-chapter experience-led shape. Fields mirror
+ * The homepage singleton, mockup-theme shape (spec v2). Fields mirror
  * HomeContent in lib/content/home.types.ts one to one. The Studio structure
  * enforces the singleton.
  */
@@ -10,15 +10,16 @@ export const homePage = defineType({
   title: 'Home page',
   type: 'document',
   fields: [
-    defineField({ name: 'hero', title: 'Hero', type: 'heroChapter' }),
-    defineField({ name: 'philosophy', title: 'Our philosophy', type: 'philosophyChapter' }),
-    defineField({ name: 'expressions', title: 'How it comes to life', type: 'expressionsChapter' }),
-    defineField({ name: 'possible', title: 'See what’s possible', type: 'possibleChapter' }),
-    defineField({ name: 'impact', title: 'Impact', type: 'impactChapter' }),
-    defineField({ name: 'invitation', title: 'Start your journey', type: 'invitationChapter' }),
+    defineField({ name: 'hero', title: 'Hero', type: 'homeHero' }),
+    defineField({ name: 'ways', title: 'Three ways we create impact', type: 'homeWays' }),
+    defineField({ name: 'via', title: 'Values In Action band', type: 'homeVia' }),
+    defineField({ name: 'storiesIntro', title: 'Stories intro', type: 'homeStoriesIntro' }),
+    defineField({ name: 'snapshot', title: 'Impact snapshot', type: 'homeSnapshot' }),
+    defineField({ name: 'partners', title: 'Partners', type: 'homePartners' }),
+    defineField({ name: 'involve', title: 'Get Involved band', type: 'homeInvolve' }),
   ],
   preview: {
-    select: { title: 'hero.headline' },
+    select: { title: 'hero.headlineLead' },
     prepare({ title }) {
       return { title: title || 'Home page' }
     },

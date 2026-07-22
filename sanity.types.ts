@@ -15,6 +15,12 @@
 export declare const internalGroqTypeReferenceTo: unique symbol;
 
 // Source: sanity-schema.json
+export type Shops = {
+  heading?: string;
+  body?: string;
+  cta?: LinkCta;
+};
+
 export type SanityImageAssetReference = {
   _ref: string;
   _type: "reference";
@@ -123,63 +129,24 @@ export type HomePage = {
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
-  hero?: HeroChapter;
-  philosophy?: PhilosophyChapter;
-  expressions?: ExpressionsChapter;
-  possible?: PossibleChapter;
-  impact?: ImpactChapter;
-  invitation?: InvitationChapter;
+  hero?: HomeHero;
+  ways?: HomeWays;
+  via?: HomeVia;
+  storiesIntro?: HomeStoriesIntro;
+  snapshot?: HomeSnapshot;
+  partners?: HomePartners;
+  involve?: HomeInvolve;
 };
 
-export type InvitationChapter = {
-  _type: "invitationChapter";
-  headline?: string;
-  intro?: string;
-  bring?: Array<string>;
-  outro?: string;
-  cta?: LinkCta;
-};
-
-export type ImpactChapter = {
-  _type: "impactChapter";
-  headline?: string;
-  intro?: Array<string>;
-  moments?: Array<string>;
-  outro?: string;
-  cta?: LinkCta;
-};
-
-export type PossibleChapter = {
-  _type: "possibleChapter";
-  headline?: string;
-  intro?: string;
-  moments?: Array<string>;
-  outro?: string;
-};
-
-export type ExpressionsChapter = {
-  _type: "expressionsChapter";
-  headline?: string;
-  intro?: string;
-  credo?: Array<string>;
-  rows?: Array<
+export type HomeInvolve = {
+  _type: "homeInvolve";
+  heading?: string;
+  body?: string;
+  actions?: Array<
     {
       _key: string;
-    } & ExpressionRow
+    } & InvolveAction
   >;
-};
-
-export type PhilosophyChapter = {
-  _type: "philosophyChapter";
-  headline?: string;
-  body?: Array<string>;
-  pullLine?: string;
-};
-
-export type HeroChapter = {
-  _type: "heroChapter";
-  headline?: string;
-  text?: Array<string>;
   image?: {
     asset?: SanityImageAssetReference;
     media?: unknown;
@@ -188,8 +155,78 @@ export type HeroChapter = {
     _type: "image";
   };
   alt?: string;
-  primaryCta?: AnchorCta;
-  secondaryCta?: AnchorCta;
+  shops?: Shops;
+};
+
+export type HomePartners = {
+  _type: "homePartners";
+  heading?: string;
+  body?: string;
+  names?: Array<string>;
+  logoSlot?: string;
+  cta?: LinkCta;
+};
+
+export type HomeSnapshot = {
+  _type: "homeSnapshot";
+  heading?: string;
+  stats?: Array<
+    {
+      _key: string;
+    } & SnapshotStat
+  >;
+};
+
+export type HomeStoriesIntro = {
+  _type: "homeStoriesIntro";
+  heading?: string;
+  subline?: string;
+  viewAll?: LinkCta;
+};
+
+export type HomeVia = {
+  _type: "homeVia";
+  eyebrow?: string;
+  heading?: string;
+  body?: string;
+  cta?: LinkCta;
+  image?: {
+    asset?: SanityImageAssetReference;
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  };
+  alt?: string;
+};
+
+export type HomeWays = {
+  _type: "homeWays";
+  heading?: string;
+  cards?: Array<
+    {
+      _key: string;
+    } & WayCard
+  >;
+};
+
+export type HomeHero = {
+  _type: "homeHero";
+  eyebrow?: string;
+  headlineLead?: string;
+  headlineAccent?: string;
+  lede?: string;
+  image?: {
+    asset?: SanityImageAssetReference;
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  };
+  alt?: string;
+  primaryCta?: LinkCta;
+  secondaryCta?: LinkCta;
+  scrollCue?: string;
 };
 
 export type LinkCta = {
@@ -198,12 +235,25 @@ export type LinkCta = {
   href?: string;
 };
 
-export type ExpressionRow = {
-  _type: "expressionRow";
+export type InvolveAction = {
+  _type: "involveAction";
+  icon?: string;
+  title?: string;
+  blurb?: string;
+  href?: string;
+};
+
+export type SnapshotStat = {
+  _type: "snapshotStat";
+  icon?: string;
+  value?: string;
+  label?: string;
+};
+
+export type WayCard = {
+  _type: "wayCard";
   key?: string;
-  eyebrow?: string;
-  heading?: string;
-  belief?: string;
+  title?: string;
   body?: string;
   image?: {
     asset?: SanityImageAssetReference;
@@ -213,13 +263,7 @@ export type ExpressionRow = {
     _type: "image";
   };
   alt?: string;
-  cta?: LinkCta;
-};
-
-export type AnchorCta = {
-  _type: "anchorCta";
-  label?: string;
-  targetId?: string;
+  href?: string;
 };
 
 export type SanityImagePaletteSwatch = {
@@ -320,6 +364,7 @@ export type Geopoint = {
 };
 
 export type AllSanitySchemaTypes =
+  | Shops
   | SanityImageAssetReference
   | EventItem
   | SanityImageCrop
@@ -328,15 +373,17 @@ export type AllSanitySchemaTypes =
   | AppealEntry
   | Story
   | HomePage
-  | InvitationChapter
-  | ImpactChapter
-  | PossibleChapter
-  | ExpressionsChapter
-  | PhilosophyChapter
-  | HeroChapter
+  | HomeInvolve
+  | HomePartners
+  | HomeSnapshot
+  | HomeStoriesIntro
+  | HomeVia
+  | HomeWays
+  | HomeHero
   | LinkCta
-  | ExpressionRow
-  | AnchorCta
+  | InvolveAction
+  | SnapshotStat
+  | WayCard
   | SanityImagePaletteSwatch
   | SanityImagePalette
   | SanityImageDimensions
@@ -394,11 +441,13 @@ export type EVENTS_QUERY_RESULT = Array<{
 
 // Source: lib/sanity/home.query.ts
 // Variable: HOME_QUERY
-// Query: *[_type == "homePage"][0]{  hero{ headline, text, image, alt, primaryCta{ label, targetId }, secondaryCta{ label, targetId } },  philosophy{ headline, body, pullLine },  expressions{ headline, intro, credo, rows[]{ key, eyebrow, heading, belief, body, image, alt, cta{ label, href } } },  possible{ headline, intro, moments, outro },  impact{ headline, intro, moments, outro, cta{ label, href } },  invitation{ headline, intro, bring, outro, cta{ label, href } }}
+// Query: *[_type == "homePage"][0]{  hero{ eyebrow, headlineLead, headlineAccent, lede, image, alt, primaryCta{ label, href }, secondaryCta{ label, href }, scrollCue },  ways{ heading, cards[]{ key, title, body, image, alt, href } },  via{ eyebrow, heading, body, cta{ label, href }, image, alt },  storiesIntro{ heading, subline, viewAll{ label, href } },  snapshot{ heading, stats[]{ icon, value, label } },  partners{ heading, body, names, logoSlot, cta{ label, href } },  involve{ heading, body, actions[]{ icon, title, blurb, href }, image, alt, shops{ heading, body, cta{ label, href } } }}
 export type HOME_QUERY_RESULT = {
   hero: {
-    headline: string | null;
-    text: Array<string> | null;
+    eyebrow: string | null;
+    headlineLead: string | null;
+    headlineAccent: string | null;
+    lede: string | null;
     image: {
       asset?: SanityImageAssetReference;
       media?: unknown;
@@ -409,27 +458,19 @@ export type HOME_QUERY_RESULT = {
     alt: string | null;
     primaryCta: {
       label: string | null;
-      targetId: string | null;
+      href: string | null;
     } | null;
     secondaryCta: {
       label: string | null;
-      targetId: string | null;
+      href: string | null;
     } | null;
+    scrollCue: string | null;
   } | null;
-  philosophy: {
-    headline: string | null;
-    body: Array<string> | null;
-    pullLine: string | null;
-  } | null;
-  expressions: {
-    headline: string | null;
-    intro: string | null;
-    credo: Array<string> | null;
-    rows: Array<{
+  ways: {
+    heading: string | null;
+    cards: Array<{
       key: string | null;
-      eyebrow: string | null;
-      heading: string | null;
-      belief: string | null;
+      title: string | null;
       body: string | null;
       image: {
         asset?: SanityImageAssetReference;
@@ -439,36 +480,76 @@ export type HOME_QUERY_RESULT = {
         _type: "image";
       } | null;
       alt: string | null;
-      cta: {
-        label: string | null;
-        href: string | null;
-      } | null;
+      href: string | null;
     }> | null;
   } | null;
-  possible: {
-    headline: string | null;
-    intro: string | null;
-    moments: Array<string> | null;
-    outro: string | null;
+  via: {
+    eyebrow: string | null;
+    heading: string | null;
+    body: string | null;
+    cta: {
+      label: string | null;
+      href: string | null;
+    } | null;
+    image: {
+      asset?: SanityImageAssetReference;
+      media?: unknown;
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      _type: "image";
+    } | null;
+    alt: string | null;
   } | null;
-  impact: {
-    headline: string | null;
-    intro: Array<string> | null;
-    moments: Array<string> | null;
-    outro: string | null;
+  storiesIntro: {
+    heading: string | null;
+    subline: string | null;
+    viewAll: {
+      label: string | null;
+      href: string | null;
+    } | null;
+  } | null;
+  snapshot: {
+    heading: string | null;
+    stats: Array<{
+      icon: string | null;
+      value: string | null;
+      label: string | null;
+    }> | null;
+  } | null;
+  partners: {
+    heading: string | null;
+    body: string | null;
+    names: Array<string> | null;
+    logoSlot: string | null;
     cta: {
       label: string | null;
       href: string | null;
     } | null;
   } | null;
-  invitation: {
-    headline: string | null;
-    intro: string | null;
-    bring: Array<string> | null;
-    outro: string | null;
-    cta: {
-      label: string | null;
+  involve: {
+    heading: string | null;
+    body: string | null;
+    actions: Array<{
+      icon: string | null;
+      title: string | null;
+      blurb: string | null;
       href: string | null;
+    }> | null;
+    image: {
+      asset?: SanityImageAssetReference;
+      media?: unknown;
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      _type: "image";
+    } | null;
+    alt: string | null;
+    shops: {
+      heading: string | null;
+      body: string | null;
+      cta: {
+        label: string | null;
+        href: string | null;
+      } | null;
     } | null;
   } | null;
 } | null;
@@ -500,7 +581,7 @@ declare module "@sanity/client" {
   interface SanityQueries {
     '*[_type == "appealEntry"] | order(_createdAt asc){\n  slug,\n  title,\n  theme,\n  blurb,\n  body,\n  image,\n  alt,\n  relatedHref,\n  donationDesignation,\n  donorboxQuery{ amount, recurring, default_interval },\n  placeholder\n}': APPEALS_QUERY_RESULT;
     '*[_type == "eventItem"] | order(date asc, _createdAt asc){\n  slug,\n  title,\n  summary,\n  image,\n  alt,\n  dateLabel,\n  placeholder\n}': EVENTS_QUERY_RESULT;
-    '*[_type == "homePage"][0]{\n  hero{ headline, text, image, alt, primaryCta{ label, targetId }, secondaryCta{ label, targetId } },\n  philosophy{ headline, body, pullLine },\n  expressions{ headline, intro, credo, rows[]{ key, eyebrow, heading, belief, body, image, alt, cta{ label, href } } },\n  possible{ headline, intro, moments, outro },\n  impact{ headline, intro, moments, outro, cta{ label, href } },\n  invitation{ headline, intro, bring, outro, cta{ label, href } }\n}': HOME_QUERY_RESULT;
+    '*[_type == "homePage"][0]{\n  hero{ eyebrow, headlineLead, headlineAccent, lede, image, alt, primaryCta{ label, href }, secondaryCta{ label, href }, scrollCue },\n  ways{ heading, cards[]{ key, title, body, image, alt, href } },\n  via{ eyebrow, heading, body, cta{ label, href }, image, alt },\n  storiesIntro{ heading, subline, viewAll{ label, href } },\n  snapshot{ heading, stats[]{ icon, value, label } },\n  partners{ heading, body, names, logoSlot, cta{ label, href } },\n  involve{ heading, body, actions[]{ icon, title, blurb, href }, image, alt, shops{ heading, body, cta{ label, href } } }\n}': HOME_QUERY_RESULT;
     '*[_type == "story"] | order(_createdAt asc){\n  slug,\n  title,\n  location,\n  excerpt,\n  body,\n  images[]{ ..., asset },\n  placeholder\n}': STORIES_QUERY_RESULT;
   }
 }

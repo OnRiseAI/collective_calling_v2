@@ -1,21 +1,27 @@
 import { defineQuery } from 'next-sanity'
-import type { ExpressionRow, HomeContent } from '@/lib/content/home.types'
+import type {
+  HomeContent,
+  InvolveAction,
+  SnapshotStat,
+  WayCard,
+} from '@/lib/content/home.types'
 import { SEED_HOME } from '@/lib/content/home.seed'
 import { urlForImage } from '@/sanity/image'
 
 /**
- * GROQ for the homePage singleton, six-chapter shape. Images project as raw
- * objects so mapSanityHome can resolve them via urlForImage. Every field is
- * optional in practice: mapSanityHome falls back to the seed per field, so a
+ * GROQ for the homePage singleton, mockup-theme shape (spec v2). Images project
+ * as raw objects so mapSanityHome can resolve them via urlForImage. Every field
+ * is optional in practice: mapSanityHome falls back to the seed per field, so a
  * stale or partial document can never blank the homepage.
  */
 export const HOME_QUERY = defineQuery(`*[_type == "homePage"][0]{
-  hero{ headline, text, image, alt, primaryCta{ label, targetId }, secondaryCta{ label, targetId } },
-  philosophy{ headline, body, pullLine },
-  expressions{ headline, intro, credo, rows[]{ key, eyebrow, heading, belief, body, image, alt, cta{ label, href } } },
-  possible{ headline, intro, moments, outro },
-  impact{ headline, intro, moments, outro, cta{ label, href } },
-  invitation{ headline, intro, bring, outro, cta{ label, href } }
+  hero{ eyebrow, headlineLead, headlineAccent, lede, image, alt, primaryCta{ label, href }, secondaryCta{ label, href }, scrollCue },
+  ways{ heading, cards[]{ key, title, body, image, alt, href } },
+  via{ eyebrow, heading, body, cta{ label, href }, image, alt },
+  storiesIntro{ heading, subline, viewAll{ label, href } },
+  snapshot{ heading, stats[]{ icon, value, label } },
+  partners{ heading, body, names, logoSlot, cta{ label, href } },
+  involve{ heading, body, actions[]{ icon, title, blurb, href }, image, alt, shops{ heading, body, cta{ label, href } } }
 }`)
 
 // Treat unknown input as an indexable record without throwing.
@@ -33,8 +39,7 @@ function strArray(value: unknown, fallback: string[]): string[] {
   return strings.length > 0 ? strings : fallback
 }
 
-// Merge a CMS CTA object over its seed fallback. The fallback's own keys drive
-// the merge, so the one helper serves both {label, targetId} and {label, href}.
+// Merge a CMS CTA object over its seed fallback (fallback keys drive the merge).
 function cta<T extends { label: string }>(value: unknown, fallback: T): T {
   const record = asRecord(value)
   const merged = { ...fallback } as Record<string, unknown>
@@ -44,79 +49,109 @@ function cta<T extends { label: string }>(value: unknown, fallback: T): T {
   return merged as T
 }
 
-// Resolve a Sanity image field to a URL string, falling back to the seed path
-// when the source is absent, malformed, or Sanity is unconfigured.
+// Resolve a Sanity image field to a URL string, falling back to the seed path.
 function resolveImage(source: unknown, fallback: string): string {
   if (typeof source === 'string') return source
   return urlForImage(source as never) ?? fallback
 }
 
-function mapExpressionRow(value: unknown, seed: ExpressionRow): ExpressionRow {
-  const row = asRecord(value)
-  return {
-    key: seed.key,
-    eyebrow: str(row.eyebrow, seed.eyebrow),
-    heading: str(row.heading, seed.heading),
-    belief: str(row.belief, seed.belief),
-    body: str(row.body, seed.body),
-    image: resolveImage(row.image, seed.image),
-    alt: str(row.alt, seed.alt),
-    cta: cta(row.cta, seed.cta),
-  }
-}
-
 export function mapSanityHome(raw: unknown): HomeContent {
   const doc = asRecord(raw)
   const hero = asRecord(doc.hero)
-  const philosophy = asRecord(doc.philosophy)
-  const expressions = asRecord(doc.expressions)
-  const possible = asRecord(doc.possible)
-  const impact = asRecord(doc.impact)
-  const invitation = asRecord(doc.invitation)
+  const ways = asRecord(doc.ways)
+  const via = asRecord(doc.via)
+  const storiesIntro = asRecord(doc.storiesIntro)
+  const snapshot = asRecord(doc.snapshot)
+  const partners = asRecord(doc.partners)
+  const involve = asRecord(doc.involve)
+  const shops = asRecord(involve.shops)
 
-  const docRows = Array.isArray(expressions.rows) ? expressions.rows : []
+  const wayDocs = Array.isArray(ways.cards) ? ways.cards : []
+  const statDocs = Array.isArray(snapshot.stats) ? snapshot.stats : []
+  const actionDocs = Array.isArray(involve.actions) ? involve.actions : []
+
+  const mapWay = (value: unknown, seed: WayCard): WayCard => {
+    const card = asRecord(value)
+    return {
+      key: seed.key,
+      title: str(card.title, seed.title),
+      body: str(card.body, seed.body),
+      image: resolveImage(card.image, seed.image),
+      alt: str(card.alt, seed.alt),
+      href: str(card.href, seed.href),
+    }
+  }
+
+  const mapStat = (value: unknown, seed: SnapshotStat): SnapshotStat => {
+    const stat = asRecord(value)
+    return {
+      icon: seed.icon,
+      value: str(stat.value, seed.value),
+      label: str(stat.label, seed.label),
+    }
+  }
+
+  const mapAction = (value: unknown, seed: InvolveAction): InvolveAction => {
+    const action = asRecord(value)
+    return {
+      icon: seed.icon,
+      title: str(action.title, seed.title),
+      blurb: str(action.blurb, seed.blurb),
+      href: str(action.href, seed.href),
+    }
+  }
 
   return {
     hero: {
-      headline: str(hero.headline, SEED_HOME.hero.headline),
-      text: strArray(hero.text, SEED_HOME.hero.text),
+      eyebrow: str(hero.eyebrow, SEED_HOME.hero.eyebrow),
+      headlineLead: str(hero.headlineLead, SEED_HOME.hero.headlineLead),
+      headlineAccent: str(hero.headlineAccent, SEED_HOME.hero.headlineAccent),
+      lede: str(hero.lede, SEED_HOME.hero.lede),
       image: resolveImage(hero.image, SEED_HOME.hero.image),
       alt: str(hero.alt, SEED_HOME.hero.alt),
       primaryCta: cta(hero.primaryCta, SEED_HOME.hero.primaryCta),
       secondaryCta: cta(hero.secondaryCta, SEED_HOME.hero.secondaryCta),
+      scrollCue: str(hero.scrollCue, SEED_HOME.hero.scrollCue),
     },
-    philosophy: {
-      headline: str(philosophy.headline, SEED_HOME.philosophy.headline),
-      body: strArray(philosophy.body, SEED_HOME.philosophy.body),
-      pullLine: str(philosophy.pullLine, SEED_HOME.philosophy.pullLine),
+    ways: {
+      heading: str(ways.heading, SEED_HOME.ways.heading),
+      cards: SEED_HOME.ways.cards.map((seed, index) => mapWay(wayDocs[index], seed)),
     },
-    expressions: {
-      headline: str(expressions.headline, SEED_HOME.expressions.headline),
-      intro: str(expressions.intro, SEED_HOME.expressions.intro),
-      credo: strArray(expressions.credo, SEED_HOME.expressions.credo),
-      rows: SEED_HOME.expressions.rows.map((seedRow, index) =>
-        mapExpressionRow(docRows[index], seedRow),
-      ),
+    via: {
+      eyebrow: str(via.eyebrow, SEED_HOME.via.eyebrow),
+      heading: str(via.heading, SEED_HOME.via.heading),
+      body: str(via.body, SEED_HOME.via.body),
+      cta: cta(via.cta, SEED_HOME.via.cta),
+      image: resolveImage(via.image, SEED_HOME.via.image),
+      alt: str(via.alt, SEED_HOME.via.alt),
     },
-    possible: {
-      headline: str(possible.headline, SEED_HOME.possible.headline),
-      intro: str(possible.intro, SEED_HOME.possible.intro),
-      moments: strArray(possible.moments, SEED_HOME.possible.moments),
-      outro: str(possible.outro, SEED_HOME.possible.outro),
+    storiesIntro: {
+      heading: str(storiesIntro.heading, SEED_HOME.storiesIntro.heading),
+      subline: str(storiesIntro.subline, SEED_HOME.storiesIntro.subline),
+      viewAll: cta(storiesIntro.viewAll, SEED_HOME.storiesIntro.viewAll),
     },
-    impact: {
-      headline: str(impact.headline, SEED_HOME.impact.headline),
-      intro: strArray(impact.intro, SEED_HOME.impact.intro),
-      moments: strArray(impact.moments, SEED_HOME.impact.moments),
-      outro: str(impact.outro, SEED_HOME.impact.outro),
-      cta: cta(impact.cta, SEED_HOME.impact.cta),
+    snapshot: {
+      heading: str(snapshot.heading, SEED_HOME.snapshot.heading),
+      stats: SEED_HOME.snapshot.stats.map((seed, index) => mapStat(statDocs[index], seed)),
     },
-    invitation: {
-      headline: str(invitation.headline, SEED_HOME.invitation.headline),
-      intro: str(invitation.intro, SEED_HOME.invitation.intro),
-      bring: strArray(invitation.bring, SEED_HOME.invitation.bring),
-      outro: str(invitation.outro, SEED_HOME.invitation.outro),
-      cta: cta(invitation.cta, SEED_HOME.invitation.cta),
+    partners: {
+      heading: str(partners.heading, SEED_HOME.partners.heading),
+      body: str(partners.body, SEED_HOME.partners.body),
+      names: strArray(partners.names, SEED_HOME.partners.names),
+      logoSlot: str(partners.logoSlot, SEED_HOME.partners.logoSlot),
+      cta: cta(partners.cta, SEED_HOME.partners.cta),
+    },
+    involve: {
+      heading: str(involve.heading, SEED_HOME.involve.heading),
+      body: str(involve.body, SEED_HOME.involve.body),
+      actions: SEED_HOME.involve.actions.map((seed, index) => mapAction(actionDocs[index], seed)),
+      image: resolveImage(involve.image, SEED_HOME.involve.image),
+      alt: str(involve.alt, SEED_HOME.involve.alt),
+      shops: {
+        heading: str(shops.heading, SEED_HOME.involve.shops.heading),
+        body: str(shops.body, SEED_HOME.involve.shops.body),
+        cta: cta(shops.cta, SEED_HOME.involve.shops.cta),
+      },
     },
   }
 }

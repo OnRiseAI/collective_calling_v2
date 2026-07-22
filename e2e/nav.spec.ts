@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test'
 
-// The desktop mega-menu (hidden below lg) and the mobile panel (hidden at lg
+// The flat desktop nav (hidden below lg) and the mobile panel (hidden at lg
 // and up) never show at the same width, so each block sets its own viewport.
 
 test.describe('mobile navigation', () => {
@@ -20,9 +20,7 @@ test.describe('mobile navigation', () => {
     const panel = page.getByRole('dialog', { name: /site menu/i })
     await expect(panel).toBeVisible()
     // A destination inside the panel is reachable.
-    await expect(
-      panel.getByRole('link', { name: /sponsor a child/i }),
-    ).toBeVisible()
+    await expect(panel.getByRole('link', { name: /who we are/i })).toBeVisible()
 
     // Escape closes and returns aria-expanded to false.
     await page.keyboard.press('Escape')
@@ -31,28 +29,30 @@ test.describe('mobile navigation', () => {
   })
 })
 
-test.describe('desktop mega-menu', () => {
+test.describe('desktop flat nav', () => {
   test.use({ viewport: { width: 1280, height: 900 } })
 
-  test('a section opens its dropdown and an item is reachable', async ({
+  test('every top-level section link is visible and Get Involved is the CTA', async ({
     page,
   }) => {
     await page.goto('/')
 
-    // Scope to the primary navigation so the About Us trigger is not confused
-    // with the homepage Explore card's "About us" link lower on the page.
     const primaryNav = page.getByRole('navigation', { name: /primary/i })
-    const aboutTrigger = primaryNav.getByRole('link', { name: /^about us$/i })
-    await expect(aboutTrigger).toHaveAttribute('aria-expanded', 'false')
+    for (const label of [
+      'Impact',
+      'Values in Action',
+      'Stories',
+      'Events',
+      'Charity Shops',
+      'About',
+      'Contact',
+    ]) {
+      await expect(primaryNav.getByRole('link', { name: label, exact: true })).toBeVisible()
+    }
 
-    // Hover opens the panel (Tearfund pattern).
-    await aboutTrigger.hover()
-    await expect(aboutTrigger).toHaveAttribute('aria-expanded', 'true')
-
-    const item = page.getByRole('link', {
-      name: 'Financial accountability',
-      exact: true,
-    })
-    await expect(item).toBeVisible()
+    await expect(page.getByRole('link', { name: /^get involved$/i })).toHaveAttribute(
+      'href',
+      /\/get-involved$/,
+    )
   })
 })

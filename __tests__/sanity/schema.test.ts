@@ -8,8 +8,16 @@ test('schema includes the homePage singleton', () => {
 })
 
 describe('homePage schema', () => {
-  test('defines the six chapter fields', () => {
+  test('defines the seven mockup section fields', () => {
     const names = homePage.fields.map((f: { name: string }) => f.name)
-    expect(names).toEqual(['hero', 'philosophy', 'expressions', 'possible', 'impact', 'invitation'])
+    expect(names).toEqual([
+      'hero',
+      'ways',
+      'via',
+      'storiesIntro',
+      'snapshot',
+      'partners',
+      'involve',
+    ])
   })
 })

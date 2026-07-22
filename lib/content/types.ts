@@ -7,7 +7,7 @@
 
 export type AppealTheme = 'spain' | 'tanzania' | 'general' | 'seasonal'
 
-export type { HomeContent, ExpressionRow, MoneySplit } from './home.types'
+export type { HomeContent, WayCard, SnapshotStat, MoneySplit } from './home.types'
 
 // Re-export RichBlock from pages/types so consumers can import from one place.
 export type { RichBlock } from './pages/types'

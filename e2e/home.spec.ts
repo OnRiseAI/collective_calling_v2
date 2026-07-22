@@ -1,58 +1,55 @@
 import { test, expect } from '@playwright/test'
 
 /**
- * Homepage end-to-end coverage for the experience-led journey page: the hero
- * owns the h1 and its CTAs are in-page anchors; the three expressions link to
- * their real routes; the invitation routes to /get-involved; the journey rail
- * exists on desktop and not on mobile.
+ * Homepage end-to-end coverage for the mockup-theme page: the hero owns the h1
+ * with the gold accent word, its CTAs route to real pages, the three ways cards
+ * link out, the snapshot stats render, and the involve band routes donate,
+ * volunteer, partner, and the charity shops page.
  */
 
-test('hero renders the client headline as the page h1', async ({ page }) => {
+test('hero renders the mockup headline as the page h1', async ({ page }) => {
   await page.goto('/')
   const h1 = page.getByRole('heading', { level: 1 })
   await expect(h1).toBeVisible()
-  // \s (not a literal space) before the final word: noOrphan glues the last
-  // two words of every headline with a non-breaking space.
-  await expect(h1).toContainText(/a life beyond\sourselves/i)
+  // \s (not literal spaces): noOrphan glues headline words with NBSP.
+  await expect(h1).toContainText(/where\svalues\sbecome/i)
+  await expect(h1).toContainText(/visible\./i)
 })
 
-test('primary CTA walks the reader to the participation chapter', async ({ page }) => {
+test('hero CTAs route to impact and Values in Action', async ({ page }) => {
   await page.goto('/')
-  await page.getByRole('link', { name: /start your journey/i }).first().click()
-  await expect(page.locator('section#participation')).toBeInViewport()
-})
-
-test('the three expressions link to their routes', async ({ page }) => {
-  await page.goto('/')
-  await expect(page.getByRole('link', { name: /see their stories/i })).toHaveAttribute(
+  await expect(page.getByRole('link', { name: /explore our impact/i })).toHaveAttribute(
     'href',
-    /\/stories$/,
+    /\/about\/our-impact$/,
   )
-  await expect(page.getByRole('link', { name: /explore community impact/i })).toHaveAttribute(
-    'href',
-    /\/spain$/,
-  )
-  await expect(page.getByRole('link', { name: /explore values in action/i })).toHaveAttribute(
+  await expect(page.getByRole('link', { name: /discover values in action/i })).toHaveAttribute(
     'href',
     /\/get-involved\/partner$/,
   )
 })
 
-test('journey rail shows on desktop and hides on mobile', async ({ page }) => {
-  await page.setViewportSize({ width: 1440, height: 900 })
+test('three ways cards link to their routes', async ({ page }) => {
   await page.goto('/')
-  await expect(page.getByRole('navigation', { name: /journey/i })).toBeVisible()
-
-  await page.setViewportSize({ width: 390, height: 844 })
-  await expect(page.getByRole('navigation', { name: /journey/i })).toBeHidden()
+  const learnMore = page.getByRole('link', { name: /learn more/i })
+  await expect(learnMore).toHaveCount(3)
+  await expect(learnMore.nth(0)).toHaveAttribute('href', /\/spain$/)
+  await expect(learnMore.nth(1)).toHaveAttribute('href', /\/tanzania$/)
+  await expect(learnMore.nth(2)).toHaveAttribute('href', /\/get-involved\/partner$/)
 })
 
-test('invitation chapter routes to get-involved', async ({ page }) => {
+test('impact snapshot renders the five stats', async ({ page }) => {
   await page.goto('/')
-  const invitation = page.locator('section#participation')
-  await invitation.scrollIntoViewIfNeeded()
-  await expect(invitation.getByRole('link', { name: /start your journey/i })).toHaveAttribute(
-    'href',
-    /\/get-involved$/,
-  )
+  await expect(page.getByText('10,000+')).toBeVisible()
+  await expect(page.getByText('People Supported')).toBeVisible()
+  await expect(page.getByText('Business Partners')).toBeVisible()
+})
+
+test('involve band routes to the charity shops page', async ({ page }) => {
+  await page.goto('/')
+  const shops = page.getByRole('link', { name: /find out more/i })
+  await shops.scrollIntoViewIfNeeded()
+  await expect(shops).toHaveAttribute('href', /\/charity-shops$/)
+  await shops.click()
+  await page.waitForLoadState()
+  await expect(page.getByRole('heading', { level: 1 })).toContainText(/charity\sshops/i)
 })
