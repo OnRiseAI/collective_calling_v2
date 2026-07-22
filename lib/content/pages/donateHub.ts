@@ -1,5 +1,5 @@
 import type { PageHero } from './types'
-import type { HomeContent } from '@/lib/content/types'
+import type { MoneySplit } from '@/lib/content/types'
 
 /**
  * Content for the Donate hub (/donate).
@@ -48,7 +48,7 @@ export type DonateHubContent = {
    * The 83/17 split, expressed in the homepage WhereMoneyGoes `money` shape so
    * the page reuses that exact visual. Driven by data, never hardcoded in markup.
    */
-  money: HomeContent['money']
+  money: MoneySplit
   /** Label and target for the "see the full breakdown" link under the split. */
   fullBreakdown: {
     label: string

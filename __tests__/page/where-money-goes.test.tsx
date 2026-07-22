@@ -2,8 +2,8 @@ import * as React from 'react'
 import { render, screen } from '@testing-library/react'
 import { expect, test } from 'vitest'
 import { NextIntlClientProvider } from 'next-intl'
-import { WhereMoneyGoes } from '@/components/home/WhereMoneyGoes'
-import type { HomeContent } from '@/lib/content/types'
+import { WhereMoneyGoes } from '@/components/page/WhereMoneyGoes'
+import type { MoneySplit } from '@/lib/content/types'
 
 // WhereMoneyGoes renders a locale-aware Donate Link from next-intl, so provide a
 // minimal provider for the href to resolve.
@@ -15,7 +15,7 @@ function renderWithLocale(ui: React.ReactNode) {
   )
 }
 
-const money: HomeContent['money'] = {
+const money: MoneySplit = {
   programsPct: 83,
   adminPct: 17,
   programsLabel: 'funds our programs',

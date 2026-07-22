@@ -1,6 +1,7 @@
 /**
  * Seeds the single `homePage` document into Sanity from the typed seed content
- * in lib/content/seed.ts, uploading the homepage images as Sanity image assets.
+ * in lib/content/home.seed.ts, uploading the homepage images as Sanity image
+ * assets.
  *
  * Run once, authenticated, via the Sanity CLI (it injects your user token):
  *   NEXT_PUBLIC_SANITY_PROJECT_ID=<id> NEXT_PUBLIC_SANITY_DATASET=production \
@@ -12,7 +13,7 @@
 import { readFileSync } from 'node:fs'
 import { join } from 'node:path'
 import { getCliClient } from 'sanity/cli'
-import { SEED_HOME } from '../lib/content/seed'
+import { SEED_HOME } from '../lib/content/home.seed'
 
 const client = getCliClient({ apiVersion: '2025-01-01' })
 const PUBLIC_DIR = join(process.cwd(), 'public')
@@ -44,33 +45,20 @@ async function main(): Promise<void> {
 
   const heroAssetId = await uploadImage(home.hero.image, cache)
 
-  const appeals = []
-  for (const a of home.appeals) {
-    const assetId = await uploadImage(a.image, cache)
-    appeals.push({
-      _type: 'appeal',
-      _key: nextKey('appeal'),
-      slug: a.slug,
-      title: a.title,
-      blurb: a.blurb,
+  const rows = []
+  for (const row of home.expressions.rows) {
+    const assetId = await uploadImage(row.image, cache)
+    rows.push({
+      _type: 'expressionRow',
+      _key: nextKey('expression'),
+      key: row.key,
+      eyebrow: row.eyebrow,
+      heading: row.heading,
+      belief: row.belief,
+      body: row.body,
       image: imageRef(assetId),
-      alt: a.alt,
-      href: a.href,
-      theme: a.theme,
-    })
-  }
-
-  const exploreCards = []
-  for (const c of home.exploreCards) {
-    const assetId = await uploadImage(c.image, cache)
-    exploreCards.push({
-      _type: 'exploreCard',
-      _key: nextKey('explore'),
-      title: c.title,
-      blurb: c.blurb,
-      image: imageRef(assetId),
-      alt: c.alt,
-      href: c.href,
+      alt: row.alt,
+      cta: { _type: 'linkCta', ...row.cta },
     })
   }
 
@@ -78,53 +66,49 @@ async function main(): Promise<void> {
     _id: 'homePage',
     _type: 'homePage',
     hero: {
-      _type: 'heroBlock',
-      eyebrow: home.hero.eyebrow,
+      _type: 'heroChapter',
       headline: home.hero.headline,
-      lede: home.hero.lede,
+      text: home.hero.text,
       image: imageRef(heroAssetId),
       alt: home.hero.alt,
+      primaryCta: { _type: 'anchorCta', ...home.hero.primaryCta },
+      secondaryCta: { _type: 'anchorCta', ...home.hero.secondaryCta },
     },
-    impactStats: home.impactStats.map((s) => ({
-      _type: 'impactStat',
-      _key: nextKey('stat'),
-      icon: s.icon,
-      value: s.value,
-      label: s.label,
-    })),
-    appeals,
-    mission: { _type: 'mission', ...home.mission },
-    scripture: { _type: 'scripture', ...home.scripture },
-    testimonials: home.testimonials.map((t) => ({
-      _type: 'testimonial',
-      _key: nextKey('testimonial'),
-      quote: t.quote,
-      attribution: t.attribution,
-      ...(typeof t.placeholder === 'boolean' ? { placeholder: t.placeholder } : {}),
-    })),
-    exploreCards,
-    money: { _type: 'moneySplit', ...home.money },
-    donate: {
-      monthlyTiers: home.donate.monthlyTiers.map((t) => ({
-        _type: 'donateTier',
-        _key: nextKey('monthly'),
-        amount: t.amount,
-        interval: t.interval,
-        impact: t.impact,
-      })),
-      onceTiers: home.donate.onceTiers.map((t) => ({
-        _type: 'donateTier',
-        _key: nextKey('once'),
-        amount: t.amount,
-        interval: t.interval,
-        impact: t.impact,
-      })),
+    philosophy: {
+      _type: 'philosophyChapter',
+      headline: home.philosophy.headline,
+      body: home.philosophy.body,
+      pullLine: home.philosophy.pullLine,
     },
-    trust: {
-      _type: 'trust',
-      registration: home.trust.registration,
-      statement: home.trust.statement,
-      partners: home.trust.partners,
+    expressions: {
+      _type: 'expressionsChapter',
+      headline: home.expressions.headline,
+      intro: home.expressions.intro,
+      credo: home.expressions.credo,
+      rows,
+    },
+    possible: {
+      _type: 'possibleChapter',
+      headline: home.possible.headline,
+      intro: home.possible.intro,
+      moments: home.possible.moments,
+      outro: home.possible.outro,
+    },
+    impact: {
+      _type: 'impactChapter',
+      headline: home.impact.headline,
+      intro: home.impact.intro,
+      moments: home.impact.moments,
+      outro: home.impact.outro,
+      cta: { _type: 'linkCta', ...home.impact.cta },
+    },
+    invitation: {
+      _type: 'invitationChapter',
+      headline: home.invitation.headline,
+      intro: home.invitation.intro,
+      bring: home.invitation.bring,
+      outro: home.invitation.outro,
+      cta: { _type: 'linkCta', ...home.invitation.cta },
     },
   }
 

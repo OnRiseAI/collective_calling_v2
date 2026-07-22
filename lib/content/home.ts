@@ -1,7 +1,7 @@
 import { sanityClient } from '@/sanity/client'
 import { HOME_QUERY, mapSanityHome } from '@/lib/sanity/home.query'
-import { SEED_HOME } from './seed'
-import type { HomeContent } from './types'
+import { SEED_HOME } from './home.seed'
+import type { HomeContent } from './home.types'
 
 /**
  * Homepage content read layer.

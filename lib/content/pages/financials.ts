@@ -1,5 +1,5 @@
 import type { PageHero } from './types'
-import type { HomeContent } from '@/lib/content/types'
+import type { MoneySplit } from '@/lib/content/types'
 
 /**
  * Content for the Financial Accountability page (/about/financial-accountability).
@@ -43,7 +43,7 @@ export type FinancialsContent = {
    * The 83/17 split, expressed in the homepage WhereMoneyGoes `money` shape so
    * the page reuses that exact visual. Driven by data, never hardcoded in markup.
    */
-  money: HomeContent['money']
+  money: MoneySplit
   /** A short framing paragraph that introduces the split visual. */
   splitIntro: {
     eyebrow: string

@@ -7,7 +7,7 @@ import { Button } from '@/components/ui/Button'
 import { Eyebrow } from '@/components/ui/Eyebrow'
 import { DONATE_HREF } from '@/lib/nav'
 import { noOrphan } from '@/lib/text'
-import type { HomeContent } from '@/lib/content/types'
+import type { MoneySplit } from '@/lib/content/types'
 
 /**
  * "Where your money goes" for the Collective Calling homepage.
@@ -70,7 +70,7 @@ function Donut({
   )
 }
 
-export function WhereMoneyGoes(props: { content: HomeContent['money'] }): React.JSX.Element {
+export function WhereMoneyGoes(props: { content: MoneySplit }): React.JSX.Element {
   const { content } = props
   const { programsPct, adminPct, programsLabel, adminLabel, note } = content
 
