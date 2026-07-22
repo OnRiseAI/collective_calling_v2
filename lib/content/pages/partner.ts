@@ -37,15 +37,15 @@ export const partnerContent: PartnerContent = {
     eyebrow: 'Get involved',
     title: 'Partner with Collective Calling',
     lede:
-      'Churches, businesses, and organisations can walk alongside us at an institutional level. Find out what that looks like and how to get started.',
+      'Values In Action is how organisations bring what they already believe into the lives of others. Churches, businesses, and organisations can walk alongside us at an institutional level.',
   },
 
   intro: {
     eyebrow: 'Institutional partnership',
-    heading: 'Carrying this work together',
+    heading: 'Values In Action',
     body: [
-      'Collective Calling works because people and organisations decide to take ownership of the mission alongside us. A partnership is more than a donation; it is an ongoing relationship that brings expertise, resources, and community to bear on a shared goal.',
-      'We partner with churches, businesses, civic bodies, and NGOs who share our conviction that homelessness is solvable and that every person deserves dignity and a home. If that resonates, we would love to talk.',
+      'Every business carries a story, built through its people, culture and values. Values In Action exists to recognise what is already there and create opportunities for those values to travel further, beyond the walls of an organisation and into the lives of others.',
+      'Partnership with Collective Calling is not sponsorship of a cause. It is a way for the values your organisation already lives by to reach children in Tanzania and people experiencing homelessness in Spain.',
     ],
   },
 

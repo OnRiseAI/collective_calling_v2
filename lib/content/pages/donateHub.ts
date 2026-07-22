@@ -82,7 +82,7 @@ export const donateHubContent: DonateHubContent = {
   },
 
   intro:
-    'Use the secure form below to give. You can make a one-time gift or set up monthly giving, and choose the cause closest to your heart.',
+    'Giving is one of the ways people become part of this story. What you share here joins the time, skills and belief of many others, and together those gifts become protection for children, dignity on the street, and lasting change for families. Give once or monthly using the secure form below.',
 
   giftDoes: {
     eyebrow: 'What your gift does',

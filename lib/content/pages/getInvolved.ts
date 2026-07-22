@@ -35,15 +35,15 @@ export const getInvolvedContent: GetInvolvedContent = {
     eyebrow: 'Get involved',
     title: 'Get involved',
     lede:
-      'Whether you give, pray, fundraise, or come and speak with us, your involvement makes the work possible. Find the right step for you below.',
+      'Every person carries something that can change a life. Time, experience, resources, connections. Find the way you want to bring what you have.',
   },
 
   intro: {
-    eyebrow: 'There are many ways',
-    heading: 'Walk with us in Spain and Tanzania',
+    eyebrow: 'Find your place',
+    heading: 'Find your place in the story',
     body: [
-      'Collective Calling is a small charity with a focused mission: restoring dignity on the streets of Spain and walking children home to their families in Tanzania. None of that happens without people who decide to get involved.',
-      'Below are six ways to take that step. Each one is a real, meaningful contribution to the work. Start wherever feels right.',
+      'Every journey into Collective Calling looks different. Some people bring time, some bring experience, some bring resources or connections. Each contribution is different, but together they become part of something greater.',
+      'Below are six ways to take your first step. Start wherever feels right.',
     ],
   },
 

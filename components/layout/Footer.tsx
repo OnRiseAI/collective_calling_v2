@@ -131,8 +131,12 @@ export function Footer() {
         </div>
 
         {/* Accountability bar: two columns aligned to the same top baseline.
-            Left = socials + condensed legal run; right = transparency statement. */}
+            Left = socials + condensed legal run; right = transparency statement.
+            The philosophy line leads the bar sitewide (spec 2026-07-22 §7). */}
         <div className="mt-14 border-t border-brand-dark/15 pt-8">
+          <p className="mb-8 font-heading text-lg font-semibold">
+            A life lived beyond ourselves creates lasting change.
+          </p>
           <div className="flex flex-col gap-10 lg:flex-row lg:items-end lg:justify-between">
             {/* LEFT: larger social circles, then the condensed legal run. */}
             <div className="lg:max-w-2xl">
