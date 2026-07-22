@@ -123,79 +123,88 @@ export type HomePage = {
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
-  hero?: HeroBlock;
-  impactStats?: Array<
+  hero?: HeroChapter;
+  philosophy?: PhilosophyChapter;
+  expressions?: ExpressionsChapter;
+  possible?: PossibleChapter;
+  impact?: ImpactChapter;
+  invitation?: InvitationChapter;
+};
+
+export type InvitationChapter = {
+  _type: "invitationChapter";
+  headline?: string;
+  intro?: string;
+  bring?: Array<string>;
+  outro?: string;
+  cta?: LinkCta;
+};
+
+export type ImpactChapter = {
+  _type: "impactChapter";
+  headline?: string;
+  intro?: Array<string>;
+  moments?: Array<string>;
+  outro?: string;
+  cta?: LinkCta;
+};
+
+export type PossibleChapter = {
+  _type: "possibleChapter";
+  headline?: string;
+  intro?: string;
+  moments?: Array<string>;
+  outro?: string;
+};
+
+export type ExpressionsChapter = {
+  _type: "expressionsChapter";
+  headline?: string;
+  intro?: string;
+  credo?: Array<string>;
+  rows?: Array<
     {
       _key: string;
-    } & ImpactStat
+    } & ExpressionRow
   >;
-  appeals?: Array<
-    {
-      _key: string;
-    } & Appeal
-  >;
-  mission?: Mission;
-  scripture?: Scripture;
-  testimonials?: Array<
-    {
-      _key: string;
-    } & Testimonial
-  >;
-  exploreCards?: Array<
-    {
-      _key: string;
-    } & ExploreCard
-  >;
-  money?: MoneySplit;
-  donate?: {
-    monthlyTiers?: Array<
-      {
-        _key: string;
-      } & DonateTier
-    >;
-    onceTiers?: Array<
-      {
-        _key: string;
-      } & DonateTier
-    >;
+};
+
+export type PhilosophyChapter = {
+  _type: "philosophyChapter";
+  headline?: string;
+  body?: Array<string>;
+  pullLine?: string;
+};
+
+export type HeroChapter = {
+  _type: "heroChapter";
+  headline?: string;
+  text?: Array<string>;
+  image?: {
+    asset?: SanityImageAssetReference;
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
   };
-  trust?: Trust;
+  alt?: string;
+  primaryCta?: AnchorCta;
+  secondaryCta?: AnchorCta;
 };
 
-export type Trust = {
-  _type: "trust";
-  registration?: string;
-  statement?: string;
-  partners?: Array<string>;
+export type LinkCta = {
+  _type: "linkCta";
+  label?: string;
+  href?: string;
 };
 
-export type MoneySplit = {
-  _type: "moneySplit";
-  programsPct?: number;
-  adminPct?: number;
-  programsLabel?: string;
-  adminLabel?: string;
-  note?: string;
-};
-
-export type Scripture = {
-  _type: "scripture";
-  quote?: string;
-  reference?: string;
-};
-
-export type Mission = {
-  _type: "mission";
+export type ExpressionRow = {
+  _type: "expressionRow";
+  key?: string;
   eyebrow?: string;
   heading?: string;
+  belief?: string;
   body?: string;
-};
-
-export type HeroBlock = {
-  _type: "heroBlock";
-  eyebrow?: string;
-  headline?: string;
-  lede?: string;
   image?: {
     asset?: SanityImageAssetReference;
     media?: unknown;
@@ -204,59 +213,13 @@ export type HeroBlock = {
     _type: "image";
   };
   alt?: string;
+  cta?: LinkCta;
 };
 
-export type DonateTier = {
-  _type: "donateTier";
-  amount?: number;
-  interval?: "monthly" | "once";
-  impact?: string;
-};
-
-export type ExploreCard = {
-  _type: "exploreCard";
-  title?: string;
-  blurb?: string;
-  image?: {
-    asset?: SanityImageAssetReference;
-    media?: unknown;
-    hotspot?: SanityImageHotspot;
-    crop?: SanityImageCrop;
-    _type: "image";
-  };
-  alt?: string;
-  href?: string;
-};
-
-export type Testimonial = {
-  _type: "testimonial";
-  quote?: string;
-  attribution?: string;
-  placeholder?: boolean;
-};
-
-export type Appeal = {
-  _type: "appeal";
-  slug?: string;
-  title?: string;
-  blurb?: string;
-  image?: {
-    asset?: SanityImageAssetReference;
-    media?: unknown;
-    hotspot?: SanityImageHotspot;
-    crop?: SanityImageCrop;
-    _type: "image";
-  };
-  alt?: string;
-  href?: string;
-  theme?: "spain" | "tanzania" | "general";
-};
-
-export type ImpactStat = {
-  _type: "impactStat";
-  icon?: "shower" | "home" | "heart";
-  value?: string;
+export type AnchorCta = {
+  _type: "anchorCta";
   label?: string;
+  targetId?: string;
 };
 
 export type SanityImagePaletteSwatch = {
@@ -365,16 +328,15 @@ export type AllSanitySchemaTypes =
   | AppealEntry
   | Story
   | HomePage
-  | Trust
-  | MoneySplit
-  | Scripture
-  | Mission
-  | HeroBlock
-  | DonateTier
-  | ExploreCard
-  | Testimonial
-  | Appeal
-  | ImpactStat
+  | InvitationChapter
+  | ImpactChapter
+  | PossibleChapter
+  | ExpressionsChapter
+  | PhilosophyChapter
+  | HeroChapter
+  | LinkCta
+  | ExpressionRow
+  | AnchorCta
   | SanityImagePaletteSwatch
   | SanityImagePalette
   | SanityImageDimensions
@@ -432,12 +394,11 @@ export type EVENTS_QUERY_RESULT = Array<{
 
 // Source: lib/sanity/home.query.ts
 // Variable: HOME_QUERY
-// Query: *[_type == "homePage"][0]{  hero{ eyebrow, headline, lede, image, alt },  impactStats[]{ icon, value, label },  appeals[]{ slug, title, blurb, image, alt, href, theme },  mission{ eyebrow, heading, body },  scripture{ quote, reference },  testimonials[]{ quote, attribution, placeholder },  exploreCards[]{ title, blurb, image, alt, href },  money{ programsPct, adminPct, programsLabel, adminLabel, note },  donate{    monthlyTiers[]{ amount, interval, impact },    onceTiers[]{ amount, interval, impact }  },  trust{ registration, statement, partners }}
+// Query: *[_type == "homePage"][0]{  hero{ headline, text, image, alt, primaryCta{ label, targetId }, secondaryCta{ label, targetId } },  philosophy{ headline, body, pullLine },  expressions{ headline, intro, credo, rows[]{ key, eyebrow, heading, belief, body, image, alt, cta{ label, href } } },  possible{ headline, intro, moments, outro },  impact{ headline, intro, moments, outro, cta{ label, href } },  invitation{ headline, intro, bring, outro, cta{ label, href } }}
 export type HOME_QUERY_RESULT = {
   hero: {
-    eyebrow: string | null;
     headline: string | null;
-    lede: string | null;
+    text: Array<string> | null;
     image: {
       asset?: SanityImageAssetReference;
       media?: unknown;
@@ -446,83 +407,75 @@ export type HOME_QUERY_RESULT = {
       _type: "image";
     } | null;
     alt: string | null;
-  } | null;
-  impactStats: Array<{
-    icon: "heart" | "home" | "shower" | null;
-    value: string | null;
-    label: string | null;
-  }> | null;
-  appeals: Array<{
-    slug: string | null;
-    title: string | null;
-    blurb: string | null;
-    image: {
-      asset?: SanityImageAssetReference;
-      media?: unknown;
-      hotspot?: SanityImageHotspot;
-      crop?: SanityImageCrop;
-      _type: "image";
+    primaryCta: {
+      label: string | null;
+      targetId: string | null;
     } | null;
-    alt: string | null;
-    href: string | null;
-    theme: "general" | "spain" | "tanzania" | null;
-  }> | null;
-  mission: {
-    eyebrow: string | null;
-    heading: string | null;
-    body: string | null;
-  } | null;
-  scripture: {
-    quote: string | null;
-    reference: string | null;
-  } | null;
-  testimonials: Array<{
-    quote: string | null;
-    attribution: string | null;
-    placeholder: boolean | null;
-  }> | null;
-  exploreCards: Array<{
-    title: string | null;
-    blurb: string | null;
-    image: {
-      asset?: SanityImageAssetReference;
-      media?: unknown;
-      hotspot?: SanityImageHotspot;
-      crop?: SanityImageCrop;
-      _type: "image";
+    secondaryCta: {
+      label: string | null;
+      targetId: string | null;
     } | null;
-    alt: string | null;
-    href: string | null;
-  }> | null;
-  money: {
-    programsPct: number | null;
-    adminPct: number | null;
-    programsLabel: string | null;
-    adminLabel: string | null;
-    note: string | null;
   } | null;
-  donate: {
-    monthlyTiers: Array<{
-      amount: number | null;
-      interval: "monthly" | "once" | null;
-      impact: string | null;
-    }> | null;
-    onceTiers: Array<{
-      amount: number | null;
-      interval: "monthly" | "once" | null;
-      impact: string | null;
+  philosophy: {
+    headline: string | null;
+    body: Array<string> | null;
+    pullLine: string | null;
+  } | null;
+  expressions: {
+    headline: string | null;
+    intro: string | null;
+    credo: Array<string> | null;
+    rows: Array<{
+      key: string | null;
+      eyebrow: string | null;
+      heading: string | null;
+      belief: string | null;
+      body: string | null;
+      image: {
+        asset?: SanityImageAssetReference;
+        media?: unknown;
+        hotspot?: SanityImageHotspot;
+        crop?: SanityImageCrop;
+        _type: "image";
+      } | null;
+      alt: string | null;
+      cta: {
+        label: string | null;
+        href: string | null;
+      } | null;
     }> | null;
   } | null;
-  trust: {
-    registration: string | null;
-    statement: string | null;
-    partners: Array<string> | null;
+  possible: {
+    headline: string | null;
+    intro: string | null;
+    moments: Array<string> | null;
+    outro: string | null;
+  } | null;
+  impact: {
+    headline: string | null;
+    intro: Array<string> | null;
+    moments: Array<string> | null;
+    outro: string | null;
+    cta: {
+      label: string | null;
+      href: string | null;
+    } | null;
+  } | null;
+  invitation: {
+    headline: string | null;
+    intro: string | null;
+    bring: Array<string> | null;
+    outro: string | null;
+    cta: {
+      label: string | null;
+      href: string | null;
+    } | null;
   } | null;
 } | null;
 
 // Source: lib/sanity/stories.query.ts
 // Variable: STORIES_QUERY
-// Query: *[_type == "story"] | order(_createdAt asc){  slug,  title,  location,  excerpt,  body,  images[]{ asset },  placeholder}
+// Query: *[_type == "story"] | order(_createdAt asc){  slug,  title,  location,  excerpt,  body,  images[]{ ..., asset },  placeholder}
 export type STORIES_QUERY_RESULT = Array<{
   slug: Slug | null;
   title: string | null;
@@ -531,6 +484,12 @@ export type STORIES_QUERY_RESULT = Array<{
   body: string | null;
   images: Array<{
     asset: SanityImageAssetReference | null;
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    alt?: string;
+    _type: "image";
+    _key: string;
   }> | null;
   placeholder: boolean | null;
 }>;
@@ -541,7 +500,7 @@ declare module "@sanity/client" {
   interface SanityQueries {
     '*[_type == "appealEntry"] | order(_createdAt asc){\n  slug,\n  title,\n  theme,\n  blurb,\n  body,\n  image,\n  alt,\n  relatedHref,\n  donationDesignation,\n  donorboxQuery{ amount, recurring, default_interval },\n  placeholder\n}': APPEALS_QUERY_RESULT;
     '*[_type == "eventItem"] | order(date asc, _createdAt asc){\n  slug,\n  title,\n  summary,\n  image,\n  alt,\n  dateLabel,\n  placeholder\n}': EVENTS_QUERY_RESULT;
-    '*[_type == "homePage"][0]{\n  hero{ eyebrow, headline, lede, image, alt },\n  impactStats[]{ icon, value, label },\n  appeals[]{ slug, title, blurb, image, alt, href, theme },\n  mission{ eyebrow, heading, body },\n  scripture{ quote, reference },\n  testimonials[]{ quote, attribution, placeholder },\n  exploreCards[]{ title, blurb, image, alt, href },\n  money{ programsPct, adminPct, programsLabel, adminLabel, note },\n  donate{\n    monthlyTiers[]{ amount, interval, impact },\n    onceTiers[]{ amount, interval, impact }\n  },\n  trust{ registration, statement, partners }\n}': HOME_QUERY_RESULT;
-    '*[_type == "story"] | order(_createdAt asc){\n  slug,\n  title,\n  location,\n  excerpt,\n  body,\n  images[]{ asset },\n  placeholder\n}': STORIES_QUERY_RESULT;
+    '*[_type == "homePage"][0]{\n  hero{ headline, text, image, alt, primaryCta{ label, targetId }, secondaryCta{ label, targetId } },\n  philosophy{ headline, body, pullLine },\n  expressions{ headline, intro, credo, rows[]{ key, eyebrow, heading, belief, body, image, alt, cta{ label, href } } },\n  possible{ headline, intro, moments, outro },\n  impact{ headline, intro, moments, outro, cta{ label, href } },\n  invitation{ headline, intro, bring, outro, cta{ label, href } }\n}': HOME_QUERY_RESULT;
+    '*[_type == "story"] | order(_createdAt asc){\n  slug,\n  title,\n  location,\n  excerpt,\n  body,\n  images[]{ ..., asset },\n  placeholder\n}': STORIES_QUERY_RESULT;
   }
 }

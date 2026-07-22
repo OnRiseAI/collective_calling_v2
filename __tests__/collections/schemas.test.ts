@@ -35,10 +35,6 @@ describe('schema index registration', () => {
   test('still includes homePage (regression)', () => {
     expect(names).toContain('homePage')
   })
-
-  test('still includes appeal object (regression)', () => {
-    expect(names).toContain('appeal')
-  })
 })
 
 describe('story document fields', () => {
