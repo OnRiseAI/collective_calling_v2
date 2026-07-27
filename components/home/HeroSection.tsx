@@ -57,8 +57,8 @@ export function HeroSection({ content }: { content: HomeContent['hero'] }): Reac
           heading={content.heading}
           className="mb-[30px] mt-[18px] text-[clamp(72px,9.5vw,148px)] leading-[0.98] tracking-[-1px] text-[#f8f4eb] max-md:text-[clamp(44px,11vw,72px)]"
         />
-        <div className="flex flex-wrap items-end justify-between gap-10">
-          <p className="m-0 max-w-[480px] text-[19px] font-light leading-[1.6] text-[#d8dae0]">
+        <div className="flex flex-wrap items-end justify-between gap-10 max-md:gap-6">
+          <p className="m-0 max-w-[480px] text-[19px] font-light leading-[1.6] text-[#d8dae0] max-md:text-[16px]">
             {content.lede}
           </p>
           <div className="flex items-center gap-7 max-md:flex-wrap max-md:gap-4">

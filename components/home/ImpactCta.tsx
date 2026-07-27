@@ -11,7 +11,7 @@ import type { HomeContent } from '@/lib/content/home.types'
  */
 export function ImpactCta({ content }: { content: HomeContent['impactCta'] }): React.JSX.Element {
   return (
-    <section className="px-16 pb-[120px] max-md:px-6 max-md:pb-20">
+    <section className="px-16 pb-[120px] max-md:px-6 max-md:pb-16">
       <Reveal className="relative mx-auto max-w-[1320px] overflow-hidden rounded-[24px] bg-band">
         <Image
           src={content.image}
@@ -39,13 +39,13 @@ export function ImpactCta({ content }: { content: HomeContent['impactCta'] }): R
           <circle cx="19" cy="19" r="5.5" stroke="#c9a15c" strokeWidth="0.5" />
         </svg>
 
-        <div className="relative flex flex-wrap items-center justify-between gap-12 p-24 max-md:p-8">
+        <div className="relative flex flex-wrap items-center justify-between gap-12 p-24 max-md:gap-7 max-md:p-7">
           <div>
             <Eyebrow>{content.eyebrow}</Eyebrow>
             <DisplayHeading
               as="h3"
               heading={content.heading}
-              className="mb-0 mt-4 max-w-[640px] text-[52px] leading-[1.12] tracking-normal text-[#f8f4eb] max-md:text-[32px]"
+              className="mb-0 mt-4 max-w-[640px] text-[52px] leading-[1.12] tracking-normal text-[#f8f4eb] max-md:text-[27px]"
             />
           </div>
           <PillLink

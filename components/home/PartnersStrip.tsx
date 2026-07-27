@@ -15,8 +15,8 @@ export function PartnersStrip({
   content: HomeContent['partners']
 }): React.JSX.Element {
   return (
-    <section className="px-16 pb-[130px] max-md:px-6 max-md:pb-20">
-      <Reveal className="mx-auto flex max-w-[1320px] flex-wrap items-center justify-between gap-12 border-t border-rule pt-14">
+    <section className="px-16 pb-[130px] max-md:px-6 max-md:pb-16">
+      <Reveal className="mx-auto flex max-w-[1320px] flex-wrap items-center justify-between gap-12 border-t border-rule pt-14 max-md:gap-7 max-md:pt-10">
         <span className="whitespace-nowrap text-[12px] font-semibold tracking-[3px] text-muted-soft">
           {content.label}
         </span>

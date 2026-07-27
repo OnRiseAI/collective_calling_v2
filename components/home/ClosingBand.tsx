@@ -9,14 +9,14 @@ import type { HomeContent } from '@/lib/content/home.types'
  */
 export function ClosingBand({ content }: { content: HomeContent['closing'] }): React.JSX.Element {
   return (
-    <section className="bg-band px-16 py-[150px] text-center max-md:px-6 max-md:py-20">
+    <section className="bg-band px-16 py-[150px] text-center max-md:px-6 max-md:py-16">
       <Reveal>
         <Eyebrow>{content.eyebrow}</Eyebrow>
         <DisplayHeading
           heading={content.heading}
-          className="mx-auto mb-[26px] mt-[22px] max-w-[900px] text-[clamp(48px,6vw,84px)] leading-[1.05] tracking-[-0.5px] text-[#f8f4eb]"
+          className="mx-auto mb-[26px] mt-[22px] max-w-[900px] text-[clamp(48px,6vw,84px)] leading-[1.05] tracking-[-0.5px] text-[#f8f4eb] max-md:text-[34px]"
         />
-        <p className="mx-auto mb-11 mt-0 max-w-[460px] text-[17px] font-light leading-[1.7] text-slate">
+        <p className="mx-auto mb-11 mt-0 max-w-[460px] text-[17px] font-light leading-[1.7] text-slate max-md:mb-8 max-md:text-[15px]">
           {content.body}
         </p>
         <div className="flex flex-wrap justify-center gap-6">

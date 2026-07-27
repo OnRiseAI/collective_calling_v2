@@ -13,7 +13,7 @@ export function ViaBand({ content }: { content: HomeContent['via'] }): React.JSX
   return (
     <section className="grid grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] items-stretch bg-band max-lg:grid-cols-1">
       <div
-        className="relative min-h-[560px] max-lg:min-h-0 max-lg:h-[320px]"
+        className="relative min-h-[560px] max-lg:min-h-0 max-lg:h-[320px] max-md:h-[230px]"
         style={{
           WebkitMaskImage: 'linear-gradient(to right, #000 72%, rgba(0,0,0,0) 100%)',
           maskImage: 'linear-gradient(to right, #000 72%, rgba(0,0,0,0) 100%)',
@@ -28,13 +28,13 @@ export function ViaBand({ content }: { content: HomeContent['via'] }): React.JSX
         />
       </div>
 
-      <Reveal className="flex flex-col justify-center px-24 py-[120px] max-md:px-6 max-md:py-16">
+      <Reveal className="flex flex-col justify-center px-24 py-[120px] max-md:px-6 max-md:py-14">
         <Eyebrow>{content.eyebrow}</Eyebrow>
         <DisplayHeading
           heading={content.heading}
-          className="mb-6 mt-5 text-[46px] leading-[1.12] tracking-[-0.5px] text-[#f8f4eb] max-md:text-[32px]"
+          className="mb-6 mt-5 text-[46px] leading-[1.12] tracking-[-0.5px] text-[#f8f4eb] max-md:text-[27px]"
         />
-        <p className="mb-9 mt-0 max-w-[440px] text-[16px] font-light leading-[1.7] text-slate">
+        <p className="mb-9 mt-0 max-w-[440px] text-[16px] font-light leading-[1.7] text-slate max-md:text-[15px]">
           {content.body}
         </p>
         <ArrowLink
