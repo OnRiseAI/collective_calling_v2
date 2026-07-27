@@ -22,14 +22,14 @@ const LEGAL_LINKS: { label: string; href: string }[] = [
 
 export function Footer() {
   return (
-    <footer className="bg-footer px-16 py-14 max-md:px-6">
+    <footer className="bg-footer py-14 pb-[calc(3.5rem+env(safe-area-inset-bottom))] pl-[calc(4rem+env(safe-area-inset-left))] pr-[calc(4rem+env(safe-area-inset-right))] max-md:pl-[calc(1.5rem+env(safe-area-inset-left))] max-md:pr-[calc(1.5rem+env(safe-area-inset-right))]">
       <div className="mx-auto flex max-w-[1320px] flex-wrap items-center justify-between gap-8">
         <nav aria-label="Footer" className="flex flex-wrap gap-7">
           {FOOTER_LINKS.map((item) => (
             <Link
               key={item.label}
               href={item.href}
-              className="text-[13px] text-slate-dim transition-colors hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+              className="tap-44 inline-block text-[13px] text-slate-dim transition-colors hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
             >
               {item.label}
             </Link>
@@ -41,7 +41,7 @@ export function Footer() {
             <Link
               key={item.label}
               href={item.href}
-              className="text-slate-faint transition-colors hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+              className="tap-44 inline-block text-slate-faint transition-colors hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
             >
               {item.label}
             </Link>

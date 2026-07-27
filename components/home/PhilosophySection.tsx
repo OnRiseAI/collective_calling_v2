@@ -1,5 +1,6 @@
 import * as React from 'react'
 import { Eyebrow, DisplayHeading } from '@/components/home/primitives'
+import { Reveal } from '@/components/ui/Reveal'
 import type { HomeContent } from '@/lib/content/home.types'
 
 /**
@@ -13,7 +14,7 @@ export function PhilosophySection({
 }): React.JSX.Element {
   return (
     <section className="px-16 pt-[140px] max-md:px-6 max-md:pt-20">
-      <div className="mx-auto max-w-[840px] text-center">
+      <Reveal className="mx-auto max-w-[840px] text-center">
         <Eyebrow>{content.eyebrow}</Eyebrow>
         <DisplayHeading
           heading={content.heading}
@@ -25,7 +26,7 @@ export function PhilosophySection({
         <p className="m-0 font-heading text-[22px] italic leading-[1.5] text-ink">
           {content.pullquote}
         </p>
-      </div>
+      </Reveal>
     </section>
   )
 }

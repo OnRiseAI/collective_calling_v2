@@ -107,7 +107,7 @@ export function MobileNav({ sections }: { sections: NavSection[] }) {
           justOpened.current = !open
           setOpen((v) => !v)
         }}
-        className="inline-flex h-10 w-10 items-center justify-center rounded-md text-paper transition-colors hover:bg-paper/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-brand-dark"
+        className="tap-min inline-flex h-11 w-11 items-center justify-center rounded-md text-paper transition-colors hover:bg-paper/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-brand-dark"
       >
         <svg aria-hidden="true" width="22" height="22" viewBox="0 0 22 22" fill="none">
           {open ? (
@@ -145,7 +145,9 @@ export function MobileNav({ sections }: { sections: NavSection[] }) {
             role="dialog"
             aria-modal="true"
             aria-label="Site menu"
-            className="absolute inset-y-0 right-0 flex w-[88%] max-w-sm flex-col overflow-y-auto bg-paper text-ink shadow-2xl"
+            // The panel meets the right edge and the foot of the screen, so it
+            // carries the safe-area insets itself.
+            className="absolute inset-y-0 right-0 flex w-[88%] max-w-sm flex-col overflow-y-auto bg-paper pb-[env(safe-area-inset-bottom)] pr-[env(safe-area-inset-right)] pt-[env(safe-area-inset-top)] text-ink shadow-2xl"
           >
             <div className="flex items-center justify-between border-b border-muted/20 px-5 py-4">
               <span className="font-heading text-lg text-brand-dark">Menu</span>
@@ -173,7 +175,7 @@ export function MobileNav({ sections }: { sections: NavSection[] }) {
                     <Link
                       href={section.href}
                       onClick={close}
-                      className="block font-heading text-xl text-brand-dark focus-visible:outline-none focus-visible:underline focus-visible:decoration-accent focus-visible:decoration-2 focus-visible:underline-offset-4"
+                      className="flex min-h-11 items-center font-heading text-xl text-brand-dark focus-visible:outline-none focus-visible:underline focus-visible:decoration-accent focus-visible:decoration-2 focus-visible:underline-offset-4"
                     >
                       {section.label}
                     </Link>
@@ -183,7 +185,7 @@ export function MobileNav({ sections }: { sections: NavSection[] }) {
                           <Link
                             href={item.href}
                             onClick={close}
-                            className="block rounded-md py-1.5 text-base text-ink/85 transition-colors hover:text-brand focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+                            className="flex min-h-11 items-center rounded-md py-1.5 text-base text-ink/85 transition-colors hover:text-brand focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
                           >
                             {item.label}
                           </Link>

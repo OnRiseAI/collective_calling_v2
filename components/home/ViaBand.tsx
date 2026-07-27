@@ -1,6 +1,7 @@
 import * as React from 'react'
 import Image from 'next/image'
 import { Eyebrow, DisplayHeading, ArrowLink } from '@/components/home/primitives'
+import { Reveal } from '@/components/ui/Reveal'
 import type { HomeContent } from '@/lib/content/home.types'
 
 /**
@@ -27,7 +28,7 @@ export function ViaBand({ content }: { content: HomeContent['via'] }): React.JSX
         />
       </div>
 
-      <div className="flex flex-col justify-center px-24 py-[120px] max-md:px-6 max-md:py-16">
+      <Reveal className="flex flex-col justify-center px-24 py-[120px] max-md:px-6 max-md:py-16">
         <Eyebrow>{content.eyebrow}</Eyebrow>
         <DisplayHeading
           heading={content.heading}
@@ -40,7 +41,7 @@ export function ViaBand({ content }: { content: HomeContent['via'] }): React.JSX
           cta={content.cta}
           className="w-fit border-b border-accent pb-[5px] text-[13px] hover:border-accent-soft"
         />
-      </div>
+      </Reveal>
     </section>
   )
 }

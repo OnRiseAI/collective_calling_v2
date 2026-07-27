@@ -1,6 +1,7 @@
 import * as React from 'react'
 import Image from 'next/image'
 import { Link } from '@/i18n/navigation'
+import { Reveal } from '@/components/ui/Reveal'
 import type { HomeContent } from '@/lib/content/home.types'
 
 /**
@@ -15,7 +16,7 @@ export function PartnersStrip({
 }): React.JSX.Element {
   return (
     <section className="px-16 pb-[130px] max-md:px-6 max-md:pb-20">
-      <div className="mx-auto flex max-w-[1320px] flex-wrap items-center justify-between gap-12 border-t border-rule pt-14">
+      <Reveal className="mx-auto flex max-w-[1320px] flex-wrap items-center justify-between gap-12 border-t border-rule pt-14">
         <span className="whitespace-nowrap text-[12px] font-semibold tracking-[3px] text-muted-soft">
           {content.label}
         </span>
@@ -47,7 +48,7 @@ export function PartnersStrip({
             {content.logoSlot.label}
           </Link>
         </div>
-      </div>
+      </Reveal>
     </section>
   )
 }

@@ -1,19 +1,29 @@
 import * as React from 'react'
 import Image from 'next/image'
 import { Eyebrow, DisplayHeading, PillLink } from '@/components/home/primitives'
+import { FadeIn } from '@/components/ui/FadeIn'
 import type { HomeContent } from '@/lib/content/home.types'
 
 /**
  * Hero — design section 1.
  *
- * 100vh over a 760px floor, one photograph at 50%/40%, a four-stop gradient,
- * and the copy pinned 64px from each side and 84px from the foot. Below md the
- * side inset drops to 24px and the two actions wrap under the lede; the desktop
- * rendering is untouched.
+ * A viewport-height frame over a 760px floor, one photograph, a four-stop
+ * gradient, and the copy pinned 64px from each side and 84px from the foot.
+ * Below md the side inset drops to 24px and the two actions wrap under the
+ * lede; the desktop rendering is untouched.
+ *
+ * Height is 100svh, not 100vh: on a phone, 100vh counts the space behind the
+ * browser's collapsing toolbar, so the foot of the hero — where every word of
+ * this section lives — starts off screen and only appears once the reader
+ * scrolls. The two units are identical on a desktop viewport.
+ *
+ * The photograph keeps the design's 50%/40% framing at every width. A phone
+ * sees a narrow slice of a wide frame and cannot hold both figures whichever
+ * way it is shifted, so the framing is left as drawn rather than re-cropped.
  */
 export function HeroSection({ content }: { content: HomeContent['hero'] }): React.JSX.Element {
   return (
-    <section className="relative h-screen min-h-[760px] overflow-hidden bg-brand-dark">
+    <section className="relative h-svh min-h-[760px] overflow-hidden bg-brand-dark">
       <Image
         src={content.image}
         alt={content.alt}
@@ -31,7 +41,16 @@ export function HeroSection({ content }: { content: HomeContent['hero'] }): Reac
         }}
       />
 
-      <div className="absolute bottom-[84px] left-16 right-16 max-md:bottom-12 max-md:left-6 max-md:right-6">
+      {/* env() resolves to 0 where there is no notch, so this only ever adds
+          inset on a device that needs it — in landscape, mainly. */}
+      <FadeIn
+        className="absolute bottom-[84px] left-16 right-16 max-md:bottom-12 max-md:left-6 max-md:right-6"
+        style={{
+          paddingLeft: 'env(safe-area-inset-left)',
+          paddingRight: 'env(safe-area-inset-right)',
+          paddingBottom: 'env(safe-area-inset-bottom)',
+        }}
+      >
         <Eyebrow>{content.eyebrow}</Eyebrow>
         <DisplayHeading
           as="h1"
@@ -47,7 +66,7 @@ export function HeroSection({ content }: { content: HomeContent['hero'] }): Reac
             <PillLink cta={content.secondaryCta} variant="outline" padding="px-[38px] py-[18px]" />
           </div>
         </div>
-      </div>
+      </FadeIn>
     </section>
   )
 }

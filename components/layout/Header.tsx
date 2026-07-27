@@ -24,7 +24,13 @@ export function Header() {
   return (
     <header
       className={cx(
-        'left-0 right-0 top-0 z-50 flex items-center justify-between px-16 py-[30px] max-md:px-6 max-md:py-5',
+        // The safe-area inset is folded into the padding rather than set
+        // inline, so the design's 64px survives and the breakpoint variant
+        // still applies. env() is 0 without a notch, so desktop is exactly
+        // 64px as drawn.
+        'left-0 right-0 top-0 z-50 flex items-center justify-between py-[30px] max-md:py-5',
+        'pl-[calc(4rem+env(safe-area-inset-left))] pr-[calc(4rem+env(safe-area-inset-right))]',
+        'max-md:pl-[calc(1.5rem+env(safe-area-inset-left))] max-md:pr-[calc(1.5rem+env(safe-area-inset-right))]',
         overlay ? 'absolute' : 'sticky bg-brand-dark',
       )}
     >
@@ -46,7 +52,7 @@ export function Header() {
         </span>
         <Link
           href={GET_INVOLVED_HREF}
-          className="rounded-full bg-accent px-[26px] py-3 text-[14px] font-semibold text-brand-dark transition-all duration-[250ms] hover:bg-[#f8f4eb] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-brand-dark max-md:px-4 max-md:py-2 max-md:text-[13px]"
+          className="tap-min inline-flex items-center justify-center rounded-full bg-accent px-[26px] py-3 text-[14px] font-semibold text-brand-dark transition-all duration-[250ms] hover:bg-[#f8f4eb] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-brand-dark max-md:px-4 max-md:text-[13px]"
         >
           Get Involved &rarr;
         </Link>

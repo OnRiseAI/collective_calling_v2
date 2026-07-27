@@ -1,6 +1,7 @@
 import * as React from 'react'
 import Image from 'next/image'
 import { Eyebrow, PlainHeading, ArrowLink } from '@/components/home/primitives'
+import { Reveal } from '@/components/ui/Reveal'
 import type { HomeContent } from '@/lib/content/home.types'
 
 /**
@@ -19,7 +20,7 @@ export function ExpressionsSection({
   return (
     <section className="px-16 pb-[120px] pt-[130px] max-md:px-6 max-md:pb-20 max-md:pt-20">
       <div className="mx-auto max-w-[1320px]">
-        <div className="mb-[90px] flex flex-wrap items-end justify-between gap-[60px] max-md:mb-14">
+        <Reveal className="mb-[90px] flex flex-wrap items-end justify-between gap-[60px] max-md:mb-14">
           <div>
             <Eyebrow>{content.eyebrow}</Eyebrow>
             <PlainHeading
@@ -30,11 +31,11 @@ export function ExpressionsSection({
           <p className="m-0 max-w-[380px] text-[16px] font-light leading-[1.7] text-muted">
             {content.intro}
           </p>
-        </div>
+        </Reveal>
 
         <div className="grid grid-cols-3 items-start gap-12 max-lg:grid-cols-1 max-lg:gap-14">
           {content.cards.map((card, index) => (
-            <div key={card.key} className={STEPS[index]}>
+            <Reveal key={card.key} className={STEPS[index]} delay={index * 0.07}>
               <div className="relative h-[400px] w-full overflow-hidden rounded-[18px]">
                 <Image
                   src={card.image}
@@ -61,7 +62,7 @@ export function ExpressionsSection({
                 {card.body}
               </p>
               <ArrowLink cta={card.cta} />
-            </div>
+            </Reveal>
           ))}
         </div>
       </div>

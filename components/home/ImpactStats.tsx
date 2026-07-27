@@ -3,6 +3,7 @@
 import * as React from 'react'
 import { useReducedMotion } from 'framer-motion'
 import { Eyebrow, PlainHeading } from '@/components/home/primitives'
+import { Reveal } from '@/components/ui/Reveal'
 import type { HomeContent } from '@/lib/content/home.types'
 
 /**
@@ -58,7 +59,7 @@ export function ImpactStats({ content }: { content: HomeContent['impact'] }): Re
       ref={bandRef}
       className="border-b border-rule px-16 py-[110px] max-md:px-6 max-md:py-16"
     >
-      <div className="mx-auto mb-[70px] flex max-w-[1320px] flex-wrap items-end justify-between gap-12">
+      <Reveal className="mx-auto mb-[70px] flex max-w-[1320px] flex-wrap items-end justify-between gap-12">
         <div>
           <Eyebrow>{content.eyebrow}</Eyebrow>
           <PlainHeading
@@ -69,7 +70,7 @@ export function ImpactStats({ content }: { content: HomeContent['impact'] }): Re
         <p className="m-0 max-w-[400px] text-[16px] font-light leading-[1.7] text-muted">
           {content.intro}
         </p>
-      </div>
+      </Reveal>
 
       <dl className="mx-auto flex max-w-[1320px] flex-wrap justify-between gap-12 max-md:justify-start max-md:gap-x-10 max-md:gap-y-8">
         {content.stats.map((stat) => {

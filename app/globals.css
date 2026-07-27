@@ -92,6 +92,57 @@
   }
 }
 
+/*
+ * Touch affordances.
+ *
+ * Gated on `pointer: coarse` rather than a width breakpoint: the thing that
+ * decides whether a 15px link is reachable is the input device, not the
+ * viewport. A desktop browser reports `pointer: fine`, so none of this changes
+ * the design's rendering on a mouse.
+ */
+@layer utilities {
+  @media (pointer: coarse) {
+    /* Grows a small inline link to a 44px-tall touch target without moving it
+       or anything around it — the target is an overlay, not extra box. */
+    .tap-44 {
+      position: relative;
+    }
+
+    .tap-44::after {
+      content: '';
+      position: absolute;
+      inset-inline: 0;
+      top: 50%;
+      height: 44px;
+      transform: translateY(-50%);
+    }
+
+    /* For controls that can afford to grow: buttons and pills. */
+    .tap-min {
+      min-width: 44px;
+      min-height: 44px;
+    }
+  }
+}
+
+/*
+ * Entrance motion, switched off in CSS rather than in JavaScript.
+ *
+ * The start state (opacity 0) is server-rendered, and the server cannot know
+ * the reader's motion preference. Turning it off in the component is too late:
+ * useReducedMotion resolves on the very first client render, so there is no
+ * second render for React to patch the server's inline style with — the page
+ * stays invisible for precisely the readers who asked for less motion. An
+ * author !important declaration outranks an inline style, so this rule holds
+ * whatever the JavaScript does, or does not, do.
+ */
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
 /* In-page journey anchors glide rather than jump, but never for readers who
    ask for reduced motion. */
 @media (prefers-reduced-motion: no-preference) {

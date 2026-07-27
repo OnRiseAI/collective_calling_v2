@@ -1,6 +1,7 @@
 import * as React from 'react'
 import Image from 'next/image'
 import { Eyebrow, DisplayHeading, ArrowLink } from '@/components/home/primitives'
+import { Reveal } from '@/components/ui/Reveal'
 import type { HomeContent } from '@/lib/content/home.types'
 
 /**
@@ -16,7 +17,7 @@ export function StoriesSection({
   return (
     <section className="px-16 py-[140px] max-md:px-6 max-md:py-20">
       <div className="mx-auto max-w-[1320px]">
-        <div className="mb-[70px] flex items-end justify-between max-md:mb-12 max-md:flex-col max-md:items-start max-md:gap-6">
+        <Reveal className="mb-[70px] flex items-end justify-between max-md:mb-12 max-md:flex-col max-md:items-start max-md:gap-6">
           <div>
             <Eyebrow>{content.eyebrow}</Eyebrow>
             <DisplayHeading
@@ -26,10 +27,10 @@ export function StoriesSection({
             />
           </div>
           <ArrowLink cta={content.viewAll} className="whitespace-nowrap" />
-        </div>
+        </Reveal>
 
         <div className="grid grid-cols-[minmax(0,1.35fr)_minmax(0,1fr)] items-start gap-14 max-lg:grid-cols-1">
-          <div>
+          <Reveal>
             <div className="relative h-[520px] w-full overflow-hidden rounded-[18px] max-md:h-[320px]">
               <Image
                 src={content.feature.image}
@@ -46,11 +47,11 @@ export function StoriesSection({
               {content.feature.blurb}
             </p>
             <ArrowLink cta={{ label: 'READ MORE', href: content.feature.href }} />
-          </div>
+          </Reveal>
 
           <div className="flex min-w-0 flex-col gap-14">
-            {content.cards.map((card) => (
-              <div key={card.title}>
+            {content.cards.map((card, index) => (
+              <Reveal key={card.title} delay={(index + 1) * 0.07}>
                 <div className="relative h-[220px] w-full overflow-hidden rounded-[18px]">
                   <Image
                     src={card.image}
@@ -65,7 +66,7 @@ export function StoriesSection({
                 </h3>
                 <p className="mb-3 mt-0 text-[15px] font-light text-muted">{card.blurb}</p>
                 <ArrowLink cta={{ label: 'READ MORE', href: card.href }} />
-              </div>
+              </Reveal>
             ))}
           </div>
         </div>

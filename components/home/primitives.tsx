@@ -65,7 +65,7 @@ export function PlainHeading({
 }
 
 const PILL =
-  'inline-flex items-center gap-[10px] rounded-full text-[13px] font-semibold tracking-[0.8px] transition-all duration-[250ms] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2'
+  'tap-min inline-flex items-center justify-center gap-[10px] rounded-full text-[13px] font-semibold tracking-[0.8px] transition-all duration-[250ms] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2'
 
 /**
  * The design's two pill actions. `solid` is gold going to cream on hover;
@@ -117,7 +117,9 @@ export function ArrowLink({
     <Link
       href={cta.href}
       className={cx(
-        'text-[12.5px] font-semibold tracking-[1px] text-accent transition-colors hover:text-accent-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent',
+        // tap-44: on a touch device the 15px-tall link gets a 44px hit area
+        // laid over it, so nothing shifts but it can actually be pressed.
+        'tap-44 inline-block text-[12.5px] font-semibold tracking-[1px] text-accent transition-colors hover:text-accent-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent',
         className,
       )}
     >

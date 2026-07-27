@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { notFound } from "next/navigation";
 import { Figtree, Instrument_Serif } from "next/font/google";
 import { NextIntlClientProvider } from "next-intl";
@@ -29,6 +29,16 @@ const instrumentSerif = Instrument_Serif({
   style: ["normal", "italic"],
   display: "swap",
 });
+
+// viewportFit "cover" lets the page use the full screen on a notched phone and
+// is what makes env(safe-area-inset-*) report anything but 0; the header, hero
+// copy, footer and mobile panel each pad themselves back off the cutouts.
+// The page is left zoomable — capping user-scalable fails WCAG 1.4.4.
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
+};
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),
@@ -90,6 +100,12 @@ export default async function LocaleLayout({
       className={`${figtree.variable} ${instrumentSerif.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
+        {/* Entrance motion is server-rendered at its start state (opacity 0),
+            so without JavaScript every revealed band would stay invisible.
+            !important beats framer-motion's inline style. */}
+        <noscript>
+          <style>{`[data-reveal]{opacity:1!important;transform:none!important}`}</style>
+        </noscript>
         <NextIntlClientProvider messages={messages}>
           <JsonLd data={organizationJsonLd()} />
           <Header />

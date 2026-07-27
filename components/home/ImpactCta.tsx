@@ -1,6 +1,7 @@
 import * as React from 'react'
 import Image from 'next/image'
 import { Eyebrow, DisplayHeading, PillLink } from '@/components/home/primitives'
+import { Reveal } from '@/components/ui/Reveal'
 import type { HomeContent } from '@/lib/content/home.types'
 
 /**
@@ -11,7 +12,7 @@ import type { HomeContent } from '@/lib/content/home.types'
 export function ImpactCta({ content }: { content: HomeContent['impactCta'] }): React.JSX.Element {
   return (
     <section className="px-16 pb-[120px] max-md:px-6 max-md:pb-20">
-      <div className="relative mx-auto max-w-[1320px] overflow-hidden rounded-[24px] bg-band">
+      <Reveal className="relative mx-auto max-w-[1320px] overflow-hidden rounded-[24px] bg-band">
         <Image
           src={content.image}
           alt={content.alt}
@@ -53,7 +54,7 @@ export function ImpactCta({ content }: { content: HomeContent['impactCta'] }): R
             className="whitespace-nowrap"
           />
         </div>
-      </div>
+      </Reveal>
     </section>
   )
 }
