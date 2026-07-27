@@ -64,8 +64,12 @@ export function PlainHeading({
   )
 }
 
+// max-md:w-full — the two actions sit on one line in the design, but two pills
+// need 544px and a phone offers 342, so they stack. Left at their content
+// width they leave a ragged 84px of space beside them; full width reads as a
+// deliberate pair and widens the touch target.
 const PILL =
-  'tap-min inline-flex items-center justify-center gap-[10px] rounded-full text-[13px] font-semibold tracking-[0.8px] transition-all duration-[250ms] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2'
+  'tap-min inline-flex items-center justify-center gap-[10px] rounded-full text-[13px] font-semibold tracking-[0.8px] transition-all duration-[250ms] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 max-md:w-full'
 
 /**
  * The design's two pill actions. `solid` is gold going to cream on hover;
