@@ -15,12 +15,6 @@
 export declare const internalGroqTypeReferenceTo: unique symbol;
 
 // Source: sanity-schema.json
-export type Shops = {
-  heading?: string;
-  body?: string;
-  cta?: LinkCta;
-};
-
 export type SanityImageAssetReference = {
   _ref: string;
   _type: "reference";
@@ -130,23 +124,41 @@ export type HomePage = {
   _updatedAt: string;
   _rev: string;
   hero?: HomeHero;
-  ways?: HomeWays;
+  philosophy?: HomePhilosophy;
+  expressions?: HomeExpressions;
   via?: HomeVia;
-  storiesIntro?: HomeStoriesIntro;
-  snapshot?: HomeSnapshot;
+  impact?: HomeImpact;
+  stories?: HomeStories;
+  impactCta?: HomeImpactCta;
   partners?: HomePartners;
-  involve?: HomeInvolve;
+  closing?: HomeClosing;
 };
 
-export type HomeInvolve = {
-  _type: "homeInvolve";
-  heading?: string;
+export type HomeClosing = {
+  _type: "homeClosing";
+  eyebrow?: string;
+  heading?: SplitHeading;
   body?: string;
-  actions?: Array<
+  primaryCta?: LinkCta;
+  secondaryCta?: LinkCta;
+};
+
+export type HomePartners = {
+  _type: "homePartners";
+  label?: string;
+  marks?: Array<
     {
       _key: string;
-    } & InvolveAction
+    } & PartnerMark
   >;
+  logoSlot?: LinkCta;
+};
+
+export type HomeImpactCta = {
+  _type: "homeImpactCta";
+  eyebrow?: string;
+  heading?: SplitHeading;
+  cta?: LinkCta;
   image?: {
     asset?: SanityImageAssetReference;
     media?: unknown;
@@ -155,33 +167,14 @@ export type HomeInvolve = {
     _type: "image";
   };
   alt?: string;
-  shops?: Shops;
 };
 
-export type HomePartners = {
-  _type: "homePartners";
-  heading?: string;
-  body?: string;
-  names?: Array<string>;
-  logoSlot?: string;
-  cta?: LinkCta;
-};
-
-export type HomeSnapshot = {
-  _type: "homeSnapshot";
-  heading?: string;
-  stats?: Array<
-    {
-      _key: string;
-    } & SnapshotStat
-  >;
-};
-
-export type HomeStoriesIntro = {
-  _type: "homeStoriesIntro";
-  heading?: string;
-  subline?: string;
+export type HomeStories = {
+  _type: "homeStories";
+  eyebrow?: string;
+  heading?: SplitHeading;
   viewAll?: LinkCta;
+  feature?: StoryCard;
   cards?: Array<
     {
       _key: string;
@@ -189,10 +182,22 @@ export type HomeStoriesIntro = {
   >;
 };
 
+export type HomeImpact = {
+  _type: "homeImpact";
+  eyebrow?: string;
+  heading?: string;
+  intro?: string;
+  stats?: Array<
+    {
+      _key: string;
+    } & ImpactStat
+  >;
+};
+
 export type HomeVia = {
   _type: "homeVia";
   eyebrow?: string;
-  heading?: string;
+  heading?: SplitHeading;
   body?: string;
   cta?: LinkCta;
   image?: {
@@ -205,21 +210,30 @@ export type HomeVia = {
   alt?: string;
 };
 
-export type HomeWays = {
-  _type: "homeWays";
+export type HomeExpressions = {
+  _type: "homeExpressions";
+  eyebrow?: string;
   heading?: string;
+  intro?: string;
   cards?: Array<
     {
       _key: string;
-    } & WayCard
+    } & ExpressionCard
   >;
+};
+
+export type HomePhilosophy = {
+  _type: "homePhilosophy";
+  eyebrow?: string;
+  heading?: SplitHeading;
+  body?: string;
+  pullquote?: string;
 };
 
 export type HomeHero = {
   _type: "homeHero";
   eyebrow?: string;
-  headlineLead?: string;
-  headlineAccent?: string;
+  heading?: SplitHeading;
   lede?: string;
   image?: {
     asset?: SanityImageAssetReference;
@@ -231,7 +245,6 @@ export type HomeHero = {
   alt?: string;
   primaryCta?: LinkCta;
   secondaryCta?: LinkCta;
-  scrollCue?: string;
 };
 
 export type LinkCta = {
@@ -240,19 +253,22 @@ export type LinkCta = {
   href?: string;
 };
 
-export type InvolveAction = {
-  _type: "involveAction";
-  icon?: string;
-  title?: string;
-  blurb?: string;
-  href?: string;
+export type SplitHeading = {
+  _type: "splitHeading";
+  lead?: string;
+  accent?: string;
 };
 
-export type SnapshotStat = {
-  _type: "snapshotStat";
-  icon?: string;
-  value?: string;
-  label?: string;
+export type PartnerMark = {
+  _type: "partnerMark";
+  name?: string;
+  logo?: {
+    asset?: SanityImageAssetReference;
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  };
 };
 
 export type StoryCard = {
@@ -270,10 +286,20 @@ export type StoryCard = {
   href?: string;
 };
 
-export type WayCard = {
-  _type: "wayCard";
+export type ImpactStat = {
+  _type: "impactStat";
   key?: string;
+  value?: number;
+  suffix?: string;
+  label?: string;
+};
+
+export type ExpressionCard = {
+  _type: "expressionCard";
+  key?: string;
+  index?: string;
   title?: string;
+  tagline?: string;
   body?: string;
   image?: {
     asset?: SanityImageAssetReference;
@@ -283,7 +309,7 @@ export type WayCard = {
     _type: "image";
   };
   alt?: string;
-  href?: string;
+  cta?: LinkCta;
 };
 
 export type SanityImagePaletteSwatch = {
@@ -384,7 +410,6 @@ export type Geopoint = {
 };
 
 export type AllSanitySchemaTypes =
-  | Shops
   | SanityImageAssetReference
   | EventItem
   | SanityImageCrop
@@ -393,18 +418,21 @@ export type AllSanitySchemaTypes =
   | AppealEntry
   | Story
   | HomePage
-  | HomeInvolve
+  | HomeClosing
   | HomePartners
-  | HomeSnapshot
-  | HomeStoriesIntro
+  | HomeImpactCta
+  | HomeStories
+  | HomeImpact
   | HomeVia
-  | HomeWays
+  | HomeExpressions
+  | HomePhilosophy
   | HomeHero
   | LinkCta
-  | InvolveAction
-  | SnapshotStat
+  | SplitHeading
+  | PartnerMark
   | StoryCard
-  | WayCard
+  | ImpactStat
+  | ExpressionCard
   | SanityImagePaletteSwatch
   | SanityImagePalette
   | SanityImageDimensions
@@ -462,12 +490,14 @@ export type EVENTS_QUERY_RESULT = Array<{
 
 // Source: lib/sanity/home.query.ts
 // Variable: HOME_QUERY
-// Query: *[_type == "homePage"][0]{  hero{ eyebrow, headlineLead, headlineAccent, lede, image, alt, primaryCta{ label, href }, secondaryCta{ label, href }, scrollCue },  ways{ heading, cards[]{ key, title, body, image, alt, href } },  via{ eyebrow, heading, body, cta{ label, href }, image, alt },  storiesIntro{ heading, subline, viewAll{ label, href }, cards[]{ title, blurb, image, alt, href } },  snapshot{ heading, stats[]{ icon, value, label } },  partners{ heading, body, names, logoSlot, cta{ label, href } },  involve{ heading, body, actions[]{ icon, title, blurb, href }, image, alt, shops{ heading, body, cta{ label, href } } }}
+// Query: *[_type == "homePage"][0]{  hero{ eyebrow, heading{ lead, accent }, lede, image, alt, primaryCta{ label, href }, secondaryCta{ label, href } },  philosophy{ eyebrow, heading{ lead, accent }, body, pullquote },  expressions{ eyebrow, heading, intro, cards[]{ key, index, title, tagline, body, image, alt, cta{ label, href } } },  via{ eyebrow, heading{ lead, accent }, body, cta{ label, href }, image, alt },  impact{ eyebrow, heading, intro, stats[]{ key, value, suffix, label } },  stories{ eyebrow, heading{ lead, accent }, viewAll{ label, href }, feature{ title, blurb, image, alt, href }, cards[]{ title, blurb, image, alt, href } },  impactCta{ eyebrow, heading{ lead, accent }, cta{ label, href }, image, alt },  partners{ label, marks[]{ name, logo }, logoSlot{ label, href } },  closing{ eyebrow, heading{ lead, accent }, body, primaryCta{ label, href }, secondaryCta{ label, href } }}
 export type HOME_QUERY_RESULT = {
   hero: {
     eyebrow: string | null;
-    headlineLead: string | null;
-    headlineAccent: string | null;
+    heading: {
+      lead: string | null;
+      accent: string | null;
+    } | null;
     lede: string | null;
     image: {
       asset?: SanityImageAssetReference;
@@ -485,52 +515,26 @@ export type HOME_QUERY_RESULT = {
       label: string | null;
       href: string | null;
     } | null;
-    scrollCue: string | null;
   } | null;
-  ways: {
-    heading: string | null;
-    cards: Array<{
-      key: string | null;
-      title: string | null;
-      body: string | null;
-      image: {
-        asset?: SanityImageAssetReference;
-        media?: unknown;
-        hotspot?: SanityImageHotspot;
-        crop?: SanityImageCrop;
-        _type: "image";
-      } | null;
-      alt: string | null;
-      href: string | null;
-    }> | null;
+  philosophy: {
+    eyebrow: string | null;
+    heading: {
+      lead: string | null;
+      accent: string | null;
+    } | null;
+    body: string | null;
+    pullquote: string | null;
   } | null;
-  via: {
+  expressions: {
     eyebrow: string | null;
     heading: string | null;
-    body: string | null;
-    cta: {
-      label: string | null;
-      href: string | null;
-    } | null;
-    image: {
-      asset?: SanityImageAssetReference;
-      media?: unknown;
-      hotspot?: SanityImageHotspot;
-      crop?: SanityImageCrop;
-      _type: "image";
-    } | null;
-    alt: string | null;
-  } | null;
-  storiesIntro: {
-    heading: string | null;
-    subline: string | null;
-    viewAll: {
-      label: string | null;
-      href: string | null;
-    } | null;
+    intro: string | null;
     cards: Array<{
+      key: string | null;
+      index: string | null;
       title: string | null;
-      blurb: string | null;
+      tagline: string | null;
+      body: string | null;
       image: {
         asset?: SanityImageAssetReference;
         media?: unknown;
@@ -539,51 +543,130 @@ export type HOME_QUERY_RESULT = {
         _type: "image";
       } | null;
       alt: string | null;
-      href: string | null;
-    }> | null;
-  } | null;
-  snapshot: {
-    heading: string | null;
-    stats: Array<{
-      icon: string | null;
-      value: string | null;
-      label: string | null;
-    }> | null;
-  } | null;
-  partners: {
-    heading: string | null;
-    body: string | null;
-    names: Array<string> | null;
-    logoSlot: string | null;
-    cta: {
-      label: string | null;
-      href: string | null;
-    } | null;
-  } | null;
-  involve: {
-    heading: string | null;
-    body: string | null;
-    actions: Array<{
-      icon: string | null;
-      title: string | null;
-      blurb: string | null;
-      href: string | null;
-    }> | null;
-    image: {
-      asset?: SanityImageAssetReference;
-      media?: unknown;
-      hotspot?: SanityImageHotspot;
-      crop?: SanityImageCrop;
-      _type: "image";
-    } | null;
-    alt: string | null;
-    shops: {
-      heading: string | null;
-      body: string | null;
       cta: {
         label: string | null;
         href: string | null;
       } | null;
+    }> | null;
+  } | null;
+  via: {
+    eyebrow: string | null;
+    heading: {
+      lead: string | null;
+      accent: string | null;
+    } | null;
+    body: string | null;
+    cta: {
+      label: string | null;
+      href: string | null;
+    } | null;
+    image: {
+      asset?: SanityImageAssetReference;
+      media?: unknown;
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      _type: "image";
+    } | null;
+    alt: string | null;
+  } | null;
+  impact: {
+    eyebrow: string | null;
+    heading: string | null;
+    intro: string | null;
+    stats: Array<{
+      key: string | null;
+      value: number | null;
+      suffix: string | null;
+      label: string | null;
+    }> | null;
+  } | null;
+  stories: {
+    eyebrow: string | null;
+    heading: {
+      lead: string | null;
+      accent: string | null;
+    } | null;
+    viewAll: {
+      label: string | null;
+      href: string | null;
+    } | null;
+    feature: {
+      title: string | null;
+      blurb: string | null;
+      image: {
+        asset?: SanityImageAssetReference;
+        media?: unknown;
+        hotspot?: SanityImageHotspot;
+        crop?: SanityImageCrop;
+        _type: "image";
+      } | null;
+      alt: string | null;
+      href: string | null;
+    } | null;
+    cards: Array<{
+      title: string | null;
+      blurb: string | null;
+      image: {
+        asset?: SanityImageAssetReference;
+        media?: unknown;
+        hotspot?: SanityImageHotspot;
+        crop?: SanityImageCrop;
+        _type: "image";
+      } | null;
+      alt: string | null;
+      href: string | null;
+    }> | null;
+  } | null;
+  impactCta: {
+    eyebrow: string | null;
+    heading: {
+      lead: string | null;
+      accent: string | null;
+    } | null;
+    cta: {
+      label: string | null;
+      href: string | null;
+    } | null;
+    image: {
+      asset?: SanityImageAssetReference;
+      media?: unknown;
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      _type: "image";
+    } | null;
+    alt: string | null;
+  } | null;
+  partners: {
+    label: string | null;
+    marks: Array<{
+      name: string | null;
+      logo: {
+        asset?: SanityImageAssetReference;
+        media?: unknown;
+        hotspot?: SanityImageHotspot;
+        crop?: SanityImageCrop;
+        _type: "image";
+      } | null;
+    }> | null;
+    logoSlot: {
+      label: string | null;
+      href: string | null;
+    } | null;
+  } | null;
+  closing: {
+    eyebrow: string | null;
+    heading: {
+      lead: string | null;
+      accent: string | null;
+    } | null;
+    body: string | null;
+    primaryCta: {
+      label: string | null;
+      href: string | null;
+    } | null;
+    secondaryCta: {
+      label: string | null;
+      href: string | null;
     } | null;
   } | null;
 } | null;
@@ -615,7 +698,7 @@ declare module "@sanity/client" {
   interface SanityQueries {
     '*[_type == "appealEntry"] | order(_createdAt asc){\n  slug,\n  title,\n  theme,\n  blurb,\n  body,\n  image,\n  alt,\n  relatedHref,\n  donationDesignation,\n  donorboxQuery{ amount, recurring, default_interval },\n  placeholder\n}': APPEALS_QUERY_RESULT;
     '*[_type == "eventItem"] | order(date asc, _createdAt asc){\n  slug,\n  title,\n  summary,\n  image,\n  alt,\n  dateLabel,\n  placeholder\n}': EVENTS_QUERY_RESULT;
-    '*[_type == "homePage"][0]{\n  hero{ eyebrow, headlineLead, headlineAccent, lede, image, alt, primaryCta{ label, href }, secondaryCta{ label, href }, scrollCue },\n  ways{ heading, cards[]{ key, title, body, image, alt, href } },\n  via{ eyebrow, heading, body, cta{ label, href }, image, alt },\n  storiesIntro{ heading, subline, viewAll{ label, href }, cards[]{ title, blurb, image, alt, href } },\n  snapshot{ heading, stats[]{ icon, value, label } },\n  partners{ heading, body, names, logoSlot, cta{ label, href } },\n  involve{ heading, body, actions[]{ icon, title, blurb, href }, image, alt, shops{ heading, body, cta{ label, href } } }\n}': HOME_QUERY_RESULT;
+    '*[_type == "homePage"][0]{\n  hero{ eyebrow, heading{ lead, accent }, lede, image, alt, primaryCta{ label, href }, secondaryCta{ label, href } },\n  philosophy{ eyebrow, heading{ lead, accent }, body, pullquote },\n  expressions{ eyebrow, heading, intro, cards[]{ key, index, title, tagline, body, image, alt, cta{ label, href } } },\n  via{ eyebrow, heading{ lead, accent }, body, cta{ label, href }, image, alt },\n  impact{ eyebrow, heading, intro, stats[]{ key, value, suffix, label } },\n  stories{ eyebrow, heading{ lead, accent }, viewAll{ label, href }, feature{ title, blurb, image, alt, href }, cards[]{ title, blurb, image, alt, href } },\n  impactCta{ eyebrow, heading{ lead, accent }, cta{ label, href }, image, alt },\n  partners{ label, marks[]{ name, logo }, logoSlot{ label, href } },\n  closing{ eyebrow, heading{ lead, accent }, body, primaryCta{ label, href }, secondaryCta{ label, href } }\n}': HOME_QUERY_RESULT;
     '*[_type == "story"] | order(_createdAt asc){\n  slug,\n  title,\n  location,\n  excerpt,\n  body,\n  images[]{ ..., asset },\n  placeholder\n}': STORIES_QUERY_RESULT;
   }
 }

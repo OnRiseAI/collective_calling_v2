@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { Lexend, Playfair_Display } from "next/font/google";
+import { Figtree, Instrument_Serif } from "next/font/google";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages, setRequestLocale } from "next-intl/server";
 import { routing } from "@/i18n/routing";
@@ -11,19 +11,21 @@ import { SITE, isIndexable } from "@/lib/site";
 import { organizationJsonLd } from "@/lib/jsonld";
 import "../globals.css";
 
-// Humanist sans for body and UI. Lexend is accessibility-designed with open
-// apertures; it reads quietly under the serif display face.
-const lexend = Lexend({
-  variable: "--font-lexend",
+// Body and UI face. Figtree is a geometric sans with a tall x-height that stays
+// quiet at 300 — the weight most of the page's running copy is set in.
+const figtree = Figtree({
+  variable: "--font-figtree",
   subsets: ["latin"],
+  weight: ["300", "400", "500", "600"],
   display: "swap",
 });
 
-// High-contrast serif display face for headlines (design-theme mockup): elegant,
-// editorial, with the gold italic accent word in the hero.
-const playfair = Playfair_Display({
-  variable: "--font-playfair",
+// Display face. Instrument Serif is high contrast with a single regular weight,
+// drawn to be set very large; the italic carries every gold accent phrase.
+const instrumentSerif = Instrument_Serif({
+  variable: "--font-instrument-serif",
   subsets: ["latin"],
+  weight: "400",
   style: ["normal", "italic"],
   display: "swap",
 });
@@ -85,7 +87,7 @@ export default async function LocaleLayout({
   return (
     <html
       lang={locale}
-      className={`${lexend.variable} ${playfair.variable} h-full antialiased`}
+      className={`${figtree.variable} ${instrumentSerif.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
         <NextIntlClientProvider messages={messages}>

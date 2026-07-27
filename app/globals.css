@@ -9,54 +9,87 @@
  */
 @theme {
   /*
-   * Collective Calling design-theme mockup (spec 2026-07-22 v2): warm cream
-   * page, near-black charcoal bands, antique gold accent, serif display face
-   * over a quiet humanist sans. Elegant and editorial, not charity-template.
+   * Collective Calling v2 (design "Collective Calling v2.dc.html"): warm cream
+   * page, deep-navy ink, near-black navy bands, antique gold accent. The
+   * display face is a high-contrast serif used large and light; the body face
+   * is a quiet geometric sans set at 300 so the serif always leads.
    */
 
-  /* Brand colours (mockup). `brand` doubles as the charcoal primary so legacy
-     text-brand usages stay legible on cream. */
-  --color-brand: #1a2029; /* Warm charcoal (primary text/links on cream) */
-  --color-brand-dark: #0f1620; /* Near-black charcoal (dark bands / header) */
-  --color-footer: #0b1119; /* Deepest charcoal (footer) */
-  --color-accent: #c9a45c; /* Antique gold (eyebrows, rules, icons, CTAs) */
+  /* Brand colours. `brand` doubles as the navy primary so legacy text-brand
+     usages stay legible on cream. */
+  --color-brand: #14213a; /* Deep navy (primary text/links on cream) */
+  --color-brand-dark: #0d1526; /* Near-black navy (hero, footer, closing band) */
+  --color-band: #101a30; /* Lifted navy (Values in Action, impact card) */
+  --color-footer: #0d1526; /* Footer field */
+  --color-accent: #c9a15c; /* Antique gold (eyebrows, rules, numerals, CTAs) */
+  --color-accent-soft: #ddb875; /* Gold hover */
 
-  /* Warm neutrals. */
-  --color-ink: #1a2029; /* Charcoal text on cream */
-  --color-paper: #f3efe6; /* Warm cream page surface */
-  --color-card: #faf8f2; /* Lighter cream card surface */
-  --color-muted: #5d6470; /* Muted grey for secondary text */
+  /* Warm neutrals on cream. */
+  --color-ink: #14213a; /* Navy text on cream */
+  --color-paper: #f6f1e7; /* Warm cream page surface */
+  --color-card: #f8f4eb; /* Lightest cream (text on dark, raised surfaces) */
+  --color-muted: #6f6a5e; /* Warm grey body copy */
+  --color-muted-soft: #8a8574; /* Stat labels, quiet meta */
+  --color-rule: #e2d9c6; /* Hairline on cream */
 
-  /* Retained band tints (inner pages still reference them); warmed to sit on cream. */
+  /* Cool neutrals on the dark bands. */
+  --color-mist: #d8dae0; /* Lede on the hero photograph */
+  --color-slate: #b7bdc9; /* Body copy on dark */
+  --color-slate-dim: #9aa1b0; /* Footer links */
+  --color-slate-faint: #6d7486; /* Footer legal */
+
+  /* Retained band tints (inner pages still reference them). */
   --color-clay: #a5713f; /* Warm tan programme accent */
   --color-clay-tint: #ece5d6; /* Soft warm band */
-  --color-indigo-tint: #eae7de; /* Soft neutral band (was cool blue) */
+  --color-indigo-tint: #eae7de; /* Soft neutral band */
 
-  /* Serif display over humanist sans body. */
-  --font-heading: var(--font-playfair), Georgia, "Times New Roman", serif;
-  --font-body: var(--font-lexend), system-ui, -apple-system, sans-serif;
+  /* High-contrast serif display over a geometric sans body. */
+  --font-heading: var(--font-instrument-serif), Georgia, "Times New Roman", serif;
+  --font-body: var(--font-figtree), system-ui, -apple-system, sans-serif;
 
   --radius: 0.25rem;
 }
 
-/* Page defaults: white page, neutral-dark text, large readable humanist type. */
-body {
-  background-color: var(--color-paper);
-  color: var(--color-ink);
-  font-family: var(--font-body);
-  font-size: 1.125rem; /* ~18px base, toward Tearfund's large, accessible body */
-  line-height: 1.6;
-}
+/*
+ * Element defaults.
+ *
+ * These MUST stay inside @layer base. Tailwind's utilities live in a later
+ * layer, and an unlayered rule beats every layered one no matter how specific —
+ * so an unlayered `h1 { letter-spacing }` here silently cancels `tracking-*` on
+ * every heading in the app, and an unlayered `a { color }` cancels every text
+ * colour on every link. Both of those happened; keep them layered.
+ */
+@layer base {
+  /* Warm cream page, navy text, large readable body for long-form inner pages.
+     The homepage restates the design's own 16px / normal on its own wrapper. */
+  body {
+    background-color: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-body);
+    font-size: 1.125rem;
+    line-height: 1.6;
+  }
 
-/* Headings: serif display face at a medium weight (the mockup's headlines are
-   elegant rather than heavy). */
-h1,
-h2,
-h3,
-h4 {
-  font-family: var(--font-heading);
-  font-weight: 600;
-  letter-spacing: 0;
+  /* The display serif ships a single regular weight and is drawn to be set
+     large. Never synthesise a bold from it — the light stroke at size is the
+     point. Tracking is set per heading, as the design sets it. */
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-heading);
+    font-weight: 400;
+  }
+
+  /* The design gives every link the gold, with a lighter gold on hover. */
+  a {
+    color: var(--color-accent);
+    text-decoration: none;
+  }
+
+  a:hover {
+    color: var(--color-accent-soft);
+  }
 }
 
 /* In-page journey anchors glide rather than jump, but never for readers who

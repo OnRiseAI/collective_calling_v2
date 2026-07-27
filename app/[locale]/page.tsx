@@ -4,12 +4,14 @@ import { getHomeContent } from '@/lib/content/home'
 import { pageMetadata } from '@/lib/seo'
 import { SITE } from '@/lib/site'
 import { HeroSection } from '@/components/home/HeroSection'
-import { WaysSection } from '@/components/home/WaysSection'
+import { PhilosophySection } from '@/components/home/PhilosophySection'
+import { ExpressionsSection } from '@/components/home/ExpressionsSection'
 import { ViaBand } from '@/components/home/ViaBand'
+import { ImpactStats } from '@/components/home/ImpactStats'
 import { StoriesSection } from '@/components/home/StoriesSection'
-import { SnapshotBand } from '@/components/home/SnapshotBand'
-import { PartnersSection } from '@/components/home/PartnersSection'
-import { InvolveBand } from '@/components/home/InvolveBand'
+import { ImpactCta } from '@/components/home/ImpactCta'
+import { PartnersStrip } from '@/components/home/PartnersStrip'
+import { ClosingBand } from '@/components/home/ClosingBand'
 
 export async function generateMetadata({
   params,
@@ -23,16 +25,16 @@ export async function generateMetadata({
     path: '/',
     // The homepage title is the hero headline; the root layout template wraps
     // it with " | Collective Calling" so the full tab title identifies the site.
-    title: `${content.hero.headlineLead} ${content.hero.headlineAccent}`,
+    title: `${content.hero.heading.lead} ${content.hero.heading.accent}`,
     description: SITE.description,
     image: content.hero.image,
   })
 }
 
 /**
- * The Collective Calling homepage (design-theme mockup, spec v2): seven bands
- * mirroring the client's mockup — hero, three ways, Values In Action, stories,
- * impact snapshot, partners, and the get-involved / charity-shops closer.
+ * The Collective Calling homepage (v2 design): nine bands that move from why
+ * the charity exists, through the three expressions of that work and what it
+ * has added up to, to the invitation to join it.
  */
 export default async function Home({
   params,
@@ -44,15 +46,21 @@ export default async function Home({
 
   const content = await getHomeContent()
 
+  // The wrapper restates the design's own root: Figtree on cream in navy, at
+  // the browser's default 16px / normal leading. The site-wide body rule sets a
+  // larger, looser default for long-form inner pages; the design does not, and
+  // every measurement in these sections is taken against the design's.
   return (
-    <>
+    <div className="bg-paper font-body text-[16px] leading-normal text-ink">
       <HeroSection content={content.hero} />
-      <WaysSection content={content.ways} />
+      <PhilosophySection content={content.philosophy} />
+      <ExpressionsSection content={content.expressions} />
       <ViaBand content={content.via} />
-      <StoriesSection content={content.storiesIntro} />
-      <SnapshotBand content={content.snapshot} />
-      <PartnersSection content={content.partners} />
-      <InvolveBand content={content.involve} />
-    </>
+      <ImpactStats content={content.impact} />
+      <StoriesSection content={content.stories} />
+      <ImpactCta content={content.impactCta} />
+      <PartnersStrip content={content.partners} />
+      <ClosingBand content={content.closing} />
+    </div>
   )
 }

@@ -3,12 +3,14 @@ import { render, screen } from '@testing-library/react'
 import { expect, test } from 'vitest'
 import { NextIntlClientProvider } from 'next-intl'
 import { HeroSection } from '@/components/home/HeroSection'
-import { WaysSection } from '@/components/home/WaysSection'
+import { PhilosophySection } from '@/components/home/PhilosophySection'
+import { ExpressionsSection } from '@/components/home/ExpressionsSection'
 import { ViaBand } from '@/components/home/ViaBand'
+import { ImpactStats } from '@/components/home/ImpactStats'
 import { StoriesSection } from '@/components/home/StoriesSection'
-import { SnapshotBand } from '@/components/home/SnapshotBand'
-import { PartnersSection } from '@/components/home/PartnersSection'
-import { InvolveBand } from '@/components/home/InvolveBand'
+import { ImpactCta } from '@/components/home/ImpactCta'
+import { PartnersStrip } from '@/components/home/PartnersStrip'
+import { ClosingBand } from '@/components/home/ClosingBand'
 import { SEED_HOME } from '@/lib/content/home.seed'
 
 function renderWithLocale(ui: React.ReactNode) {
@@ -19,81 +21,104 @@ function renderWithLocale(ui: React.ReactNode) {
   )
 }
 
-test('hero renders the mockup headline as h1 with the gold accent word', () => {
+test('hero owns the page h1 and both opening actions', () => {
   renderWithLocale(<HeroSection content={SEED_HOME.hero} />)
   const h1 = screen.getByRole('heading', { level: 1 })
-  // \s* between words: the headline words render as stacked blocks, so jsdom
-  // textContent carries no whitespace between them.
-  expect(h1).toHaveTextContent(/where\s*values\s*become/i)
-  expect(h1).toHaveTextContent(/visible\./i)
-  expect(screen.getByRole('link', { name: /explore our impact/i })).toHaveAttribute(
+  expect(h1).toHaveTextContent(/a life\s*beyond ourselves\./i)
+  expect(screen.getByRole('link', { name: /start your journey/i })).toHaveAttribute(
     'href',
-    expect.stringMatching(/\/about\/our-impact$/),
+    expect.stringMatching(/\/get-involved$/),
   )
-  expect(screen.getByRole('link', { name: /discover values in action/i })).toHaveAttribute(
-    'href',
-    expect.stringMatching(/\/get-involved\/partner$/),
-  )
-})
-
-test('ways section renders three cards routing to their pages', () => {
-  renderWithLocale(<WaysSection content={SEED_HOME.ways} />)
-  expect(screen.getByRole('heading', { level: 2 })).toHaveTextContent(/three ways/i)
-  const learnMore = screen.getAllByRole('link', { name: /learn more/i })
-  expect(learnMore).toHaveLength(3)
-  expect(learnMore[0]).toHaveAttribute('href', expect.stringMatching(/\/spain$/))
-  expect(learnMore[1]).toHaveAttribute('href', expect.stringMatching(/\/tanzania$/))
-  expect(learnMore[2]).toHaveAttribute('href', expect.stringMatching(/\/get-involved\/partner$/))
-})
-
-test('via band carries the mockup heading and CTA', () => {
-  renderWithLocale(<ViaBand content={SEED_HOME.via} />)
-  expect(screen.getByRole('heading', { level: 2 })).toHaveTextContent(/force for good/i)
-  expect(screen.getByRole('link', { name: /discover via/i })).toHaveAttribute(
-    'href',
-    expect.stringMatching(/\/get-involved\/partner$/),
-  )
-})
-
-test('stories section renders the three curated mockup cards', () => {
-  renderWithLocale(<StoriesSection content={SEED_HOME.storiesIntro} />)
-  expect(screen.getByRole('link', { name: /nacho's story/i })).toHaveAttribute(
+  expect(screen.getByRole('link', { name: /see what's possible/i })).toHaveAttribute(
     'href',
     expect.stringMatching(/\/stories$/),
   )
-  expect(screen.getByRole('link', { name: /mobile shower unit/i })).toHaveAttribute(
-    'href',
-    expect.stringMatching(/\/spain$/),
+})
+
+test('philosophy states the heading and closes on the pullquote', () => {
+  renderWithLocale(<PhilosophySection content={SEED_HOME.philosophy} />)
+  expect(screen.getByRole('heading', { level: 2 })).toHaveTextContent(
+    /everyone has\s*something to give\./i,
   )
-  expect(screen.getByRole('link', { name: /business in action/i })).toHaveAttribute(
+  expect(screen.getByText(/stories are changed, including our own/i)).toBeInTheDocument()
+})
+
+test('expressions render three numbered cards linking to their pages', () => {
+  renderWithLocale(<ExpressionsSection content={SEED_HOME.expressions} />)
+  for (const card of SEED_HOME.expressions.cards) {
+    expect(screen.getByRole('heading', { level: 3, name: card.title })).toBeInTheDocument()
+    expect(screen.getByRole('link', { name: new RegExp(card.cta.label, 'i') })).toHaveAttribute(
+      'href',
+      expect.stringMatching(new RegExp(`${card.cta.href}$`)),
+    )
+  }
+  expect(screen.getByText('01')).toBeInTheDocument()
+  expect(screen.getByText('03')).toBeInTheDocument()
+})
+
+test('Values in Action band links to the partner page', () => {
+  renderWithLocale(<ViaBand content={SEED_HOME.via} />)
+  expect(
+    screen.getByRole('link', { name: /discover values in action/i }),
+  ).toHaveAttribute('href', expect.stringMatching(/\/get-involved\/partner$/))
+})
+
+test('impact band pairs every label with its final figure for assistive tech', () => {
+  // The count-up itself is a browser behaviour (jsdom's IntersectionObserver is
+  // a stub that never fires), so it is asserted in the Playwright suite. What
+  // must hold everywhere: each label is present, and the final figure is
+  // exposed once as text that never changes, so the count is not announced
+  // frame by frame.
+  renderWithLocale(<ImpactStats content={SEED_HOME.impact} />)
+  for (const stat of SEED_HOME.impact.stats) {
+    expect(screen.getByText(stat.label)).toBeInTheDocument()
+    expect(
+      screen.getByText(`${stat.value.toLocaleString('en')}${stat.suffix}`, {
+        selector: '.sr-only',
+      }),
+    ).toBeInTheDocument()
+  }
+})
+
+test('stories render the feature plus both supporting cards', () => {
+  renderWithLocale(<StoriesSection content={SEED_HOME.stories} />)
+  expect(screen.getByRole('heading', { level: 3, name: /nacho's story/i })).toBeInTheDocument()
+  expect(screen.getByRole('heading', { level: 3, name: /mobile shower unit/i })).toBeInTheDocument()
+  expect(screen.getByRole('heading', { level: 3, name: /business in action/i })).toBeInTheDocument()
+  expect(screen.getAllByRole('link', { name: /read more/i })).toHaveLength(3)
+  expect(screen.getByRole('link', { name: /view all stories/i })).toHaveAttribute(
+    'href',
+    expect.stringMatching(/\/stories$/),
+  )
+})
+
+test('impact invitation routes to the impact page', () => {
+  renderWithLocale(<ImpactCta content={SEED_HOME.impactCta} />)
+  expect(screen.getByRole('link', { name: /see the impact/i })).toHaveAttribute(
+    'href',
+    expect.stringMatching(/\/about\/our-impact$/),
+  )
+})
+
+test('partner strip shows the logo, the named marks, and the open slot', () => {
+  renderWithLocale(<PartnersStrip content={SEED_HOME.partners} />)
+  expect(screen.getByAltText('Drumelia Real Estate')).toBeInTheDocument()
+  expect(screen.getByText('MANIFESTO')).toBeInTheDocument()
+  expect(screen.getByText('Not Just a Gym')).toBeInTheDocument()
+  expect(screen.getByText('BOUNCE')).toBeInTheDocument()
+  expect(screen.getByRole('link', { name: /your logo here/i })).toHaveAttribute(
     'href',
     expect.stringMatching(/\/get-involved\/partner$/),
   )
 })
 
-test('snapshot band renders all five mockup stats', () => {
-  renderWithLocale(<SnapshotBand content={SEED_HOME.snapshot} />)
-  for (const stat of SEED_HOME.snapshot.stats) {
-    expect(screen.getByText(stat.label)).toBeInTheDocument()
-  }
-  expect(screen.getByText('10,000+')).toBeInTheDocument()
-})
-
-test('partners section renders the marks and the logo slot', () => {
-  renderWithLocale(<PartnersSection content={SEED_HOME.partners} />)
-  for (const name of SEED_HOME.partners.names) {
-    expect(screen.getByText(name)).toBeInTheDocument()
-  }
-  expect(screen.getByText(/your logo here/i)).toBeInTheDocument()
-})
-
-test('involve band routes its three actions and the shops panel', () => {
-  renderWithLocale(<InvolveBand content={SEED_HOME.involve} />)
-  expect(screen.getByRole('link', { name: /donate/i })).toHaveAttribute(
+test('closing band repeats the journey and charity shops actions', () => {
+  renderWithLocale(<ClosingBand content={SEED_HOME.closing} />)
+  expect(screen.getByRole('link', { name: /start your journey/i })).toHaveAttribute(
     'href',
-    expect.stringMatching(/\/donate$/),
+    expect.stringMatching(/\/get-involved$/),
   )
-  expect(screen.getByRole('link', { name: /find out more/i })).toHaveAttribute(
+  expect(screen.getByRole('link', { name: /visit our charity shops/i })).toHaveAttribute(
     'href',
     expect.stringMatching(/\/charity-shops$/),
   )

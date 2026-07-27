@@ -2,11 +2,9 @@ import { test, expect } from '@playwright/test'
 
 test('en home loads at /', async ({ page }) => {
   await page.goto('/')
-  // The hero owns the single page h1, which carries the mockup headline.
-  // \s* between words: the headline renders as stacked block spans, so the
-  // text content may carry no whitespace between them.
+  // The hero owns the single page h1, which carries the v2 headline.
   await expect(page.getByRole('heading', { level: 1 })).toContainText(
-    /where\s*values\s*become/i
+    /a life\s*beyond\s*ourselves\./i
   )
 })
 

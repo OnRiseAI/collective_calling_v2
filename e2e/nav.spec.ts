@@ -32,25 +32,22 @@ test.describe('mobile navigation', () => {
 test.describe('desktop flat nav', () => {
   test.use({ viewport: { width: 1280, height: 900 } })
 
-  test('every top-level section link is visible and Get Involved is the CTA', async ({
-    page,
-  }) => {
+  test('the v2 section links are visible and Get Involved is the CTA', async ({ page }) => {
     await page.goto('/')
 
     const primaryNav = page.getByRole('navigation', { name: /primary/i })
-    for (const label of [
-      'Impact',
-      'Values in Action',
-      'Stories',
-      'Events',
-      'Charity Shops',
-      'About',
-      'Contact',
-    ]) {
+    for (const label of ['Impact', 'Values in Action', 'Stories', 'Charity Shops', 'About']) {
       await expect(primaryNav.getByRole('link', { name: label, exact: true })).toBeVisible()
     }
+    // Events and Contact are reachable from the mobile panel and the footer,
+    // but the v2 header bar carries only the five links above.
+    for (const label of ['Events', 'Contact']) {
+      await expect(primaryNav.getByRole('link', { name: label, exact: true })).toHaveCount(0)
+    }
 
-    await expect(page.getByRole('link', { name: /^get involved$/i })).toHaveAttribute(
+    // The design writes the arrow into the CTA's own label, so its accessible
+    // name is "Get Involved →".
+    await expect(page.getByRole('link', { name: /^get involved/i })).toHaveAttribute(
       'href',
       /\/get-involved$/,
     )

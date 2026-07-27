@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react'
 import { expect, test } from 'vitest'
 import { NextIntlClientProvider } from 'next-intl'
 import { Header } from '@/components/layout/Header'
-import { NAV_SECTIONS } from '@/lib/nav'
+import { HEADER_NAV_SECTIONS } from '@/lib/nav'
 
 // The Header uses locale-aware Link from "@/i18n/navigation", which reads the
 // next-intl context via useLocale(). In a real request that context comes from
@@ -16,13 +16,15 @@ function renderHeader() {
   )
 }
 
-test('header shows every top-level section link flat (mockup nav)', () => {
+test('header shows the v2 section links flat', () => {
   renderHeader()
-  for (const section of NAV_SECTIONS) {
+  for (const section of HEADER_NAV_SECTIONS) {
     expect(
       screen.getAllByRole('link', { name: new RegExp(`^${section.label}$`, 'i') }).length,
     ).toBeGreaterThan(0)
   }
+  // Events and Contact live in the mobile panel and the footer, not the bar.
+  expect(screen.queryByRole('link', { name: /^events$/i })).not.toBeInTheDocument()
 })
 
 test('header CTA is Get Involved, not Donate', () => {

@@ -125,22 +125,18 @@ test('/appeals/sponsor-a-child embeds the Donorbox giving-41 iframe element', as
   await expect(donorbox).toHaveCount(1)
 })
 
-test('homepage gold Donate CTA points at /donate and that route resolves', async ({
-  page,
-}) => {
+// The v2 design puts no Donate link on the homepage — its header CTA is "Get
+// Involved →" and its footer carries no ask. Donate is reached from the mobile
+// panel and the Get Involved journey instead. What this test still guards is
+// the destination itself, which was a 404 once.
+test('/donate resolves and is reachable from the mobile panel', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 })
   await page.goto('/')
+  await page.getByRole('button', { name: /^menu$/i }).click()
+  const panel = page.getByRole('dialog', { name: /site menu/i })
+  await expect(panel.locator('a[href$="/donate"]').first()).toBeVisible()
 
-  // The hero gold Donate button links to DONATE_HREF (/donate). The locale-aware
-  // Link strips the default-locale prefix, so the rendered href ends in /donate.
-  // Confirm at least one such link exists on the homepage (the previously-404
-  // Donate CTA target).
-  const donateLink = page.locator('a[href$="/donate"]')
-  await expect(
-    donateLink.first(),
-    'homepage should expose a Donate link to /donate',
-  ).toBeVisible()
-
-  // The destination now reaches a real page (not the old 404). domcontentloaded
+  // The destination reaches a real page (not the old 404). domcontentloaded
   // because /donate embeds the Donorbox iframe.
   const response = await page.goto('/donate', { waitUntil: 'domcontentloaded' })
   expect(response, 'no response for /donate').not.toBeNull()

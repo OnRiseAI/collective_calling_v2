@@ -7,19 +7,21 @@ describe('home content layer', () => {
   test('returns the canonical seed when Sanity is unconfigured', async () => {
     const content = await getHomeContent()
     expect(content).toEqual(SEED_HOME)
-    expect(content.hero.headlineLead).toBe('Where Values Become')
+    expect(content.hero.heading.lead).toBe('A life')
   })
 
-  test('exposes all seven mockup sections', async () => {
+  test('exposes the nine v2 bands in page order', async () => {
     const content = await getHomeContent()
     expect(Object.keys(content)).toEqual([
       'hero',
-      'ways',
+      'philosophy',
+      'expressions',
       'via',
-      'storiesIntro',
-      'snapshot',
+      'impact',
+      'stories',
+      'impactCta',
       'partners',
-      'involve',
+      'closing',
     ])
   })
 })

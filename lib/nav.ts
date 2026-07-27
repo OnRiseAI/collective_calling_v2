@@ -80,3 +80,22 @@ export const DONATE_HREF = '/donate'
 
 // The header's single CTA (mockup): the invitation, not the ask.
 export const GET_INVOLVED_HREF = '/get-involved'
+
+/**
+ * The section keys the desktop header shows, in order (v2 design). The header
+ * is deliberately shorter than the full IA: Events and Contact stay in the
+ * mobile panel and the footer, where a reader goes looking for them.
+ */
+export const HEADER_NAV_KEYS = [
+  'impact',
+  'values-in-action',
+  'stories',
+  'charity-shops',
+  'about',
+] as const
+
+export const HEADER_NAV_SECTIONS: NavSection[] = HEADER_NAV_KEYS.map((key) => {
+  const section = NAV_SECTIONS.find((candidate) => candidate.key === key)
+  if (!section) throw new Error(`HEADER_NAV_KEYS references unknown section "${key}"`)
+  return section
+})

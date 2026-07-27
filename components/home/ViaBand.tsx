@@ -1,51 +1,45 @@
 import * as React from 'react'
 import Image from 'next/image'
-import { Link } from '@/i18n/navigation'
-import { noOrphan } from '@/lib/text'
+import { Eyebrow, DisplayHeading, ArrowLink } from '@/components/home/primitives'
 import type { HomeContent } from '@/lib/content/home.types'
 
 /**
- * Values In Action band (mockup section 3): dark charcoal, gold eyebrow, serif
- * heading, short body, gold CTA; photograph fills the right half.
+ * Values In Action — design section 4. A 1.1fr / 1fr grid with no gutter, the
+ * photograph dissolved into the navy by a mask from 72% rather than cropped.
+ * Below lg it becomes a banner above the copy and the mask is dropped.
  */
 export function ViaBand({ content }: { content: HomeContent['via'] }): React.JSX.Element {
   return (
-    <section className="relative isolate overflow-hidden bg-brand-dark text-paper">
-      <div className="absolute inset-y-0 right-0 hidden w-1/2 lg:block" aria-hidden="true">
+    <section className="grid grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] items-stretch bg-band max-lg:grid-cols-1">
+      <div
+        className="relative min-h-[560px] max-lg:min-h-0 max-lg:h-[320px]"
+        style={{
+          WebkitMaskImage: 'linear-gradient(to right, #000 72%, rgba(0,0,0,0) 100%)',
+          maskImage: 'linear-gradient(to right, #000 72%, rgba(0,0,0,0) 100%)',
+        }}
+      >
         <Image
           src={content.image}
-          alt=""
+          alt={content.alt}
           fill
-          sizes="50vw"
-          className="object-cover object-center"
-        />
-        <div
-          className="absolute inset-0"
-          style={{
-            backgroundImage:
-              'linear-gradient(to right, #0f1620 0%, rgba(15,22,32,0.45) 35%, rgba(15,22,32,0.15) 100%)',
-          }}
+          sizes="(min-width: 1024px) 55vw, 100vw"
+          className="absolute inset-0 h-full w-full object-cover"
         />
       </div>
 
-      <div className="relative mx-auto max-w-7xl px-6 py-16 sm:px-8 sm:py-20 lg:px-12">
-        <div className="max-w-xl">
-          <p className="font-body text-xs font-semibold uppercase tracking-[0.25em] text-accent">
-            {content.eyebrow}
-          </p>
-          <h2 className="mt-5 text-balance font-heading text-3xl leading-snug sm:text-4xl">
-            {noOrphan(content.heading)}
-          </h2>
-          <p className="mt-6 max-w-md font-body text-[15px] leading-relaxed text-paper/75">
-            {content.body}
-          </p>
-          <Link
-            href={content.cta.href}
-            className="mt-8 inline-flex items-center justify-center rounded-[--radius] bg-accent px-6 py-3 font-body text-sm font-semibold uppercase tracking-wider text-brand-dark transition-colors hover:bg-accent/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-brand-dark"
-          >
-            {content.cta.label}
-          </Link>
-        </div>
+      <div className="flex flex-col justify-center px-24 py-[120px] max-md:px-6 max-md:py-16">
+        <Eyebrow>{content.eyebrow}</Eyebrow>
+        <DisplayHeading
+          heading={content.heading}
+          className="mb-6 mt-5 text-[46px] leading-[1.12] tracking-[-0.5px] text-[#f8f4eb] max-md:text-[32px]"
+        />
+        <p className="mb-9 mt-0 max-w-[440px] text-[16px] font-light leading-[1.7] text-slate">
+          {content.body}
+        </p>
+        <ArrowLink
+          cta={content.cta}
+          className="w-fit border-b border-accent pb-[5px] text-[13px] hover:border-accent-soft"
+        />
       </div>
     </section>
   )
