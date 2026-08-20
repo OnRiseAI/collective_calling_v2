@@ -48,6 +48,18 @@
   --font-body: var(--font-figtree), system-ui, -apple-system, sans-serif;
 
   --radius: 0.25rem;
+
+  /*
+   * Find Your Path journey ("Find Your Path.dc.html"). The journey runs on a
+   * slightly different cream and warm black from the homepage's paper/ink —
+   * the design's exact values, kept separate on purpose. Do not swap these for
+   * the homepage tokens.
+   */
+  --color-journey-paper: #f4f0e8; /* Warm cream journey surface */
+  --color-journey-ink: #1e1b17; /* Warm near-black journey text */
+  --color-journey-dark: #14120f; /* Summary screen field */
+  --color-journey-glow: #f8e3b0; /* Path glow halo gold */
+  --color-journey-glow-bright: #fff8e6; /* Path glow core line */
 }
 
 /*
@@ -164,4 +176,59 @@
   to {
     opacity: 1;
   }
+}
+
+/*
+ * Find Your Path journey motion. Each screen fades up as it enters (the
+ * wrapper is keyed by step, so a remount replays it) and a map node "ignites"
+ * with a scale pulse the moment the drawn glow reaches it. Under reduced
+ * motion the keyframes themselves become no-ops, which silences the entrance
+ * and the pulse everywhere they are applied, however they are applied.
+ */
+@keyframes cc-fadeup {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes cc-ignite {
+  0% {
+    transform: scale(1);
+  }
+  45% {
+    transform: scale(1.5);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  @keyframes cc-fadeup {
+    from {
+      opacity: 1;
+      transform: none;
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+  @keyframes cc-ignite {
+    from {
+      transform: none;
+    }
+    to {
+      transform: none;
+    }
+  }
+}
+
+@utility cc-fadeup {
+  animation: cc-fadeup 760ms cubic-bezier(0.22, 0.61, 0.36, 1) both;
 }
