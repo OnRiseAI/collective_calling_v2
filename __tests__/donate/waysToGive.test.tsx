@@ -10,7 +10,7 @@ vi.mock('next-intl/server', () => ({
   setRequestLocale: () => {},
 }))
 import { waysToGiveContent } from '@/lib/content/pages/waysToGive'
-import WaysToGivePage from '@/app/[locale]/donate/ways-to-give/page'
+import WaysToGivePage from '@/app/[locale]/(site)/donate/ways-to-give/page'
 
 // The page renders the locale-aware Link from next-intl, which reads the active
 // locale from context. Provide a minimal provider so links resolve under jsdom.

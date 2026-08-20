@@ -66,7 +66,7 @@ describe('story page generateMetadata', () => {
 
   test('caleb: title contains the story title', async () => {
     const { generateMetadata } = await import(
-      '@/app/[locale]/stories/[slug]/page'
+      '@/app/[locale]/(site)/stories/[slug]/page'
     )
     const meta = await generateMetadata({
       params: Promise.resolve({ locale: 'en', slug: 'caleb' }),
@@ -76,7 +76,7 @@ describe('story page generateMetadata', () => {
 
   test('caleb: description is the excerpt', async () => {
     const { generateMetadata } = await import(
-      '@/app/[locale]/stories/[slug]/page'
+      '@/app/[locale]/(site)/stories/[slug]/page'
     )
     const meta = await generateMetadata({
       params: Promise.resolve({ locale: 'en', slug: 'caleb' }),
@@ -86,7 +86,7 @@ describe('story page generateMetadata', () => {
 
   test('caleb: alternates.canonical ends with /stories/caleb', async () => {
     const { generateMetadata } = await import(
-      '@/app/[locale]/stories/[slug]/page'
+      '@/app/[locale]/(site)/stories/[slug]/page'
     )
     const meta = await generateMetadata({
       params: Promise.resolve({ locale: 'en', slug: 'caleb' }),
@@ -97,7 +97,7 @@ describe('story page generateMetadata', () => {
 
   test('caleb: og image is the story image', async () => {
     const { generateMetadata } = await import(
-      '@/app/[locale]/stories/[slug]/page'
+      '@/app/[locale]/(site)/stories/[slug]/page'
     )
     const meta = await generateMetadata({
       params: Promise.resolve({ locale: 'en', slug: 'caleb' }),
@@ -108,7 +108,7 @@ describe('story page generateMetadata', () => {
 
   test('unknown slug: returns safe fallback title without throwing', async () => {
     const { generateMetadata } = await import(
-      '@/app/[locale]/stories/[slug]/page'
+      '@/app/[locale]/(site)/stories/[slug]/page'
     )
     const meta = await generateMetadata({
       params: Promise.resolve({ locale: 'en', slug: 'does-not-exist' }),
@@ -128,7 +128,7 @@ describe('appeal page generateMetadata', () => {
 
   test('sponsor-a-child: title is present', async () => {
     const { generateMetadata } = await import(
-      '@/app/[locale]/appeals/[slug]/page'
+      '@/app/[locale]/(site)/appeals/[slug]/page'
     )
     const meta = await generateMetadata({
       params: Promise.resolve({ locale: 'en', slug: 'sponsor-a-child' }),
@@ -138,7 +138,7 @@ describe('appeal page generateMetadata', () => {
 
   test('sponsor-a-child: description is present', async () => {
     const { generateMetadata } = await import(
-      '@/app/[locale]/appeals/[slug]/page'
+      '@/app/[locale]/(site)/appeals/[slug]/page'
     )
     const meta = await generateMetadata({
       params: Promise.resolve({ locale: 'en', slug: 'sponsor-a-child' }),
@@ -149,7 +149,7 @@ describe('appeal page generateMetadata', () => {
 
   test('sponsor-a-child: canonical ends with /appeals/sponsor-a-child', async () => {
     const { generateMetadata } = await import(
-      '@/app/[locale]/appeals/[slug]/page'
+      '@/app/[locale]/(site)/appeals/[slug]/page'
     )
     const meta = await generateMetadata({
       params: Promise.resolve({ locale: 'en', slug: 'sponsor-a-child' }),
@@ -160,7 +160,7 @@ describe('appeal page generateMetadata', () => {
 
   test('unknown slug: returns safe fallback without throwing', async () => {
     const { generateMetadata } = await import(
-      '@/app/[locale]/appeals/[slug]/page'
+      '@/app/[locale]/(site)/appeals/[slug]/page'
     )
     const meta = await generateMetadata({
       params: Promise.resolve({ locale: 'en', slug: 'does-not-exist' }),

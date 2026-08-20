@@ -98,7 +98,7 @@ describe('pageMetadata helper', () => {
 
 describe('spain page generateMetadata', () => {
   test('returns a non-generic title', async () => {
-    const { generateMetadata } = await import('@/app/[locale]/spain/page')
+    const { generateMetadata } = await import('@/app/[locale]/(site)/spain/page')
     const meta = await generateMetadata({
       params: Promise.resolve({ locale: 'en' }),
     })
@@ -107,7 +107,7 @@ describe('spain page generateMetadata', () => {
   })
 
   test('returns a non-empty description', async () => {
-    const { generateMetadata } = await import('@/app/[locale]/spain/page')
+    const { generateMetadata } = await import('@/app/[locale]/(site)/spain/page')
     const meta = await generateMetadata({
       params: Promise.resolve({ locale: 'en' }),
     })
@@ -116,7 +116,7 @@ describe('spain page generateMetadata', () => {
   })
 
   test('canonical ends with /spain', async () => {
-    const { generateMetadata } = await import('@/app/[locale]/spain/page')
+    const { generateMetadata } = await import('@/app/[locale]/(site)/spain/page')
     const meta = await generateMetadata({
       params: Promise.resolve({ locale: 'en' }),
     })
@@ -128,7 +128,7 @@ describe('spain page generateMetadata', () => {
 describe('fundraise page generateMetadata', () => {
   test('returns a non-generic title', async () => {
     const { generateMetadata } = await import(
-      '@/app/[locale]/get-involved/fundraise/page'
+      '@/app/[locale]/(site)/get-involved/fundraise/page'
     )
     const meta = await generateMetadata({
       params: Promise.resolve({ locale: 'en' }),
@@ -139,7 +139,7 @@ describe('fundraise page generateMetadata', () => {
 
   test('returns a non-empty description', async () => {
     const { generateMetadata } = await import(
-      '@/app/[locale]/get-involved/fundraise/page'
+      '@/app/[locale]/(site)/get-involved/fundraise/page'
     )
     const meta = await generateMetadata({
       params: Promise.resolve({ locale: 'en' }),
@@ -150,7 +150,7 @@ describe('fundraise page generateMetadata', () => {
 
   test('canonical ends with /get-involved/fundraise', async () => {
     const { generateMetadata } = await import(
-      '@/app/[locale]/get-involved/fundraise/page'
+      '@/app/[locale]/(site)/get-involved/fundraise/page'
     )
     const meta = await generateMetadata({
       params: Promise.resolve({ locale: 'en' }),

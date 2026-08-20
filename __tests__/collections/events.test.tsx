@@ -56,7 +56,7 @@ vi.mock('next/navigation', async (importOriginal) => {
   }
 })
 
-import EventsPage from '@/app/[locale]/events/page'
+import EventsPage from '@/app/[locale]/(site)/events/page'
 
 function renderWithLocale(ui: React.ReactNode) {
   return render(

@@ -10,7 +10,7 @@ vi.mock('next-intl/server', () => ({
   setRequestLocale: () => {},
 }))
 import { financialsContent } from '@/lib/content/pages/financials'
-import FinancialAccountabilityPage from '@/app/[locale]/about/financial-accountability/page'
+import FinancialAccountabilityPage from '@/app/[locale]/(site)/about/financial-accountability/page'
 
 // The page renders the locale-aware Link from next-intl, which reads the active
 // locale from context. Provide a minimal provider so links resolve under jsdom.

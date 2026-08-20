@@ -4,8 +4,6 @@ import { Figtree, Instrument_Serif } from "next/font/google";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages, setRequestLocale } from "next-intl/server";
 import { routing } from "@/i18n/routing";
-import { Header } from "@/components/layout/Header";
-import { Footer } from "@/components/layout/Footer";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { SITE, isIndexable } from "@/lib/site";
 import { organizationJsonLd } from "@/lib/jsonld";
@@ -108,9 +106,7 @@ export default async function LocaleLayout({
         </noscript>
         <NextIntlClientProvider messages={messages}>
           <JsonLd data={organizationJsonLd()} />
-          <Header />
-          <main className="flex-1">{children}</main>
-          <Footer />
+          {children}
         </NextIntlClientProvider>
       </body>
     </html>

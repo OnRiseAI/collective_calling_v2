@@ -12,7 +12,7 @@ vi.mock('next-intl/server', () => ({
 }))
 import { ValueCards } from '@/components/page/ValueCards'
 import { whatWeDoContent } from '@/lib/content/pages/whatWeDo'
-import WhatWeDoPage from '@/app/[locale]/about/what-we-do/page'
+import WhatWeDoPage from '@/app/[locale]/(site)/about/what-we-do/page'
 
 // The page and ValueCards render the locale-aware Link from next-intl, which
 // reads the active locale from context. Provide a minimal provider so anything
