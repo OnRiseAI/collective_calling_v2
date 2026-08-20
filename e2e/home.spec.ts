@@ -28,7 +28,7 @@ test('hero CTAs open the journey and the stories', async ({ page }) => {
   await page.goto('/')
   await expect(page.getByRole('link', { name: /start your journey/i }).first()).toHaveAttribute(
     'href',
-    /\/get-involved$/,
+    /\/journey$/,
   )
   await expect(page.getByRole('link', { name: /see what's possible/i })).toHaveAttribute(
     'href',

@@ -27,7 +27,7 @@ test('hero owns the page h1 and both opening actions', () => {
   expect(h1).toHaveTextContent(/a life\s*beyond ourselves\./i)
   expect(screen.getByRole('link', { name: /start your journey/i })).toHaveAttribute(
     'href',
-    expect.stringMatching(/\/get-involved$/),
+    expect.stringMatching(/\/journey$/),
   )
   expect(screen.getByRole('link', { name: /see what's possible/i })).toHaveAttribute(
     'href',
@@ -116,7 +116,7 @@ test('closing band repeats the journey and charity shops actions', () => {
   renderWithLocale(<ClosingBand content={SEED_HOME.closing} />)
   expect(screen.getByRole('link', { name: /start your journey/i })).toHaveAttribute(
     'href',
-    expect.stringMatching(/\/get-involved$/),
+    expect.stringMatching(/\/journey$/),
   )
   expect(screen.getByRole('link', { name: /visit our charity shops/i })).toHaveAttribute(
     'href',
