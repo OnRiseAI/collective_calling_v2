@@ -88,8 +88,8 @@ vi.mock('next/navigation', async (importOriginal) => {
   }
 })
 
-import AppealsPage from '@/app/[locale]/appeals/page'
-import AppealDetailPage from '@/app/[locale]/appeals/[slug]/page'
+import AppealsPage from '@/app/[locale]/(site)/appeals/page'
+import AppealDetailPage from '@/app/[locale]/(site)/appeals/[slug]/page'
 
 function renderWithLocale(ui: React.ReactNode) {
   return render(

@@ -66,8 +66,8 @@ vi.mock('next/navigation', async (importOriginal) => {
   }
 })
 
-import StoriesPage from '@/app/[locale]/stories/page'
-import StoryDetailPage from '@/app/[locale]/stories/[slug]/page'
+import StoriesPage from '@/app/[locale]/(site)/stories/page'
+import StoryDetailPage from '@/app/[locale]/(site)/stories/[slug]/page'
 
 function renderWithLocale(ui: React.ReactNode) {
   return render(

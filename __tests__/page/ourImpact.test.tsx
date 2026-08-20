@@ -12,7 +12,7 @@ vi.mock('next-intl/server', () => ({
   setRequestLocale: () => {},
 }))
 import { ourImpactContent } from '@/lib/content/pages/ourImpact'
-import OurImpactPage from '@/app/[locale]/about/our-impact/page'
+import OurImpactPage from '@/app/[locale]/(site)/about/our-impact/page'
 
 // The page renders the locale-aware Link from next-intl, which reads the active
 // locale from context. Provide a minimal provider so anything that resolves a

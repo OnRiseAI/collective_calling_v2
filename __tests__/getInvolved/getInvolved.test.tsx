@@ -10,11 +10,11 @@ vi.mock('next-intl/server', () => ({
   setRequestLocale: () => {},
 }))
 
-import GetInvolvedPage from '@/app/[locale]/get-involved/page'
-import FundraisePage from '@/app/[locale]/get-involved/fundraise/page'
-import PrayPage from '@/app/[locale]/get-involved/pray/page'
-import PartnerPage from '@/app/[locale]/get-involved/partner/page'
-import InviteToSpeakPage from '@/app/[locale]/get-involved/invite-us-to-speak/page'
+import GetInvolvedPage from '@/app/[locale]/(site)/get-involved/page'
+import FundraisePage from '@/app/[locale]/(site)/get-involved/fundraise/page'
+import PrayPage from '@/app/[locale]/(site)/get-involved/pray/page'
+import PartnerPage from '@/app/[locale]/(site)/get-involved/partner/page'
+import InviteToSpeakPage from '@/app/[locale]/(site)/get-involved/invite-us-to-speak/page'
 
 // The pages render the locale-aware Link from next-intl, which reads the active
 // locale from context. Provide a minimal provider so anything that resolves a
