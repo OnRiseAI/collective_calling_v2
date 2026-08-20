@@ -54,3 +54,6 @@ sanity-schema.json
 
 # Scratch: web scrapes, screenshots, design references
 .firecrawl/
+
+# Design reference material, not for commit
+design-export/
