@@ -9,7 +9,7 @@ import { SEED_HOME } from '@/lib/content/home.seed'
 describe('v2 homepage seed', () => {
   test('hero carries the v2 headline with its gold accent phrase', () => {
     expect(SEED_HOME.hero.heading).toEqual({ lead: 'A life', accent: 'beyond ourselves.' })
-    expect(SEED_HOME.hero.primaryCta.href).toBe('/get-involved')
+    expect(SEED_HOME.hero.primaryCta.href).toBe('/journey')
     expect(SEED_HOME.hero.secondaryCta.href).toBe('/stories')
   })
 
@@ -48,7 +48,7 @@ describe('v2 homepage seed', () => {
   })
 
   test('the closing band offers the journey and the charity shops', () => {
-    expect(SEED_HOME.closing.primaryCta.href).toBe('/get-involved')
+    expect(SEED_HOME.closing.primaryCta.href).toBe('/journey')
     expect(SEED_HOME.closing.secondaryCta.href).toBe('/charity-shops')
   })
 

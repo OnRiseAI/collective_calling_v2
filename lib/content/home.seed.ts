@@ -17,7 +17,7 @@ export const SEED_HOME: HomeContent = {
     lede: 'We believe every person carries something that can impact the life of another.',
     image: '/design/grok-image-4f23d86d-5943-42da-9cd4-253b4accee36.jpg',
     alt: 'Father and son on the beach at sunset',
-    primaryCta: { label: 'START YOUR JOURNEY', href: '/get-involved' },
+    primaryCta: { label: 'START YOUR JOURNEY', href: '/journey' },
     secondaryCta: { label: "SEE WHAT'S POSSIBLE", href: '/stories' },
   },
   philosophy: {
@@ -135,7 +135,7 @@ export const SEED_HOME: HomeContent = {
     eyebrow: 'START YOUR JOURNEY',
     heading: { lead: 'Find your place', accent: 'in the story.' },
     body: 'Some people bring time. Some bring experience. Some bring resources. Each contribution is different, but together they become part of something greater.',
-    primaryCta: { label: 'START YOUR JOURNEY', href: '/get-involved' },
+    primaryCta: { label: 'START YOUR JOURNEY', href: '/journey' },
     secondaryCta: { label: 'VISIT OUR CHARITY SHOPS', href: '/charity-shops' },
   },
 }

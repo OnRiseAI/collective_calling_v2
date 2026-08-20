@@ -19,6 +19,7 @@ const STATIC_ROUTES: Array<{ path: string; priority: number; changeFrequency: Me
   { path: '/tanzania', priority: 0.9, changeFrequency: 'weekly' },
   { path: '/donate', priority: 0.9, changeFrequency: 'monthly' },
   { path: '/donate/ways-to-give', priority: 0.8, changeFrequency: 'monthly' },
+  { path: '/journey', priority: 0.8, changeFrequency: 'monthly' },
   { path: '/get-involved', priority: 0.9, changeFrequency: 'monthly' },
   { path: '/get-involved/sponsor-a-child', priority: 0.9, changeFrequency: 'monthly' },
   { path: '/get-involved/fundraise', priority: 0.7, changeFrequency: 'monthly' },
