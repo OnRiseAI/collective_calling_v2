@@ -38,6 +38,24 @@ export default defineConfig({
   use: {
     baseURL: `http://localhost:${PORT}`,
     navigationTimeout: 45_000,
+    // Pre-seed the welcome-gate cookie so specs land on the pages they
+    // navigate to rather than the first-visit /welcome interstitial. The gate
+    // itself is covered by welcome.spec.ts, which clears this cookie.
+    storageState: {
+      cookies: [
+        {
+          name: 'cc_welcomed',
+          value: '1',
+          domain: 'localhost',
+          path: '/',
+          expires: -1,
+          httpOnly: false,
+          secure: false,
+          sameSite: 'Lax' as const,
+        },
+      ],
+      origins: [],
+    },
   },
   webServer: {
     command: `pnpm build && pnpm start --port ${PORT}`,
