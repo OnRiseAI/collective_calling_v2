@@ -20,7 +20,7 @@ export function PhilosophySection({
           heading={content.heading}
           className="mb-[26px] mt-[18px] text-[54px] leading-[1.08] tracking-[-0.5px] max-md:text-[29px]"
         />
-        <p className="mb-[18px] mt-0 text-[17px] font-light leading-[1.8] text-muted max-md:text-[15px] max-md:leading-[1.7]">
+        <p className="mb-[18px] mt-0 text-[17px] font-normal leading-[1.8] text-muted max-md:text-[15px] max-md:leading-[1.7]">
           {content.body}
         </p>
         <p className="m-0 font-heading text-[22px] italic leading-[1.5] text-ink max-md:text-[17px]">

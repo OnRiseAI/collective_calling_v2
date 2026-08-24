@@ -28,7 +28,7 @@ export function ExpressionsSection({
               className="mb-0 mt-4 text-[56px] leading-[1.05] tracking-[-0.5px] max-md:text-[29px]"
             />
           </div>
-          <p className="m-0 max-w-[380px] text-[16px] font-light leading-[1.7] text-muted max-md:text-[15px]">
+          <p className="m-0 max-w-[380px] text-[16px] font-normal leading-[1.7] text-muted max-md:text-[15px]">
             {content.intro}
           </p>
         </Reveal>
@@ -53,7 +53,7 @@ export function ExpressionsSection({
                   {card.title}
                 </h3>
               </div>
-              <p className="mb-4 mt-3 text-[15px] font-light leading-[1.7] text-muted">
+              <p className="mb-4 mt-3 text-[15px] font-normal leading-[1.7] text-muted">
                 <em className="font-heading text-[17px] italic text-accent">
                   {card.tagline}
                 </em>

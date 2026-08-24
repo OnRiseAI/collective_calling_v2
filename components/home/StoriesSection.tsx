@@ -43,7 +43,7 @@ export function StoriesSection({
             <h3 className="mb-2 mt-[26px] font-heading text-[32px] font-normal tracking-normal max-md:mt-5 max-md:text-[24px]">
               {content.feature.title}
             </h3>
-            <p className="mb-[14px] mt-0 text-[15.5px] font-light text-muted max-md:text-[15px]">
+            <p className="mb-[14px] mt-0 text-[15.5px] font-normal text-muted max-md:text-[15px]">
               {content.feature.blurb}
             </p>
             <ArrowLink cta={{ label: 'READ MORE', href: content.feature.href }} />
@@ -64,7 +64,7 @@ export function StoriesSection({
                 <h3 className="mb-[6px] mt-5 font-heading text-[25px] font-normal tracking-normal max-md:text-[21px]">
                   {card.title}
                 </h3>
-                <p className="mb-3 mt-0 text-[15px] font-light text-muted">{card.blurb}</p>
+                <p className="mb-3 mt-0 text-[15px] font-normal text-muted">{card.blurb}</p>
                 <ArrowLink cta={{ label: 'READ MORE', href: card.href }} />
               </Reveal>
             ))}

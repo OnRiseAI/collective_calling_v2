@@ -67,7 +67,7 @@ export function ImpactStats({ content }: { content: HomeContent['impact'] }): Re
             className="mb-0 mt-4 text-[48px] leading-[1.08] tracking-[-0.5px] max-md:text-[27px]"
           />
         </div>
-        <p className="m-0 max-w-[400px] text-[16px] font-light leading-[1.7] text-muted max-md:text-[15px]">
+        <p className="m-0 max-w-[400px] text-[16px] font-normal leading-[1.7] text-muted max-md:text-[15px]">
           {content.intro}
         </p>
       </Reveal>

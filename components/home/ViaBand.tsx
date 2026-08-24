@@ -34,7 +34,7 @@ export function ViaBand({ content }: { content: HomeContent['via'] }): React.JSX
           heading={content.heading}
           className="mb-6 mt-5 text-[46px] leading-[1.12] tracking-[-0.5px] text-[#f8f4eb] max-md:text-[27px]"
         />
-        <p className="mb-9 mt-0 max-w-[440px] text-[16px] font-light leading-[1.7] text-slate max-md:text-[15px]">
+        <p className="mb-9 mt-0 max-w-[440px] text-[16px] font-normal leading-[1.7] text-slate max-md:text-[15px]">
           {content.body}
         </p>
         <ArrowLink

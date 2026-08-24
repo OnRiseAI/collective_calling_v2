@@ -9,12 +9,13 @@ import { SITE, isIndexable } from "@/lib/site";
 import { organizationJsonLd } from "@/lib/jsonld";
 import "../globals.css";
 
-// Body and UI face. Figtree is a geometric sans with a tall x-height that stays
-// quiet at 300 — the weight most of the page's running copy is set in.
+// Body and UI face. Figtree is a geometric sans with a tall x-height. Running
+// copy sits at 400 (the Aug 24 design revision lifted it from 300, which is no
+// longer loaded); 700 carries the editorial pages' bold labels and wordmark.
 const figtree = Figtree({
   variable: "--font-figtree",
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600"],
+  weight: ["400", "500", "600", "700"],
   display: "swap",
 });
 
