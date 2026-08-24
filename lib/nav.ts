@@ -1,10 +1,13 @@
 /**
- * Collective Calling information architecture (design-theme mockup, spec v2).
+ * Collective Calling information architecture (Aug 24 revision).
  *
  * Single source of truth for the global navigation, shared by the Header and
- * the Footer. The header renders the top-level section links flat (no
- * mega-menu, per the mockup); the mobile panel and footer columns use the
- * sub-items.
+ * the mobile panel. The header renders the top-level section links flat in
+ * the v2 header's own design (title case, white on the hero, gold pill); the
+ * subjects follow the editorial pages' nav: Home, Who We Are, What We Do,
+ * Get Involved, Impact, Contact. The mobile panel uses the sub-items, which
+ * keep the deeper destinations (team, partners, stories, shops, ways to get
+ * involved) reachable in one open.
  *
  * Labels are English here. Locale-aware routing is applied at render time by
  * the Link component from "@/i18n/navigation" (it prefixes the active locale).
@@ -24,6 +27,43 @@ export type NavSection = {
 
 export const NAV_SECTIONS: NavSection[] = [
   {
+    key: 'home',
+    label: 'Home',
+    href: '/',
+    items: [],
+  },
+  {
+    key: 'who-we-are',
+    label: 'Who We Are',
+    href: '/who-we-are',
+    items: [
+      { label: 'Our team', href: '/about/our-team' },
+      { label: 'Partners', href: '/about/partners' },
+    ],
+  },
+  {
+    key: 'what-we-do',
+    label: 'What We Do',
+    href: '/what-we-do',
+    items: [
+      { label: 'Stories', href: '/stories' },
+      { label: 'Charity shops', href: '/charity-shops' },
+      { label: 'Values in Action', href: '/get-involved/partner' },
+    ],
+  },
+  {
+    key: 'get-involved',
+    label: 'Get Involved',
+    href: '/get-involved',
+    items: [
+      { label: 'Sponsor a child', href: '/get-involved/sponsor-a-child' },
+      { label: 'Fundraise', href: '/get-involved/fundraise' },
+      { label: 'Events', href: '/events' },
+      { label: 'Pray', href: '/get-involved/pray' },
+      { label: 'Invite us to speak', href: '/get-involved/invite-us-to-speak' },
+    ],
+  },
+  {
     key: 'impact',
     label: 'Impact',
     href: '/about/our-impact',
@@ -33,65 +73,32 @@ export const NAV_SECTIONS: NavSection[] = [
     ],
   },
   {
-    key: 'values-in-action',
-    label: 'Values in Action',
-    href: '/get-involved/partner',
-    items: [{ label: 'Values in Action', href: '/get-involved/partner' }],
-  },
-  {
-    key: 'stories',
-    label: 'Stories',
-    href: '/stories',
-    items: [{ label: 'All stories', href: '/stories' }],
-  },
-  {
-    key: 'events',
-    label: 'Events',
-    href: '/events',
-    items: [{ label: 'Events', href: '/events' }],
-  },
-  {
-    key: 'charity-shops',
-    label: 'Charity Shops',
-    href: '/charity-shops',
-    items: [{ label: 'Charity shops', href: '/charity-shops' }],
-  },
-  {
-    key: 'about',
-    label: 'About',
-    href: '/about',
-    items: [
-      { label: 'Who we are', href: '/about/who-we-are' },
-      { label: 'What we do', href: '/about/what-we-do' },
-      { label: 'Our team', href: '/about/our-team' },
-      { label: 'Partners', href: '/about/partners' },
-    ],
-  },
-  {
     key: 'contact',
     label: 'Contact',
     href: '/contact',
-    items: [{ label: 'Contact', href: '/contact' }],
+    items: [],
   },
 ]
 
 // The persistent Donate action (footer, donate journeys).
 export const DONATE_HREF = '/donate'
 
-// The header's single CTA (mockup): the invitation, not the ask.
-export const GET_INVOLVED_HREF = '/get-involved'
+// The header's single CTA (Aug 24 revision): the journey, matching the
+// editorial pages' START YOUR JOURNEY action.
+export const JOURNEY_HREF = '/journey'
 
 /**
- * The section keys the desktop header shows, in order (v2 design). The header
- * is deliberately shorter than the full IA: Events and Contact stay in the
- * mobile panel and the footer, where a reader goes looking for them.
+ * The section keys the desktop header shows, in order. The Aug 24 revision
+ * shows the full six subjects flat — the same set as the editorial pages'
+ * header, rendered in the v2 header's own design.
  */
 export const HEADER_NAV_KEYS = [
+  'home',
+  'who-we-are',
+  'what-we-do',
+  'get-involved',
   'impact',
-  'values-in-action',
-  'stories',
-  'charity-shops',
-  'about',
+  'contact',
 ] as const
 
 export const HEADER_NAV_SECTIONS: NavSection[] = HEADER_NAV_KEYS.map((key) => {

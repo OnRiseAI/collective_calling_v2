@@ -3,12 +3,14 @@
 import { Link, usePathname } from '@/i18n/navigation'
 import { cx } from '@/lib/cx'
 import { MobileNav } from '@/components/layout/MobileNav'
-import { NAV_SECTIONS, HEADER_NAV_SECTIONS, GET_INVOLVED_HREF } from '@/lib/nav'
+import { NAV_SECTIONS, HEADER_NAV_SECTIONS, JOURNEY_HREF } from '@/lib/nav'
 
 /**
  * Global site header, transcribed from the design: absolute over the hero,
- * 30px / 64px of padding, nothing on the left, five links at 36px apart in
- * white, and the gold pill.
+ * 30px / 64px of padding, nothing on the left, flat links at 36px apart in
+ * white, and the gold pill. The Aug 24 revision keeps this design but swaps
+ * the subjects for the editorial pages' set (Home, Who We Are, What We Do,
+ * Get Involved, Impact, Contact) and points the pill at the journey.
  *
  * The design only covers the homepage. Everywhere else the same bar is given a
  * navy field and made sticky, since there is no photograph under it to sit on.
@@ -51,10 +53,10 @@ export function Header() {
           ))}
         </span>
         <Link
-          href={GET_INVOLVED_HREF}
+          href={JOURNEY_HREF}
           className="tap-min inline-flex items-center justify-center rounded-full bg-accent px-[26px] py-3 text-[14px] font-semibold text-brand-dark transition-all duration-[250ms] hover:bg-[#f8f4eb] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-brand-dark max-md:px-4 max-md:text-[13px]"
         >
-          Get Involved &rarr;
+          Start Your Journey &rarr;
         </Link>
         <MobileNav sections={NAV_SECTIONS} />
       </nav>

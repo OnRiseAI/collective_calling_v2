@@ -16,24 +16,29 @@ function renderHeader() {
   )
 }
 
-test('header shows the v2 section links flat', () => {
+test('header shows the section links flat', () => {
   renderHeader()
   for (const section of HEADER_NAV_SECTIONS) {
     expect(
       screen.getAllByRole('link', { name: new RegExp(`^${section.label}$`, 'i') }).length,
     ).toBeGreaterThan(0)
   }
-  // Events and Contact live in the mobile panel and the footer, not the bar.
+  // Events lives in the mobile panel (under Get Involved), not the bar.
   expect(screen.queryByRole('link', { name: /^events$/i })).not.toBeInTheDocument()
 })
 
-test('header CTA is Get Involved, not Donate', () => {
+test('header CTA is Start Your Journey, not Donate', () => {
   renderHeader()
-  expect(screen.getByRole('link', { name: /get involved/i })).toHaveAttribute(
+  expect(screen.getByRole('link', { name: /start your journey/i })).toHaveAttribute(
+    'href',
+    expect.stringMatching(/\/journey$/),
+  )
+  expect(screen.queryByRole('link', { name: /^donate$/i })).not.toBeInTheDocument()
+  // Get Involved is now a nav subject, not the CTA.
+  expect(screen.getByRole('link', { name: /^get involved$/i })).toHaveAttribute(
     'href',
     expect.stringMatching(/\/get-involved$/),
   )
-  expect(screen.queryByRole('link', { name: /^donate$/i })).not.toBeInTheDocument()
 })
 
 test('header has a mobile menu toggle', () => {

@@ -32,24 +32,41 @@ test.describe('mobile navigation', () => {
 test.describe('desktop flat nav', () => {
   test.use({ viewport: { width: 1280, height: 900 } })
 
-  test('the v2 section links are visible and Get Involved is the CTA', async ({ page }) => {
+  test('the section links are visible and Start Your Journey is the CTA', async ({ page }) => {
     await page.goto('/')
 
     const primaryNav = page.getByRole('navigation', { name: /primary/i })
-    for (const label of ['Impact', 'Values in Action', 'Stories', 'Charity Shops', 'About']) {
+    // Aug 24 revision: the bar carries the editorial pages' six subjects in
+    // the v2 header's own design.
+    for (const label of [
+      'Home',
+      'Who We Are',
+      'What We Do',
+      'Get Involved',
+      'Impact',
+      'Contact',
+    ]) {
       await expect(primaryNav.getByRole('link', { name: label, exact: true })).toBeVisible()
     }
-    // Events and Contact are reachable from the mobile panel and the footer,
-    // but the v2 header bar carries only the five links above.
-    for (const label of ['Events', 'Contact']) {
+    // The pre-revision subjects moved into the mobile panel sub-items.
+    for (const label of ['Stories', 'Charity Shops', 'About', 'Events']) {
       await expect(primaryNav.getByRole('link', { name: label, exact: true })).toHaveCount(0)
     }
 
-    // The design writes the arrow into the CTA's own label, so its accessible
-    // name is "Get Involved →".
-    await expect(page.getByRole('link', { name: /^get involved/i })).toHaveAttribute(
+    // The new pages are wired in.
+    await expect(primaryNav.getByRole('link', { name: 'Who We Are', exact: true })).toHaveAttribute(
       'href',
-      /\/get-involved$/,
+      /\/who-we-are$/,
     )
+    await expect(primaryNav.getByRole('link', { name: 'What We Do', exact: true })).toHaveAttribute(
+      'href',
+      /\/what-we-do$/,
+    )
+
+    // The design writes the arrow into the CTA's own label, so its accessible
+    // name is "Start Your Journey →".
+    await expect(
+      primaryNav.getByRole('link', { name: /^start your journey/i }),
+    ).toHaveAttribute('href', /\/journey$/)
   })
 })

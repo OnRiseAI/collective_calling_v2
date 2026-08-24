@@ -179,19 +179,21 @@ export function MobileNav({ sections }: { sections: NavSection[] }) {
                     >
                       {section.label}
                     </Link>
-                    <ul className="mt-2 flex flex-col gap-1 border-l border-muted/25 pl-4">
-                      {section.items.map((item) => (
-                        <li key={item.href}>
-                          <Link
-                            href={item.href}
-                            onClick={close}
-                            className="flex min-h-11 items-center rounded-md py-1.5 text-base text-ink/85 transition-colors hover:text-brand focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
-                          >
-                            {item.label}
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
+                    {section.items.length > 0 && (
+                      <ul className="mt-2 flex flex-col gap-1 border-l border-muted/25 pl-4">
+                        {section.items.map((item) => (
+                          <li key={item.href}>
+                            <Link
+                              href={item.href}
+                              onClick={close}
+                              className="flex min-h-11 items-center rounded-md py-1.5 text-base text-ink/85 transition-colors hover:text-brand focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+                            >
+                              {item.label}
+                            </Link>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
                   </li>
                 ))}
               </ul>
