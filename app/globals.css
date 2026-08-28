@@ -46,6 +46,7 @@
   /* High-contrast serif display over a geometric sans body. */
   --font-heading: var(--font-instrument-serif), Georgia, "Times New Roman", serif;
   --font-body: var(--font-figtree), system-ui, -apple-system, sans-serif;
+  --font-hand: var(--font-caveat), "Segoe Script", cursive;
 
   --radius: 0.25rem;
 

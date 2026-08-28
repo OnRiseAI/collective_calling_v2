@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { notFound } from "next/navigation";
-import { Figtree, Instrument_Serif } from "next/font/google";
+import { Caveat, Figtree, Instrument_Serif } from "next/font/google";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages, setRequestLocale } from "next-intl/server";
 import { routing } from "@/i18n/routing";
@@ -26,6 +26,14 @@ const instrumentSerif = Instrument_Serif({
   subsets: ["latin"],
   weight: "400",
   style: ["normal", "italic"],
+  display: "swap",
+});
+
+// Handwritten thank-you line on the Support page only.
+const caveat = Caveat({
+  variable: "--font-caveat",
+  subsets: ["latin"],
+  weight: "500",
   display: "swap",
 });
 
@@ -96,7 +104,7 @@ export default async function LocaleLayout({
   return (
     <html
       lang={locale}
-      className={`${figtree.variable} ${instrumentSerif.variable} h-full antialiased`}
+      className={`${figtree.variable} ${instrumentSerif.variable} ${caveat.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
         {/* Entrance motion is server-rendered at its start state (opacity 0),

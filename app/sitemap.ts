@@ -22,6 +22,7 @@ const STATIC_ROUTES: Array<{ path: string; priority: number; changeFrequency: Me
   { path: '/spain', priority: 0.9, changeFrequency: 'weekly' },
   { path: '/tanzania', priority: 0.9, changeFrequency: 'weekly' },
   { path: '/donate', priority: 0.9, changeFrequency: 'monthly' },
+  { path: '/support', priority: 0.9, changeFrequency: 'monthly' },
   { path: '/donate/ways-to-give', priority: 0.8, changeFrequency: 'monthly' },
   { path: '/journey', priority: 0.8, changeFrequency: 'monthly' },
   { path: '/get-involved', priority: 0.9, changeFrequency: 'monthly' },

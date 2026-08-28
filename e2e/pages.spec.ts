@@ -41,6 +41,7 @@ const ROUTES = [
   '/get-involved/pray',
   '/get-involved/partner',
   '/get-involved/invite-us-to-speak',
+  '/support',
 ]
 
 /**

@@ -20,7 +20,7 @@ test('the header sits over the hero on the homepage and is solid elsewhere', asy
   const header = page.locator('header').first()
   await expect(header).toHaveCSS('position', 'absolute')
 
-  await page.goto('/stories')
+  await page.goto('/contact')
   await expect(page.locator('header').first()).toHaveCSS('position', 'sticky')
 })
 

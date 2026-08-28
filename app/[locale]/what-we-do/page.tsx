@@ -19,9 +19,9 @@ export async function generateMetadata({
 }
 
 /**
- * What We Do (/what-we-do). Chrome-free like /who-we-are: the design carries
- * its own header and closes on the "What do you carry?" band with no site
- * footer. All copy is static in the component — nothing here reads Sanity.
+ * What We Do (/what-we-do). Sits outside the (site) route group and carries
+ * the v3 SiteHeader and SiteFooter. All copy is static in the component;
+ * nothing here reads Sanity.
  */
 export default async function WhatWeDoPage({
   params,

@@ -80,12 +80,25 @@ export const NAV_SECTIONS: NavSection[] = [
   },
 ]
 
-// The persistent Donate action (footer, donate journeys).
+// The persistent Donate action (footer, donate journeys, and the v3 GIVE pill).
 export const DONATE_HREF = '/donate'
+
+// Designed Support page (v3). GIVE in the site header lands here; /donate
+// still hosts the Donorbox embed so existing CTAs keep working.
+export const SUPPORT_HREF = '/support'
 
 // The header's single CTA (Aug 24 revision): the journey, matching the
 // editorial pages' START YOUR JOURNEY action.
 export const JOURNEY_HREF = '/journey'
+
+export type SiteHeaderActive = 'who' | 'what' | 'stories' | 'contact' | ''
+
+export const SITE_HEADER_WHAT_WE_DO: NavItem[] = [
+  { label: 'Children & Families', href: '/what-we-do#children-families' },
+  { label: 'Homelessness & Restoration', href: '/what-we-do#homelessness-restoration' },
+  { label: 'Values in Action', href: '/what-we-do#values-in-action' },
+  { label: 'Events & Experiences', href: '/events' },
+]
 
 /**
  * The section keys the desktop header shows, in order. The Aug 24 revision

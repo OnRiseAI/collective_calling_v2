@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import { setRequestLocale } from 'next-intl/server'
-import { WhoWeAre } from '@/components/who-we-are/WhoWeAre'
+import { Events } from '@/components/events/Events'
 import { pageMetadata } from '@/lib/seo'
 
 export async function generateMetadata({
@@ -11,24 +11,24 @@ export async function generateMetadata({
   const { locale } = await params
   return pageMetadata({
     locale,
-    path: '/who-we-are',
-    title: 'Who we are',
+    path: '/events',
+    title: 'Events & Experiences',
     description:
-      'We believe every person possesses inherent worth — and sometimes, the right environment can help someone rediscover it.',
+      'Gatherings, experiences and moments that bring people together around one purpose.',
   })
 }
 
 /**
- * Who We Are (/who-we-are). An editorial page that sits outside the (site)
- * route group on purpose: it carries the v3 SiteHeader and SiteFooter.
+ * Events & Experiences (/events). An editorial page that sits outside the
+ * (site) route group on purpose: it carries the v3 SiteHeader and SiteFooter.
  * All copy is static in the component; nothing here reads Sanity.
  */
-export default async function WhoWeArePage({
+export default async function EventsPage({
   params,
 }: {
   params: Promise<{ locale: string }>
 }) {
   const { locale } = await params
   setRequestLocale(locale)
-  return <WhoWeAre />
+  return <Events />
 }

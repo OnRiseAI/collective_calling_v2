@@ -1,27 +1,24 @@
 import * as React from 'react'
 import Image from 'next/image'
 import { Link } from '@/i18n/navigation'
-import { EditorialHeader } from '@/components/layout/EditorialHeader'
+import { SiteHeader } from '@/components/layout/SiteHeader'
+import { SiteFooter } from '@/components/layout/SiteFooter'
 
 /**
- * What We Do — transcribed from `What We Do.dc.html` (Aug 24 design export).
- * Chrome-free like Who We Are: its own EditorialHeader, no site footer, and
- * it closes on the "What do you carry?" journey band. All copy is static.
- *
- * The design's breakpoints are mirrored: rows stack below 1024px with the
- * photo first (`order: -1`), the hero photo drops its mask and becomes a
- * banner, and paddings/heading sizes step down below 680px.
+ * What We Do, transcribed from the v3 `What We Do.dc.html`.
+ * Uses the shared SiteHeader / SiteFooter. Rows stack below 1024px with the
+ * photo first; paddings step down below 680px. All copy is static.
  */
 
 const GOLD = '#C89A3C'
-const GOLD_DEEP = '#AD7E1E'
+const GOLD_DEEP = '#8A5F16'
 
 function Rule({ className }: { className?: string }): React.JSX.Element {
   return <div className={`h-[2px] w-10 bg-[#C89A3C] ${className ?? ''}`} />
 }
 
 function SectionIndex({ children }: { children: string }): React.JSX.Element {
-  return <div className="font-heading text-[32px] text-[#AD7E1E]">{children}</div>
+  return <div className="font-heading text-[32px] text-[#8A5F16]">{children}</div>
 }
 
 function RowLink({
@@ -37,7 +34,7 @@ function RowLink({
     <div>
       <Link
         href={href}
-        className="text-[14px] font-bold tracking-[1.4px] text-[#AD7E1E] transition-colors hover:text-[#C89A3C]"
+        className="text-[14px] font-bold tracking-[1.4px] text-[#8A5F16] transition-colors hover:text-[#C89A3C]"
       >
         {label} <span aria-hidden="true">→</span>
       </Link>
@@ -49,10 +46,9 @@ function RowLink({
 function Hero(): React.JSX.Element {
   return (
     <section aria-label="What we do" className="relative overflow-hidden bg-[#F4F0E8]">
-      <EditorialHeader tone="light" current="/what-we-do" />
       <div className="grid grid-cols-[48fr_52fr] items-stretch max-lg:grid-cols-1">
-        <div className="py-16 pb-[84px] pl-[90px] pr-10 max-[680px]:px-7">
-          <div className="text-[14px] font-bold tracking-[2.4px] text-[#AD7E1E]">WHAT WE DO</div>
+        <div className="pb-[84px] pt-[150px] pr-10 pl-16 max-[680px]:px-7">
+          <div className="text-[14px] font-bold tracking-[2.4px] text-[#8A5F16]">WHAT WE DO</div>
           <h1 className="mt-6 max-w-[520px] font-heading text-[62px] font-normal leading-[1.14] max-[680px]:text-[40px]">
             Where something
             <br />
@@ -82,8 +78,9 @@ function Hero(): React.JSX.Element {
 function BelongRow(): React.JSX.Element {
   return (
     <section
+      id="children-families"
       aria-label="A place to belong"
-      className="grid grid-cols-[48fr_52fr] bg-[#FAF7F1] max-lg:grid-cols-1"
+      className="grid scroll-mt-[84px] grid-cols-[48fr_52fr] bg-[#FAF7F1] max-lg:grid-cols-1"
     >
       <div className="relative min-h-[480px] overflow-hidden max-lg:order-first max-lg:min-h-[340px]">
         <Image
@@ -161,8 +158,9 @@ function BelongRow(): React.JSX.Element {
 function SeenRow(): React.JSX.Element {
   return (
     <section
+      id="homelessness-restoration"
       aria-label="A place to be seen"
-      className="grid grid-cols-[48fr_52fr] bg-[#F4F0E8] max-lg:grid-cols-1"
+      className="grid scroll-mt-[84px] grid-cols-[48fr_52fr] bg-[#F4F0E8] max-lg:grid-cols-1"
     >
       <div className="flex flex-col justify-center py-[72px] pl-[90px] pr-[72px] max-[680px]:px-7">
         <SectionIndex>02</SectionIndex>
@@ -325,7 +323,7 @@ function ContributeRow(): React.JSX.Element {
                 <div className="mt-3 flex min-h-12 items-start">
                   <Link
                     href={item.href}
-                    className="text-[13px] font-bold leading-[1.7] tracking-[1.2px] text-[#AD7E1E] transition-colors hover:text-[#C89A3C]"
+                    className="text-[13px] font-bold leading-[1.7] tracking-[1.2px] text-[#8A5F16] transition-colors hover:text-[#C89A3C]"
                   >
                     {item.label} <span aria-hidden="true">→</span>
                   </Link>
@@ -345,8 +343,9 @@ function ContributeRow(): React.JSX.Element {
 function ValuesRow(): React.JSX.Element {
   return (
     <section
+      id="values-in-action"
       aria-label="A place for values to travel"
-      className="grid grid-cols-[48fr_52fr] bg-[#F4F0E8] max-lg:grid-cols-1"
+      className="grid scroll-mt-[84px] grid-cols-[48fr_52fr] bg-[#F4F0E8] max-lg:grid-cols-1"
     >
       <div className="flex flex-col justify-center py-[72px] pl-[90px] pr-[72px] max-[680px]:px-7">
         <SectionIndex>04</SectionIndex>
@@ -386,7 +385,7 @@ function ExpressionsClose(): React.JSX.Element {
   return (
     <section aria-label="Different expressions" className="px-[90px] py-24 text-center max-[680px]:px-7">
       <h2 className="m-0 font-heading text-[44px] font-normal leading-[1.18] max-[680px]:text-[30px]">
-        Different expressions. <em className="italic text-[#AD7E1E]">The same root.</em>
+        Different expressions. <em className="italic text-[#8A5F16]">The same root.</em>
       </h2>
       <Rule className="mx-auto mt-7" />
       <p className="mt-7 text-[17px] leading-[1.9] text-[#2A2520]">Every life carries worth.</p>
@@ -539,6 +538,7 @@ function CarryBand(): React.JSX.Element {
 export function WhatWeDo(): React.JSX.Element {
   return (
     <div className="bg-[#F4F0E8] font-body text-[#1E1B17]">
+      <SiteHeader active="what" tone="light" />
       <Hero />
       <BelongRow />
       <SeenRow />
@@ -546,6 +546,7 @@ export function WhatWeDo(): React.JSX.Element {
       <ValuesRow />
       <ExpressionsClose />
       <CarryBand />
+      <SiteFooter />
     </div>
   )
 }

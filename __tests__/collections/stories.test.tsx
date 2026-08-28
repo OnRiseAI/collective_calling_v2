@@ -66,7 +66,7 @@ vi.mock('next/navigation', async (importOriginal) => {
   }
 })
 
-import StoriesPage from '@/app/[locale]/(site)/stories/page'
+import StoriesPage from '@/app/[locale]/stories/page'
 import StoryDetailPage from '@/app/[locale]/(site)/stories/[slug]/page'
 
 function renderWithLocale(ui: React.ReactNode) {
@@ -87,22 +87,7 @@ test('the hub renders exactly one h1', async () => {
 
   const h1s = screen.getAllByRole('heading', { level: 1 })
   expect(h1s).toHaveLength(1)
-})
-
-test('the hub renders a link to /stories/caleb', async () => {
-  const ui = await StoriesPage({ params: Promise.resolve({ locale: 'en' }) })
-  renderWithLocale(ui)
-
-  const links = screen.getAllByRole('link')
-  const calebs = links.filter((l) => l.getAttribute('href')?.includes('/stories/caleb'))
-  expect(calebs.length).toBeGreaterThan(0)
-})
-
-test('the hub renders a "Sample content" badge for the placeholder story', async () => {
-  const ui = await StoriesPage({ params: Promise.resolve({ locale: 'en' }) })
-  renderWithLocale(ui)
-
-  expect(screen.getByText('Sample content')).toBeInTheDocument()
+  expect(h1s[0]).toHaveTextContent(/Lives\.\s*Journeys\.\s*Transformation/)
 })
 
 // ---------------------------------------------------------------------------
