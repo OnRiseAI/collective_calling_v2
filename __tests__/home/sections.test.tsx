@@ -11,6 +11,7 @@ import { StoriesSection } from '@/components/home/StoriesSection'
 import { ImpactCta } from '@/components/home/ImpactCta'
 import { PartnersStrip } from '@/components/home/PartnersStrip'
 import { ClosingBand } from '@/components/home/ClosingBand'
+import { EventBand } from '@/components/home/EventBand'
 import { SEED_HOME } from '@/lib/content/home.seed'
 
 function renderWithLocale(ui: React.ReactNode) {
@@ -20,6 +21,19 @@ function renderWithLocale(ui: React.ReactNode) {
     </NextIntlClientProvider>,
   )
 }
+
+test('the fashion show band links to the event page', () => {
+  renderWithLocale(<EventBand />)
+  expect(screen.getByRole('heading', { name: /the fashion show/i })).toBeInTheDocument()
+  expect(screen.getByRole('link', { name: /find out more/i })).toHaveAttribute(
+    'href',
+    expect.stringMatching(/\/events\/fashion-show$/),
+  )
+  expect(screen.getByRole('link', { name: /reserve your place/i })).toHaveAttribute(
+    'href',
+    expect.stringMatching(/^mailto:info@collectivecalling\.org/),
+  )
+})
 
 test('hero owns the page h1 and both opening actions', () => {
   renderWithLocale(<HeroSection content={SEED_HOME.hero} />)

@@ -1,20 +1,20 @@
-import { Header } from "@/components/layout/Header";
-import { Footer } from "@/components/layout/Footer";
+import { SiteHeader } from "@/components/layout/SiteHeader";
+import { SiteFooter } from "@/components/layout/SiteFooter";
 
 /**
- * Site chrome for every ordinary page: header above, footer below, the page
- * itself filling the space between. The journey at /[locale]/journey sits
- * outside this route group on purpose — it is a full-viewport experience with
- * no chrome, so it renders straight under the locale layout.
+ * v3 chrome for the homepage and leftover inner pages (about, donate, contact).
+ * Editorial pages (who-we-are, stories, support, events) sit outside this
+ * group and mount SiteHeader / SiteFooter themselves. Journey and welcome
+ * stay chrome-free.
  */
 export default function SiteLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <>
-      <Header />
+      <SiteHeader />
       <main className="flex-1">{children}</main>
-      <Footer />
+      <SiteFooter />
     </>
   );
 }

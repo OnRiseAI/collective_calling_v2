@@ -11,7 +11,7 @@ test.describe('mobile navigation', () => {
   }) => {
     await page.goto('/')
 
-    const toggle = page.getByRole('button', { name: /^menu$/i })
+    const toggle = page.getByRole('button', { name: /open menu/i })
     await expect(toggle).toHaveAttribute('aria-expanded', 'false')
 
     await toggle.click()
@@ -19,7 +19,6 @@ test.describe('mobile navigation', () => {
 
     const panel = page.getByRole('dialog', { name: /site menu/i })
     await expect(panel).toBeVisible()
-    // A destination inside the panel is reachable.
     await expect(panel.getByRole('link', { name: /who we are/i })).toBeVisible()
 
     // Escape closes and returns aria-expanded to false.
@@ -35,38 +34,24 @@ test.describe('desktop flat nav', () => {
   test('the section links are visible and Start Your Journey is the CTA', async ({ page }) => {
     await page.goto('/')
 
-    const primaryNav = page.getByRole('navigation', { name: /primary/i })
-    // Aug 24 revision: the bar carries the editorial pages' six subjects in
-    // the v2 header's own design.
-    for (const label of [
-      'Home',
-      'Who We Are',
-      'What We Do',
-      'Get Involved',
-      'Impact',
-      'Contact',
-    ]) {
+    const primaryNav = page.getByRole('navigation', { name: /^main$/i })
+    for (const label of ['WHO WE ARE', 'WHAT WE DO', 'STORIES', 'CONTACT']) {
       await expect(primaryNav.getByRole('link', { name: label, exact: true })).toBeVisible()
     }
-    // The pre-revision subjects moved into the mobile panel sub-items.
-    for (const label of ['Stories', 'Charity Shops', 'About', 'Events']) {
-      await expect(primaryNav.getByRole('link', { name: label, exact: true })).toHaveCount(0)
-    }
-
-    // The new pages are wired in.
-    await expect(primaryNav.getByRole('link', { name: 'Who We Are', exact: true })).toHaveAttribute(
+    await expect(primaryNav.getByRole('link', { name: 'WHO WE ARE', exact: true })).toHaveAttribute(
       'href',
       /\/who-we-are$/,
     )
-    await expect(primaryNav.getByRole('link', { name: 'What We Do', exact: true })).toHaveAttribute(
+    await expect(primaryNav.getByRole('link', { name: 'WHAT WE DO', exact: true })).toHaveAttribute(
       'href',
       /\/what-we-do$/,
     )
-
-    // The design writes the arrow into the CTA's own label, so its accessible
-    // name is "Start Your Journey →".
+    await expect(page.getByRole('link', { name: /^give$/i }).first()).toHaveAttribute(
+      'href',
+      /\/support$/,
+    )
     await expect(
-      primaryNav.getByRole('link', { name: /^start your journey/i }),
+      page.getByRole('link', { name: /^start your journey/i }).first(),
     ).toHaveAttribute('href', /\/journey$/)
   })
 })

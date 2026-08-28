@@ -12,6 +12,7 @@ import { StoriesSection } from '@/components/home/StoriesSection'
 import { ImpactCta } from '@/components/home/ImpactCta'
 import { PartnersStrip } from '@/components/home/PartnersStrip'
 import { ClosingBand } from '@/components/home/ClosingBand'
+import { EventBand } from '@/components/home/EventBand'
 
 export async function generateMetadata({
   params,
@@ -53,6 +54,7 @@ export default async function Home({
   return (
     <div className="bg-paper font-body text-[16px] leading-normal text-ink">
       <HeroSection content={content.hero} />
+      <EventBand />
       <PhilosophySection content={content.philosophy} />
       <ExpressionsSection content={content.expressions} />
       <ViaBand content={content.via} />

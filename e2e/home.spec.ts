@@ -15,13 +15,17 @@ test('hero renders the v2 headline as the page h1', async ({ page }) => {
   await expect(h1).toContainText(/beyond\sourselves\./i)
 })
 
-test('the header sits over the hero on the homepage and is solid elsewhere', async ({ page }) => {
+test('the header is fixed over the hero and the fashion show band is on the homepage', async ({
+  page,
+}) => {
   await page.goto('/')
   const header = page.locator('header').first()
-  await expect(header).toHaveCSS('position', 'absolute')
-
-  await page.goto('/contact')
-  await expect(page.locator('header').first()).toHaveCSS('position', 'sticky')
+  await expect(header).toHaveCSS('position', 'fixed')
+  await expect(page.getByRole('heading', { name: /the fashion show/i }).first()).toBeVisible()
+  await expect(page.getByRole('link', { name: /find out more/i })).toHaveAttribute(
+    'href',
+    /\/events\/fashion-show$/,
+  )
 })
 
 test('hero CTAs open the journey and the stories', async ({ page }) => {

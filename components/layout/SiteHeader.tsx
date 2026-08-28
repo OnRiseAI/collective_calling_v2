@@ -1,7 +1,7 @@
 'use client'
 
 import * as React from 'react'
-import { Link } from '@/i18n/navigation'
+import { Link, usePathname } from '@/i18n/navigation'
 import { cx } from '@/lib/cx'
 import { Emblem } from '@/components/layout/Emblem'
 import {
@@ -22,21 +22,28 @@ const SCROLL_LOCK_PX = 8
 
 export function SiteHeader({
   active = '',
-  tone = 'dark',
+  tone,
 }: {
   active?: SiteHeaderActive
   tone?: 'dark' | 'light'
 }): React.JSX.Element {
-  const [solid, setSolid] = React.useState(tone === 'light')
+  const pathname = usePathname()
+  const isHome = pathname === '/' || pathname === ''
+  const resolvedTone = tone ?? (isHome ? 'dark' : 'light')
+  const [solid, setSolid] = React.useState(resolvedTone === 'light')
   const [drawerOpen, setDrawerOpen] = React.useState(false)
 
   React.useEffect(() => {
-    if (tone === 'light') return
+    setSolid(resolvedTone === 'light')
+  }, [resolvedTone])
+
+  React.useEffect(() => {
+    if (resolvedTone === 'light') return
     const onScroll = () => setSolid(window.scrollY > SCROLL_LOCK_PX)
     onScroll()
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
-  }, [tone])
+  }, [resolvedTone])
 
   React.useEffect(() => {
     if (!drawerOpen) return
@@ -227,7 +234,7 @@ export function SiteHeader({
           />
           <aside
             role="dialog"
-            aria-label="Menu"
+            aria-label="Site menu"
             className="fixed top-0 right-0 bottom-0 z-[1002] flex w-[min(380px,88vw)] flex-col bg-[#FAF7F1] shadow-[-16px_0_50px_rgba(16,12,6,0.3)]"
           >
             <div className="flex items-center justify-end px-5 pt-5">
