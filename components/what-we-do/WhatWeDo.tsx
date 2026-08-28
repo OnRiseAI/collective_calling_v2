@@ -3,6 +3,8 @@ import Image from 'next/image'
 import { Link } from '@/i18n/navigation'
 import { SiteHeader } from '@/components/layout/SiteHeader'
 import { SiteFooter } from '@/components/layout/SiteFooter'
+import { FadeIn } from '@/components/ui/FadeIn'
+import { Reveal } from '@/components/ui/Reveal'
 
 /**
  * What We Do, transcribed from the v3 `What We Do.dc.html`.
@@ -48,6 +50,7 @@ function Hero(): React.JSX.Element {
     <section aria-label="What we do" className="relative overflow-hidden bg-[#F4F0E8]">
       <div className="grid grid-cols-[48fr_52fr] items-stretch max-lg:grid-cols-1">
         <div className="pb-[84px] pt-[150px] pr-10 pl-16 max-[680px]:px-7">
+          <FadeIn>
           <div className="text-[14px] font-bold tracking-[2.4px] text-[#8A5F16]">WHAT WE DO</div>
           <h1 className="mt-6 max-w-[520px] font-heading text-[62px] font-normal leading-[1.14] max-[680px]:text-[40px]">
             Where something
@@ -59,6 +62,7 @@ function Hero(): React.JSX.Element {
             Different lives need different environments. So our work doesn&rsquo;t take one form.
             It meets people where they are and creates space for what could come next.
           </p>
+          </FadeIn>
         </div>
         <div className="relative overflow-hidden max-lg:min-h-[380px]">
           <Image
@@ -91,7 +95,7 @@ function BelongRow(): React.JSX.Element {
           className="object-cover"
         />
       </div>
-      <div className="flex flex-col justify-center py-[72px] pl-[72px] pr-[90px] max-[680px]:px-7">
+      <Reveal className="flex flex-col justify-center py-[72px] pl-[72px] pr-[90px] max-[680px]:px-7">
         <SectionIndex>01</SectionIndex>
         <h2 className="mt-2.5 font-heading text-[44px] font-normal leading-[1.18] max-[680px]:text-[30px]">
           A place to belong.
@@ -150,7 +154,7 @@ function BelongRow(): React.JSX.Element {
             />
           </div>
         </div>
-      </div>
+      </Reveal>
     </section>
   )
 }
@@ -162,7 +166,7 @@ function SeenRow(): React.JSX.Element {
       aria-label="A place to be seen"
       className="grid scroll-mt-[84px] grid-cols-[48fr_52fr] bg-[#F4F0E8] max-lg:grid-cols-1"
     >
-      <div className="flex flex-col justify-center py-[72px] pl-[90px] pr-[72px] max-[680px]:px-7">
+      <Reveal className="flex flex-col justify-center py-[72px] pl-[90px] pr-[72px] max-[680px]:px-7">
         <SectionIndex>02</SectionIndex>
         <h2 className="mt-2.5 font-heading text-[44px] font-normal leading-[1.18] max-[680px]:text-[30px]">
           A place to be seen.
@@ -176,7 +180,7 @@ function SeenRow(): React.JSX.Element {
         <div className="mt-8">
           <RowLink href="/spain" label="HOMELESSNESS & RESTORATION" sub="Step inside." />
         </div>
-      </div>
+      </Reveal>
       <div className="relative min-h-[480px] overflow-hidden max-lg:order-first max-lg:min-h-[340px]">
         <Image
           src="/images/what-we-do/seen.png"
@@ -295,7 +299,7 @@ function ContributeRow(): React.JSX.Element {
           className="object-cover"
         />
       </div>
-      <div className="flex flex-col justify-center py-[72px] pl-[72px] pr-[90px] max-[680px]:px-7">
+      <Reveal className="flex flex-col justify-center py-[72px] pl-[72px] pr-[90px] max-[680px]:px-7">
         <SectionIndex>03</SectionIndex>
         <h2 className="mt-2.5 font-heading text-[44px] font-normal leading-[1.18] max-[680px]:text-[30px]">
           A place to contribute.
@@ -335,7 +339,7 @@ function ContributeRow(): React.JSX.Element {
             </React.Fragment>
           ))}
         </div>
-      </div>
+      </Reveal>
     </section>
   )
 }
@@ -347,7 +351,7 @@ function ValuesRow(): React.JSX.Element {
       aria-label="A place for values to travel"
       className="grid scroll-mt-[84px] grid-cols-[48fr_52fr] bg-[#F4F0E8] max-lg:grid-cols-1"
     >
-      <div className="flex flex-col justify-center py-[72px] pl-[90px] pr-[72px] max-[680px]:px-7">
+      <Reveal className="flex flex-col justify-center py-[72px] pl-[90px] pr-[72px] max-[680px]:px-7">
         <SectionIndex>04</SectionIndex>
         <h2 className="mt-2.5 font-heading text-[44px] font-normal leading-[1.18] max-[680px]:text-[30px]">
           A place for
@@ -367,7 +371,7 @@ function ValuesRow(): React.JSX.Element {
             sub="See values in action."
           />
         </div>
-      </div>
+      </Reveal>
       <div className="relative min-h-[440px] overflow-hidden max-lg:order-first max-lg:min-h-[340px]">
         <Image
           src="/images/what-we-do/values.jpg"
@@ -384,6 +388,7 @@ function ValuesRow(): React.JSX.Element {
 function ExpressionsClose(): React.JSX.Element {
   return (
     <section aria-label="Different expressions" className="px-[90px] py-24 text-center max-[680px]:px-7">
+      <Reveal>
       <h2 className="m-0 font-heading text-[44px] font-normal leading-[1.18] max-[680px]:text-[30px]">
         Different expressions. <em className="italic text-[#8A5F16]">The same root.</em>
       </h2>
@@ -396,6 +401,7 @@ function ExpressionsClose(): React.JSX.Element {
         What one person receives can eventually travel into{' '}
         <strong className="font-bold text-[#1E1B17]">the life of another.</strong>
       </p>
+      </Reveal>
     </section>
   )
 }
@@ -498,7 +504,7 @@ function CarryBand(): React.JSX.Element {
             'linear-gradient(to right, rgba(16,12,6,0.92) 0%, rgba(16,12,6,0.62) 30%, rgba(16,12,6,0.18) 52%, rgba(16,12,6,0.5) 78%, rgba(16,12,6,0.78) 100%)',
         }}
       />
-      <div className="relative z-10 grid grid-cols-[1.15fr_0.85fr] items-center gap-16 px-[90px] py-[84px] max-lg:grid-cols-1 max-lg:gap-11 max-[680px]:px-7">
+      <Reveal className="relative z-10 grid grid-cols-[1.15fr_0.85fr] items-center gap-16 px-[90px] py-[84px] max-lg:grid-cols-1 max-lg:gap-11 max-[680px]:px-7">
         <div>
           <div className="text-[14px] font-bold tracking-[2.4px] text-[#C89A3C]">
             WHAT DO YOU CARRY?
@@ -530,7 +536,7 @@ function CarryBand(): React.JSX.Element {
             </li>
           ))}
         </ul>
-      </div>
+      </Reveal>
     </section>
   )
 }

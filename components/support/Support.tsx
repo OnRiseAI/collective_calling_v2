@@ -4,6 +4,8 @@ import { Link } from '@/i18n/navigation'
 import { SiteHeader } from '@/components/layout/SiteHeader'
 import { SiteFooter } from '@/components/layout/SiteFooter'
 import { DonateCard } from '@/components/support/DonateCard'
+import { FadeIn } from '@/components/ui/FadeIn'
+import { Reveal } from '@/components/ui/Reveal'
 import { JOURNEY_HREF } from '@/lib/nav'
 
 const IMPACT: {
@@ -108,6 +110,7 @@ function Hero(): React.JSX.Element {
         }}
       />
       <div className="relative z-10 max-w-[720px] px-16 pt-[150px] pb-[88px] max-[680px]:px-7">
+        <FadeIn>
         <div className="flex items-center gap-4">
           <span className="text-[14px] font-bold tracking-[2.4px] text-[#C89A3C]">SUPPORT</span>
           <span className="h-px w-10 bg-[#C89A3C]" />
@@ -121,6 +124,7 @@ function Hero(): React.JSX.Element {
           Your generosity helps create environments where children and adults can experience
           healing, dignity and hope.
         </p>
+        </FadeIn>
       </div>
     </section>
   )
@@ -130,7 +134,7 @@ function GiveSection(): React.JSX.Element {
   return (
     <section aria-label="Make a donation" className="px-16 py-[88px] max-[680px]:px-7">
       <div className="mx-auto grid max-w-[1320px] grid-cols-[1fr_1.05fr] items-center gap-20 max-lg:grid-cols-1 max-lg:gap-12">
-        <div>
+        <Reveal>
           <h2 className="m-0 max-w-[460px] font-heading text-[46px] font-normal leading-[1.2] max-[680px]:text-[32px]">
             We exist to create environments where transformation happens.
           </h2>
@@ -144,8 +148,10 @@ function GiveSection(): React.JSX.Element {
           <p className="mt-[34px] font-hand text-[29px] text-[#8A5F16]">
             Thank you for being part of the journey.
           </p>
-        </div>
-        <DonateCard />
+        </Reveal>
+        <Reveal delay={0.07}>
+          <DonateCard />
+        </Reveal>
       </div>
     </section>
   )
@@ -154,7 +160,7 @@ function GiveSection(): React.JSX.Element {
 function ImpactSection(): React.JSX.Element {
   return (
     <section aria-label="Your support creates real change" className="bg-[#EDE8DD] py-[84px]">
-      <div className="px-16 text-center max-[680px]:px-7">
+      <Reveal className="px-16 text-center max-[680px]:px-7">
         <h2 className="m-0 font-heading text-[44px] font-normal leading-[1.18] max-[680px]:text-[32px]">
           Your support creates real change
         </h2>
@@ -162,11 +168,11 @@ function ImpactSection(): React.JSX.Element {
         <p className="mx-auto mt-6 max-w-[420px] text-[16px] leading-[1.8] text-[#4A443B]">
           Every donation, big or small, helps us show up, serve well and stay for the long haul.
         </p>
-      </div>
+      </Reveal>
       <div className="mx-auto mt-14 grid max-w-[1320px] grid-cols-4 gap-7 px-16 max-lg:grid-cols-2 max-[680px]:grid-cols-1 max-[680px]:px-7">
-        {IMPACT.map((card) => (
+        {IMPACT.map((card, index) => (
+          <Reveal key={card.title} delay={index * 0.07}>
           <article
-            key={card.title}
             className="overflow-hidden rounded-[10px] border border-[#2A2520]/14 bg-[#FFFDF9] pb-[30px] text-center"
           >
             <div className="relative">
@@ -180,16 +186,17 @@ function ImpactSection(): React.JSX.Element {
             <h3 className="mt-11 font-heading text-[25px] font-normal">{card.title}</h3>
             <p className="mx-[22px] mt-3 text-[14px] leading-[1.7] text-[#4A443B]">{card.body}</p>
           </article>
+          </Reveal>
         ))}
       </div>
-      <div className="mt-[52px] text-center">
+      <Reveal className="mt-[52px] text-center">
         <Link
           href="/what-we-do"
           className="inline-flex items-center gap-3 rounded-lg border border-[#1E1B17]/40 px-[30px] py-4 text-[13px] font-bold tracking-[1.6px] text-[#1E1B17] transition-all duration-[250ms] hover:border-[#C89A3C] hover:text-[#8A5F16]"
         >
           SEE MORE OF OUR WORK <span aria-hidden="true" className="text-[15px]">→</span>
         </Link>
-      </div>
+      </Reveal>
     </section>
   )
 }
@@ -220,7 +227,7 @@ function Closing(): React.JSX.Element {
               'linear-gradient(to right, rgba(16,12,6,0.55) 0%, rgba(16,12,6,0.2) 50%, rgba(16,12,6,0.35) 100%)',
           }}
         />
-        <div className="relative z-10 flex items-center justify-between gap-12 px-16 py-[70px] max-lg:flex-col max-lg:items-start max-[680px]:px-7">
+        <Reveal className="relative z-10 flex items-center justify-between gap-12 px-16 py-[70px] max-lg:flex-col max-lg:items-start max-[680px]:px-7">
           <div>
             <h2 className="m-0 font-heading text-[42px] font-normal leading-[1.2] text-[#F7F3EA] max-[680px]:text-[32px]">
               Stand with us.
@@ -240,7 +247,7 @@ function Closing(): React.JSX.Element {
             </Link>
             <p className="mt-3.5 text-[13px] text-[#F7F3EA]/85">There are many ways to get involved.</p>
           </div>
-        </div>
+        </Reveal>
       </div>
     </section>
   )

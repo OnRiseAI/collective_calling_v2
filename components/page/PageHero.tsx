@@ -1,6 +1,7 @@
 import * as React from 'react'
 import Image from 'next/image'
 import { Container } from '@/components/ui/Container'
+import { FadeIn } from '@/components/ui/FadeIn'
 import { cx } from '@/lib/cx'
 import { noOrphan } from '@/lib/text'
 import type { PageHero as PageHeroContent } from '@/lib/content/pages/types'
@@ -65,19 +66,21 @@ export function PageHero({ content }: PageHeroProps) {
       ) : null}
 
       <Container>
-        <p className="font-body text-lg font-bold uppercase tracking-[0.08em] text-accent">
-          {eyebrow}
-        </p>
-
-        <h1 className="mt-4 max-w-3xl font-heading text-[2.5rem] leading-[1.1] font-medium text-balance sm:text-5xl">
-          {noOrphan(title)}
-        </h1>
-
-        {lede ? (
-          <p className="mt-6 max-w-2xl font-body text-lg leading-[1.65] text-paper/85">
-            {lede}
+        <FadeIn>
+          <p className="font-body text-lg font-bold uppercase tracking-[0.08em] text-accent">
+            {eyebrow}
           </p>
-        ) : null}
+
+          <h1 className="mt-4 max-w-3xl font-heading text-[2.5rem] leading-[1.1] font-medium text-balance sm:text-5xl">
+            {noOrphan(title)}
+          </h1>
+
+          {lede ? (
+            <p className="mt-6 max-w-2xl font-body text-lg leading-[1.65] text-paper/85">
+              {lede}
+            </p>
+          ) : null}
+        </FadeIn>
       </Container>
     </header>
   )

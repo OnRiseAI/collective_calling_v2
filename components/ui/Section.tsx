@@ -1,5 +1,6 @@
 import * as React from 'react'
 import { Container, type ContainerSize } from './Container'
+import { Reveal } from '@/components/ui/Reveal'
 import { cx } from '@/lib/cx'
 
 /**
@@ -57,7 +58,13 @@ export function Section({
 }: SectionProps) {
   return (
     <Tag className={cx(tones[tone], spacing, className)} {...rest}>
-      {container ? <Container size={containerSize}>{children}</Container> : children}
+      {container ? (
+        <Container size={containerSize}>
+          <Reveal>{children}</Reveal>
+        </Container>
+      ) : (
+        <Reveal>{children}</Reveal>
+      )}
     </Tag>
   )
 }

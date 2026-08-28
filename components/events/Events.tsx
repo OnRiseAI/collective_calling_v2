@@ -3,6 +3,8 @@ import { Link } from '@/i18n/navigation'
 import { SiteHeader } from '@/components/layout/SiteHeader'
 import { SiteFooter } from '@/components/layout/SiteFooter'
 import { EventsSignup } from '@/components/events/EventsSignup'
+import { FadeIn } from '@/components/ui/FadeIn'
+import { Reveal } from '@/components/ui/Reveal'
 import { FASHION_SHOW_HREF } from '@/lib/nav'
 
 /**
@@ -18,6 +20,7 @@ function Hero(): React.JSX.Element {
       className="bg-[#141009] px-16 pb-[88px] pt-[170px] max-[680px]:px-7"
     >
       <div className="mx-auto max-w-[1320px]">
+        <FadeIn>
         <div className="flex items-center gap-4">
           <span className="text-[14px] font-bold tracking-[2.4px] text-[#C89A3C]">
             WHAT WE DO
@@ -30,6 +33,7 @@ function Hero(): React.JSX.Element {
         <p className="mt-6 max-w-[460px] text-[17px] leading-[1.75] text-[#F7F3EA]/95">
           Gatherings, experiences and moments that bring people together around one purpose.
         </p>
+        </FadeIn>
       </div>
     </section>
   )
@@ -39,6 +43,7 @@ function Upcoming(): React.JSX.Element {
   return (
     <section aria-label="Upcoming events" className="px-16 py-[120px] max-[680px]:px-7">
       <div className="mx-auto max-w-[760px]">
+        <Reveal>
         <Link
           href={FASHION_SHOW_HREF}
           className="block rounded-[14px] border border-[#D6CFC2] bg-[#FAF7F1] px-10 py-12 transition-all duration-[250ms] hover:-translate-y-1 hover:border-[#C89A3C] max-[680px]:px-7"
@@ -57,7 +62,8 @@ function Upcoming(): React.JSX.Element {
             VIEW THE EVENING <span aria-hidden="true">→</span>
           </p>
         </Link>
-        <div className="mt-16 text-center">
+        </Reveal>
+        <Reveal className="mt-16 text-center">
           <p className="mx-auto max-w-[420px] text-[16.5px] leading-[1.8] text-[#4A443B]">
             New events and experiences are announced here first. Join the mailing list and
             we&apos;ll let you know the moment something else is planned.
@@ -66,7 +72,7 @@ function Upcoming(): React.JSX.Element {
           <p className="mt-4 text-[12.5px] text-[#5F594E]">
             No spam. Just the occasional invitation worth opening.
           </p>
-        </div>
+        </Reveal>
       </div>
     </section>
   )

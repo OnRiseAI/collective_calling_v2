@@ -3,6 +3,8 @@ import Image from 'next/image'
 import { Link } from '@/i18n/navigation'
 import { SiteHeader } from '@/components/layout/SiteHeader'
 import { SiteFooter } from '@/components/layout/SiteFooter'
+import { FadeIn } from '@/components/ui/FadeIn'
+import { Reveal } from '@/components/ui/Reveal'
 
 /**
  * Who We Are, transcribed from the v3 `Who We Are.dc.html`.
@@ -43,6 +45,7 @@ function Hero(): React.JSX.Element {
         }}
       />
       <div className="relative z-10 max-w-[760px] px-16 pb-16 pt-[150px] max-[680px]:px-7">
+        <FadeIn>
         <div className="text-[14px] font-bold tracking-[2.4px] text-[#C89A3C]">WHO WE ARE</div>
         <h1 className="mt-[26px] max-w-[560px] font-heading text-[64px] font-normal leading-[1.12] text-[#F7F3EA] max-[680px]:text-[44px]">
           Every life
@@ -58,6 +61,7 @@ function Hero(): React.JSX.Element {
           <br />
           can help someone rediscover it.
         </p>
+        </FadeIn>
       </div>
     </section>
   )
@@ -67,7 +71,7 @@ function WorthSection(): React.JSX.Element {
   return (
     <section aria-label="Worth is not earned" className="px-[90px] py-[84px] max-[680px]:px-7">
       <div className="mx-auto grid max-w-[1260px] grid-cols-2 items-center gap-14 max-lg:grid-cols-1">
-        <div>
+        <Reveal>
           <h2 className="m-0 font-heading text-[46px] font-normal leading-[1.2] max-[680px]:text-[32px]">
             Worth is not earned.
             <br />
@@ -84,7 +88,8 @@ function WorthSection(): React.JSX.Element {
           <p className="mt-[26px] text-[16.5px] font-bold leading-[1.75] text-[#1E1B17]">
             We believe the right environment can help change that.
           </p>
-        </div>
+        </Reveal>
+        <Reveal delay={0.07}>
         <figure className="m-0">
           <div className="relative aspect-video w-full overflow-hidden rounded-2xl">
             <Image
@@ -96,6 +101,7 @@ function WorthSection(): React.JSX.Element {
             />
           </div>
         </figure>
+        </Reveal>
       </div>
     </section>
   )
@@ -114,6 +120,7 @@ function WhyWeExistSection(): React.JSX.Element {
         />
       </div>
       <div className="ml-[42%] max-w-[980px] pr-[90px] max-lg:ml-0 max-lg:px-12 max-lg:pb-0 max-lg:pt-12 max-[680px]:px-7">
+        <Reveal>
         <div className="text-[14px] font-bold tracking-[2.4px] text-[#8A5F16]">WHY WE EXIST</div>
         <h2 className="mt-6 max-w-[700px] font-heading text-[46px] font-normal leading-[1.2] max-[680px]:text-[32px]">
           We create environments where something different can become possible.
@@ -144,8 +151,9 @@ function WhyWeExistSection(): React.JSX.Element {
             </p>
           </div>
         </div>
+        </Reveal>
       </div>
-      <div className="px-[90px] pt-16 text-center max-[680px]:px-7">
+      <Reveal className="px-[90px] pt-16 text-center max-[680px]:px-7">
         <p className="m-0 text-[16.5px] leading-[2] text-[#26211B]">
           This understanding shapes the way we work.
         </p>
@@ -159,7 +167,7 @@ function WhyWeExistSection(): React.JSX.Element {
             their life could become?&rdquo;
           </strong>
         </p>
-      </div>
+      </Reveal>
     </section>
   )
 }
@@ -193,6 +201,7 @@ function RestorationSection(): React.JSX.Element {
         />
       </div>
       <div className="relative z-10 -mt-[70px] w-[44%] pl-[90px] pt-[70px] max-lg:mt-0 max-lg:w-full max-lg:px-12 max-[680px]:px-7">
+        <Reveal>
         <div className="text-[14px] font-bold tracking-[2.4px] text-[#8A5F16]">
           FROM RESTORATION TO PURPOSE
         </div>
@@ -208,8 +217,9 @@ function RestorationSection(): React.JSX.Element {
         <p className="mt-6 max-w-[440px] text-[16.5px] font-bold leading-[1.75] text-[#1E1B17]">
           Because we believe every person has something within their hands.
         </p>
+        </Reveal>
       </div>
-      <div className="mx-auto grid max-w-[1440px] grid-cols-[minmax(0,0.94fr)_minmax(0,1.06fr)] gap-14 px-[90px] pb-[76px] pt-12 max-lg:grid-cols-1 max-[680px]:px-7">
+      <Reveal className="mx-auto grid max-w-[1440px] grid-cols-[minmax(0,0.94fr)_minmax(0,1.06fr)] gap-14 px-[90px] pb-[76px] pt-12 max-lg:grid-cols-1 max-[680px]:px-7">
         <div>
           <div className="max-w-[560px] font-heading text-[30px] leading-[1.6] text-[#8A5F16]">
             Time.&ensp;Ability.&ensp;Experience.&ensp;Influence.&ensp;Opportunity.
@@ -234,7 +244,7 @@ function RestorationSection(): React.JSX.Element {
             What was received begins to multiply.
           </div>
         </div>
-      </div>
+      </Reveal>
     </section>
   )
 }
@@ -266,17 +276,18 @@ function BeliefCardsSection(): React.JSX.Element {
       aria-label="Today this belief takes many forms"
       className="px-[90px] pb-24 pt-[88px] max-[680px]:px-7"
     >
-      <div className="text-center">
+      <Reveal className="text-center">
         <div className="text-[14px] font-bold tracking-[2.4px] text-[#8A5F16]">
           DIFFERENT EXPRESSIONS. THE SAME ROOT.
         </div>
         <h2 className="mt-[18px] font-heading text-[42px] font-normal leading-[1.2] max-[680px]:text-[32px]">
           Today this belief takes many forms.
         </h2>
-      </div>
+      </Reveal>
       <div className="mx-auto mt-9 grid max-w-[1260px] grid-cols-3 gap-11 max-lg:grid-cols-1">
-        {BELIEF_CARDS.map((card) => (
-          <article key={card.title}>
+        {BELIEF_CARDS.map((card, index) => (
+          <Reveal key={card.title} delay={index * 0.07}>
+          <article>
             <div className="relative aspect-[3/2] w-full overflow-hidden rounded-[14px] border border-[#2A2520]/[0.22]">
               <Image
                 src={card.image}
@@ -291,9 +302,10 @@ function BeliefCardsSection(): React.JSX.Element {
             <h3 className="mt-[22px] font-body text-[19px] font-bold">{card.title}</h3>
             <p className="mt-3 text-[15.5px] leading-[1.75] text-[#26211B]">{card.body}</p>
           </article>
+          </Reveal>
         ))}
       </div>
-      <div className="mt-[72px] text-center">
+      <Reveal className="mt-[72px] text-center">
         <p className="m-0 font-heading text-[22px] text-[#1E1B17]">
           Different people. Different circumstances. Different expressions.
         </p>
@@ -302,7 +314,7 @@ function BeliefCardsSection(): React.JSX.Element {
           The belief that every life carries worth, and every life can carry something into the
           life of another.
         </p>
-      </div>
+      </Reveal>
     </section>
   )
 }
@@ -450,7 +462,7 @@ function WhyCollectiveCallingSection(): React.JSX.Element {
                 'linear-gradient(to bottom, rgba(16,12,6,0.55) 0%, rgba(16,12,6,0.15) 55%, rgba(16,12,6,0.6) 100%)',
             }}
           />
-          <div className="relative z-10 py-11 pl-[90px] pr-10 max-[680px]:px-7">
+          <Reveal className="relative z-10 py-11 pl-[90px] pr-10 max-[680px]:px-7">
             <div className="text-[14px] font-bold tracking-[2.4px] text-[#C89A3C]">
               WHY COLLECTIVE CALLING?
             </div>
@@ -458,9 +470,9 @@ function WhyCollectiveCallingSection(): React.JSX.Element {
               None of us arrives where we are entirely by ourselves.
             </h2>
             <div className="mt-[26px] h-[2px] w-10 bg-[#F7F3EA]/50" />
-          </div>
+          </Reveal>
         </div>
-        <div className="py-[52px] pl-14 pr-[90px] pb-14 max-[680px]:px-7">
+        <Reveal className="py-[52px] pl-14 pr-[90px] pb-14 max-[680px]:px-7">
           <div className="flex items-start gap-9 max-lg:flex-wrap">
             {HANDS_ITEMS.map((item, i) => (
               <div key={i} className="min-w-[110px] flex-1 text-center">
@@ -482,7 +494,7 @@ function WhyCollectiveCallingSection(): React.JSX.Element {
             <br />
             Not everyone is called to do the same thing. But everyone can do something.
           </p>
-        </div>
+        </Reveal>
       </div>
     </section>
   )
@@ -515,16 +527,14 @@ function BoardSection(): React.JSX.Element {
   return (
     <section aria-label="Our board" className="px-16 pt-[120px] pb-6 max-[680px]:px-7">
       <div className="mx-auto max-w-[1320px]">
-        <div className="flex items-center gap-4">
+        <Reveal className="flex items-center gap-4">
           <span className="text-[14px] font-bold tracking-[2.4px] text-[#8A5F16]">OUR BOARD</span>
           <span className="h-px w-10 bg-[#C89A3C]" />
-        </div>
+        </Reveal>
         <div className="mt-8 grid grid-cols-2 gap-14 max-lg:grid-cols-1">
-          {BOARD.map((person) => (
-            <div
-              key={person.name}
-              className="grid grid-cols-[1fr_1.1fr] items-start gap-7 max-[680px]:grid-cols-1"
-            >
+          {BOARD.map((person, index) => (
+            <Reveal key={person.name} delay={index * 0.07}>
+            <div className="grid grid-cols-[1fr_1.1fr] items-start gap-7 max-[680px]:grid-cols-1">
               <div className="relative aspect-square w-full overflow-hidden rounded-[14px]">
                 <Image src={person.image} alt={person.alt} fill sizes="280px" className="object-cover" />
               </div>
@@ -542,6 +552,7 @@ function BoardSection(): React.JSX.Element {
                 </Link>
               </div>
             </div>
+            </Reveal>
           ))}
         </div>
       </div>
@@ -643,13 +654,13 @@ function AmbassadorsSection(): React.JSX.Element {
   return (
     <section aria-label="Our ambassadors" className="px-16 pt-16 pb-[120px] max-[680px]:px-7">
       <div className="mx-auto max-w-[1320px]">
-        <div className="flex items-center gap-4">
+        <Reveal className="flex items-center gap-4">
           <span className="text-[14px] font-bold tracking-[2.4px] text-[#8A5F16]">
             OUR AMBASSADORS
           </span>
           <span className="h-px w-10 bg-[#C89A3C]" />
-        </div>
-        <div className="mt-8 grid grid-cols-5 gap-6 max-lg:grid-cols-2 max-[680px]:grid-cols-1">
+        </Reveal>
+        <Reveal className="mt-8 grid grid-cols-5 gap-6 max-lg:grid-cols-2 max-[680px]:grid-cols-1">
           {AMBASSADORS.map((person) => (
             <article
               key={person.name}
@@ -698,7 +709,7 @@ function AmbassadorsSection(): React.JSX.Element {
               A growing family of incredible people who give their time, skills, and hearts.
             </p>
           </article>
-        </div>
+        </Reveal>
       </div>
     </section>
   )
@@ -723,7 +734,7 @@ function InvitationSection(): React.JSX.Element {
             'linear-gradient(to right, #100C06 0%, #100C06 54%, rgba(16,12,6,0.6) 64%, rgba(16,12,6,0.12) 80%, rgba(16,12,6,0) 92%)',
         }}
       />
-      <div className="relative z-10 grid grid-cols-[1fr_auto_1fr] items-center gap-10 px-[90px] pb-[74px] pt-16 max-[680px]:flex max-[680px]:flex-col max-[680px]:items-start max-[680px]:gap-9 max-[680px]:px-7">
+      <Reveal className="relative z-10 grid grid-cols-[1fr_auto_1fr] items-center gap-10 px-[90px] pb-[74px] pt-16 max-[680px]:flex max-[680px]:flex-col max-[680px]:items-start max-[680px]:gap-9 max-[680px]:px-7">
         <div className="min-w-0">
           <div className="text-[14px] font-bold tracking-[2.4px] text-[#C89A3C]">
             THE INVITATION
@@ -748,7 +759,7 @@ function InvitationSection(): React.JSX.Element {
           </span>
         </Link>
         <div />
-      </div>
+      </Reveal>
     </section>
   )
 }

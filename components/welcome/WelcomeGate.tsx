@@ -3,6 +3,8 @@
 import * as React from 'react'
 import Image from 'next/image'
 import { Link } from '@/i18n/navigation'
+import { FadeIn } from '@/components/ui/FadeIn'
+import { Reveal } from '@/components/ui/Reveal'
 
 /**
  * Welcome gate (/welcome) — transcribed from `Collective Calling Welcome.dc.html`
@@ -139,19 +141,21 @@ export function WelcomeGate(): React.JSX.Element {
         </header>
 
         <div className="relative flex flex-1 flex-col items-center px-12 pb-16 pt-14 text-center max-[680px]:px-7">
-          <span className="text-[11.5px] font-semibold tracking-[3.4px] text-accent">
-            WELCOME TO COLLECTIVE CALLING
-          </span>
-          <h1 className="mt-[26px] max-w-[1000px] font-heading text-[clamp(52px,6.4vw,96px)] font-normal leading-[1.08] tracking-[-1.2px] [text-wrap:pretty]">
-            Every life becomes part of a bigger story.
-          </h1>
-          <div className="mb-[34px] mt-[38px] h-[1.5px] w-14 bg-accent" />
-          <p className="m-0 max-w-[470px] text-[16px] font-medium leading-[1.85] text-[#454b57] [text-wrap:pretty]">
-            We exist to equip people and organisations to live their values, build meaningful
-            connections and create lasting impact in the world around them.
-          </p>
+          <FadeIn className="flex flex-col items-center">
+            <span className="text-[11.5px] font-semibold tracking-[3.4px] text-accent">
+              WELCOME TO COLLECTIVE CALLING
+            </span>
+            <h1 className="mt-[26px] max-w-[1000px] font-heading text-[clamp(52px,6.4vw,96px)] font-normal leading-[1.08] tracking-[-1.2px] [text-wrap:pretty]">
+              Every life becomes part of a bigger story.
+            </h1>
+            <div className="mb-[34px] mt-[38px] h-[1.5px] w-14 bg-accent" />
+            <p className="m-0 max-w-[470px] text-[16px] font-medium leading-[1.85] text-[#454b57] [text-wrap:pretty]">
+              We exist to equip people and organisations to live their values, build meaningful
+              connections and create lasting impact in the world around them.
+            </p>
+          </FadeIn>
 
-          <div className="mt-14 flex flex-wrap justify-center gap-24">
+          <Reveal className="mt-14 flex flex-wrap justify-center gap-24">
             {PILLARS.map((pillar, i) => (
               <div key={i} className="flex flex-col items-center gap-4">
                 {pillar.icon}
@@ -160,12 +164,13 @@ export function WelcomeGate(): React.JSX.Element {
                 </div>
               </div>
             ))}
-          </div>
+          </Reveal>
 
+          <Reveal className="mt-[72px] flex w-[380px] max-w-full flex-col items-center">
           <Link
             href="/journey"
             onClick={writeWelcomeCookie}
-            className="mt-[72px] flex w-[380px] max-w-full flex-col items-center rounded-[14px] border border-white/[0.09] bg-[rgba(22,22,20,0.9)] px-14 pb-[34px] pt-[42px] text-[#f8f4eb] shadow-[0_30px_70px_rgba(15,14,12,0.34)] backdrop-blur-[6px] transition-all duration-300 hover:-translate-y-[3px] hover:bg-[rgba(22,22,20,0.97)] hover:shadow-[0_38px_84px_rgba(15,14,12,0.42)]"
+            className="flex w-full flex-col items-center rounded-[14px] border border-white/[0.09] bg-[rgba(22,22,20,0.9)] px-14 pb-[34px] pt-[42px] text-[#f8f4eb] shadow-[0_30px_70px_rgba(15,14,12,0.34)] backdrop-blur-[6px] transition-all duration-300 hover:-translate-y-[3px] hover:bg-[rgba(22,22,20,0.97)] hover:shadow-[0_38px_84px_rgba(15,14,12,0.42)]"
           >
             <span className="flex h-11 w-11 items-center justify-center rounded-full border border-[rgba(201,161,92,0.55)]">
               <svg viewBox="0 0 24 24" fill="none" className="h-5 w-5" aria-hidden="true">
@@ -195,7 +200,9 @@ export function WelcomeGate(): React.JSX.Element {
               Takes around 3 minutes
             </span>
           </Link>
+          </Reveal>
 
+          <Reveal>
           <Link
             href="/"
             prefetch={false}
@@ -204,6 +211,7 @@ export function WelcomeGate(): React.JSX.Element {
           >
             SKIP THIS EXPERIENCE
           </Link>
+          </Reveal>
         </div>
       </section>
 
@@ -211,7 +219,7 @@ export function WelcomeGate(): React.JSX.Element {
         ref={quoteRef}
         className="bg-[#161614] px-12 pb-10 pt-16 text-center max-[680px]:px-7"
       >
-        <div className="mx-auto max-w-[720px]">
+        <Reveal className="mx-auto max-w-[720px]">
           <p className="m-0 font-heading text-[clamp(21px,2.2vw,27px)] leading-[1.5] text-[#f2ede3]">
             <span
               aria-hidden="true"
@@ -246,7 +254,7 @@ export function WelcomeGate(): React.JSX.Element {
               />
             </svg>
           </button>
-        </div>
+        </Reveal>
       </section>
     </div>
   )

@@ -3,6 +3,8 @@ import Image from 'next/image'
 import { Link } from '@/i18n/navigation'
 import { SiteHeader } from '@/components/layout/SiteHeader'
 import { SiteFooter } from '@/components/layout/SiteFooter'
+import { FadeIn } from '@/components/ui/FadeIn'
+import { Reveal } from '@/components/ui/Reveal'
 import { JOURNEY_HREF } from '@/lib/nav'
 
 /**
@@ -124,6 +126,7 @@ function Hero(): React.JSX.Element {
         }}
       />
       <div className="relative z-10 max-w-[760px] px-16 pt-[150px] pb-[88px] max-[680px]:px-7">
+        <FadeIn>
         <div className="flex items-center gap-4">
           <span className="text-[14px] font-bold tracking-[2.4px] text-[#C89A3C]">STORIES</span>
           <span className="h-px w-10 bg-[#C89A3C]" />
@@ -138,6 +141,7 @@ function Hero(): React.JSX.Element {
         <p className="mt-7 max-w-[320px] text-[17px] leading-[1.7] text-[#F7F3EA]/95">
           Real stories from the field. Real people. Real impact.
         </p>
+        </FadeIn>
       </div>
     </section>
   )
@@ -147,7 +151,7 @@ function Featured(): React.JSX.Element {
   return (
     <section aria-label="Featured story" className="px-16 pt-[84px] pb-[72px] max-[680px]:px-7">
       <div className="mx-auto grid max-w-[1320px] grid-cols-[1.28fr_1fr] items-center gap-16 max-lg:grid-cols-1">
-        <div className="relative aspect-video w-full overflow-hidden rounded-[14px]">
+        <Reveal className="relative aspect-video w-full overflow-hidden rounded-[14px]">
           <Image
             src="/images/stories/st-featured.png"
             alt="A girl with braided hair gazing across green hills"
@@ -155,8 +159,8 @@ function Featured(): React.JSX.Element {
             sizes="(min-width: 1024px) 55vw, 100vw"
             className="object-cover"
           />
-        </div>
-        <div>
+        </Reveal>
+        <Reveal delay={0.07}>
           <div className="text-[14px] font-bold tracking-[2.4px] text-[#8A5F16]">FEATURED STORY</div>
           <h2 className="mt-5 font-heading text-[46px] font-normal leading-[1.16] max-[680px]:text-[32px]">
             A Future
@@ -171,7 +175,7 @@ function Featured(): React.JSX.Element {
           <p className="mt-[30px] inline-flex items-center gap-2.5 border-b-2 border-[#C89A3C] pb-1.5 text-[13px] font-bold tracking-[1.6px] text-[#1E1B17]">
             READ NEEMA&rsquo;S STORY <span aria-hidden="true" className="text-[15px]">→</span>
           </p>
-        </div>
+        </Reveal>
       </div>
     </section>
   )
@@ -183,11 +187,13 @@ function Paths(): React.JSX.Element {
       aria-label="Stories of transformation"
       className="px-16 pt-14 pb-16 text-center max-[680px]:px-7"
     >
+      <Reveal>
       <h2 className="m-0 font-heading text-[44px] font-normal leading-[1.18] max-[680px]:text-[32px]">
         Stories of transformation
       </h2>
       <p className="mt-4 text-[16px] leading-[1.8] text-[#4A443B]">Different paths. One purpose.</p>
-      <div className="mx-auto mt-14 grid max-w-[1320px] grid-cols-[1fr_auto_1fr_auto_1fr] text-left max-lg:grid-cols-1 max-lg:gap-10">
+      </Reveal>
+      <Reveal className="mx-auto mt-14 grid max-w-[1320px] grid-cols-[1fr_auto_1fr_auto_1fr] text-left max-lg:grid-cols-1 max-lg:gap-10">
         {PATHS.map((path, index) => (
           <React.Fragment key={path.title}>
             {index > 0 && <div className="w-px bg-[#D6CFC2] max-lg:hidden" />}
@@ -203,7 +209,7 @@ function Paths(): React.JSX.Element {
             </div>
           </React.Fragment>
         ))}
-      </div>
+      </Reveal>
     </section>
   )
 }
@@ -212,10 +218,10 @@ function Cards(): React.JSX.Element {
   return (
     <section aria-label="Story collection" className="px-16 pt-6 pb-[88px] max-[680px]:px-7">
       <div className="mx-auto grid max-w-[1320px] grid-cols-4 gap-7 max-lg:grid-cols-2 max-[680px]:grid-cols-1">
-        {CARDS.map((card) => (
+        {CARDS.map((card, index) => (
+          <Reveal key={card.title} delay={index * 0.07}>
           <article
-            key={card.title}
-            className="flex flex-col overflow-hidden rounded-[10px] border border-[#2A2520]/14 bg-[#FFFDF9] transition-all duration-[250ms] hover:-translate-y-1 hover:shadow-[0_16px_40px_rgba(30,27,23,0.12)]"
+            className="flex h-full flex-col overflow-hidden rounded-[10px] border border-[#2A2520]/14 bg-[#FFFDF9] transition-all duration-[250ms] hover:-translate-y-1 hover:shadow-[0_16px_40px_rgba(30,27,23,0.12)]"
           >
             <div className="relative aspect-[3/2] w-full">
               <Image src={card.image} alt={card.alt} fill sizes="25vw" className="object-cover" />
@@ -231,6 +237,7 @@ function Cards(): React.JSX.Element {
               </p>
             </div>
           </article>
+          </Reveal>
         ))}
       </div>
     </section>
@@ -263,7 +270,7 @@ function Closing(): React.JSX.Element {
               'linear-gradient(to right, rgba(16,12,6,0.6) 0%, rgba(16,12,6,0.25) 45%, rgba(16,12,6,0.05) 70%, rgba(16,12,6,0.3) 100%)',
           }}
         />
-        <div className="relative z-10 flex items-center justify-between gap-12 px-16 py-16 max-lg:flex-col max-lg:items-start max-[680px]:px-7">
+        <Reveal className="relative z-10 flex items-center justify-between gap-12 px-16 py-16 max-lg:flex-col max-lg:items-start max-[680px]:px-7">
           <h2 className="m-0 max-w-[520px] font-heading text-[42px] font-normal leading-[1.2] text-[#F7F3EA] max-[680px]:text-[32px]">
             Some stories are read.
             <br />
@@ -275,7 +282,7 @@ function Closing(): React.JSX.Element {
           >
             START YOUR JOURNEY <span aria-hidden="true" className="text-[15px]">→</span>
           </Link>
-        </div>
+        </Reveal>
       </div>
     </section>
   )

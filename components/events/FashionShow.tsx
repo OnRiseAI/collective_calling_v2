@@ -2,6 +2,8 @@ import * as React from 'react'
 import { Link } from '@/i18n/navigation'
 import { SiteHeader } from '@/components/layout/SiteHeader'
 import { SiteFooter } from '@/components/layout/SiteFooter'
+import { FadeIn } from '@/components/ui/FadeIn'
+import { Reveal } from '@/components/ui/Reveal'
 import { FASHION_SHOW_RESERVE_HREF, SUPPORT_HREF } from '@/lib/nav'
 import { SITE } from '@/lib/site'
 
@@ -105,7 +107,7 @@ function Hero(): React.JSX.Element {
             'radial-gradient(120% 100% at 50% 0%, rgba(217,168,63,0.12) 0%, rgba(20,16,9,0) 55%)',
         }}
       />
-      <div className="relative z-10 mx-auto max-w-[1320px] px-16 pt-[190px] pb-24 text-center max-[680px]:px-7">
+      <FadeIn className="relative z-10 mx-auto max-w-[1320px] px-16 pt-[190px] pb-24 text-center max-[680px]:px-7">
         <div className="text-[13px] font-bold tracking-[2.4px] text-[#D9A83F]">
           THURSDAY 24 SEPTEMBER 2026
         </div>
@@ -118,7 +120,7 @@ function Hero(): React.JSX.Element {
         <div className="mt-[38px] flex items-center justify-center gap-3.5 max-[680px]:flex-col max-[680px]:items-stretch">
           <ReserveButton />
         </div>
-      </div>
+      </FadeIn>
     </section>
   )
 }
@@ -128,8 +130,9 @@ function Facts(): React.JSX.Element {
     <section aria-label="Key facts" className="border-b border-[#D6CFC2] bg-[#FAF7F1]">
       <div className="mx-auto grid max-w-[1320px] grid-cols-4 max-lg:grid-cols-2 max-[680px]:grid-cols-1">
         {FACTS.map((fact, index) => (
-          <div
+          <Reveal
             key={fact.label}
+            delay={index * 0.07}
             className={
               index === 0
                 ? 'px-7 py-[34px] text-center'
@@ -141,7 +144,7 @@ function Facts(): React.JSX.Element {
               {fact.label}
             </div>
             <div className="mt-1.5 text-[15px] font-semibold text-[#1E1B17]">{fact.value}</div>
-          </div>
+          </Reveal>
         ))}
       </div>
     </section>
@@ -152,7 +155,7 @@ function Evening(): React.JSX.Element {
   return (
     <section aria-label="The evening" className="px-16 py-[120px] max-[680px]:px-7">
       <div className="mx-auto grid max-w-[1320px] grid-cols-[1.1fr_1fr] items-start gap-20 max-lg:grid-cols-1 max-lg:gap-11">
-        <div>
+        <Reveal>
           <div className="flex items-center gap-4">
             <span className="text-[14px] font-bold tracking-[2.4px] text-[#8A5F16]">THE EVENING</span>
             <span className="h-px w-10 bg-[#C89A3C]" />
@@ -162,8 +165,8 @@ function Evening(): React.JSX.Element {
             hospitality and a room full of friends, to strengthen the work Collective Calling
             already does.
           </p>
-        </div>
-        <div className="pt-[52px] max-lg:pt-0">
+        </Reveal>
+        <Reveal delay={0.07} className="pt-[52px] max-lg:pt-0">
           <div className="text-[12px] font-bold tracking-[1.5px] text-[#5F594E]">THE NIGHT INCLUDES</div>
           <ul className="mt-5 flex flex-col gap-3.5">
             {NIGHT_INCLUDES.map((item) => (
@@ -173,7 +176,7 @@ function Evening(): React.JSX.Element {
               </li>
             ))}
           </ul>
-        </div>
+        </Reveal>
       </div>
     </section>
   )
@@ -182,7 +185,7 @@ function Evening(): React.JSX.Element {
 function Funds(): React.JSX.Element {
   return (
     <section aria-label="What it funds" className="px-16 pt-6 pb-[120px] max-[680px]:px-7">
-      <div className="mx-auto max-w-[760px] text-center">
+      <Reveal className="mx-auto max-w-[760px] text-center">
         <div className="mx-auto h-0.5 w-10 bg-[#C89A3C]" />
         <h2 className="mt-7 font-heading text-[40px] font-normal leading-[1.2]">Where the money goes</h2>
         <p className="mx-auto mt-5 max-w-[460px] text-[16px] leading-[1.8] text-[#4A443B]">
@@ -198,7 +201,7 @@ function Funds(): React.JSX.Element {
         >
           SEE THE PROGRAMME THIS FUNDS <span aria-hidden="true">→</span>
         </Link>
-      </div>
+      </Reveal>
     </section>
   )
 }
@@ -209,7 +212,7 @@ function Sponsors(): React.JSX.Element {
       aria-label="Sponsors"
       className="border-y border-[#D6CFC2] bg-[#FAF7F1]"
     >
-      <div className="mx-auto max-w-[1320px] px-16 py-[88px] text-center max-[680px]:px-7">
+      <Reveal className="mx-auto max-w-[1320px] px-16 py-[88px] text-center max-[680px]:px-7">
         <div className="text-[13px] font-bold tracking-[2.4px] text-[#8A5F16]">WITH THANKS TO</div>
         <div className="mt-9 flex items-center justify-center">
           <div className="flex h-[88px] w-[280px] items-center justify-center rounded-[10px] border border-dashed border-[#C6BDAC] bg-[#F4F0E8] text-[13px] text-[#5F594E]">
@@ -237,7 +240,7 @@ function Sponsors(): React.JSX.Element {
           </a>
           .
         </p>
-      </div>
+      </Reveal>
     </section>
   )
 }
@@ -246,7 +249,7 @@ function Closing(): React.JSX.Element {
   return (
     <>
       <section aria-label="Reserve" className="bg-[#141009]">
-        <div className="mx-auto flex max-w-[1320px] items-center justify-between gap-12 px-16 py-[88px] max-lg:flex-col max-lg:items-start max-[680px]:px-7">
+        <Reveal className="mx-auto flex max-w-[1320px] items-center justify-between gap-12 px-16 py-[88px] max-lg:flex-col max-lg:items-start max-[680px]:px-7">
           <div>
             <div className="text-[13px] font-bold tracking-[2.4px] text-[#D9A83F]">
               THURSDAY 24 SEPTEMBER 2026
@@ -260,9 +263,10 @@ function Closing(): React.JSX.Element {
             </p>
           </div>
           <ReserveButton />
-        </div>
+        </Reveal>
       </section>
       <section aria-label="Give instead" className="px-16 pt-11 pb-24 max-[680px]:px-7">
+        <Reveal>
         <p className="mx-auto max-w-[440px] text-center text-[14.5px] leading-[1.8] text-[#4A443B]">
           Can&rsquo;t make it on the night? You can still be part of it.{' '}
           <Link href={SUPPORT_HREF} className="font-semibold text-[#8A5F16]">
@@ -270,6 +274,7 @@ function Closing(): React.JSX.Element {
           </Link>
           .
         </p>
+        </Reveal>
       </section>
     </>
   )

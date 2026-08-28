@@ -1,4 +1,5 @@
 import { Link } from '@/i18n/navigation'
+import { Reveal } from '@/components/ui/Reveal'
 import { FASHION_SHOW_HREF, FASHION_SHOW_RESERVE_HREF } from '@/lib/nav'
 
 /**
@@ -11,7 +12,7 @@ export function EventBand(): React.JSX.Element {
       aria-label="Upcoming event"
       className="border-t border-[#D9A83F]/45 bg-[#141009]"
     >
-      <div className="mx-auto flex max-w-[1320px] flex-wrap items-center justify-between gap-12 px-16 py-14 max-[680px]:px-7">
+      <Reveal className="mx-auto flex max-w-[1320px] flex-wrap items-center justify-between gap-12 px-16 py-14 max-[680px]:px-7">
         <div className="min-w-0">
           <div className="text-[13px] font-bold tracking-[2.4px] text-[#D9A83F]">
             THURSDAY 24 SEPTEMBER 2026
@@ -41,7 +42,7 @@ export function EventBand(): React.JSX.Element {
             FIND OUT MORE
           </Link>
         </div>
-      </div>
+      </Reveal>
     </section>
   )
 }
