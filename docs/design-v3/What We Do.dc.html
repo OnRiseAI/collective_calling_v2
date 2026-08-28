@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; background: #F4F0E8; }
+  a { color: #1E1B17; text-decoration: none; }
+  a:hover { color: #8A5F16; }
+  @media (max-width: 1180px) {
+    [data-nav-links] { display: none !important; }
+  }
+  @media (max-width: 1024px) {
+    [data-row] { grid-template-columns: 1fr !important; }
+    [data-row-photo] { min-height: 340px !important; order: -1; }
+    [data-hero-grid] { grid-template-columns: 1fr !important; }
+    [data-hero-photo] { min-height: 380px !important; position: relative !important; }
+    [data-hero-photo] img { -webkit-mask-image: none !important; mask-image: none !important; }
+    [data-links-row] { flex-wrap: wrap !important; }
+    [data-close-grid] { grid-template-columns: 1fr !important; gap: 44px !important; }
+    [data-carry-list] { border-left: none !important; padding-left: 0 !important; }
+  }
+  @media (max-width: 680px) {
+    [data-cta] { font-size: 12px !important; letter-spacing: 1px !important; padding: 11px 14px !important; gap: 8px !important; }
+    [data-pad] { padding-left: 28px !important; padding-right: 28px !important; }
+    [data-header] { padding-left: 28px !important; padding-right: 28px !important; }
+    [data-h1] { font-size: 40px !important; }
+    [data-h2] { font-size: 30px !important; }
+    [data-close-sec] img { object-position: 62% 40% !important; }
+    [data-links-row] { flex-direction: column !important; gap: 28px !important; }
+    [data-links-row] > div[style*="width:1px"] { display: none !important; }
+    [data-links-row] > div { padding: 0 !important; }
+  }
+</style>
+</helmet>
+<div style="font-family:'Figtree',sans-serif;background:#F4F0E8;color:#1E1B17;">
+
+<section aria-label="What we do" style="position:relative;background:#F4F0E8;overflow:hidden;">
+  <dc-import name="Site Header" active="what" hint-size="100%,84px"></dc-import>
+  <div data-hero-grid="1" style="display:grid;grid-template-columns:48fr 52fr;align-items:stretch;">
+    <div data-pad="1" style="padding:150px 40px 84px 64px;">
+      <div style="font-size:14px;font-weight:700;letter-spacing:2.4px;color:#8A5F16;">WHAT WE DO</div>
+      <h1 data-h1="1" style="font-family:'Instrument Serif',serif;font-weight:400;font-size:62px;line-height:1.14;margin:24px 0 0 0;max-width:520px;">Where something<br/>different can <em style="color:#C89A3C;">begin.</em></h1>
+      <div style="width:40px;height:2px;background:#C89A3C;margin-top:28px;"></div>
+      <p style="font-size:16.5px;line-height:1.8;color:#4A443B;margin:30px 0 0 0;max-width:360px;">Different lives need different environments. So our work doesn&#x27;t take one form. It meets people where they are and creates space for what could come next.</p>
+    </div>
+    <div data-hero-photo="1" style="position:relative;overflow:hidden;">
+      <img src="assets/wwd/wwd-hero.png" alt="A smiling boy on a village road at golden hour" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:55% 30%;-webkit-mask-image:linear-gradient(to right, transparent 0%, black 24%);mask-image:linear-gradient(to right, transparent 0%, black 24%);"/>
+    </div>
+  </div>
+</section>
+
+<section id="children-families" aria-label="A place to belong" data-row="1" style="display:grid;grid-template-columns:48fr 52fr;background:#FAF7F1;">
+  <div data-row-photo="1" style="position:relative;overflow:hidden;min-height:480px;">
+    <img src="assets/wwd/wwd-belong.png" alt="A line of smiling schoolboys with arms around each other" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;"/>
+  </div>
+  <div data-pad="1" style="display:flex;flex-direction:column;justify-content:center;padding:72px 64px 72px 72px;">
+    <div style="font-family:'Instrument Serif',serif;font-size:32px;color:#8A5F16;">01</div>
+    <h2 data-h2="1" style="font-family:'Instrument Serif',serif;font-weight:400;font-size:44px;line-height:1.18;margin:10px 0 0 0;">A place to belong.</h2>
+    <div style="width:40px;height:2px;background:#C89A3C;margin-top:20px;"></div>
+    <p style="font-size:16.5px;line-height:1.8;color:#4A443B;margin:24px 0 0 0;max-width:480px;">For a child whose circumstances have shaped what they believe is possible, safety can be the beginning of something entirely different.</p>
+    <div data-links-row="1" style="display:flex;gap:44px;margin-top:36px;">
+      <div style="display:flex;gap:15px;align-items:flex-start;">
+        <svg viewBox="0 0 40 40" fill="none" style="width:34px;height:34px;flex:none;" aria-hidden="true"><circle cx="15" cy="14" r="4" stroke="#8A5F16" stroke-width="1.9"></circle><circle cx="24.5" cy="15.5" r="3.2" stroke="#8A5F16" stroke-width="1.9"></circle><path d="M8 29c0-4 3.1-6.6 7-6.6 2.3 0 4.3.9 5.6 2.4" stroke="#8A5F16" stroke-width="1.9" stroke-linecap="round"></path><path d="M26.5 23.4c1.7.6 3.3 2 3.9 3.9M25 27.2l2.2 2.2 3.6-3.9" stroke="#8A5F16" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+        <div>
+          <a href="#" style="font-size:14px;font-weight:700;letter-spacing:1.4px;color:#8A5F16;">CHILDREN &amp; FAMILIES <span aria-hidden="true">→</span></a>
+          <p style="font-size:14.5px;font-weight:500;line-height:1.6;color:#1E1B17;margin:8px 0 0 0;">Enter this story.</p>
+        </div>
+      </div>
+      <div style="width:1px;background:#D6CFC2;"></div>
+      <div style="display:flex;gap:15px;align-items:flex-start;">
+        <svg viewBox="0 0 40 40" fill="none" style="width:34px;height:34px;flex:none;" aria-hidden="true"><path d="M20 26s-8-4.8-8-10a4.5 4.5 0 0 1 8-2.8A4.5 4.5 0 0 1 28 16c0 5.2-8 10-8 10Z" stroke="#8A5F16" stroke-width="1.9" stroke-linejoin="round"></path><path d="M11 30.5c2.8 1.8 6 2.7 9 2.7s6.2-.9 9-2.7" stroke="#8A5F16" stroke-width="1.9" stroke-linecap="round"></path></svg>
+        <div>
+          <a href="#" style="font-size:14px;font-weight:700;letter-spacing:1.4px;color:#8A5F16;">SPONSOR A CHILD <span aria-hidden="true">→</span></a>
+          <p style="font-size:14.5px;font-weight:500;line-height:1.6;color:#1E1B17;margin:8px 0 0 0;">Become part of a<br/>child&#x27;s journey.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="homelessness-restoration" aria-label="A place to be seen" data-row="1" style="display:grid;grid-template-columns:48fr 52fr;background:#F4F0E8;">
+  <div data-pad="1" style="display:flex;flex-direction:column;justify-content:center;padding:72px 72px 72px 64px;">
+    <div style="font-family:'Instrument Serif',serif;font-size:32px;color:#8A5F16;">02</div>
+    <h2 data-h2="1" style="font-family:'Instrument Serif',serif;font-weight:400;font-size:44px;line-height:1.18;margin:10px 0 0 0;">A place to be seen.</h2>
+    <div style="width:40px;height:2px;background:#C89A3C;margin-top:20px;"></div>
+    <p style="font-size:16.5px;line-height:1.8;color:#4A443B;margin:24px 0 0 0;max-width:460px;">Sometimes restoration begins with something as simple as being seen. We meet immediate needs with dignity and create the consistency and relationships through which trust, and pathways forward, can begin.</p>
+    <div style="margin-top:32px;">
+      <a href="#" style="font-size:14px;font-weight:700;letter-spacing:1.4px;color:#8A5F16;">HOMELESSNESS &amp; RESTORATION <span aria-hidden="true">→</span></a>
+      <p style="font-size:14.5px;font-weight:500;line-height:1.6;color:#1E1B17;margin:8px 0 0 0;">Step inside.</p>
+    </div>
+  </div>
+  <div data-row-photo="1" style="position:relative;overflow:hidden;min-height:480px;">
+    <img src="assets/wwd/wwd-seen.png" alt="A volunteer talking with a man wrapped in a blanket beside a mobile shower unit" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;"/>
+  </div>
+</section>
+
+<section aria-label="A place to contribute" data-row="1" style="display:grid;grid-template-columns:48fr 52fr;background:#FAF7F1;">
+  <div data-row-photo="1" style="position:relative;overflow:hidden;min-height:480px;">
+    <img src="assets/wwd/wwd-contribute.png" alt="An outdoor evening event with a stage, string lights and a seated crowd by the water" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;"/>
+  </div>
+  <div data-pad="1" style="display:flex;flex-direction:column;justify-content:center;padding:72px 64px 72px 72px;">
+    <div style="font-family:'Instrument Serif',serif;font-size:32px;color:#8A5F16;">03</div>
+    <h2 data-h2="1" style="font-family:'Instrument Serif',serif;font-weight:400;font-size:44px;line-height:1.18;margin:10px 0 0 0;">A place to contribute.</h2>
+    <div style="width:40px;height:2px;background:#C89A3C;margin-top:20px;"></div>
+    <p style="font-size:16.5px;line-height:1.8;color:#4A443B;margin:24px 0 0 0;max-width:500px;">Change doesn&#x27;t only belong to organisations. Sometimes it begins when somebody decides to show up, giving their time, sharing an ability, joining an experience or bringing people together around one.</p>
+    <div data-links-row="1" style="display:flex;gap:0;margin-top:36px;">
+      <div style="flex:1;padding-right:22px;">
+        <svg viewBox="0 0 40 40" fill="none" style="width:30px;height:30px;" aria-hidden="true"><circle cx="14.5" cy="14" r="3.6" stroke="#8A5F16" stroke-width="1.9"></circle><circle cx="25" cy="15" r="3" stroke="#8A5F16" stroke-width="1.9"></circle><path d="M8 28c0-3.8 2.9-6.2 6.5-6.2S21 24.2 21 28M22.5 22.3c2.9.3 5.5 2.3 5.5 5.7" stroke="#8A5F16" stroke-width="1.9" stroke-linecap="round"></path></svg>
+        <div style="margin-top:12px;min-height:48px;display:flex;align-items:flex-start;"><a href="#" style="font-size:13px;font-weight:700;letter-spacing:1.2px;color:#8A5F16;line-height:1.7;">COMMUNITY &amp; VOLUNTEERING <span aria-hidden="true">→</span></a></div>
+        <p style="font-size:14px;font-weight:500;line-height:1.6;color:#1E1B17;margin:8px 0 0 0;">Offer your time.</p>
+      </div>
+      <div style="width:1px;background:#D6CFC2;"></div>
+      <div style="flex:1;padding:0 22px;">
+        <svg viewBox="0 0 40 40" fill="none" style="width:30px;height:30px;" aria-hidden="true"><rect x="9" y="11" width="22" height="20" rx="2" stroke="#8A5F16" stroke-width="1.9"></rect><path d="M9 17h22M15 8v5M25 8v5M14 22h3M19 22h3M24 22h3M14 26h3M19 26h3" stroke="#8A5F16" stroke-width="1.9" stroke-linecap="round"></path></svg>
+        <div style="margin-top:12px;min-height:48px;display:flex;align-items:flex-start;"><a href="#" style="font-size:13px;font-weight:700;letter-spacing:1.2px;color:#8A5F16;line-height:1.7;">EVENTS &amp; EXPERIENCES <span aria-hidden="true">→</span></a></div>
+        <p style="font-size:14px;font-weight:500;line-height:1.6;color:#1E1B17;margin:8px 0 0 0;">Join or create.</p>
+      </div>
+      <div style="width:1px;background:#D6CFC2;"></div>
+      <div style="flex:1;padding:0 22px;">
+        <svg viewBox="0 0 40 40" fill="none" style="width:30px;height:30px;" aria-hidden="true"><path d="M11 14h18l-1.5 17h-15L11 14Z" stroke="#8A5F16" stroke-width="1.9" stroke-linejoin="round"></path><path d="M15.5 17v-4a4.5 4.5 0 0 1 9 0v4" stroke="#8A5F16" stroke-width="1.9" stroke-linecap="round"></path><path d="M20 27s-3.4-2-3.4-4.3a1.9 1.9 0 0 1 3.4-1.2 1.9 1.9 0 0 1 3.4 1.2C23.4 25 20 27 20 27Z" stroke="#8A5F16" stroke-width="1.7" stroke-linejoin="round"></path></svg>
+        <div style="margin-top:12px;min-height:48px;display:flex;align-items:flex-start;"><a href="#" style="font-size:13px;font-weight:700;letter-spacing:1.2px;color:#8A5F16;line-height:1.7;">CHARITY SHOPS <span aria-hidden="true">→</span></a></div>
+        <p style="font-size:14px;font-weight:500;line-height:1.6;color:#1E1B17;margin:8px 0 0 0;">Shop with purpose.</p>
+      </div>
+      <div style="width:1px;background:#D6CFC2;"></div>
+      <div style="flex:1;padding-left:22px;">
+        <svg viewBox="0 0 40 40" fill="none" style="width:30px;height:30px;" aria-hidden="true"><path d="M8 27c3-2.6 6-2.6 9-1l4 2c1.8.9 3.8.6 5.6-.6l5-3.4c-1.4-1.6-3.2-2-5-1l-3.2 1.6" stroke="#8A5F16" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"></path><path d="M21.5 17s-4.4-2.7-4.4-5.6a2.4 2.4 0 0 1 4.4-1.5 2.4 2.4 0 0 1 4.4 1.5c0 2.9-4.4 5.6-4.4 5.6Z" stroke="#C89A3C" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <div style="margin-top:12px;min-height:48px;display:flex;align-items:flex-start;"><a href="#" style="font-size:13px;font-weight:700;letter-spacing:1.2px;color:#8A5F16;line-height:1.7;">FUNDRAISE / CREATE <span aria-hidden="true">→</span></a></div>
+        <p style="font-size:14px;font-weight:500;line-height:1.6;color:#1E1B17;margin:8px 0 0 0;">Use what you have.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="values-in-action" aria-label="A place for values to travel" data-row="1" style="display:grid;grid-template-columns:48fr 52fr;background:#F4F0E8;">
+  <div data-pad="1" style="display:flex;flex-direction:column;justify-content:center;padding:72px 72px 72px 64px;">
+    <div style="font-family:'Instrument Serif',serif;font-size:32px;color:#8A5F16;">04</div>
+    <h2 data-h2="1" style="font-family:'Instrument Serif',serif;font-weight:400;font-size:44px;line-height:1.18;margin:10px 0 0 0;">A place for<br/>values to travel.</h2>
+    <div style="width:40px;height:2px;background:#C89A3C;margin-top:20px;"></div>
+    <p style="font-size:16.5px;line-height:1.8;color:#4A443B;margin:24px 0 0 0;max-width:460px;">What if the values inside a business didn&#x27;t stop at its walls? We help organisations recognise what they already hold, and create opportunities for those values to strengthen communities.</p>
+    <div style="margin-top:32px;">
+      <a href="#" style="font-size:14px;font-weight:700;letter-spacing:1.4px;color:#8A5F16;">VALUES IN ACTION <span aria-hidden="true">→</span></a>
+      <p style="font-size:14.5px;font-weight:500;line-height:1.6;color:#1E1B17;margin:8px 0 0 0;">See values in action.</p>
+    </div>
+  </div>
+  <div data-row-photo="1" style="position:relative;overflow:hidden;min-height:440px;">
+    <img src="assets/wwd/wwd-values-real.jpg" alt="A team in warm conversation around a wooden meeting table" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;"/>
+  </div>
+</section>
+
+<section aria-label="Different expressions" data-pad="1" style="text-align:center;padding:96px 64px;">
+  <h2 style="font-family:'Instrument Serif',serif;font-weight:400;font-size:44px;line-height:1.18;margin:0;">Different expressions. <em style="color:#8A5F16;">The same root.</em></h2>
+  <div style="width:40px;height:2px;background:#C89A3C;margin:28px auto 0;"></div>
+  <p style="font-size:17px;line-height:1.9;color:#4A443B;margin:28px 0 0 0;">Every life carries worth.</p>
+  <p style="font-size:17px;line-height:1.9;color:#4A443B;margin:4px 0 0 0;">The right environment can change what becomes possible.</p>
+  <p style="font-size:17px;line-height:1.9;color:#4A443B;margin:4px 0 0 0;">What one person receives can eventually travel into <strong style="font-weight:700;color:#1E1B17;">the life of another.</strong></p>
+</section>
+
+<section data-close-sec="1" aria-label="Start your journey" style="position:relative;background:#141009;overflow:hidden;">
+  <img src="assets/img/what-do-you-carry.jpg" alt="A person walking a stone path towards the sunset between hills" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 40%;"/>
+  <div style="position:absolute;inset:0;background:linear-gradient(to right, rgba(16,12,6,0.92) 0%, rgba(16,12,6,0.62) 30%, rgba(16,12,6,0.18) 52%, rgba(16,12,6,0.5) 78%, rgba(16,12,6,0.78) 100%);"></div>
+  <div data-close-grid="1" data-pad="1" style="position:relative;z-index:10;display:grid;grid-template-columns:1.15fr 0.85fr;align-items:center;gap:64px;padding:84px 64px;">
+    <div>
+      <div style="font-size:14px;font-weight:700;letter-spacing:2.4px;color:#C89A3C;">WHAT DO YOU CARRY?</div>
+      <h2 data-h2="1" style="font-family:'Instrument Serif',serif;font-weight:400;font-size:54px;line-height:1.14;color:#F7F3EA;margin:18px 0 0 0;">Start your <em>journey.</em></h2>
+      <p style="font-size:16px;line-height:1.8;color:rgba(247,243,234,0.95);margin:22px 0 0 0;max-width:440px;">There are many ways to bring what you hold, your time, abilities, experience, resources or influence, into the life of another.</p>
+      <a href="#" style="display:inline-flex;align-items:center;gap:12px;background:#D9A83F;color:#2A2415;font-size:13px;font-weight:600;letter-spacing:1.4px;padding:16px 30px;border-radius:6px;margin-top:32px;transition:all .25s ease;" style-hover="background:#C89A3C;color:#1E1B17;transform:translateY(-1px);">START YOUR JOURNEY <span aria-hidden="true" style="font-size:15px;">→</span></a>
+    </div>
+    <ul data-carry-list="1" style="list-style:none;margin:0;padding:0 0 0 44px;border-left:1px solid rgba(247,243,234,0.2);display:flex;flex-direction:column;gap:20px;">
+      <li style="display:flex;align-items:center;gap:16px;">
+        <svg viewBox="0 0 24 24" fill="none" style="width:20px;height:20px;flex:none;" aria-hidden="true"><circle cx="12" cy="12" r="8.6" stroke="#C89A3C" stroke-width="1.6"></circle><path d="M12 7.6V12l3 1.9" stroke="#C89A3C" stroke-width="1.6" stroke-linecap="round"></path></svg>
+        <span style="font-size:14.5px;font-weight:700;letter-spacing:2px;color:#F7F3EA;">TIME</span>
+      </li>
+      <li style="display:flex;align-items:center;gap:16px;">
+        <svg viewBox="0 0 24 24" fill="none" style="width:20px;height:20px;flex:none;" aria-hidden="true"><path d="M12 3.6 14.3 9l5.5.5-4.2 3.7 1.3 5.4L12 15.7l-4.9 2.9 1.3-5.4L4.2 9.5 9.7 9 12 3.6Z" stroke="#C89A3C" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <span style="font-size:14.5px;font-weight:700;letter-spacing:2px;color:#F7F3EA;">EXPERIENCE</span>
+      </li>
+      <li style="display:flex;align-items:center;gap:16px;">
+        <svg viewBox="0 0 24 24" fill="none" style="width:20px;height:20px;flex:none;" aria-hidden="true"><path d="M6 18 18 6M8.5 6H18v9.5" stroke="#C89A3C" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+        <span style="font-size:14.5px;font-weight:700;letter-spacing:2px;color:#F7F3EA;">ABILITY</span>
+      </li>
+      <li style="display:flex;align-items:center;gap:16px;">
+        <svg viewBox="0 0 24 24" fill="none" style="width:20px;height:20px;flex:none;" aria-hidden="true"><circle cx="12" cy="12" r="2.6" stroke="#C89A3C" stroke-width="1.6"></circle><path d="M12 4.4v2.2M12 17.4v2.2M4.4 12h2.2M17.4 12h2.2M6.6 6.6l1.6 1.6M15.8 15.8l1.6 1.6M6.6 17.4l1.6-1.6M15.8 8.2l1.6-1.6" stroke="#C89A3C" stroke-width="1.6" stroke-linecap="round"></path></svg>
+        <span style="font-size:14.5px;font-weight:700;letter-spacing:2px;color:#F7F3EA;">INFLUENCE</span>
+      </li>
+      <li style="display:flex;align-items:center;gap:16px;">
+        <svg viewBox="0 0 24 24" fill="none" style="width:20px;height:20px;flex:none;" aria-hidden="true"><path d="M4 17c2.5-4.5 5.5-6.8 8-6.8S17.5 12.5 20 17" stroke="#C89A3C" stroke-width="1.6" stroke-linecap="round"></path><circle cx="12" cy="6.8" r="2.4" stroke="#C89A3C" stroke-width="1.6"></circle></svg>
+        <span style="font-size:14.5px;font-weight:700;letter-spacing:2px;color:#F7F3EA;">OPPORTUNITY.</span>
+      </li>
+      <li style="display:flex;align-items:center;gap:16px;">
+        <svg viewBox="0 0 24 24" fill="none" style="width:20px;height:20px;flex:none;" aria-hidden="true"><rect x="5" y="10" width="14" height="9" rx="1.4" stroke="#C89A3C" stroke-width="1.6"></rect><path d="M8.5 10V7.6A3.5 3.5 0 0 1 12 4.2a3.5 3.5 0 0 1 3.5 3.4V10" stroke="#C89A3C" stroke-width="1.6" stroke-linecap="round"></path></svg>
+        <span style="font-size:14.5px;font-weight:700;letter-spacing:2px;color:#F7F3EA;">RESOURCES</span>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<dc-import name="Site Footer" hint-size="100%,560px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {}
+</script>
+</body>
+</html>

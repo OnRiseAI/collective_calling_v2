@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; background: #F4F0E8; }
+  a { color: #1E1B17; text-decoration: none; }
+  a:hover { color: #8A5F16; }
+  @media (max-width: 680px) {
+    [data-pad] { padding-left: 28px !important; padding-right: 28px !important; }
+    [data-h1] { font-size: 42px !important; }
+    [data-sub-row] { flex-direction: column !important; }
+  }
+</style>
+</helmet>
+<div style="font-family:'Figtree',sans-serif;background:#F4F0E8;color:#1E1B17;min-height:100vh;">
+<dc-import name="Site Header" active="what" hint-size="100%,84px"></dc-import>
+
+<section aria-label="Events and experiences" data-pad="1" style="background:#141009;padding:170px 64px 88px;">
+  <div style="max-width:1320px;margin:0 auto;">
+    <div style="display:flex;align-items:center;gap:16px;">
+      <span style="font-size:14px;font-weight:700;letter-spacing:2.4px;color:#C89A3C;">WHAT WE DO</span>
+      <span style="width:40px;height:1px;background:#C89A3C;"></span>
+    </div>
+    <h1 data-h1="1" style="font-family:'Instrument Serif',serif;font-weight:400;font-size:64px;line-height:1.12;color:#F7F3EA;margin:22px 0 0 0;">Events &amp; Experiences</h1>
+    <p style="font-size:17px;line-height:1.75;color:rgba(247,243,234,0.95);margin:24px 0 0 0;max-width:460px;">Gatherings, experiences and moments that bring people together around one purpose.</p>
+  </div>
+</section>
+
+<section aria-label="Upcoming events" data-pad="1" style="padding:120px 64px;">
+  <div style="max-width:760px;margin:0 auto;text-align:center;">
+    <span style="width:64px;height:64px;border-radius:999px;border:1px solid #D6CFC2;background:#FAF7F1;display:inline-flex;align-items:center;justify-content:center;">
+      <svg viewBox="0 0 24 24" fill="none" style="width:26px;height:26px;" aria-hidden="true"><rect x="4" y="6" width="16" height="14" rx="1.6" stroke="#8A5F16" stroke-width="1.4"></rect><path d="M4 10.5h16M8.5 4v4M15.5 4v4" stroke="#8A5F16" stroke-width="1.4" stroke-linecap="round"></path></svg>
+    </span>
+    <h2 style="font-family:'Instrument Serif',serif;font-weight:400;font-size:38px;line-height:1.2;margin:28px 0 0 0;">Nothing scheduled right now.</h2>
+    <p style="font-size:16.5px;line-height:1.8;color:#4A443B;margin:18px auto 0;max-width:420px;">New events and experiences are announced here first. Join the mailing list and we&#x27;ll let you know the moment something is planned.</p>
+    <div data-sub-row="1" style="display:flex;gap:12px;justify-content:center;margin-top:36px;">
+      <input type="email" placeholder="Your email address" aria-label="Email address" style="flex:1;max-width:340px;min-height:48px;font-family:'Figtree',sans-serif;font-size:14.5px;color:#1E1B17;background:#FAF7F1;border:1px solid #D6CFC2;border-radius:6px;padding:0 18px;outline:none;"/>
+      <button type="button" onClick="{{ onSubscribe }}" style="min-height:48px;background:#D9A83F;color:#2A2415;font-family:'Figtree',sans-serif;font-size:13px;font-weight:700;letter-spacing:1.4px;padding:0 28px;border:none;border-radius:6px;cursor:pointer;transition:all .25s ease;" style-hover="background:#C89A3C;">{{ subscribeLabel }}</button>
+    </div>
+    <p style="font-size:12.5px;color:#5F594E;margin:16px 0 0 0;">No spam. Just the occasional invitation worth opening.</p>
+    <div style="width:40px;height:1px;background:#D6CFC2;margin:56px auto 0;"></div>
+    <p style="font-size:15px;line-height:1.8;color:#4A443B;margin:32px auto 0;max-width:420px;">In the meantime, there are other ways in: <a href="What We Do.dc.html" style="color:#8A5F16;font-weight:600;">see what we do</a> or <a href="Stories.dc.html" style="color:#8A5F16;font-weight:600;">read the stories</a> behind the work.</p>
+  </div>
+</section>
+
+<dc-import name="Site Footer" hint-size="100%,560px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { subscribed: false };
+  renderVals() {
+    return {
+      subscribeLabel: this.state.subscribed ? 'YOU\u2019RE ON THE LIST' : 'KEEP ME POSTED',
+      onSubscribe: () => this.setState({ subscribed: true })
+    };
+  }
+}
+</script>
+</body>
+</html>

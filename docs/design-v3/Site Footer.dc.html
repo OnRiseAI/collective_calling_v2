@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  @media (max-width: 1024px) {
+    [data-ft-top] { flex-direction: column !important; align-items: flex-start !important; gap: 36px !important; }
+    [data-ft-cols] { grid-template-columns: 1fr 1fr !important; gap: 40px !important; }
+  }
+  @media (max-width: 680px) {
+    [data-ft-gut] { padding-left: 28px !important; padding-right: 28px !important; }
+    [data-ft-cols] { grid-template-columns: 1fr !important; }
+    [data-ft-meta] { flex-direction: column !important; align-items: flex-start !important; gap: 14px !important; }
+  }
+</style>
+</helmet>
+<footer style="font-family:'Figtree',sans-serif;background:#141009;color:#F7F3EA;">
+  <div data-ft-gut="1" style="max-width:1320px;margin:0 auto;padding:96px 64px 0;">
+    <div data-ft-top="1" style="display:flex;align-items:flex-end;justify-content:space-between;gap:48px;padding-bottom:64px;border-bottom:1px solid rgba(247,243,234,0.14);">
+      <div>
+        <div style="width:40px;height:2px;background:#C89A3C;"></div>
+        <h2 style="font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(34px,3.4vw,48px);line-height:1.18;margin:22px 0 0 0;max-width:520px;">What you carry can change a life.</h2>
+      </div>
+      <div style="display:flex;align-items:center;gap:14px;flex:none;">
+        <a href="Support.dc.html" style="display:inline-flex;align-items:center;gap:12px;min-height:52px;background:#D9A83F;color:#2A2415;font-size:13px;font-weight:700;letter-spacing:1.4px;padding:0 32px;border-radius:6px;white-space:nowrap;text-decoration:none;transition:all .25s ease;" style-hover="background:#C89A3C;transform:translateY(-1px);">GIVE <span aria-hidden="true" style="font-size:15px;">→</span></a>
+        <a href="Find Your Path.dc.html" style="display:inline-flex;align-items:center;gap:10px;min-height:52px;border:1px solid rgba(247,243,234,0.4);color:#F7F3EA;font-size:13px;font-weight:600;letter-spacing:1.4px;padding:0 26px;border-radius:6px;white-space:nowrap;text-decoration:none;transition:all .25s ease;" style-hover="border-color:#C89A3C;color:#C89A3C;">START YOUR JOURNEY</a>
+      </div>
+    </div>
+    <div data-ft-cols="1" style="display:grid;grid-template-columns:1.3fr 1fr 1fr 1fr;gap:56px;padding:64px 0;">
+      <div>
+        <div style="display:flex;align-items:center;gap:12px;">
+          <svg viewBox="0 0 38 38" fill="none" style="width:34px;height:34px;flex:none;" aria-hidden="true">
+            <circle cx="19" cy="19" r="16.6" stroke="#C89A3C" stroke-width="1.6"></circle>
+            <path d="M25.4 12.6A8.8 8.8 0 1 0 25.4 25.4" stroke="#C89A3C" stroke-width="1.6" stroke-linecap="round"></path>
+            <path d="M23.4 15.1A5.4 5.4 0 1 0 23.4 22.9" stroke="#C89A3C" stroke-width="1.4" stroke-linecap="round"></path>
+          </svg>
+          <span style="font-size:13px;font-weight:700;letter-spacing:1.5px;line-height:1.25;">COLLECTIVE<br/>CALLING</span>
+        </div>
+        <p style="font-size:14px;line-height:1.8;color:rgba(247,243,234,0.75);margin:20px 0 0 0;max-width:280px;">We believe every person carries something that can impact the life of another. From Tanzania to Spain, we create environments where transformation happens.</p>
+      </div>
+      <nav aria-label="Explore">
+        <div style="font-size:12px;font-weight:700;letter-spacing:1.5px;color:rgba(247,243,234,0.55);">EXPLORE</div>
+        <div style="display:flex;flex-direction:column;gap:2px;margin-top:16px;">
+          <a href="Who We Are.dc.html" style="display:flex;align-items:center;min-height:38px;font-size:14.5px;color:#F7F3EA;text-decoration:none;transition:color .2s ease;" style-hover="color:#C89A3C;">Who we are</a>
+          <a href="What We Do.dc.html" style="display:flex;align-items:center;min-height:38px;font-size:14.5px;color:#F7F3EA;text-decoration:none;transition:color .2s ease;" style-hover="color:#C89A3C;">What we do</a>
+          <a href="Stories.dc.html" style="display:flex;align-items:center;min-height:38px;font-size:14.5px;color:#F7F3EA;text-decoration:none;transition:color .2s ease;" style-hover="color:#C89A3C;">Stories</a>
+          <a href="#" style="display:flex;align-items:center;min-height:38px;font-size:14.5px;color:#F7F3EA;text-decoration:none;transition:color .2s ease;" style-hover="color:#C89A3C;">Impact</a>
+          <a href="#" style="display:flex;align-items:center;min-height:38px;font-size:14.5px;color:#F7F3EA;text-decoration:none;transition:color .2s ease;" style-hover="color:#C89A3C;">Contact</a>
+        </div>
+      </nav>
+      <nav aria-label="Our work">
+        <div style="font-size:12px;font-weight:700;letter-spacing:1.5px;color:rgba(247,243,234,0.55);">OUR WORK</div>
+        <div style="display:flex;flex-direction:column;gap:2px;margin-top:16px;">
+          <a href="What We Do.dc.html#children-families" style="display:flex;align-items:center;min-height:38px;font-size:14.5px;color:#F7F3EA;text-decoration:none;transition:color .2s ease;" style-hover="color:#C89A3C;">Children &amp; families</a>
+          <a href="What We Do.dc.html#homelessness-restoration" style="display:flex;align-items:center;min-height:38px;font-size:14.5px;color:#F7F3EA;text-decoration:none;transition:color .2s ease;" style-hover="color:#C89A3C;">Homelessness &amp; restoration</a>
+          <a href="What We Do.dc.html#values-in-action" style="display:flex;align-items:center;min-height:38px;font-size:14.5px;color:#F7F3EA;text-decoration:none;transition:color .2s ease;" style-hover="color:#C89A3C;">Values in action</a>
+          <a href="Events and Experiences.dc.html" style="display:flex;align-items:center;min-height:38px;font-size:14.5px;color:#F7F3EA;text-decoration:none;transition:color .2s ease;" style-hover="color:#C89A3C;">Events &amp; experiences</a>
+        </div>
+      </nav>
+      <div>
+        <div style="font-size:12px;font-weight:700;letter-spacing:1.5px;color:rgba(247,243,234,0.55);">GET INVOLVED</div>
+        <div style="display:flex;flex-direction:column;gap:2px;margin-top:16px;">
+          <a href="Find Your Path.dc.html" style="display:flex;align-items:center;min-height:38px;font-size:14.5px;color:#F7F3EA;text-decoration:none;transition:color .2s ease;" style-hover="color:#C89A3C;">Find your path</a>
+          <a href="Support.dc.html" style="display:flex;align-items:center;min-height:38px;font-size:14.5px;color:#F7F3EA;text-decoration:none;transition:color .2s ease;" style-hover="color:#C89A3C;">Support our work</a>
+          <a href="Stories.dc.html" style="display:flex;align-items:center;min-height:38px;font-size:14.5px;color:#F7F3EA;text-decoration:none;transition:color .2s ease;" style-hover="color:#C89A3C;">Volunteer</a>
+          <a href="What We Do.dc.html#values-in-action" style="display:flex;align-items:center;min-height:38px;font-size:14.5px;color:#F7F3EA;text-decoration:none;transition:color .2s ease;" style-hover="color:#C89A3C;">Partner with us</a>
+        </div>
+      </div>
+    </div>
+    <div data-ft-meta="1" style="display:flex;align-items:center;justify-content:space-between;gap:24px;padding:26px 0 30px;border-top:1px solid rgba(247,243,234,0.14);">
+      <div style="font-size:12.5px;color:rgba(247,243,234,0.6);">© Collective Calling 2026</div>
+      <div style="display:flex;align-items:center;gap:28px;">
+        <a href="#" style="font-size:12.5px;color:rgba(247,243,234,0.6);text-decoration:none;transition:color .2s ease;" style-hover="color:#F7F3EA;">Privacy</a>
+        <a href="#" style="font-size:12.5px;color:rgba(247,243,234,0.6);text-decoration:none;transition:color .2s ease;" style-hover="color:#F7F3EA;">Terms</a>
+      </div>
+    </div>
+  </div>
+</footer>
+</x-dc>
+</body>
+</html>

@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; background: #F4F0E8; }
+  a { color: #1E1B17; text-decoration: none; }
+  a:hover { color: #8A5F16; }
+  @media (max-width: 1024px) {
+    [data-facts] { grid-template-columns: 1fr 1fr !important; }
+    [data-facts] > div { border-left: none !important; border-top: 1px solid #D6CFC2; }
+    [data-evening] { grid-template-columns: 1fr !important; gap: 44px !important; }
+    [data-cta-row] { flex-direction: column !important; align-items: flex-start !important; gap: 32px !important; }
+    [data-gallery] { grid-template-columns: 1fr 1fr !important; }
+  }
+  @media (max-width: 680px) {
+    [data-pad] { padding-left: 28px !important; padding-right: 28px !important; }
+    [data-h1] { font-size: 44px !important; }
+    [data-facts] { grid-template-columns: 1fr !important; }
+    [data-impact-num] { font-size: 56px !important; }
+    [data-gallery] { grid-template-columns: 1fr !important; }
+    [data-band-btns] { width: 100% !important; flex-direction: column !important; align-items: stretch !important; }
+    [data-band-btns] a { justify-content: center !important; }
+  }
+</style>
+</helmet>
+<div style="font-family:'Figtree',sans-serif;background:#F4F0E8;color:#1E1B17;">
+<dc-import name="Site Header" active="what" hint-size="100%,84px"></dc-import>
+
+<section aria-label="Event" style="position:relative;background:#141009;overflow:hidden;">
+  <div style="position:absolute;inset:0;background:radial-gradient(120% 100% at 50% 0%, rgba(217,168,63,0.12) 0%, rgba(20,16,9,0) 55%);"></div>
+  <div data-pad="1" style="position:relative;z-index:10;max-width:1320px;margin:0 auto;padding:190px 64px 96px;text-align:center;">
+    <div style="font-size:13px;font-weight:700;letter-spacing:2.4px;color:#D9A83F;">THURSDAY 24 SEPTEMBER 2026</div>
+    <h1 data-h1="1" style="font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(48px,6vw,84px);line-height:1.08;color:#F7F3EA;margin:22px 0 0 0;">The Fashion Show</h1>
+    <p style="font-size:16px;line-height:1.75;color:rgba(247,243,234,0.85);margin:24px auto 0;max-width:440px;">An evening of fashion in support of [programme TBC].</p>
+    <sc-if value="{{ isUpcoming }}" hint-placeholder-val="{{ true }}">
+      <div data-band-btns="1" style="display:flex;align-items:center;justify-content:center;gap:14px;margin-top:38px;">
+        <a href="#" style="display:inline-flex;align-items:center;gap:12px;min-height:52px;background:#D9A83F;color:#2A2415;font-size:13px;font-weight:700;letter-spacing:1.4px;padding:0 32px;border-radius:6px;white-space:nowrap;text-decoration:none;transition:all .25s ease;" style-hover="background:#C89A3C;transform:translateY(-1px);">RESERVE YOUR PLACE <span aria-hidden="true">→</span></a>
+      </div>
+    </sc-if>
+    <sc-if value="{{ isPast }}" hint-placeholder-val="{{ false }}">
+      <div style="display:inline-flex;align-items:center;gap:10px;margin-top:38px;border:1px solid rgba(247,243,234,0.35);border-radius:999px;padding:12px 24px;font-size:12.5px;font-weight:600;letter-spacing:1.5px;color:rgba(247,243,234,0.8);">THIS EVENT HAS TAKEN PLACE</div>
+    </sc-if>
+  </div>
+</section>
+
+<sc-if value="{{ isUpcoming }}" hint-placeholder-val="{{ true }}">
+<section aria-label="Key facts" style="background:#FAF7F1;border-bottom:1px solid #D6CFC2;">
+  <div data-facts="1" data-pad="1" style="max-width:1320px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);">
+    <div style="padding:34px 28px;text-align:center;">
+      <svg viewBox="0 0 24 24" fill="none" style="width:22px;height:22px;" aria-hidden="true"><rect x="4" y="6" width="16" height="14" rx="1.6" stroke="#8A5F16" stroke-width="1.4"></rect><path d="M4 10.5h16M8.5 4v4M15.5 4v4" stroke="#8A5F16" stroke-width="1.4" stroke-linecap="round"></path></svg>
+      <div style="font-size:12px;font-weight:700;letter-spacing:1.5px;color:#5F594E;margin-top:10px;">DATE</div>
+      <div style="font-size:15px;font-weight:600;color:#1E1B17;margin-top:6px;">Thu 24 Sept 2026</div>
+    </div>
+    <div style="padding:34px 28px;text-align:center;border-left:1px solid #D6CFC2;">
+      <svg viewBox="0 0 24 24" fill="none" style="width:22px;height:22px;" aria-hidden="true"><circle cx="12" cy="12" r="8.6" stroke="#8A5F16" stroke-width="1.4"></circle><path d="M12 7.6V12l3 1.9" stroke="#8A5F16" stroke-width="1.4" stroke-linecap="round"></path></svg>
+      <div style="font-size:12px;font-weight:700;letter-spacing:1.5px;color:#5F594E;margin-top:10px;">TIME</div>
+      <div style="font-size:15px;font-weight:600;color:#1E1B17;margin-top:6px;">[TBC]</div>
+    </div>
+    <div style="padding:34px 28px;text-align:center;border-left:1px solid #D6CFC2;">
+      <svg viewBox="0 0 24 24" fill="none" style="width:22px;height:22px;" aria-hidden="true"><path d="M12 21s-7-5.6-7-11a7 7 0 0 1 14 0c0 5.4-7 11-7 11Z" stroke="#8A5F16" stroke-width="1.4" stroke-linejoin="round"></path><circle cx="12" cy="9.8" r="2.6" stroke="#8A5F16" stroke-width="1.4"></circle></svg>
+      <div style="font-size:12px;font-weight:700;letter-spacing:1.5px;color:#5F594E;margin-top:10px;">LOCATION</div>
+      <div style="font-size:15px;font-weight:600;color:#1E1B17;margin-top:6px;">[Venue TBC]</div>
+    </div>
+    <div style="padding:34px 28px;text-align:center;border-left:1px solid #D6CFC2;">
+      <svg viewBox="0 0 24 24" fill="none" style="width:22px;height:22px;" aria-hidden="true"><path d="M4 9a2 2 0 0 0 0 6v3.4h16V15a2 2 0 0 0 0-6V5.6H4V9Z" stroke="#8A5F16" stroke-width="1.4" stroke-linejoin="round"></path><path d="M14 6v2.2M14 11v2M14 15.8V18" stroke="#8A5F16" stroke-width="1.4" stroke-linecap="round"></path></svg>
+      <div style="font-size:12px;font-weight:700;letter-spacing:1.5px;color:#5F594E;margin-top:10px;">ATTENDANCE</div>
+      <div style="font-size:15px;font-weight:600;color:#1E1B17;margin-top:6px;">[Ticketed or free TBC]</div>
+    </div>
+  </div>
+</section>
+</sc-if>
+
+<sc-if value="{{ isPast }}" hint-placeholder-val="{{ false }}">
+<section aria-label="From the night" data-pad="1" style="padding:96px 64px 32px;">
+  <div style="max-width:1320px;margin:0 auto;">
+    <div style="display:flex;align-items:center;gap:16px;">
+      <span style="font-size:14px;font-weight:700;letter-spacing:2.4px;color:#8A5F16;">FROM THE NIGHT</span>
+      <span style="width:40px;height:1px;background:#C89A3C;"></span>
+    </div>
+    <div data-gallery="1" style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:32px;">
+      <div style="aspect-ratio:3/2;background:#E8E1D2;border:1px dashed #C6BDAC;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:13px;color:#5F594E;">[Event photo 1]</div>
+      <div style="aspect-ratio:3/2;background:#E8E1D2;border:1px dashed #C6BDAC;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:13px;color:#5F594E;">[Event photo 2]</div>
+      <div style="aspect-ratio:3/2;background:#E8E1D2;border:1px dashed #C6BDAC;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:13px;color:#5F594E;">[Event photo 3]</div>
+    </div>
+    <div style="text-align:center;padding:64px 0 32px;">
+      <div style="font-size:13px;font-weight:700;letter-spacing:2.4px;color:#8A5F16;">TOGETHER WE RAISED</div>
+      <div data-impact-num="1" style="font-family:'Instrument Serif',serif;font-size:88px;line-height:1.05;color:#1E1B17;margin-top:14px;">[€ Amount TBC]</div>
+      <p style="font-size:15.5px;line-height:1.8;color:#4A443B;margin:18px auto 0;max-width:400px;">Every euro goes to [programme TBC]. Thank you to everyone who came, gave and made the evening what it was.</p>
+    </div>
+  </div>
+</section>
+</sc-if>
+
+<sc-if value="{{ isUpcoming }}" hint-placeholder-val="{{ true }}">
+<section aria-label="The evening" data-pad="1" style="padding:120px 64px;">
+  <div data-evening="1" style="max-width:1320px;margin:0 auto;display:grid;grid-template-columns:1.1fr 1fr;gap:80px;align-items:start;">
+    <div>
+      <div style="display:flex;align-items:center;gap:16px;">
+        <span style="font-size:14px;font-weight:700;letter-spacing:2.4px;color:#8A5F16;">THE EVENING</span>
+        <span style="width:40px;height:1px;background:#C89A3C;"></span>
+      </div>
+      <p style="font-family:'Instrument Serif',serif;font-size:30px;line-height:1.45;color:#1E1B17;margin:28px 0 0 0;">[Intro copy TBC — two or three sentences on what the evening is, who it brings together, and why it matters.]</p>
+    </div>
+    <div style="padding-top:52px;">
+      <div style="font-size:12px;font-weight:700;letter-spacing:1.5px;color:#5F594E;">THE NIGHT INCLUDES</div>
+      <ul style="list-style:none;margin:20px 0 0 0;padding:0;display:flex;flex-direction:column;gap:14px;">
+        <li style="display:flex;align-items:baseline;gap:14px;font-size:15.5px;line-height:1.6;color:#4A443B;"><span style="width:7px;height:7px;border-radius:999px;background:#D9A83F;flex:none;transform:translateY(-2px);"></span>Welcome drinks on arrival</li>
+        <li style="display:flex;align-items:baseline;gap:14px;font-size:15.5px;line-height:1.6;color:#4A443B;"><span style="width:7px;height:7px;border-radius:999px;background:#D9A83F;flex:none;transform:translateY(-2px);"></span>[Item TBC]</li>
+        <li style="display:flex;align-items:baseline;gap:14px;font-size:15.5px;line-height:1.6;color:#4A443B;"><span style="width:7px;height:7px;border-radius:999px;background:#D9A83F;flex:none;transform:translateY(-2px);"></span>[Item TBC]</li>
+        <li style="display:flex;align-items:baseline;gap:14px;font-size:15.5px;line-height:1.6;color:#4A443B;"><span style="width:7px;height:7px;border-radius:999px;background:#D9A83F;flex:none;transform:translateY(-2px);"></span>[Item TBC]</li>
+      </ul>
+    </div>
+  </div>
+</section>
+</sc-if>
+
+<section aria-label="What it funds" data-pad="1" style="padding:24px 64px 120px;">
+  <div style="max-width:760px;margin:0 auto;text-align:center;">
+    <div style="width:40px;height:2px;background:#C89A3C;margin:0 auto;"></div>
+    <h2 style="font-family:'Instrument Serif',serif;font-weight:400;font-size:40px;line-height:1.2;margin:28px 0 0 0;">Where the money goes</h2>
+    <p style="font-size:16px;line-height:1.8;color:#4A443B;margin:20px auto 0;max-width:460px;">Every euro raised on the night goes directly to [programme TBC].</p>
+    <div data-impact-num="1" style="font-family:'Instrument Serif',serif;font-size:76px;line-height:1.1;color:#1E1B17;margin-top:44px;">[Impact figure TBC]</div>
+    <p style="font-size:15px;line-height:1.7;color:#4A443B;margin:12px auto 0;max-width:380px;">[e.g. covers a month of school meals for one child]</p>
+    <a href="What We Do.dc.html" style="display:inline-flex;align-items:center;gap:10px;min-height:44px;font-size:12.5px;font-weight:700;letter-spacing:1.5px;color:#8A5F16;margin-top:28px;">SEE THE PROGRAMME THIS FUNDS <span aria-hidden="true">→</span></a>
+  </div>
+</section>
+
+<section aria-label="Sponsors" style="background:#FAF7F1;border-top:1px solid #D6CFC2;border-bottom:1px solid #D6CFC2;">
+  <div data-pad="1" style="max-width:1320px;margin:0 auto;padding:88px 64px;text-align:center;">
+    <div style="font-size:13px;font-weight:700;letter-spacing:2.4px;color:#8A5F16;">WITH THANKS TO</div>
+    <div style="display:flex;align-items:center;justify-content:center;margin-top:36px;">
+      <div style="width:280px;height:88px;background:#F4F0E8;border:1px dashed #C6BDAC;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:13px;color:#5F594E;">[Headline sponsor logo]</div>
+    </div>
+    <div style="display:flex;align-items:center;justify-content:center;gap:20px;flex-wrap:wrap;margin-top:28px;">
+      <div style="width:150px;height:56px;background:#F4F0E8;border:1px dashed #C6BDAC;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:12px;color:#5F594E;">[Sponsor]</div>
+      <div style="width:150px;height:56px;background:#F4F0E8;border:1px dashed #C6BDAC;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:12px;color:#5F594E;">[Sponsor]</div>
+      <div style="width:150px;height:56px;background:#F4F0E8;border:1px dashed #C6BDAC;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:12px;color:#5F594E;">[Sponsor]</div>
+      <div style="width:150px;height:56px;background:#F4F0E8;border:1px dashed #C6BDAC;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:12px;color:#5F594E;">[Sponsor]</div>
+      <div style="width:150px;height:56px;background:#F4F0E8;border:1px dashed #C6BDAC;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:12px;color:#5F594E;">[Sponsor]</div>
+    </div>
+    <p style="font-size:15px;line-height:1.8;color:#4A443B;margin:44px auto 0;max-width:440px;">Businesses can put their values to work behind the evening. For the sponsorship pack, write to <a href="mailto:hello@collectivecalling.org" style="color:#8A5F16;font-weight:600;">hello@collectivecalling.org</a>.</p>
+  </div>
+</section>
+
+<sc-if value="{{ isUpcoming }}" hint-placeholder-val="{{ true }}">
+<section aria-label="Reserve" style="background:#141009;">
+  <div data-cta-row="1" data-pad="1" style="max-width:1320px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:48px;padding:88px 64px;">
+    <div>
+      <div style="font-size:13px;font-weight:700;letter-spacing:2.4px;color:#D9A83F;">THURSDAY 24 SEPTEMBER 2026</div>
+      <h2 style="font-family:'Instrument Serif',serif;font-weight:400;font-size:42px;line-height:1.18;color:#F7F3EA;margin:16px 0 0 0;">The Fashion Show</h2>
+      <p style="font-size:15px;line-height:1.7;color:rgba(247,243,234,0.85);margin:14px 0 0 0;max-width:400px;">One evening. One room. A different story for [programme TBC].</p>
+    </div>
+    <a href="#" style="display:inline-flex;align-items:center;gap:12px;min-height:52px;background:#D9A83F;color:#2A2415;font-size:13px;font-weight:700;letter-spacing:1.4px;padding:0 32px;border-radius:6px;white-space:nowrap;flex:none;text-decoration:none;transition:all .25s ease;" style-hover="background:#C89A3C;transform:translateY(-1px);">RESERVE YOUR PLACE <span aria-hidden="true">→</span></a>
+  </div>
+</section>
+<section aria-label="Give instead" data-pad="1" style="padding:44px 64px 96px;">
+  <p style="text-align:center;font-size:14.5px;line-height:1.8;color:#4A443B;margin:0 auto;max-width:440px;">Can&#x27;t make it on the night? You can still be part of it — <a href="Support.dc.html" style="color:#8A5F16;font-weight:600;">give to the work here</a>.</p>
+</section>
+</sc-if>
+<sc-if value="{{ isPast }}" hint-placeholder-val="{{ false }}">
+<section aria-label="Next time" style="background:#141009;">
+  <div data-cta-row="1" data-pad="1" style="max-width:1320px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:48px;padding:88px 64px;">
+    <div>
+      <h2 style="font-family:'Instrument Serif',serif;font-weight:400;font-size:42px;line-height:1.18;color:#F7F3EA;margin:0;">Be in the room next time.</h2>
+      <p style="font-size:15px;line-height:1.7;color:rgba(247,243,234,0.85);margin:14px 0 0 0;max-width:400px;">Join the mailing list and hear first when the next event is announced.</p>
+    </div>
+    <a href="Events and Experiences.dc.html" style="display:inline-flex;align-items:center;gap:12px;min-height:52px;background:#D9A83F;color:#2A2415;font-size:13px;font-weight:700;letter-spacing:1.4px;padding:0 32px;border-radius:6px;white-space:nowrap;flex:none;text-decoration:none;transition:all .25s ease;" style-hover="background:#C89A3C;transform:translateY(-1px);">JOIN THE LIST <span aria-hidden="true">→</span></a>
+  </div>
+</section>
+</sc-if>
+
+<dc-import name="Site Footer" hint-size="100%,560px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;eventState&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;upcoming&quot;,&quot;options&quot;:[&quot;upcoming&quot;,&quot;past&quot;],&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Event&quot;}}">
+class Component extends DCLogic {
+  renderVals() {
+    const state = this.props.eventState ?? 'upcoming';
+    return { isUpcoming: state === 'upcoming', isPast: state === 'past' };
+  }
+}
+</script>
+</body>
+</html>

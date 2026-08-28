@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Figtree:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; }
+  a { color: #c9a15c; text-decoration: none; }
+  a:hover { color: #ddb875; }
+</style>
+</helmet>
+<div style="font-family:'Figtree',sans-serif;background:#f6f1e7;color:#14213a;">
+
+<section style="position:relative;min-height:100vh;overflow:hidden;display:flex;flex-direction:column;">
+  <img src="uploads/grok-image-6f416902-9465-4ad1-be10-8de604475ac6.jpg" alt="A walker on a coastal path at sunrise" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 50%;"/>
+  <div style="position:absolute;inset:0;background:linear-gradient(to bottom, rgba(246,241,231,0.94) 0%, rgba(246,241,231,0.86) 26%, rgba(246,241,231,0.42) 46%, rgba(246,241,231,0.06) 62%, rgba(20,20,18,0.18) 100%);"></div>
+
+  <header style="position:relative;display:flex;align-items:flex-start;justify-content:space-between;padding:34px 48px;">
+    <div style="display:flex;align-items:center;gap:14px;">
+      <svg viewBox="0 0 38 38" fill="none" style="width:34px;height:34px;flex:none;">
+        <circle cx="19" cy="19" r="17.2" stroke="#14213a" stroke-width="1.5"></circle>
+        <path d="M25.5 12.4A9 9 0 1 0 25.5 25.6" stroke="#14213a" stroke-width="1.5" stroke-linecap="round"></path>
+      </svg>
+      <div style="line-height:1.15;">
+        <div style="font-size:12.5px;font-weight:600;letter-spacing:2.4px;color:#14213a;">COLLECTIVE</div>
+        <div style="font-size:12.5px;font-weight:600;letter-spacing:2.4px;color:#14213a;">CALLING</div>
+      </div>
+    </div>
+    <a href="#" style="display:inline-flex;align-items:center;gap:10px;color:#14213a;font-size:13.5px;font-weight:500;border-bottom:1px solid rgba(20,33,58,0.4);padding-bottom:5px;transition:all .25s ease;" style-hover="color:#c9a15c;border-color:#c9a15c;">Skip to website <span style="font-size:15px;">→</span></a>
+  </header>
+
+  <div style="position:relative;flex:1;display:flex;flex-direction:column;align-items:center;text-align:center;padding:56px 48px 64px;">
+    <span style="color:#c9a15c;font-size:11.5px;font-weight:600;letter-spacing:3.4px;">WELCOME TO COLLECTIVE CALLING</span>
+    <h1 style="font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(52px,6.4vw,96px);line-height:1.08;margin:26px 0 0 0;letter-spacing:-1.2px;max-width:1000px;text-wrap:pretty;">Every life becomes part of a bigger story.</h1>
+    <div style="width:56px;height:1.5px;background:#c9a15c;margin:38px 0 34px;"></div>
+    <p style="font-size:16px;line-height:1.85;color:#454b57;margin:0;max-width:470px;font-weight:500;text-wrap:pretty;">We exist to equip people and organisations to live their values, build meaningful connections and create lasting impact in the world around them.</p>
+
+    <sc-if value="{{ showPillars }}" hint-placeholder-val="{{ true }}">
+      <div style="display:flex;justify-content:center;gap:96px;margin-top:56px;flex-wrap:wrap;">
+        <div style="display:flex;flex-direction:column;align-items:center;gap:16px;">
+          <svg viewBox="0 0 24 24" fill="none" style="width:23px;height:23px;">
+            <path d="M12 20.2s-7.4-4.6-7.4-9.5A4.2 4.2 0 0 1 12 8.1a4.2 4.2 0 0 1 7.4 2.6c0 4.9-7.4 9.5-7.4 9.5Z" stroke="#14213a" stroke-width="1.2" stroke-linejoin="round"></path>
+          </svg>
+          <div style="font-size:10.5px;font-weight:600;letter-spacing:1.9px;color:#14213a;line-height:1.85;">WE CARE<br/>FOR PEOPLE</div>
+        </div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:16px;">
+          <svg viewBox="0 0 24 24" fill="none" style="width:23px;height:23px;">
+            <circle cx="12" cy="12" r="8.6" stroke="#14213a" stroke-width="1.2"></circle>
+            <path d="M3.4 12h17.2M12 3.4c2.3 2.4 3.4 5.4 3.4 8.6s-1.1 6.2-3.4 8.6c-2.3-2.4-3.4-5.4-3.4-8.6S9.7 5.8 12 3.4Z" stroke="#14213a" stroke-width="1.2"></path>
+          </svg>
+          <div style="font-size:10.5px;font-weight:600;letter-spacing:1.9px;color:#14213a;line-height:1.85;">WE STRENGTHEN<br/>COMMUNITIES</div>
+        </div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:16px;">
+          <svg viewBox="0 0 24 24" fill="none" style="width:23px;height:23px;">
+            <path d="M12 3.2v17.6M3.2 12h17.6M5.9 5.9l12.2 12.2M18.1 5.9 5.9 18.1" stroke="#14213a" stroke-width="1.2" stroke-linecap="round"></path>
+          </svg>
+          <div style="font-size:10.5px;font-weight:600;letter-spacing:1.9px;color:#14213a;line-height:1.85;">WE INSPIRE<br/>VALUES IN ACTION</div>
+        </div>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{ isCard }}" hint-placeholder-val="{{ true }}">
+      <a href="#" style="margin-top:72px;background:rgba(22,22,20,0.9);border:1px solid rgba(255,255,255,0.09);border-radius:14px;padding:42px 56px 34px;width:380px;max-width:100%;display:flex;flex-direction:column;align-items:center;color:#f8f4eb;backdrop-filter:blur(6px);box-shadow:0 30px 70px rgba(15,14,12,0.34);transition:all .3s ease;" style-hover="background:rgba(22,22,20,0.97);transform:translateY(-3px);box-shadow:0 38px 84px rgba(15,14,12,0.42);">
+        <span style="width:44px;height:44px;border-radius:999px;border:1px solid rgba(201,161,92,0.55);display:flex;align-items:center;justify-content:center;">
+          <svg viewBox="0 0 24 24" fill="none" style="width:20px;height:20px;">
+            <path d="M4.5 16.5c3.2-2 5.6-2 7.5-2s4.3 0 7.5 2" stroke="#c9a15c" stroke-width="1.2" stroke-linecap="round"></path>
+            <circle cx="12" cy="9.4" r="2.6" stroke="#c9a15c" stroke-width="1.2"></circle>
+          </svg>
+        </span>
+        <span style="font-family:'Instrument Serif',serif;font-size:29px;font-weight:400;margin-top:22px;display:inline-flex;align-items:center;gap:14px;color:#f8f4eb;">Begin Your Journey <span style="font-size:22px;color:#f8f4eb;">→</span></span>
+        <span style="font-size:12.5px;line-height:1.75;color:#b3aea3;font-weight:500;margin-top:16px;text-align:center;max-width:250px;">Take a short interactive journey to discover where you can make the greatest impact.</span>
+        <span style="display:inline-flex;align-items:center;gap:8px;font-size:11.5px;color:#8d887e;margin-top:24px;">
+          <svg viewBox="0 0 24 24" fill="none" style="width:13px;height:13px;">
+            <circle cx="12" cy="12" r="8.6" stroke="#8d887e" stroke-width="1.3"></circle>
+            <path d="M12 7.6V12l3 1.9" stroke="#8d887e" stroke-width="1.3" stroke-linecap="round"></path>
+          </svg>
+          Takes around 3 minutes
+        </span>
+      </a>
+    </sc-if>
+
+    <sc-if value="{{ isButton }}" hint-placeholder-val="{{ false }}">
+      <a href="#" style="margin-top:72px;background:#c9a15c;color:#0d1526;font-size:13px;font-weight:600;letter-spacing:0.8px;padding:20px 48px;border-radius:999px;display:inline-flex;align-items:center;gap:10px;transition:all .25s ease;" style-hover="background:#14213a;color:#f8f4eb;transform:translateY(-2px);">BEGIN YOUR JOURNEY <span style="font-size:15px;">→</span></a>
+    </sc-if>
+
+    <a href="#" style="margin-top:52px;font-size:11.5px;font-weight:600;letter-spacing:2.2px;color:#3b3a34;border-bottom:1px solid rgba(59,58,52,0.45);padding-bottom:6px;transition:all .25s ease;" style-hover="color:#c9a15c;border-color:#c9a15c;">SKIP THIS EXPERIENCE</a>
+  </div>
+</section>
+
+<sc-if value="{{ showQuote }}" hint-placeholder-val="{{ true }}">
+<section style="background:#161614;padding:64px 48px 40px;text-align:center;">
+  <div style="max-width:720px;margin:0 auto;">
+    <p style="font-family:'Instrument Serif',serif;font-size:clamp(21px,2.2vw,27px);line-height:1.5;color:#f2ede3;margin:0;">
+      <span style="font-family:'Instrument Serif',serif;color:#c9a15c;font-size:1.5em;line-height:0;vertical-align:-0.28em;margin-right:10px;">&#8220;</span>Alone we can do so little; together we can do so much.<span style="font-family:'Instrument Serif',serif;color:#c9a15c;font-size:1.5em;line-height:0;vertical-align:-0.28em;margin-left:8px;">&#8221;</span>
+    </p>
+    <div style="font-size:11px;font-weight:500;letter-spacing:2.2px;color:#8d887e;margin-top:22px;">— HELEN KELLER</div>
+    <svg viewBox="0 0 24 24" fill="none" style="width:20px;height:20px;margin-top:34px;">
+      <path d="M6 9.5 12 15.5l6-6" stroke="#8d887e" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"></path>
+    </svg>
+  </div>
+</section>
+</sc-if>
+
+</div>
+
+<template id="__bundler_thumbnail"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="#F6F1E7"></rect><g stroke="#1E1B17" stroke-width="2.4" fill="none"><circle cx="50" cy="50" r="19"></circle><path d="M57.5 42.5A11 11 0 1 0 57.5 57.5" stroke-linecap="round"></path></g></svg></template></x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;ctaStyle&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;Dark card&quot;,&quot;Simple button&quot;],&quot;default&quot;:&quot;Dark card&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Welcome gate&quot;},&quot;showPillars&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Welcome gate&quot;},&quot;showQuote&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Welcome gate&quot;}}">
+class Component extends DCLogic {
+  renderVals() {
+    const cta = this.props.ctaStyle ?? 'Dark card';
+    return {
+      isCard: cta === 'Dark card',
+      isButton: cta === 'Simple button',
+      showPillars: this.props.showPillars ?? true,
+      showQuote: this.props.showQuote ?? true
+    };
+  }
+}
+</script>
+</body>
+</html>

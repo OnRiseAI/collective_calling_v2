@@ -37,7 +37,7 @@ export function HeroSection({ content }: { content: HomeContent['hero'] }): Reac
         className="absolute inset-0"
         style={{
           backgroundImage:
-            'linear-gradient(to top, rgba(9,14,26,0.9) 0%, rgba(9,14,26,0.35) 45%, rgba(9,14,26,0.2) 82%, rgba(9,14,26,0.55) 100%)',
+            'linear-gradient(to top, rgba(16,12,6,0.9) 0%, rgba(16,12,6,0.35) 45%, rgba(16,12,6,0.2) 82%, rgba(16,12,6,0.55) 100%)',
         }}
       />
 
@@ -58,12 +58,17 @@ export function HeroSection({ content }: { content: HomeContent['hero'] }): Reac
           className="mb-[30px] mt-[18px] text-[clamp(72px,9.5vw,148px)] leading-[0.98] tracking-[-1px] text-[#f8f4eb] max-md:text-[clamp(44px,11vw,72px)]"
         />
         <div className="flex flex-wrap items-end justify-between gap-10 max-md:gap-6">
-          <p className="m-0 max-w-[480px] text-[19px] font-normal leading-[1.6] text-[#d8dae0] max-md:text-[16px]">
+          <p className="m-0 max-w-[480px] text-[19px] font-normal leading-[1.6] text-[#E9E3D6] max-md:text-[16px]">
             {content.lede}
           </p>
           <div className="flex items-center gap-7 max-md:flex-wrap max-md:gap-4">
-            <PillLink cta={content.primaryCta} padding="px-[38px] py-[18px]" />
-            <PillLink cta={content.secondaryCta} variant="outline" padding="px-[38px] py-[18px]" />
+            <PillLink cta={content.primaryCta} shape="square" padding="px-[38px] py-[18px]" />
+            <PillLink
+              cta={content.secondaryCta}
+              variant="outline"
+              shape="square"
+              padding="px-[38px] py-[18px]"
+            />
           </div>
         </div>
       </FadeIn>

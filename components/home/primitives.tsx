@@ -68,35 +68,38 @@ export function PlainHeading({
 // need 544px and a phone offers 342, so they stack. Left at their content
 // width they leave a ragged 84px of space beside them; full width reads as a
 // deliberate pair and widens the touch target.
-const PILL =
-  'tap-min inline-flex items-center justify-center gap-[10px] rounded-full text-[13px] font-semibold tracking-[0.8px] transition-all duration-[250ms] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 max-md:w-full'
+const ACTION =
+  'tap-min inline-flex items-center justify-center gap-[10px] text-[13px] font-semibold tracking-[0.8px] transition-all duration-[250ms] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 max-md:w-full'
 
 /**
- * The design's two pill actions. `solid` is gold going to cream on hover;
- * `outline` is a hairline in white going gold. Both lift 2px on hover.
- * Padding is passed in because the design uses three different insets.
+ * Homepage actions. The v3 hero uses 6px corners; the closing band stays a pill.
+ * `solid` is gold going to cream on hover; `outline` is a hairline going gold.
+ * Both lift 2px on hover.
  */
 export function PillLink({
   cta,
   variant = 'solid',
   padding,
+  shape = 'pill',
   className,
 }: {
   cta: Cta
   variant?: 'solid' | 'outline'
   padding: string
+  shape?: 'pill' | 'square'
   className?: string
 }): React.JSX.Element {
   return (
     <Link
       href={cta.href}
       className={cx(
-        PILL,
+        ACTION,
+        shape === 'square' ? 'rounded-[6px]' : 'rounded-full',
         padding,
         'focus-visible:ring-offset-brand-dark motion-safe:hover:-translate-y-[2px]',
         variant === 'solid'
           ? 'bg-accent text-brand-dark hover:bg-[#f8f4eb]'
-          : 'border border-white/45 text-[#f8f4eb] hover:border-accent hover:text-accent',
+          : 'border border-[#F7F3EA]/70 bg-[rgba(16,12,6,0.3)] text-[#f8f4eb] hover:border-accent hover:text-accent',
         className,
       )}
     >

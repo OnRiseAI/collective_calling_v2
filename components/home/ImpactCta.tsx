@@ -34,9 +34,9 @@ export function ImpactCta({ content }: { content: HomeContent['impactCta'] }): R
           fill="none"
           className="pointer-events-none absolute -right-[70px] -top-[70px] h-[340px] w-[340px] opacity-[0.14]"
         >
-          <circle cx="19" cy="19" r="17" stroke="#c9a15c" strokeWidth="0.6" />
-          <circle cx="19" cy="19" r="10.5" stroke="#c9a15c" strokeWidth="0.4" />
-          <circle cx="19" cy="19" r="5.5" stroke="#c9a15c" strokeWidth="0.5" />
+          <circle cx="19" cy="19" r="17" stroke="#C89A3C" strokeWidth="0.6" />
+          <circle cx="19" cy="19" r="10.5" stroke="#C89A3C" strokeWidth="0.4" />
+          <circle cx="19" cy="19" r="5.5" stroke="#C89A3C" strokeWidth="0.5" />
         </svg>
 
         <div className="relative flex flex-wrap items-center justify-between gap-12 p-24 max-md:gap-7 max-md:p-7">

@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Figtree:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script src="./image-slot.js"></script>
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; }
+  a { color: #C89A3C; text-decoration: none; }
+  a:hover { color: #8A5F16; }
+  @media (max-width: 680px) {
+    [data-band-btns] { width: 100% !important; flex-direction: column !important; align-items: stretch !important; }
+    [data-band-btns] a { justify-content: center !important; }
+  }
+</style>
+</helmet>
+<div style="font-family:'Figtree',sans-serif;background:#F4F0E8;color:#1E1B17;">
+
+<dc-import name="Site Header" active="" hint-size="100%,84px"></dc-import>
+
+<section style="position:relative;height:100vh;min-height:760px;overflow:hidden;background:#141009;">
+  <img src="uploads/grok-image-4f23d86d-5943-42da-9cd4-253b4accee36.jpg" alt="Father and son on the beach at sunset" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 40%;"/>
+  <div style="position:absolute;inset:0;background:linear-gradient(to top, rgba(16,12,6,0.9) 0%, rgba(16,12,6,0.35) 45%, rgba(16,12,6,0.2) 82%, rgba(16,12,6,0.55) 100%);"></div>
+  <div style="position:absolute;left:64px;right:64px;bottom:84px;">
+    <span style="color:#C89A3C;font-size:12px;font-weight:600;letter-spacing:3px;">COLLECTIVE CALLING</span>
+    <h1 style="font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(72px, 9.5vw, 148px);line-height:0.98;color:#F7F3EA;margin:18px 0 30px 0;letter-spacing:-1px;">A life <span style="font-style:italic;color:#C89A3C;">beyond ourselves.</span></h1>
+    <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:40px;flex-wrap:wrap;">
+      <p style="font-size:19px;line-height:1.6;color:#E9E3D6;max-width:480px;margin:0;font-weight:400;">We believe every person carries something that can impact the life of another.</p>
+      <div style="display:flex;align-items:center;gap:28px;">
+        <a href="#" style="background:#C89A3C;color:#141009;font-size:13px;font-weight:600;letter-spacing:0.8px;padding:18px 38px;border-radius:6px;display:inline-flex;align-items:center;gap:10px;transition:all .25s ease;" style-hover="background:#F7F3EA;transform:translateY(-2px);">START YOUR JOURNEY <span style="font-size:15px;">→</span></a>
+        <a href="#" style="background:rgba(16,12,6,0.3);border:1px solid rgba(247,243,234,0.7);color:#F7F3EA;font-size:13px;font-weight:600;letter-spacing:0.8px;padding:18px 38px;border-radius:6px;display:inline-flex;align-items:center;gap:10px;transition:all .25s ease;" style-hover="border-color:#C89A3C;color:#C89A3C;transform:translateY(-2px);">SEE WHAT'S POSSIBLE <span style="font-size:15px;">→</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<sc-if value="{{ showEventBand }}" hint-placeholder-val="{{ true }}">
+<section aria-label="Upcoming event" data-band="1" style="background:#141009;border-top:1px solid rgba(217,168,63,0.45);">
+  <div data-pad="1" style="max-width:1320px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:48px;padding:56px 64px;flex-wrap:wrap;">
+    <div style="min-width:0;">
+      <div style="font-size:13px;font-weight:700;letter-spacing:2.4px;color:#D9A83F;">THURSDAY 24 SEPTEMBER 2026</div>
+      <h2 style="font-family:'Instrument Serif',serif;font-weight:400;font-size:40px;line-height:1.15;color:#F7F3EA;margin:14px 0 0 0;">The Fashion Show</h2>
+      <p style="font-size:15px;line-height:1.7;color:rgba(247,243,234,0.85);margin:12px 0 0 0;">An evening of fashion in support of [programme TBC]</p>
+      <p style="font-size:13px;letter-spacing:0.4px;color:rgba(247,243,234,0.6);margin:8px 0 0 0;">[Venue TBC] · [Doors time TBC]</p>
+    </div>
+    <div data-band-btns="1" style="display:flex;align-items:center;gap:14px;flex:none;">
+      <a href="Fashion Show.dc.html" style="display:inline-flex;align-items:center;gap:12px;min-height:52px;background:#D9A83F;color:#2A2415;font-size:13px;font-weight:700;letter-spacing:1.4px;padding:0 30px;border-radius:6px;white-space:nowrap;text-decoration:none;transition:all .25s ease;" style-hover="background:#C89A3C;transform:translateY(-1px);">RESERVE YOUR PLACE <span aria-hidden="true">→</span></a>
+      <a href="Fashion Show.dc.html" style="display:inline-flex;align-items:center;min-height:52px;border:1px solid rgba(247,243,234,0.4);color:#F7F3EA;font-size:13px;font-weight:600;letter-spacing:1.4px;padding:0 24px;border-radius:6px;white-space:nowrap;text-decoration:none;transition:all .25s ease;" style-hover="border-color:#C89A3C;color:#C89A3C;">FIND OUT MORE</a>
+    </div>
+  </div>
+</section>
+</sc-if>
+
+<section style="padding:140px 64px 0;">
+  <div style="max-width:840px;margin:0 auto;text-align:center;">
+    <span style="color:#C89A3C;font-size:12px;font-weight:600;letter-spacing:3px;">OUR PHILOSOPHY</span>
+    <h2 style="font-family:'Instrument Serif',serif;font-weight:400;font-size:54px;line-height:1.08;margin:18px 0 26px 0;letter-spacing:-0.5px;">Everyone has <span style="font-style:italic;color:#C89A3C;">something to give.</span></h2>
+    <p style="font-size:17px;line-height:1.8;color:#6f6a5e;margin:0 0 18px 0;font-weight:400;">We believe every person carries something unique. Our experiences, abilities, resources and influence were never meant to exist in isolation. They have the power to create something far beyond ourselves.</p>
+    <p style="font-family:'Instrument Serif',serif;font-style:italic;font-size:22px;line-height:1.5;color:#1E1B17;margin:0;">Because when what we carry becomes part of something bigger than ourselves, stories are changed, including our own.</p>
+  </div>
+</section>
+
+<section style="padding:130px 64px 120px;">
+  <div style="max-width:1320px;margin:0 auto;">
+    <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:60px;flex-wrap:wrap;margin-bottom:90px;">
+      <div>
+        <span style="color:#C89A3C;font-size:12px;font-weight:600;letter-spacing:3px;">HOW IT COMES TO LIFE</span>
+        <h2 style="font-family:'Instrument Serif',serif;font-weight:400;font-size:56px;line-height:1.05;margin:16px 0 0 0;letter-spacing:-0.5px;">Different expressions.<br/>One shared purpose.</h2>
+      </div>
+      <p style="font-size:16px;line-height:1.7;color:#6f6a5e;max-width:380px;margin:0;font-weight:400;">Every person has value. Everyone carries something they can contribute. And when people come together, new possibilities are created.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:48px;align-items:start;">
+      <div>
+        <image-slot id="three-way-2" shape="rounded" radius="18" placeholder="Two smiling children" src="uploads/grok-image-f288450f-8906-4d10-b41c-cb29ab6a5dcf.jpg" style="width:100%;height:400px;"></image-slot>
+        <div style="display:flex;align-items:baseline;gap:16px;margin-top:28px;">
+          <span style="font-family:'Instrument Serif',serif;font-style:italic;font-size:20px;color:#C89A3C;">01</span>
+          <h3 style="font-family:'Instrument Serif',serif;font-size:28px;font-weight:400;margin:0;">Children & Families</h3>
+        </div>
+        <p style="font-size:15px;line-height:1.7;color:#6f6a5e;margin:12px 0 16px 0;font-weight:400;"><em style="font-style:italic;color:#C89A3C;font-family:'Instrument Serif',serif;font-size:17px;">Creating futures beyond circumstances.</em><br/><br/>Through protection, education and long-term support in Tanzania, we create environments where children and families can heal, grow and discover what is possible.</p>
+        <a href="#" style="font-size:12.5px;font-weight:600;letter-spacing:1px;">SEE THEIR STORIES →</a>
+      </div>
+      <div style="margin-top:72px;">
+        <image-slot id="three-way-1" shape="rounded" radius="18" placeholder="Collective Calling charity shop front" src="uploads/shopfront-crop.jpg" style="width:100%;height:400px;"></image-slot>
+        <div style="display:flex;align-items:baseline;gap:16px;margin-top:28px;">
+          <span style="font-family:'Instrument Serif',serif;font-style:italic;font-size:20px;color:#C89A3C;">02</span>
+          <h3 style="font-family:'Instrument Serif',serif;font-size:28px;font-weight:400;margin:0;">Community</h3>
+        </div>
+        <p style="font-size:15px;line-height:1.7;color:#6f6a5e;margin:12px 0 16px 0;font-weight:400;"><em style="font-style:italic;color:#C89A3C;font-family:'Instrument Serif',serif;font-size:17px;">Restoring dignity through connection.</em><br/><br/>Through our Mobile Shower Unit, charity shops and local initiatives in Spain, we create opportunities for communities to come together and remind people that their story matters.</p>
+        <a href="#" style="font-size:12.5px;font-weight:600;letter-spacing:1px;">EXPLORE COMMUNITY IMPACT →</a>
+      </div>
+      <div style="margin-top:144px;">
+        <image-slot id="three-way-3" shape="rounded" radius="18" placeholder="Business team meeting" src="uploads/business-crop.jpg" style="width:100%;height:400px;"></image-slot>
+        <div style="display:flex;align-items:baseline;gap:16px;margin-top:28px;">
+          <span style="font-family:'Instrument Serif',serif;font-style:italic;font-size:20px;color:#C89A3C;">03</span>
+          <h3 style="font-family:'Instrument Serif',serif;font-size:28px;font-weight:400;margin:0;">Business</h3>
+        </div>
+        <p style="font-size:15px;line-height:1.7;color:#6f6a5e;margin:12px 0 16px 0;font-weight:400;"><em style="font-style:italic;color:#C89A3C;font-family:'Instrument Serif',serif;font-size:17px;">Extending the impact of what you already believe.</em><br/><br/>Values In Action exists to recognise what is already there and create opportunities for those values to travel further, beyond the walls of an organisation and into the lives of others.</p>
+        <a href="#" style="font-size:12.5px;font-weight:600;letter-spacing:1px;">EXPLORE VALUES IN ACTION →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="background:#141009;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);align-items:stretch;">
+  <div style="position:relative;min-height:560px;-webkit-mask-image:linear-gradient(to right, #000 72%, rgba(0,0,0,0) 100%);mask-image:linear-gradient(to right, #000 72%, rgba(0,0,0,0) 100%);">
+    <image-slot id="values-action" shape="rect" placeholder="Business leaders around a table" src="uploads/values-crop.jpg" style="position:absolute;inset:0;width:100%;height:100%;"></image-slot>
+  </div>
+  <div style="display:flex;flex-direction:column;justify-content:center;padding:120px 96px;">
+    <span style="color:#C89A3C;font-size:12px;font-weight:600;letter-spacing:3px;">VALUES IN ACTION</span>
+    <h2 style="font-family:'Instrument Serif',serif;font-weight:400;font-size:46px;line-height:1.12;color:#F7F3EA;margin:20px 0 24px 0;letter-spacing:-0.5px;">When values lead, business becomes <span style="font-style:italic;color:#C89A3C;">a force for good.</span></h2>
+    <p style="font-size:16px;line-height:1.7;color:#b7bdc9;margin:0 0 36px 0;font-weight:400;max-width:440px;">We partner with business leaders who want to create impact that matters, for people, communities and the world we share.</p>
+    <a href="#" style="color:#C89A3C;font-size:13px;font-weight:600;letter-spacing:1px;border-bottom:1px solid #C89A3C;padding-bottom:5px;width:fit-content;" style-hover="color:#8A5F16;border-color:#8A5F16;">DISCOVER VALUES IN ACTION →</a>
+  </div>
+</section>
+
+<section id="impact-stats" style="padding:110px 64px;border-bottom:1px solid #e2d9c6;">
+  <div style="max-width:1320px;margin:0 auto 70px;display:flex;justify-content:space-between;align-items:flex-end;gap:48px;flex-wrap:wrap;">
+    <div>
+      <span style="color:#C89A3C;font-size:12px;font-weight:600;letter-spacing:3px;">IMPACT</span>
+      <h2 style="font-family:'Instrument Serif',serif;font-weight:400;font-size:48px;line-height:1.08;margin:16px 0 0 0;letter-spacing:-0.5px;">What happens when<br/>we come together</h2>
+    </div>
+    <p style="font-size:16px;line-height:1.7;color:#6f6a5e;max-width:400px;margin:0;font-weight:400;">Impact is not created by one person, one organisation or one action. It is created when many different parts come together.</p>
+  </div>
+  <div style="max-width:1320px;margin:0 auto;display:flex;justify-content:space-between;gap:48px;flex-wrap:wrap;">
+    <div>
+      <div style="font-family:'Instrument Serif',serif;font-size:68px;font-weight:500;line-height:1;">{{ stat0 }}<span style="color:#C89A3C;">+</span></div>
+      <div style="font-size:12.5px;letter-spacing:1.5px;color:#8a8574;margin-top:14px;">PEOPLE SUPPORTED</div>
+    </div>
+    <div>
+      <div style="font-family:'Instrument Serif',serif;font-size:68px;font-weight:500;line-height:1;">{{ stat1 }}<span style="color:#C89A3C;">+</span></div>
+      <div style="font-size:12.5px;letter-spacing:1.5px;color:#8a8574;margin-top:14px;">CHILDREN IN EDUCATION</div>
+    </div>
+    <div>
+      <div style="font-family:'Instrument Serif',serif;font-size:68px;font-weight:500;line-height:1;">{{ stat2 }}<span style="color:#C89A3C;">+</span></div>
+      <div style="font-size:12.5px;letter-spacing:1.5px;color:#8a8574;margin-top:14px;">PROJECTS DELIVERED</div>
+    </div>
+    <div>
+      <div style="font-family:'Instrument Serif',serif;font-size:68px;font-weight:500;line-height:1;">{{ stat3 }}</div>
+      <div style="font-size:12.5px;letter-spacing:1.5px;color:#8a8574;margin-top:14px;">CHARITY SHOPS</div>
+    </div>
+    <div>
+      <div style="font-family:'Instrument Serif',serif;font-size:68px;font-weight:500;line-height:1;">{{ stat4 }}<span style="color:#C89A3C;">+</span></div>
+      <div style="font-size:12.5px;letter-spacing:1.5px;color:#8a8574;margin-top:14px;">BUSINESS PARTNERS</div>
+    </div>
+  </div>
+</section>
+
+<section style="padding:140px 64px;">
+  <div style="max-width:1320px;margin:0 auto;">
+    <div style="display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:70px;">
+      <div>
+        <span style="color:#C89A3C;font-size:12px;font-weight:600;letter-spacing:3px;">SEE WHAT&#x27;S POSSIBLE</span>
+        <h2 style="font-family:'Instrument Serif',serif;font-weight:400;font-size:56px;line-height:1.05;margin:16px 0 0 0;letter-spacing:-0.5px;">Every story begins with someone<br/><span style="font-style:italic;color:#C89A3C;">choosing to respond.</span></h2>
+      </div>
+      <a href="#" style="font-size:12.5px;font-weight:600;letter-spacing:1px;white-space:nowrap;">VIEW ALL STORIES →</a>
+    </div>
+    <div style="display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:56px;align-items:start;">
+      <div>
+        <image-slot id="story-1" shape="rounded" radius="18" placeholder="Nacho's story, boy playing with water" src="uploads/grok-image-a54441ea-aa59-4b3d-ad74-beb0546afc1a.jpg" style="width:100%;height:520px;"></image-slot>
+        <h3 style="font-family:'Instrument Serif',serif;font-size:32px;font-weight:400;margin:26px 0 8px 0;">Nacho's Story</h3>
+        <p style="font-size:15.5px;color:#6f6a5e;margin:0 0 14px 0;font-weight:400;">A journey of hope and opportunity.</p>
+        <a href="#" style="font-size:12.5px;font-weight:600;letter-spacing:1px;">READ MORE →</a>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:56px;min-width:0;">
+        <div>
+          <image-slot id="story-2" shape="rounded" radius="18" placeholder="Mobile shower unit" src="uploads/grok-image-4e01e5a7-5e71-4156-ae1d-e45cb926aa0a.jpg" style="width:100%;height:220px;"></image-slot>
+          <h3 style="font-family:'Instrument Serif',serif;font-size:25px;font-weight:400;margin:20px 0 6px 0;">Mobile Shower Unit</h3>
+          <p style="font-size:15px;color:#6f6a5e;margin:0 0 12px 0;font-weight:400;">Dignity on the streets of the Costa del Sol.</p>
+          <a href="#" style="font-size:12.5px;font-weight:600;letter-spacing:1px;">READ MORE →</a>
+        </div>
+        <div>
+          <image-slot id="story-3" shape="rounded" radius="18" placeholder="People arm in arm at sunset" src="assets/img/children-families.jpg" credit="Photo by Jehyun Sung on Unsplash" credit-href="https://unsplash.com/@jehyunsung" style="width:100%;height:220px;"></image-slot>
+          <h3 style="font-family:'Instrument Serif',serif;font-size:25px;font-weight:400;margin:20px 0 6px 0;">Business in Action</h3>
+          <p style="font-size:15px;color:#6f6a5e;margin:0 0 12px 0;font-weight:400;">How values drive real change.</p>
+          <a href="#" style="font-size:12.5px;font-weight:600;letter-spacing:1px;">READ MORE →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="padding:0 64px 120px;">
+  <div style="max-width:1320px;margin:0 auto;background:#141009;border-radius:24px;position:relative;overflow:hidden;">
+    <img src="uploads/grok-image-439c81b2-540f-4b8b-9477-833cab26c010.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.35;"/>
+    <div style="position:absolute;inset:0;background:linear-gradient(105deg, rgba(20,16,9,0.97) 0%, rgba(20,16,9,0.82) 55%, rgba(20,16,9,0.35) 100%);"></div>
+    <svg viewBox="0 0 38 38" fill="none" style="position:absolute;right:-70px;top:-70px;width:340px;height:340px;opacity:0.14;">
+      <circle cx="19" cy="19" r="17" stroke="#C89A3C" stroke-width="0.6"></circle>
+      <circle cx="19" cy="19" r="10.5" stroke="#C89A3C" stroke-width="0.4"></circle>
+      <circle cx="19" cy="19" r="5.5" stroke="#C89A3C" stroke-width="0.5"></circle>
+    </svg>
+    <div style="position:relative;padding:96px 96px;display:flex;align-items:center;justify-content:space-between;gap:48px;flex-wrap:wrap;">
+      <div>
+        <span style="color:#C89A3C;font-size:12px;font-weight:600;letter-spacing:3px;">IMPACT</span>
+        <h3 style="font-family:'Instrument Serif',serif;font-weight:400;font-size:52px;line-height:1.12;color:#F7F3EA;margin:16px 0 0 0;max-width:640px;">A simple action becomes <span style="font-style:italic;color:#C89A3C;">part of something bigger.</span></h3>
+      </div>
+      <a href="#" style="background:#C89A3C;color:#141009;font-size:13px;font-weight:600;letter-spacing:0.8px;padding:20px 46px;border-radius:999px;display:inline-flex;align-items:center;gap:10px;white-space:nowrap;transition:all .25s ease;" style-hover="background:#F7F3EA;transform:translateY(-2px);">SEE THE IMPACT <span style="font-size:15px;">→</span></a>
+    </div>
+  </div>
+</section>
+
+<section style="padding:0 64px 130px;">
+  <div style="max-width:1320px;margin:0 auto;border-top:1px solid #e2d9c6;padding-top:56px;display:flex;align-items:center;justify-content:space-between;gap:48px;flex-wrap:wrap;">
+    <span style="font-size:12px;font-weight:600;letter-spacing:3px;color:#8a8574;white-space:nowrap;">TRUSTED PARTNERS</span>
+    <div style="display:flex;align-items:center;gap:56px;flex-wrap:wrap;opacity:0.75;">
+      <img src="uploads/drumelia_logo.jpg" alt="Drumelia Real Estate" style="height:52px;width:52px;border-radius:8px;"/>
+      <span style="font-size:17px;font-weight:600;letter-spacing:2px;">MANIFESTO</span>
+      <span style="font-family:'Instrument Serif',serif;font-style:italic;font-size:19px;">Not Just a Gym</span>
+      <span style="font-size:17px;font-weight:600;letter-spacing:2px;">BOUNCE</span>
+      <a href="#" style="font-size:12px;letter-spacing:1px;border:1px dashed #b0a892;color:#8a8574;padding:12px 20px;">YOUR LOGO HERE</a>
+    </div>
+  </div>
+</section>
+
+<section style="background:#141009;padding:150px 64px;text-align:center;">
+  <span style="color:#C89A3C;font-size:12px;font-weight:600;letter-spacing:3px;">START YOUR JOURNEY</span>
+  <h2 style="font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(48px,6vw,84px);line-height:1.05;color:#F7F3EA;margin:22px auto 26px;max-width:900px;letter-spacing:-0.5px;">Find your place <span style="font-style:italic;color:#C89A3C;">in the story.</span></h2>
+  <p style="font-size:17px;line-height:1.7;color:#b7bdc9;margin:0 auto 44px;max-width:460px;font-weight:400;">Some people bring time. Some bring experience. Some bring resources. Each contribution is different, but together they become part of something greater.</p>
+  <div style="display:flex;justify-content:center;gap:24px;flex-wrap:wrap;">
+    <a href="#" style="background:#C89A3C;color:#141009;font-size:13px;font-weight:600;letter-spacing:0.8px;padding:18px 42px;border-radius:999px;display:inline-flex;align-items:center;gap:10px;transition:all .25s ease;" style-hover="background:#F7F3EA;transform:translateY(-2px);">START YOUR JOURNEY <span style="font-size:15px;">→</span></a>
+    <a href="#" style="background:rgba(16,12,6,0.3);border:1px solid rgba(247,243,234,0.7);color:#F7F3EA;font-size:13px;font-weight:600;letter-spacing:0.8px;padding:18px 42px;border-radius:999px;display:inline-flex;align-items:center;gap:10px;transition:all .25s ease;" style-hover="border-color:#C89A3C;color:#C89A3C;transform:translateY(-2px);">VISIT OUR CHARITY SHOPS <span style="font-size:15px;">→</span></a>
+  </div>
+</section>
+
+<dc-import name="Site Footer" hint-size="100%,560px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;showEventBand&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Events&quot;}}">
+class Component extends DCLogic {
+  state = { t: 0 };
+  componentDidMount() {
+    const el = document.getElementById('impact-stats');
+    if (!el || !('IntersectionObserver' in window)) { this.setState({ t: 1 }); return; }
+    const io = new IntersectionObserver((entries) => {
+      if (entries.some(e => e.isIntersecting)) {
+        io.disconnect();
+        const start = performance.now(), dur = 1400;
+        const tick = (now) => {
+          const p = Math.min(1, (now - start) / dur);
+          this.setState({ t: 1 - Math.pow(1 - p, 3) });
+          if (p < 1) requestAnimationFrame(tick);
+        };
+        requestAnimationFrame(tick);
+      }
+    }, { threshold: 0.3 });
+    io.observe(el);
+  }
+  renderVals() {
+    const t = this.state.t;
+    const f = (n) => Math.round(n * t).toLocaleString('en-US');
+    return { showEventBand: this.props.showEventBand ?? true, stat0: f(10000), stat1: f(150), stat2: f(25), stat3: f(2), stat4: f(100) };
+  }
+}
+</script>
+</body>
+</html>

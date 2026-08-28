@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Figtree:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; background: #F4F0E8; }
+  a { color: #1E1B17; text-decoration: none; }
+  a:hover { color: #6b6357; }
+  @keyframes cc-fadeup { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes cc-ignite { 0% { transform: scale(1); } 45% { transform: scale(1.5); } 100% { transform: scale(1); } }
+  @media (prefers-reduced-motion: reduce) {
+    @keyframes cc-fadeup { from { opacity: 1; transform: none; } to { opacity: 1; transform: none; } }
+    @keyframes cc-ignite { from { transform: none; } to { transform: none; } }
+  }
+  @media (max-width: 1100px) {
+    [data-split] { grid-template-columns: 1fr !important; min-height: 0 !important; height: auto !important; overflow: visible !important; }
+    [data-pane] { overflow: visible !important; }
+    [data-split]:not([data-hero]) { padding-top: 58px !important; }
+    [data-photo] { order: -1 !important; height: 62vh !important; min-height: 0 !important; }
+    [data-pane] { padding: 60px 26px 76px !important; }
+    [data-hero] { min-height: 100vh !important; }
+    [data-hero-pane] { padding: 124px 26px 72px !important; }
+    [data-hero-wash] { background: linear-gradient(to bottom, rgba(244,240,232,0.97) 0%, rgba(244,240,232,0.89) 44%, rgba(244,240,232,0.32) 74%, rgba(244,240,232,0.1) 100%) !important; }
+    [data-prog] { padding: 18px 26px 0 !important; }
+    [data-cols3] { grid-template-columns: 1fr !important; gap: 46px !important; }
+    [data-cols3] > div { border-right: none !important; padding: 0 !important; }
+  }
+</style>
+</helmet>
+<div style="font-family:'Figtree',sans-serif;background:#F4F0E8;color:#1E1B17;min-height:100vh;position:relative;overflow:hidden;">
+
+<sc-if value="{{ showProgress }}" hint-placeholder-val="{{ true }}">
+  <div data-prog="1" style="position:absolute;top:0;left:0;right:0;z-index:60;padding:26px 44px 0;pointer-events:none;">
+    <div style="font-size:12.5px;letter-spacing:0.6px;color:{{ barLabelColor }};font-weight:500;">You&#x27;ve travelled {{ progressLabel }}</div>
+    <div style="height:3px;background:{{ barTrackColor }};margin-top:11px;position:relative;">
+      <div style="position:absolute;top:0;bottom:0;left:0;background:{{ barFillColor }};width:{{ progressPct }};transition:width 800ms cubic-bezier(.22,.61,.36,1);"></div>
+    </div>
+  </div>
+</sc-if>
+
+<sc-if value="{{ isLanding }}" hint-placeholder-val="{{ true }}">
+<section ref="{{ screenRef }}" data-split="1" data-hero="1" style="position:relative;min-height:100vh;display:grid;grid-template-columns:minmax(0,0.92fr) minmax(0,1.08fr);">
+  <div style="position:absolute;inset:0;overflow:hidden;">
+    <img src="uploads/Journey_1.jpg" alt="A walker looking out over misty mountains at dawn" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:72% 100%;"/>
+    <div data-hero-wash="1" style="position:absolute;inset:0;background:linear-gradient(to right, rgba(244,240,232,0.98) 0%, rgba(244,240,232,0.95) 30%, rgba(244,240,232,0.42) 42%, rgba(244,240,232,0) 54%);"></div>
+  </div>
+  <div data-hero-pane="1" style="position:relative;z-index:10;display:flex;flex-direction:column;justify-content:center;padding:80px 72px;">
+    <div style="display:flex;align-items:center;gap:13px;position:absolute;top:44px;left:72px;">
+      <svg viewBox="0 0 38 38" fill="none" style="width:30px;height:30px;flex:none;">
+        <circle cx="19" cy="19" r="17.2" stroke="#1E1B17" stroke-width="1.4"></circle>
+        <path d="M25.5 12.4A9 9 0 1 0 25.5 25.6" stroke="#1E1B17" stroke-width="1.4" stroke-linecap="round"></path>
+      </svg>
+      <div style="line-height:1.2;">
+        <div style="font-size:11.5px;font-weight:600;letter-spacing:2.4px;">COLLECTIVE</div>
+        <div style="font-size:11.5px;font-weight:600;letter-spacing:2.4px;">CALLING</div>
+      </div>
+    </div>
+    <h1 style="font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(40px,5.8vw,84px);line-height:1.1;letter-spacing:-1.6px;margin:0;max-width:520px;">Every journey begins with a single question.</h1>
+    <p style="font-size:17px;line-height:1.75;color:#544d43;margin:40px 0 0 0;max-width:420px;font-weight:500;text-wrap:pretty;">This short interactive journey helps you discover how your unique strengths, values and opportunities could be part of a bigger story.</p>
+    <div style="display:flex;align-items:center;gap:10px;margin-top:32px;font-size:14.5px;color:#6f675c;font-weight:500;">
+      <svg viewBox="0 0 24 24" fill="none" style="width:14px;height:14px;">
+        <circle cx="12" cy="12" r="8.6" stroke="#8b8377" stroke-width="1.3"></circle>
+        <path d="M12 7.6V12l3 1.9" stroke="#8b8377" stroke-width="1.3" stroke-linecap="round"></path>
+      </svg>
+      Takes around 3 minutes
+    </div>
+    <button type="button" onClick="{{ onBegin }}" style="margin-top:44px;background:#1E1B17;color:#F4F0E8;border:none;font-family:'Figtree',sans-serif;font-size:16.5px;font-weight:600;letter-spacing:0.2px;padding:23px 42px;border-radius:999px;display:inline-flex;align-items:center;gap:52px;width:fit-content;cursor:pointer;transition:all .3s ease;" style-hover="background:#342f27;transform:translateY(-2px);" style-focus="outline:2px solid #1E1B17;outline-offset:3px;">Begin Your Journey <span style="font-size:15px;">→</span></button>
+    <a href="#" onClick="{{ onSkip }}" style="margin-top:30px;font-size:14.5px;color:#6b6357;border-bottom:1px solid rgba(107,99,87,0.45);padding-bottom:4px;width:fit-content;">Skip this experience</a>
+  </div>
+  <div></div>
+</section>
+</sc-if>
+
+<sc-if value="{{ isQuestion }}" hint-placeholder-val="{{ false }}">
+<section ref="{{ screenRef }}" data-split="1" style="position:relative;height:100vh;overflow:hidden;display:grid;grid-template-columns:minmax(0,0.82fr) minmax(0,1.18fr);background:#F4F0E8;">
+  <div data-pane="1" style="display:flex;flex-direction:column;justify-content:center;padding:120px 64px 96px;position:relative;z-index:10;overflow-y:auto;">
+    <div style="display:flex;flex-direction:column;gap:4px;margin-top:40px;max-width:440px;">
+      <sc-for list="{{ options }}" as="opt" hint-placeholder-count="5">
+        <button type="button" data-cc-opt="1" onClick="{{ opt.onClick }}" style="display:flex;align-items:center;gap:15px;background:none;border:none;padding:14px 0;text-align:left;cursor:pointer;font-family:'Figtree',sans-serif;font-size:16px;color:#332e24;line-height:1.5;transition:color .2s ease;" style-hover="color:#1E1B17;" style-focus="outline:none;color:#1E1B17;">
+          <span style="width:18px;height:18px;border-radius:999px;border:1.5px solid #9c9384;flex:none;display:flex;align-items:center;justify-content:center;">
+            <sc-if value="{{ opt.selected }}" hint-placeholder-val="{{ false }}">
+              <span style="width:11px;height:11px;border-radius:999px;background:#1E1B17;display:block;"></span>
+            </sc-if>
+          </span>
+          {{ opt.label }}
+        </button>
+      </sc-for>
+    </div>
+    <div style="display:flex;align-items:center;gap:18px;margin-top:46px;">
+      <button type="button" onClick="{{ onBack }}" style="background:none;border:none;font-family:'Figtree',sans-serif;font-size:14px;color:#7d7568;cursor:pointer;padding:8px 0;letter-spacing:0.4px;transition:color .2s ease;" style-hover="color:#1E1B17;" style-focus="outline:2px solid rgba(30,27,23,0.4);outline-offset:3px;">← Back</button>
+    </div>
+  </div>
+  <div ref="{{ photoRef }}" data-photo="1" style="position:relative;overflow:hidden;">
+    <sc-if value="{{ photoValley }}" hint-placeholder-val="{{ true }}">
+      <img src="uploads/Journey_2.jpg" alt="A track winding up through a sunlit valley" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:72% 100%;"/>
+    </sc-if>
+    <sc-if value="{{ photoVillage }}" hint-placeholder-val="{{ false }}">
+      <img src="uploads/Journey_5.jpg" alt="A road winding down towards a village in the valley" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:72% 100%;"/>
+    </sc-if>
+    {{ glow }}
+    <button type="button" onClick="{{ onNext }}" style="position:absolute;right:48px;bottom:48px;width:56px;height:56px;border-radius:999px;background:rgba(244,240,232,0.94);border:1px solid rgba(30,27,23,0.22);display:flex;align-items:center;justify-content:center;font-size:20px;color:#1E1B17;cursor:pointer;z-index:20;opacity:{{ nextOpacity }};transition:all .3s ease;" style-hover="background:#F4F0E8;transform:translateY(-2px);" style-focus="outline:2px solid #1E1B17;outline-offset:3px;">→</button>
+  </div>
+</section>
+</sc-if>
+
+<sc-if value="{{ isForest }}" hint-placeholder-val="{{ false }}">
+<section ref="{{ screenRef }}" onClick="{{ onNext }}" style="position:relative;min-height:100vh;cursor:pointer;overflow:hidden;">
+  <div ref="{{ photoRef }}" style="position:absolute;inset:0;overflow:hidden;">
+    <img src="uploads/Journey_3-bcf598ad.jpg" alt="A trail winding through misty pine forest" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 100%;"/>
+    <div style="position:absolute;inset:0;background:linear-gradient(to right, rgba(12,11,9,0.86) 0%, rgba(12,11,9,0.64) 19%, rgba(12,11,9,0.22) 38%, rgba(12,11,9,0.06) 60%, rgba(12,11,9,0.2) 100%);"></div>
+    {{ glow }}
+  </div>
+  <div data-pane="1" style="position:relative;z-index:10;min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:96px 88px;">
+    <h2 style="font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(36px,3.9vw,54px);line-height:1.22;color:#F7F3EA;margin:0;max-width:480px;text-wrap:pretty;">Every answer helps illuminate the path ahead.</h2>
+    <div style="width:44px;height:1px;background:rgba(247,243,234,0.5);margin-top:34px;"></div>
+  </div>
+</section>
+</sc-if>
+
+<sc-if value="{{ isQuoteInt }}" hint-placeholder-val="{{ false }}">
+<section ref="{{ screenRef }}" onClick="{{ onNext }}" data-split="1" style="position:relative;height:100vh;overflow:hidden;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.12fr);background:#F4F0E8;cursor:pointer;">
+  <div data-pane="1" style="display:flex;flex-direction:column;align-items:center;justify-content:center;padding:120px 72px;text-align:center;position:relative;z-index:10;overflow-y:auto;">
+    <span style="width:54px;height:54px;border-radius:999px;background:#1E1B17;color:#F4F0E8;display:flex;align-items:center;justify-content:center;font-family:'Instrument Serif',serif;font-size:26px;padding-top:14px;">&#8220;</span>
+    <p style="font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(29px,3.1vw,42px);line-height:1.28;margin:38px 0 0 0;max-width:450px;text-wrap:pretty;">Every meaningful journey begins long before we know where it will lead.</p>
+    <div style="width:40px;height:1px;background:#D6CFC2;margin:38px 0 26px;"></div>
+    <div style="font-size:14.5px;color:#6f675c;font-weight:500;">Take a breath. You&#x27;re on the right path.</div>
+  </div>
+  <div ref="{{ photoRef }}" data-photo="1" style="position:relative;overflow:hidden;">
+    <img src="uploads/Journey_4.jpg" alt="Mist rising over a wooded hillside path" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:100% 100%;"/>
+    <div style="position:absolute;inset:0;background:linear-gradient(to right, rgba(244,240,232,0.94) 0%, rgba(244,240,232,0.24) 14%, rgba(244,240,232,0) 28%);"></div>
+    {{ glow }}
+  </div>
+</section>
+</sc-if>
+
+<sc-if value="{{ isSunrise }}" hint-placeholder-val="{{ false }}">
+<section ref="{{ screenRef }}" onClick="{{ onNext }}" style="position:relative;min-height:100vh;cursor:pointer;overflow:hidden;">
+  <div ref="{{ photoRef }}" style="position:absolute;inset:0;overflow:hidden;">
+    <img src="uploads/Journey_6.jpg" alt="Sunrise over rolling hills with a winding track" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:60% 100%;"/>
+    <div style="position:absolute;inset:0;background:linear-gradient(105deg, rgba(244,240,232,0.95) 0%, rgba(244,240,232,0.7) 24%, rgba(244,240,232,0.12) 46%, rgba(244,240,232,0) 60%);"></div>
+    {{ glow }}
+  </div>
+  <div data-pane="1" style="position:relative;z-index:10;min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:96px 88px;">
+    <h2 style="font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(36px,3.9vw,54px);line-height:1.22;margin:0;max-width:470px;text-wrap:pretty;">You&#x27;re almost there. Your path is becoming clearer.</h2>
+    <div style="width:44px;height:1px;background:rgba(30,27,23,0.35);margin-top:32px;"></div>
+    <p style="font-size:14.5px;line-height:1.75;color:#544d43;margin:30px 0 0 0;max-width:210px;font-weight:500;">Just a few more questions to go.</p>
+  </div>
+</section>
+</sc-if>
+
+<sc-if value="{{ isSummary }}" hint-placeholder-val="{{ false }}">
+<section ref="{{ screenRef }}" data-split="1" style="position:relative;height:100vh;overflow:hidden;background:#14120F;display:grid;grid-template-columns:minmax(0,0.86fr) minmax(0,1.14fr);">
+  <div data-pane="1" style="display:flex;flex-direction:column;justify-content:center;padding:120px 72px;position:relative;z-index:10;overflow-y:auto;">
+    <div style="font-size:11.5px;letter-spacing:2.4px;color:#9a9184;">YOUR JOURNEY SUMMARY</div>
+    <h2 style="font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(31px,3.2vw,43px);line-height:1.26;color:#F7F3EA;margin:28px 0 0 0;max-width:450px;text-wrap:pretty;">Based on your responses, this is the path that appears to be your strongest starting point.</h2>
+    <p style="font-size:14.5px;line-height:1.8;color:#a09788;margin:34px 0 0 0;max-width:280px;font-weight:500;">Of course, your journey can evolve and grow over time. There are many ways to make an impact.</p>
+    <button type="button" onClick="{{ onNext }}" style="margin-top:44px;background:none;border:1px solid rgba(247,243,234,0.35);color:#F7F3EA;font-family:'Figtree',sans-serif;font-size:14.5px;font-weight:500;padding:18px 36px;border-radius:999px;display:inline-flex;align-items:center;gap:18px;width:fit-content;cursor:pointer;transition:all .3s ease;" style-hover="border-color:#F8E3B0;color:#F8E3B0;transform:translateY(-2px);" style-focus="outline:2px solid #F8E3B0;outline-offset:3px;">See your path <span style="font-size:15px;">→</span></button>
+  </div>
+  <div ref="{{ photoRef }}" data-photo="1" style="position:relative;overflow:hidden;min-height:520px;background:#14120F;">
+    <img src="uploads/Journey_7.jpg" alt="A glowing path leading to the matched destination" style="position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:50% 50%;"/>
+    {{ nodeLabels }}
+  </div>
+</section>
+</sc-if>
+
+<sc-if value="{{ isResult }}" hint-placeholder-val="{{ false }}">
+<section ref="{{ screenRef }}" data-split="1" style="position:relative;height:100vh;overflow:hidden;display:grid;grid-template-columns:minmax(0,0.94fr) minmax(0,1.06fr);background:#F4F0E8;">
+  <div data-pane="1" style="display:flex;flex-direction:column;justify-content:center;padding:120px 72px;position:relative;z-index:10;overflow-y:auto;">
+    <div style="font-size:11.5px;letter-spacing:2.4px;color:#7d7568;">YOUR RECOMMENDED PATH</div>
+    <div style="display:flex;align-items:center;gap:20px;margin-top:22px;">
+      {{ resultIcon }}
+      <h2 style="font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(34px,3.6vw,48px);line-height:1.12;margin:0;">{{ resultName }}</h2>
+    </div>
+    <p style="font-size:16.5px;line-height:1.85;color:#4e483e;margin:34px 0 0 0;max-width:440px;font-weight:500;text-wrap:pretty;">{{ resultDesc }}</p>
+    <button type="button" onClick="{{ onNext }}" style="margin-top:42px;background:#1E1B17;color:#F4F0E8;border:none;font-family:'Figtree',sans-serif;font-size:16.5px;font-weight:600;padding:22px 40px;border-radius:999px;display:inline-flex;align-items:center;gap:44px;width:fit-content;cursor:pointer;transition:all .3s ease;" style-hover="background:#342f27;transform:translateY(-2px);" style-focus="outline:2px solid #1E1B17;outline-offset:3px;">Explore this path <span style="font-size:15px;">→</span></button>
+    <a href="#" onClick="{{ onToggleOthers }}" style="margin-top:30px;font-size:14.5px;color:#6b6357;border-bottom:1px solid rgba(107,99,87,0.45);padding-bottom:4px;width:fit-content;">See other ways to get involved</a>
+    <sc-if value="{{ showOthers }}" hint-placeholder-val="{{ false }}">
+      <div style="display:flex;flex-direction:column;gap:2px;margin-top:30px;max-width:400px;border-top:1px solid #D6CFC2;">
+        <sc-for list="{{ otherPaths }}" as="p" hint-placeholder-count="3">
+          <a href="#" style="display:flex;align-items:baseline;justify-content:space-between;gap:20px;padding:16px 0;border-bottom:1px solid #D6CFC2;color:#1E1B17;transition:all .2s ease;" style-hover="padding-left:8px;">
+            <span style="font-family:'Instrument Serif',serif;font-size:23px;font-weight:400;">{{ p.name }}</span>
+            <span style="font-size:13px;color:#7d7568;text-align:right;max-width:230px;line-height:1.6;">{{ p.short }}</span>
+          </a>
+        </sc-for>
+      </div>
+    </sc-if>
+  </div>
+  <div data-photo="1" style="position:relative;overflow:hidden;">
+    <img src="uploads/Journey_8.jpg" alt="People in conversation around a table in warm daylight" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:72% 50%;"/>
+    <div style="position:absolute;inset:0;background:linear-gradient(to right, rgba(244,240,232,0.92) 0%, rgba(244,240,232,0.2) 13%, rgba(244,240,232,0) 26%);"></div>
+  </div>
+</section>
+</sc-if>
+
+<sc-if value="{{ isNext }}" hint-placeholder-val="{{ false }}">
+<section ref="{{ screenRef }}" style="position:relative;min-height:100vh;overflow:hidden;display:flex;align-items:center;justify-content:center;">
+  <img src="uploads/Journey_9.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;"/>
+  <div style="position:absolute;inset:0;background:rgba(20,18,15,0.55);"></div>
+  <div style="position:relative;z-index:10;text-align:center;padding:120px 64px;max-width:900px;">
+    <h2 style="font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(36px,3.8vw,52px);line-height:1.16;color:#F7F3EA;margin:0;">What happens next?</h2>
+    <div data-cols3="1" style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:64px;">
+      <div style="display:flex;flex-direction:column;align-items:center;padding:0 22px;border-right:1px solid rgba(247,243,234,0.14);">
+        <span style="width:62px;height:62px;border-radius:999px;border:1px solid rgba(247,243,234,0.5);display:flex;align-items:center;justify-content:center;">
+          <svg viewBox="0 0 24 24" fill="none" style="width:22px;height:22px;">
+            <circle cx="12" cy="12" r="8.4" stroke="#F7F3EA" stroke-width="1.1"></circle>
+            <path d="M15.4 8.6 10.7 10.7 8.6 15.4l4.7-2.1 2.1-4.7Z" stroke="#F7F3EA" stroke-width="1.1" stroke-linejoin="round"></path>
+          </svg>
+        </span>
+        <div style="font-family:'Instrument Serif',serif;font-size:25px;color:#F7F3EA;margin-top:24px;">Explore</div>
+        <p style="font-size:13.5px;line-height:1.7;color:#b3aa9d;margin:14px 0 0 0;max-width:185px;font-weight:500;">Discover more about the path that fits you best.</p>
+      </div>
+      <div style="display:flex;flex-direction:column;align-items:center;padding:0 22px;border-right:1px solid rgba(247,243,234,0.14);">
+        <span style="width:62px;height:62px;border-radius:999px;border:1px solid rgba(247,243,234,0.5);display:flex;align-items:center;justify-content:center;">
+          <svg viewBox="0 0 24 24" fill="none" style="width:22px;height:22px;">
+            <path d="M5 12h13M13.4 7.2 18.4 12l-5 4.8" stroke="#F7F3EA" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"></path>
+          </svg>
+        </span>
+        <div style="font-family:'Instrument Serif',serif;font-size:25px;color:#F7F3EA;margin-top:24px;">Connect</div>
+        <p style="font-size:13.5px;line-height:1.7;color:#b3aa9d;margin:14px 0 0 0;max-width:185px;font-weight:500;">We&#x27;ll help you take the first step.</p>
+      </div>
+      <div style="display:flex;flex-direction:column;align-items:center;padding:0 22px;">
+        <span style="width:62px;height:62px;border-radius:999px;border:1px solid rgba(247,243,234,0.5);display:flex;align-items:center;justify-content:center;">
+          <svg viewBox="0 0 24 24" fill="none" style="width:22px;height:22px;">
+            <circle cx="9" cy="9.6" r="2.3" stroke="#F7F3EA" stroke-width="1.1"></circle>
+            <circle cx="15.4" cy="10.6" r="1.9" stroke="#F7F3EA" stroke-width="1.1"></circle>
+            <path d="M4.6 17.4c0-2.2 2-3.7 4.4-3.7s4.4 1.5 4.4 3.7M14.2 14.1c2.1.2 3.6 1.6 3.6 3.3" stroke="#F7F3EA" stroke-width="1.1" stroke-linecap="round"></path>
+          </svg>
+        </span>
+        <div style="font-family:'Instrument Serif',serif;font-size:25px;color:#F7F3EA;margin-top:24px;">Create Impact</div>
+        <p style="font-size:13.5px;line-height:1.7;color:#b3aa9d;margin:14px 0 0 0;max-width:185px;font-weight:500;">Together, we turn values into lasting change.</p>
+      </div>
+    </div>
+    <p style="font-size:14.5px;line-height:1.85;color:#b3aa9d;margin:66px auto 0;max-width:350px;font-weight:500;">Thank you for taking the time to start your journey. We&#x27;re glad you&#x27;re here.</p>
+    <button type="button" onClick="{{ onRestart }}" style="margin-top:34px;background:none;border:none;font-family:'Figtree',sans-serif;font-size:12px;letter-spacing:1.8px;color:#7d7568;cursor:pointer;padding:8px;transition:color .2s ease;" style-hover="color:#F8E3B0;" style-focus="outline:2px solid #F8E3B0;outline-offset:3px;">START AGAIN</button>
+  </div>
+</section>
+</sc-if>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440,&quot;height&quot;:900},&quot;autoAdvanceSeconds&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:4,&quot;min&quot;:2,&quot;max&quot;:10,&quot;step&quot;:1,&quot;unit&quot;:&quot;s&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Journey&quot;},&quot;showGlow&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Journey&quot;}}">
+// Traced against each photo's real road, in SOURCE pixel coordinates.
+// px/py mirror the img's object-position so the overlay sees the same crop.
+// Nudge these with ?calibrate=1 — nothing else needs touching.
+const PATHS = {
+  'uploads/Journey_2.jpg': {
+    w: 1168, h: 880, px: 0.72, py: 1.0,
+    d: "M 400 880 C 545 835, 665 775, 745 725 C 825 675, 905 645, 932 596 C 952 556, 895 528, 828 512",
+    nodes: [{ x: 555, y: 828, t: 0.16 }, { x: 770, y: 712, t: 0.42 }, { x: 905, y: 620, t: 0.68 }, { x: 900, y: 548, t: 0.9 }]
+  },
+  'uploads/Journey_5.jpg': {
+    w: 1280, h: 816, px: 0.72, py: 1.0,
+    d: "M 620 816 C 760 770, 880 715, 960 645 C 1030 585, 1090 545, 1082 480 C 1074 425, 1098 400, 1130 384",
+    nodes: [{ x: 770, y: 762, t: 0.18 }, { x: 985, y: 628, t: 0.45 }, { x: 1070, y: 520, t: 0.7 }, { x: 1108, y: 400, t: 0.92 }]
+  },
+  'uploads/Journey_3-bcf598ad.jpg': {
+    w: 1168, h: 880, px: 0.50, py: 1.0,
+    d: "M 448 880 C 520 826, 486 772, 540 726 C 596 680, 668 668, 700 622 C 730 578, 662 548, 632 508 C 608 476, 640 446, 606 420 C 578 398, 556 386, 544 372",
+    nodes: [{ x: 494, y: 832, t: 0.10 }, { x: 540, y: 726, t: 0.24 }, { x: 652, y: 672, t: 0.40 }, { x: 706, y: 610, t: 0.55 }, { x: 642, y: 520, t: 0.70 }, { x: 620, y: 442, t: 0.84 }, { x: 566, y: 392, t: 0.95 }]
+  },
+  'uploads/Journey_4.jpg': {
+    w: 1264, h: 816, px: 1.0, py: 1.0,
+    d: "M 1090 816 C 1010 752, 1052 700, 996 660 C 950 626, 984 600, 946 574",
+    nodes: [{ x: 1042, y: 764, t: 0.24 }, { x: 1014, y: 674, t: 0.58 }, { x: 958, y: 588, t: 0.9 }]
+  },
+  'uploads/Journey_6.jpg': {
+    w: 1264, h: 816, px: 0.60, py: 1.0,
+    d: "M 730 816 C 850 745, 960 690, 1010 620 C 1055 558, 1000 512, 955 470 C 925 442, 900 425, 880 408",
+    nodes: [{ x: 872, y: 742, t: 0.2 }, { x: 1022, y: 605, t: 0.48 }, { x: 990, y: 495, t: 0.74 }, { x: 900, y: 424, t: 0.94 }]
+  }
+};
+
+// Journey_7 ships with its glow already rendered, so labels are pinned to the
+// baked-in nodes in source coordinates and ride the same crop maths.
+const MAP = {
+  w: 1328, h: 784, px: 0.5, py: 0.5, fit: 'contain',
+  spots: [
+    { x: 897, y: 148, matched: true },
+    { x: 698, y: 402 },
+    { x: 1158, y: 318, anchor: 'end' },
+    { x: 959, y: 652 }
+  ]
+};
+
+const PATH_INFO = {
+  values: {
+    name: 'Values in Action',
+    desc: 'You seem to be someone who wants to use your skills, influence and resources to create meaningful change. Values in Action connects people like you with practical opportunities that make a real difference in communities.',
+    short: 'Put your skills and influence to work'
+  },
+  volunteer: {
+    name: 'Volunteer',
+    desc: 'You are drawn to being close to the people it affects, with your sleeves rolled up. Volunteering places you alongside our teams in the shops, on the streets and out in the community, giving whatever time you genuinely have.',
+    short: 'Hands-on, in the community'
+  },
+  partner: {
+    name: 'Community Partner',
+    desc: 'You are thinking on behalf of an organisation as much as yourself. Partnering lets a business put real weight behind local work, from staff time and premises through to shared campaigns and long-running support.',
+    short: 'Bring your organisation with you'
+  },
+  founding: {
+    name: 'Founding 100',
+    desc: 'You are ready for something deeper than a single project. The Founding 100 is a small group committing for the long term, helping shape what Collective Calling becomes and staying close to the decisions that matter.',
+    short: 'A founding, long-term role'
+  }
+};
+
+const QUESTIONS = [
+  { q: 'When you look at the world around you... Which thought resonates with you most?', o: [
+    ['I wish I could make more of a difference.', { volunteer: 2, values: 1 }],
+    ['I want my work to have greater meaning.', { values: 3 }],
+    ['I feel most alive when helping others.', { volunteer: 3 }],
+    ['I believe businesses can create lasting change.', { partner: 3 }],
+    ["I'm still discovering where I fit.", { volunteer: 1, values: 1 }]
+  ]},
+  { q: 'What first drew you towards Collective Calling?', o: [
+    ['Someone I trust invited me in.', { volunteer: 2, founding: 1 }],
+    ['I have been looking for work that means something.', { values: 3 }],
+    ['My organisation wants to give something back.', { partner: 3 }],
+    ['I want to help build something from the ground up.', { founding: 3 }],
+    ['Honestly, curiosity.', { volunteer: 1, values: 1 }]
+  ]},
+  { q: 'Realistically, how much time could you give?', o: [
+    ['An hour here and there.', { volunteer: 2 }],
+    ['A regular slot each week.', { volunteer: 3 }],
+    ['A few focused days a year.', { values: 2, partner: 1 }],
+    ['Whatever it takes to see it through.', { founding: 3 }],
+    ['I would rather give resources than hours.', { values: 2, partner: 2 }]
+  ]},
+  { q: 'When you picture yourself contributing, what are you holding?', o: [
+    ['A pair of hands.', { volunteer: 3 }],
+    ['A skill I have spent years building.', { values: 3 }],
+    ['A network of people I could open up.', { partner: 3 }],
+    ['A commitment I intend to keep.', { founding: 3 }],
+    ['An idea I cannot quite let go of.', { founding: 2, values: 1 }]
+  ]},
+  { q: 'How far ahead do you tend to think?', o: [
+    ['The next few weeks.', { volunteer: 2 }],
+    ['The year ahead.', { values: 2, partner: 1 }],
+    ['Five years and beyond.', { founding: 3 }],
+    ['In generations.', { founding: 2, values: 1 }],
+    ['I try to stay in the present.', { volunteer: 2 }]
+  ]},
+  { q: 'Which environment brings out the best in you?', o: [
+    ['A team working towards a shared goal.', { values: 2, partner: 1 }],
+    ['A close-knit community.', { volunteer: 3 }],
+    ['A flexible, creative space.', { values: 2 }],
+    ['One-to-one with people.', { volunteer: 2 }],
+    ['Leading and inspiring others.', { founding: 2, partner: 2 }]
+  ]},
+  { q: 'A year from now, what would make you glad you started?', o: [
+    ['Knowing one particular person is better off.', { volunteer: 3 }],
+    ['Seeing my values show up in my work.', { values: 3 }],
+    ['Watching my organisation change how it operates.', { partner: 3 }],
+    ['Being part of the group that made it possible.', { founding: 3 }],
+    ['Having learned something about myself.', { volunteer: 1, values: 1 }]
+  ]},
+  { q: 'Which of these sounds most like where you are now?', o: [
+    ['I have capacity and want to be useful.', { volunteer: 3 }],
+    ['I have influence and want to use it well.', { values: 3 }],
+    ['I speak for an organisation, not only myself.', { partner: 3 }],
+    ['I am ready to commit properly.', { founding: 3 }],
+    ['I am right at the beginning of working it out.', { volunteer: 2 }]
+  ]},
+  { q: 'How would you like us to involve you?', o: [
+    ['Tell me where to turn up.', { volunteer: 3 }],
+    ['Bring me a problem worth solving.', { values: 3 }],
+    ['Talk to me about a partnership.', { partner: 3 }],
+    ['Keep me close to the decisions.', { founding: 3 }],
+    ['Start gently, and we will see.', { volunteer: 2 }]
+  ]},
+  { q: 'Last one. What feels true right now?', o: [
+    ['I want to give my time.', { volunteer: 3 }],
+    ['I want my values to travel further.', { values: 3 }],
+    ['I want to bring my organisation with me.', { partner: 3 }],
+    ['I want to help lay the foundations.', { founding: 3 }],
+    ['I want to stay close and find out.', { volunteer: 1, values: 1, founding: 1 }]
+  ]}
+];
+
+const FLOW = [
+  { type: 'landing' },
+  { type: 'q', i: 0 }, { type: 'q', i: 1 }, { type: 'q', i: 2 },
+  { type: 'forest' },
+  { type: 'q', i: 3 },
+  { type: 'quote' },
+  { type: 'q', i: 4 }, { type: 'q', i: 5 }, { type: 'q', i: 6 }, { type: 'q', i: 7 },
+  { type: 'sunrise' },
+  { type: 'q', i: 8 }, { type: 'q', i: 9 },
+  { type: 'summary' }, { type: 'result' }, { type: 'next' }
+];
+
+class Component extends DCLogic {
+  state = { step: 0, answers: {}, showOthers: false, calibrate: false, cw: 0, ch: 0 };
+
+  // This runtime does not call componentDidUpdate, so measuring, animating and
+  // pacing all hang off callback refs and setState callbacks instead.
+  setScreenEl = (el) => { this._screenEl = el; };
+
+  setPhotoEl = (el) => {
+    if (el === this._photoEl) return;
+    this._photoEl = el;
+    if (this._ro) { this._ro.disconnect(); this._ro = null; }
+    if (!el) return;
+    this.measure(el);
+    if (typeof ResizeObserver === 'function') {
+      this._ro = new ResizeObserver(() => this.measure(this._photoEl));
+      this._ro.observe(el);
+    }
+  };
+
+  afterNav = () => { this.replay(); this.arm(); this.measure(this._photoEl); };
+
+  componentDidMount() {
+    if (/[?&]calibrate=1/.test((typeof location !== 'undefined' ? location.search : '') || '')) {
+      this.setState({ calibrate: true });
+    }
+    this.onKey = (e) => {
+      const f = this.frame();
+      if (f.type === 'q') {
+        if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+          const btns = Array.from(document.querySelectorAll('button[data-cc-opt]'));
+          if (!btns.length) return;
+          const cur = btns.indexOf(document.activeElement);
+          const nx = e.key === 'ArrowDown' ? Math.min(btns.length - 1, cur + 1) : Math.max(0, cur - 1);
+          if (btns[nx]) { btns[nx].focus(); e.preventDefault(); }
+          return;
+        }
+        if (e.key === 'Enter' && this.answered()) { this.next(); return; }
+      } else if (e.key === 'Enter' || e.key === 'ArrowRight') { this.next(); return; }
+      if (e.key === 'ArrowLeft') this.back();
+    };
+    this.onResize = () => this.measure(this._photoEl);
+    document.addEventListener('keydown', this.onKey);
+    window.addEventListener('resize', this.onResize);
+    this.measure(this._photoEl);
+    this.arm();
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener('keydown', this.onKey);
+    window.removeEventListener('resize', this.onResize);
+    clearTimeout(this.timer);
+    clearTimeout(this.advance);
+    if (this._ro) this._ro.disconnect();
+  }
+
+  // The photo panel is object-fit:cover, so only part of the source is on screen.
+  // Measuring the panel lets the overlay use the exact visible source rect as its
+  // viewBox — that is what keeps the glow and the labels locked to the photo.
+  measure(el) {
+    if (!el) return;
+    const r = el.getBoundingClientRect();
+    const cw = Math.round(r.width), ch = Math.round(r.height);
+    if (cw > 0 && ch > 0 && (cw !== this.state.cw || ch !== this.state.ch)) {
+      this.setState({ cw: cw, ch: ch });
+    }
+  }
+
+  cropBox(cfg) {
+    const cw = this.state.cw, ch = this.state.ch;
+    if (!cw || !ch) return null;
+    if (cfg.fit === 'contain') {
+      // whole source always in frame, letterboxed
+      return { x: 0, y: 0, w: cfg.w, h: cfg.h, contain: true, scale: Math.min(cw / cfg.w, ch / cfg.h) };
+    }
+    const scale = Math.max(cw / cfg.w, ch / cfg.h);
+    const vw = cw / scale, vh = ch / scale;
+    return {
+      x: (cfg.w - vw) * cfg.px,
+      y: (cfg.h - vh) * cfg.py,
+      w: vw, h: vh, scale: scale
+    };
+  }
+
+  reduced() {
+    return typeof matchMedia === 'function' && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  }
+
+  replay() {
+    const el = this._screenEl;
+    if (!el || this.reduced()) return;
+    el.style.animation = 'none';
+    void el.offsetWidth;
+    el.style.animation = 'cc-fadeup 760ms cubic-bezier(.22,.61,.36,1) both';
+  }
+
+  arm() {
+    clearTimeout(this.timer);
+    const t = this.frame().type;
+    if (t === 'forest' || t === 'quote' || t === 'sunrise') {
+      const secs = this.props.autoAdvanceSeconds ?? 4;
+      this.timer = setTimeout(() => this.next(), secs * 1000);
+    }
+  }
+
+  frame() { return FLOW[this.state.step] || FLOW[0]; }
+  answered() { const f = this.frame(); return f.type === 'q' && this.state.answers[f.i] != null; }
+
+  next() {
+    if (this.frame().type === 'q' && !this.answered()) return;
+    this.setState(s => ({ step: Math.min(FLOW.length - 1, s.step + 1), showOthers: false }), this.afterNav);
+  }
+  back() { this.setState(s => ({ step: Math.max(0, s.step - 1) }), this.afterNav); }
+
+  pick(qi, oi) {
+    this.setState(s => ({ answers: Object.assign({}, s.answers, { [qi]: oi }) }), () => {
+      clearTimeout(this.advance);
+      this.advance = setTimeout(() => this.next(), 420);
+    });
+  }
+
+  travelled() {
+    const f = this.frame();
+    if (f.type === 'landing') return 0;
+    if (f.type === 'summary' || f.type === 'result' || f.type === 'next') return 1;
+    let lastQ = -1;
+    for (let i = 0; i <= this.state.step; i++) if (FLOW[i].type === 'q') lastQ = FLOW[i].i;
+    return (lastQ + 2) / 11;
+  }
+
+  result() {
+    const totals = { values: 0, volunteer: 0, partner: 0, founding: 0 };
+    const reached = {};
+    QUESTIONS.forEach((q, qi) => {
+      const oi = this.state.answers[qi];
+      if (oi == null) return;
+      const w = q.o[oi][1];
+      Object.keys(w).forEach(k => {
+        totals[k] += w[k];
+        reached[k] = reached[k] || [];
+        reached[k].push({ score: totals[k], at: qi });
+      });
+    });
+    const keys = Object.keys(totals);
+    const max = Math.max.apply(null, keys.map(k => totals[k]));
+    if (max === 0) return 'volunteer';
+    const tied = keys.filter(k => totals[k] === max);
+    if (tied.length === 1) return tied[0];
+    let best = tied[0], bestAt = Infinity;
+    tied.forEach(k => {
+      const hit = (reached[k] || []).find(r => r.score >= max);
+      const at = hit ? hit.at : Infinity;
+      if (at < bestAt) { bestAt = at; best = k; }
+    });
+    return best;
+  }
+
+  overlaySvg(cfg, kids) {
+    const box = this.cropBox(cfg);
+    if (!box) return null;
+    if (this.state.calibrate) {
+      const step = cfg.w / 12;
+      for (let gx = 0; gx <= cfg.w; gx += step) kids.push(React.createElement('line', { key: 'gx' + gx, x1: gx, y1: 0, x2: gx, y2: cfg.h, stroke: 'rgba(255,0,255,0.3)', strokeWidth: box.w / 600 }));
+      for (let gy = 0; gy <= cfg.h; gy += step) kids.push(React.createElement('line', { key: 'gy' + gy, x1: 0, y1: gy, x2: cfg.w, y2: gy, stroke: 'rgba(255,0,255,0.3)', strokeWidth: box.w / 600 }));
+      kids.push(React.createElement('rect', { key: 'crop', x: box.x, y: box.y, width: box.w, height: box.h, fill: 'none', stroke: '#00FFFF', strokeWidth: box.w / 200 }));
+      if (cfg.d) kids.push(React.createElement('path', { key: 'cal', d: cfg.d, fill: 'none', stroke: '#FF00FF', strokeWidth: box.w / 180 }));
+    }
+    return React.createElement('svg', {
+      viewBox: box.x + ' ' + box.y + ' ' + box.w + ' ' + box.h,
+      preserveAspectRatio: box.contain ? 'xMidYMid meet' : 'none',
+      style: { position: 'absolute', inset: 0, width: '100%', height: '100%', pointerEvents: 'none', zIndex: 5, overflow: 'visible' }
+    }, kids);
+  }
+
+  glowFor(src) {
+    const cfg = PATHS[src];
+    if (!cfg || this.props.showGlow === false) return null;
+    const drawn = Math.max(0.1, Math.min(1, this.travelled()));
+    const dash = { strokeDasharray: 1, strokeDashoffset: 1 - drawn, transition: this.reduced() ? 'none' : 'stroke-dashoffset 1200ms cubic-bezier(.22,.61,.36,1)' };
+    const kids = [
+      React.createElement('path', { key: 'halo', d: cfg.d, pathLength: 1, fill: 'none', stroke: '#F8E3B0', strokeWidth: 18, strokeLinecap: 'round', opacity: 0.3, style: Object.assign({ filter: 'blur(12px)' }, dash) }),
+      React.createElement('path', { key: 'mid', d: cfg.d, pathLength: 1, fill: 'none', stroke: '#F8E3B0', strokeWidth: 8, strokeLinecap: 'round', opacity: 0.5, style: Object.assign({ filter: 'blur(4px)' }, dash) }),
+      React.createElement('path', { key: 'line', d: cfg.d, pathLength: 1, fill: 'none', stroke: '#FFF8E6', strokeWidth: 3, strokeLinecap: 'round', style: Object.assign({ filter: 'drop-shadow(0 0 5px rgba(248,227,176,.95))' }, dash) })
+    ];
+    cfg.nodes.forEach((n, i) => {
+      const lit = drawn >= n.t;
+      kids.push(React.createElement('circle', {
+        key: 'n' + i, cx: n.x, cy: n.y, r: lit ? 8 : 4.5,
+        fill: lit ? '#FFFBF0' : 'rgba(248,227,176,0.3)',
+        style: {
+          filter: lit ? 'drop-shadow(0 0 9px rgba(255,246,220,1)) drop-shadow(0 0 22px rgba(248,227,176,.7))' : 'none',
+          transformOrigin: n.x + 'px ' + n.y + 'px',
+          transition: 'r 600ms ease, fill 600ms ease',
+          animation: lit && !this.reduced() ? 'cc-ignite 700ms ease' : 'none'
+        }
+      }));
+    });
+    return this.overlaySvg(cfg, kids);
+  }
+
+  nodeLabels() {
+    const box = this.cropBox(MAP);
+    if (!box) return null;
+    const win = this.result();
+    // Spot 0 is the node the baked-in glow actually reaches, so the winner goes
+    // there; the other three take the baked icon that suits them best.
+    const PREF = { volunteer: 1, founding: 2, partner: 3, values: 1 };
+    const items = [win, null, null, null];
+    const taken = { 0: true };
+    ['values', 'volunteer', 'partner', 'founding'].filter(k => k !== win).forEach(k => {
+      let i = PREF[k];
+      if (i == null || taken[i]) i = [1, 2, 3].find(n => !taken[n]);
+      taken[i] = true;
+      items[i] = k;
+    });
+    // font sizes are in source units, so they render at a constant on-screen size;
+    // x is clamped into the visible crop so long names can never be cut off
+    const pad = 18 / box.scale;
+    const kids = items.map((k, i) => {
+      const s = MAP.spots[i];
+      const cx = Math.min(Math.max(s.x, box.x + pad), box.x + box.w - pad);
+      return React.createElement('text', {
+        key: k, x: cx, y: s.y, textAnchor: s.anchor || 'middle',
+        style: {
+          fontFamily: "'Figtree', sans-serif",
+          fontSize: (s.matched ? 13 : 11.5) / box.scale,
+          fontWeight: s.matched ? 500 : 400,
+          fill: s.matched ? '#FFF8E6' : 'rgba(230,222,206,0.5)',
+          filter: s.matched ? 'drop-shadow(0 0 12px rgba(248,227,176,0.8))' : 'none',
+          opacity: 0,
+          animation: this.reduced() ? 'none' : 'cc-fadeup 700ms cubic-bezier(.22,.61,.36,1) ' + (420 + i * 190) + 'ms both'
+        }
+      }, PATH_INFO[k].name);
+    });
+    return this.overlaySvg(MAP, kids);
+  }
+
+  resultIcon(key) {
+    const p = { stroke: '#1E1B17', strokeWidth: 1.1, fill: 'none', strokeLinecap: 'round', strokeLinejoin: 'round' };
+    const paths = {
+      values: ['M8 20.4c0-2.6 2.4-4.3 5.2-4.3s5.2 1.7 5.2 4.3', 'M17.6 15.9c2.5.3 4.3 1.9 4.3 4', 'M6.4 15.9c-2.5.3-4.3 1.9-4.3 4', 'M13.2 13.6a2.6 2.6 0 1 0 0-5.2 2.6 2.6 0 0 0 0 5.2Z'],
+      volunteer: ['M12 13.2 9.3 10.6c-1.1-1.1-.4-2.9 1.1-2.9.7 0 1.3.4 1.6 1 .3-.6.9-1 1.6-1 1.5 0 2.2 1.8 1.1 2.9L12 13.2Z', 'M4.8 15.2c2 3 4.4 4.5 7.2 4.5s5.2-1.5 7.2-4.5'],
+      partner: ['M5 19.6V9.2l5.4-3.2 5.4 3.2v10.4', 'M2.6 19.6h18.8', 'M9.2 19.6v-4.4h3.6v4.4'],
+      founding: ['M12 3.6 14.6 9l5.8.8-4.2 4.1 1 5.8-5.2-2.8-5.2 2.8 1-5.8L3.6 9.8 9.4 9 12 3.6Z']
+    };
+    return React.createElement('svg', { viewBox: '0 0 24 24', fill: 'none', style: { width: '36px', height: '36px', flex: 'none' } },
+      (paths[key] || paths.values).map((d, i) => React.createElement('path', Object.assign({ key: i, d: d }, p)))
+    );
+  }
+
+  renderVals() {
+    const f = this.frame();
+    const t = this.travelled();
+    const dark = f.type === 'forest' || f.type === 'summary';
+    const q = f.type === 'q' ? QUESTIONS[f.i] : null;
+    // alternate the two question frames so nothing repeats back to back
+    const qPhoto = (i) => i % 2 === 0 ? 'uploads/Journey_2.jpg' : 'uploads/Journey_5.jpg';
+    const photoSrc = f.type === 'q' ? qPhoto(f.i)
+      : f.type === 'forest' ? 'uploads/Journey_3-bcf598ad.jpg'
+      : f.type === 'quote' ? 'uploads/Journey_4.jpg'
+      : f.type === 'sunrise' ? 'uploads/Journey_6.jpg' : null;
+    const win = this.result();
+
+    return {
+      screenRef: this.setScreenEl,
+      photoRef: this.setPhotoEl,
+      isLanding: f.type === 'landing',
+      isQuestion: f.type === 'q',
+      isForest: f.type === 'forest',
+      isQuoteInt: f.type === 'quote',
+      isSunrise: f.type === 'sunrise',
+      isSummary: f.type === 'summary',
+      isResult: f.type === 'result',
+      isNext: f.type === 'next',
+      photoValley: f.type === 'q' && photoSrc === 'uploads/Journey_2.jpg',
+      photoVillage: f.type === 'q' && photoSrc === 'uploads/Journey_5.jpg',
+
+      showProgress: f.type !== 'landing' && f.type !== 'next',
+      progressLabel: Math.round(t * 100) + '%',
+      progressPct: (t * 100).toFixed(1) + '%',
+      barLabelColor: dark ? 'rgba(247,243,234,0.72)' : '#6b6357',
+      barTrackColor: dark ? 'rgba(247,243,234,0.2)' : '#D6CFC2',
+      barFillColor: dark ? '#F7F3EA' : '#1E1B17',
+
+      qLabel: q ? 'Question ' + (f.i + 1) + ' of 10' : '',
+      qText: q ? q.q : '',
+      options: q ? q.o.map((o, oi) => ({
+        label: o[0],
+        selected: this.state.answers[f.i] === oi,
+        onClick: () => this.pick(f.i, oi)
+      })) : [],
+      glow: photoSrc ? this.glowFor(photoSrc) : null,
+      nextOpacity: this.answered() ? 1 : 0.3,
+
+      nodeLabels: f.type === 'summary' ? this.nodeLabels() : null,
+      resultName: PATH_INFO[win].name,
+      resultDesc: PATH_INFO[win].desc,
+      resultIcon: this.resultIcon(win),
+      showOthers: this.state.showOthers,
+      otherPaths: ['values', 'volunteer', 'partner', 'founding'].filter(k => k !== win).map(k => ({ name: PATH_INFO[k].name, short: PATH_INFO[k].short })),
+
+      onBegin: () => this.next(),
+      onNext: () => this.next(),
+      onBack: () => this.back(),
+      onSkip: (e) => { e.preventDefault(); this.setState({ step: FLOW.length - 1 }, this.afterNav); },
+      onRestart: () => this.setState({ step: 0, answers: {}, showOthers: false }, this.afterNav),
+      onToggleOthers: (e) => { e.preventDefault(); this.setState(s => ({ showOthers: !s.showOthers })); }
+    };
+  }
+}
+</script>
+</body>
+</html>

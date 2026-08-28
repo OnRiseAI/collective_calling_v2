@@ -17,16 +17,16 @@
 
   /* Brand colours. `brand` doubles as the navy primary so legacy text-brand
      usages stay legible on cream. */
-  --color-brand: #14213a; /* Deep navy (primary text/links on cream) */
-  --color-brand-dark: #0d1526; /* Near-black navy (hero, footer, closing band) */
-  --color-band: #101a30; /* Lifted navy (Values in Action, impact card) */
-  --color-footer: #0d1526; /* Footer field */
-  --color-accent: #c9a15c; /* Antique gold (eyebrows, rules, numerals, CTAs) */
-  --color-accent-soft: #ddb875; /* Gold hover */
+  --color-brand: #1e1b17; /* Warm ink (primary text on cream) */
+  --color-brand-dark: #141009; /* Near-black (hero, footer, closing band) */
+  --color-band: #141009; /* Dark bands (Values in Action, impact card) */
+  --color-footer: #141009; /* Footer field */
+  --color-accent: #c89a3c; /* Gold (eyebrows, rules, numerals, CTAs) */
+  --color-accent-soft: #d9a83f; /* Gold hover / give */
 
   /* Warm neutrals on cream. */
-  --color-ink: #14213a; /* Navy text on cream */
-  --color-paper: #f6f1e7; /* Warm cream page surface */
+  --color-ink: #1e1b17; /* Warm text on cream */
+  --color-paper: #f4f0e8; /* Warm cream page surface */
   --color-card: #f8f4eb; /* Lightest cream (text on dark, raised surfaces) */
   --color-muted: #6f6a5e; /* Warm grey body copy */
   --color-muted-soft: #8a8574; /* Stat labels, quiet meta */

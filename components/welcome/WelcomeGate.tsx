@@ -171,11 +171,11 @@ export function WelcomeGate(): React.JSX.Element {
               <svg viewBox="0 0 24 24" fill="none" className="h-5 w-5" aria-hidden="true">
                 <path
                   d="M4.5 16.5c3.2-2 5.6-2 7.5-2s4.3 0 7.5 2"
-                  stroke="#c9a15c"
+                  stroke="#C89A3C"
                   strokeWidth="1.2"
                   strokeLinecap="round"
                 />
-                <circle cx="12" cy="9.4" r="2.6" stroke="#c9a15c" strokeWidth="1.2" />
+                <circle cx="12" cy="9.4" r="2.6" stroke="#C89A3C" strokeWidth="1.2" />
               </svg>
             </span>
             <span className="mt-[22px] inline-flex items-center gap-3.5 font-heading text-[29px] font-normal text-[#f8f4eb]">

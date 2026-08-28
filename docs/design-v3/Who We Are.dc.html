@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; background: #F4F0E8; }
+  a { color: #1E1B17; text-decoration: none; }
+  a:hover { color: #8A5F16; }
+  @media (max-width: 1180px) {
+    [data-nav-links] { display: none !important; }
+  }
+  @media (max-width: 1024px) {
+    [data-two-col] { grid-template-columns: 1fr !important; }
+    [data-col-divider] { border-left: none !important; padding-left: 0 !important; }
+    [data-exist-photo] { position: relative !important; top: 0 !important; bottom: auto !important; width: 100% !important; height: 380px !important; }
+    [data-exist-body] { margin-left: 0 !important; padding: 48px 48px 0 !important; }
+    [data-resto-photo] { position: relative !important; width: 100% !important; height: 320px !important; }
+    [data-resto-fade] { display: none !important; }
+    [data-resto-text] { width: 100% !important; }
+    [data-cards] { grid-template-columns: 1fr !important; }
+    [data-why-grid] { grid-template-columns: 1fr !important; }
+    [data-why-photo] { min-height: 420px !important; }
+    [data-icons] { flex-wrap: wrap !important; }
+    [data-lead-grid] { grid-template-columns: 1fr !important; }
+    [data-team-grid] { grid-template-columns: repeat(2,1fr) !important; }
+  }
+  @media (max-width: 680px) {
+    [data-cta] { font-size: 12px !important; letter-spacing: 1px !important; padding: 11px 14px !important; gap: 8px !important; }
+    [data-pad] { padding-left: 28px !important; padding-right: 28px !important; }
+    [data-hero-inner] { padding-left: 28px !important; padding-right: 28px !important; }
+    [data-header] { padding-left: 28px !important; padding-right: 28px !important; }
+    [data-h1] { font-size: 44px !important; }
+    [data-h2] { font-size: 32px !important; }
+    [data-invite-h] { font-size: 38px !important; }
+    [data-invite] { display: flex !important; flex-direction: column !important; align-items: flex-start !important; gap: 36px !important; }
+    [data-team-grid] { grid-template-columns: 1fr !important; }
+    [data-lead-card] { grid-template-columns: 1fr !important; }
+    [data-hero-sec] { padding-bottom: 300px !important; }
+    [data-hero-img] { top: auto !important; height: 320px !important; width: 100% !important; -webkit-mask-image: linear-gradient(to top, black 62%, transparent 100%) !important; mask-image: linear-gradient(to top, black 62%, transparent 100%) !important; }
+    [data-hero-wash] { background: none !important; }
+    [data-invite-sec] { padding-bottom: 280px !important; }
+    [data-invite-img] { top: auto !important; height: 300px !important; width: 100% !important; -webkit-mask-image: linear-gradient(to top, black 55%, transparent 100%) !important; mask-image: linear-gradient(to top, black 55%, transparent 100%) !important; }
+    [data-invite-wash] { background: none !important; }
+    [data-carry-icons] { gap: 28px !important; }
+    [data-h1-hero] { font-size: 42px !important; }
+  }
+</style>
+</helmet>
+<div style="font-family:'Figtree',sans-serif;background:#F4F0E8;color:#1E1B17;">
+
+<section data-hero-sec="1" aria-label="Who we are" style="position:relative;background:#141009;overflow:hidden;">
+  <img data-hero-img="1" src="assets/who/hero2.png" alt="A young boy looking at the camera, friends behind him in soft focus" style="position:absolute;top:0;right:0;bottom:0;width:58%;height:100%;object-fit:cover;object-position:50% 20%;-webkit-mask-image:linear-gradient(to right, transparent 0%, black 28%);mask-image:linear-gradient(to right, transparent 0%, black 28%);"/>
+  <div data-hero-wash="1" style="position:absolute;inset:0;background:linear-gradient(to right, #100C06 0%, #100C06 36%, rgba(16,12,6,0.7) 48%, rgba(16,12,6,0.18) 62%, rgba(16,12,6,0) 78%);"></div>
+  <dc-import name="Site Header" active="who" hint-size="100%,84px"></dc-import>
+  <div data-hero-inner="1" style="position:relative;z-index:10;padding:150px 64px 64px;max-width:760px;">
+    <div style="font-size:14px;font-weight:700;letter-spacing:2.4px;color:#C89A3C;">WHO WE ARE</div>
+    <h1 data-h1="1" style="font-family:'Instrument Serif',serif;font-weight:400;font-size:64px;line-height:1.12;color:#F7F3EA;margin:26px 0 0 0;max-width:560px;">Every life<br/>carries worth.</h1>
+    <div style="width:40px;height:2px;background:#C89A3C;margin-top:34px;"></div>
+    <p style="font-size:17px;line-height:1.7;color:rgba(247,243,234,0.95);margin:32px 0 0 0;max-width:430px;">We believe every person possesses inherent worth.</p>
+    <p style="font-size:17px;line-height:1.7;color:rgba(247,243,234,0.95);margin:18px 0 0 0;max-width:430px;">And sometimes, the right environment<br/>can help someone rediscover it.</p>
+  </div>
+</section>
+
+<section aria-label="Worth is not earned" data-pad="1" style="padding:84px 64px;">
+  <div data-two-col="1" style="display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;max-width:1320px;margin:0 auto;">
+    <div>
+      <h2 data-h2="1" style="font-family:'Instrument Serif',serif;font-weight:400;font-size:46px;line-height:1.2;margin:0;">Worth is not earned.<br/>It is already there.</h2>
+      <div style="width:40px;height:2px;background:#C89A3C;margin-top:28px;"></div>
+      <p style="font-size:16.5px;line-height:1.75;color:#4A443B;margin:34px 0 0 0;max-width:420px;">But life does not always create the conditions for people to recognise it.</p>
+      <p style="font-size:16.5px;line-height:1.75;color:#4A443B;margin:20px 0 0 0;max-width:440px;">Poverty, homelessness, trauma, addiction, isolation and lack of opportunity can shape how people see themselves and what they believe is possible for their lives.</p>
+      <p style="font-size:16.5px;line-height:1.75;color:#1E1B17;font-weight:700;margin:26px 0 0 0;">We believe the right environment can help change that.</p>
+    </div>
+    <figure style="margin:0;">
+      <img src="assets/img/worth-village.jpg" alt="People walking a dirt track through an informal hillside settlement at sunset" style="display:block;width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:14px;"/>
+    </figure>
+  </div>
+</section>
+
+<div style="height:1px;background:#D6CFC2;"></div>
+
+<section aria-label="Why we exist" style="position:relative;padding:76px 0;">
+  <div data-exist-photo="1" style="position:absolute;top:76px;bottom:180px;left:0;width:38%;overflow:hidden;border-radius:0;">
+    <img src="assets/img/why-we-exist.jpg" alt="A Collective Calling volunteer in conversation with a smiling man outdoors" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;"/>
+  </div>
+  <div data-exist-body="1" data-pad="1" style="margin-left:42%;padding-right:64px;max-width:980px;">
+    <div style="font-size:14px;font-weight:700;letter-spacing:2.4px;color:#8A5F16;">WHY WE EXIST</div>
+    <h2 data-h2="1" style="font-family:'Instrument Serif',serif;font-weight:400;font-size:46px;line-height:1.2;margin:24px 0 0 0;max-width:700px;">We create environments where something different can become possible.</h2>
+    <div style="width:40px;height:2px;background:#C89A3C;margin-top:28px;"></div>
+    <div data-two-col="1" style="display:grid;grid-template-columns:minmax(0,0.42fr) minmax(0,0.58fr);gap:44px;margin-top:40px;">
+      <div>
+        <p style="font-size:16.5px;line-height:1.75;color:#4A443B;margin:0;">But we have learned that environments alone do not transform lives.</p>
+        <div style="font-family:'Instrument Serif',serif;font-size:44px;color:#8A5F16;margin-top:26px;">People do.</div>
+      </div>
+      <div data-col-divider="1" style="border-left:1px solid #D6CFC2;padding-left:48px;">
+        <p style="font-size:16.5px;line-height:1.75;color:#4A443B;margin:0;">Services can meet an immediate need. A shower can restore dignity for a morning. A safe home can protect a child. Education can create opportunity.</p>
+        <p style="font-size:16.5px;line-height:1.75;color:#4A443B;margin:20px 0 0 0;">But these things also create something deeper:<br/>the opportunity for relationship.</p>
+        <p style="font-size:16.5px;line-height:1.75;color:#4A443B;margin:20px 0 0 0;">When people continue to show up, relationships grow. Relationships build trust.</p>
+        <p style="font-size:16.5px;line-height:1.75;color:#4A443B;margin:20px 0 0 0;">And where trust exists, restoration can begin.</p>
+      </div>
+    </div>
+  </div>
+  <div data-pad="1" style="text-align:center;padding:64px 64px 0;">
+    <p style="font-size:16.5px;line-height:2;color:#4A443B;margin:0;">This understanding shapes the way we work.</p>
+    <p style="font-size:16.5px;line-height:2;color:#4A443B;margin:4px 0 0 0;">We don&#x27;t simply ask, &#8220;What does this person need?&#8221;</p>
+    <p style="font-size:16.5px;line-height:2;color:#4A443B;margin:4px 0 0 0;">We also ask: <strong style="color:#1E1B17;font-weight:700;">&#8220;What kind of environment could help this person discover who they are and what their life could become?&#8221;</strong></p>
+  </div>
+</section>
+
+<section aria-label="From restoration to purpose" style="position:relative;padding-top:70px;background:linear-gradient(to bottom, #F4F0E8 0%, #EFE7D8 58%, #EAE1D0 100%);">
+  <div data-resto-photo="1" style="position:absolute;top:0;right:0;width:60%;height:360px;overflow:hidden;border-radius:14px 0 0 16px;">
+    <img src="assets/img/restoration-purpose.jpg" alt="One hiker reaching down to pull another up a rocky summit at dusk" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;-webkit-mask-image:linear-gradient(to right, transparent 0%, black 26%);mask-image:linear-gradient(to right, transparent 0%, black 26%);"/>
+    <div data-resto-fade="1" style="position:absolute;inset:0;background:linear-gradient(to right, #F4F0E8 0%, rgba(244,240,232,0) 26%);"></div>
+  </div>
+  <div data-resto-text="1" data-pad="1" style="position:relative;z-index:10;width:44%;padding:0 0 0 64px;margin-top:-70px;padding-top:70px;">
+    <div style="font-size:14px;font-weight:700;letter-spacing:2.4px;color:#8A5F16;">FROM RESTORATION TO PURPOSE</div>
+    <h2 data-h2="1" style="font-family:'Instrument Serif',serif;font-weight:400;font-size:46px;line-height:1.2;margin:22px 0 0 0;">Restoration is<br/>the beginning.</h2>
+    <p style="font-size:16.5px;line-height:1.75;color:#4A443B;margin:28px 0 0 0;max-width:480px;">As people experience dignity, relationship and opportunity, something else can begin to emerge: identity, purpose and the recognition that their life carries something of value.</p>
+    <p style="font-size:16.5px;line-height:1.75;color:#1E1B17;font-weight:700;margin:24px 0 0 0;max-width:440px;">Because we believe every person has something within their hands.</p>
+  </div>
+  <div data-two-col="1" data-pad="1" style="display:grid;grid-template-columns:minmax(0,0.94fr) minmax(0,1.06fr);gap:56px;padding:48px 64px 76px;max-width:1320px;margin:0 auto;">
+    <div>
+      <div style="font-family:'Instrument Serif',serif;font-size:30px;line-height:1.6;color:#8A5F16;max-width:560px;">Time.&ensp;Ability.&ensp;Experience.&ensp;Influence.&ensp;Opportunity.<br/>Compassion.&ensp;Resources.</div>
+      <p style="font-size:16px;line-height:1.75;color:#4A443B;margin:20px 0 0 0;">Sometimes simply the willingness to show up.</p>
+    </div>
+    <div data-col-divider="1" style="border-left:1px solid #C89A3C;padding-left:52px;">
+      <p style="font-size:16.5px;line-height:1.75;color:#4A443B;margin:0;">Someone who was supported can become someone who supports.</p>
+      <p style="font-size:16.5px;line-height:1.75;color:#4A443B;margin:16px 0 0 0;">Someone who was given an opportunity can create one for somebody else.</p>
+      <p style="font-size:16.5px;line-height:1.75;color:#4A443B;margin:16px 0 0 0;">Someone whose dignity was restored can begin restoring dignity in another.</p>
+      <div style="font-family:'Instrument Serif',serif;font-size:30px;color:#8A5F16;margin-top:28px;">What was received begins to multiply.</div>
+    </div>
+  </div>
+</section>
+
+<section aria-label="Today this belief takes many forms" data-pad="1" style="padding:88px 64px 96px;">
+  <div style="text-align:center;">
+    <div style="font-size:14px;font-weight:700;letter-spacing:2.4px;color:#8A5F16;">DIFFERENT EXPRESSIONS. THE SAME ROOT.</div>
+    <h2 data-h2="1" style="font-family:'Instrument Serif',serif;font-weight:400;font-size:42px;line-height:1.2;margin:18px 0 0 0;">Today this belief takes many forms.</h2>
+  </div>
+  <div data-cards="1" style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:44px;margin-top:36px;max-width:1320px;margin-left:auto;margin-right:auto;">
+    <article>
+      <img src="assets/img/children-families.jpg" alt="Four smiling children under trees" style="display:block;width:100%;aspect-ratio:3/2;object-fit:cover;border:1px solid rgba(42,37,32,0.22);border-radius:14px;"/>
+      <h3 style="font-size:19px;font-weight:700;margin:22px 0 0 0;">Children &amp; Families</h3>
+      <p style="font-size:15.5px;line-height:1.75;color:#4A443B;margin:12px 0 0 0;">We create safe and supportive environments for vulnerable children and families, helping them discover safety, relationship and opportunity.</p>
+    </article>
+    <article>
+      <img src="uploads/Homelessness & Restoration.jpg" alt="A man in a hooded jacket looking up, stone wall behind him" style="display:block;width:100%;aspect-ratio:3/2;object-fit:cover;border:1px solid rgba(42,37,32,0.22);border-radius:14px;"/>
+      <h3 style="font-size:19px;font-weight:700;margin:22px 0 0 0;">Homelessness &amp; Restoration</h3>
+      <p style="font-size:15.5px;line-height:1.75;color:#4A443B;margin:12px 0 0 0;">We stand alongside people experiencing homelessness, creating opportunities for dignity and relationship.</p>
+    </article>
+    <article>
+      <img src="assets/img/community-business.jpg" alt="A team in discussion around a meeting table" style="display:block;width:100%;aspect-ratio:3/2;object-fit:cover;border:1px solid rgba(42,37,32,0.22);border-radius:14px;"/>
+      <h3 style="font-size:19px;font-weight:700;margin:22px 0 0 0;">Community &amp; Business</h3>
+      <p style="font-size:15.5px;line-height:1.75;color:#4A443B;margin:12px 0 0 0;">We work with people, organisations and communities to participate, serve and contribute. And through Values in Action, we help businesses turn their values into impact that strengthens lives beyond their walls.</p>
+    </article>
+  </div>
+  <div style="text-align:center;margin-top:72px;">
+    <p style="font-family:'Instrument Serif',serif;font-size:22px;color:#1E1B17;margin:0;">Different people. Different circumstances. Different expressions.</p>
+    <div style="font-family:'Instrument Serif',serif;font-size:36px;color:#8A5F16;margin-top:12px;">The same root.</div>
+    <p style="font-family:'Instrument Serif',serif;font-size:19px;color:#1E1B17;margin:14px 0 0 0;">The belief that every life carries worth — and every life can carry something into the life of another.</p>
+  </div>
+</section>
+
+<section aria-label="Why Collective Calling" style="background:#141009;">
+  <div data-why-grid="1" style="display:grid;grid-template-columns:minmax(0,0.68fr) minmax(0,1.32fr);">
+    <div data-why-photo="1" style="position:relative;overflow:hidden;min-height:340px;">
+      <img src="assets/img/why-collective-calling.jpg" alt="A lone figure on a hilltop facing the sunset" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 50%;-webkit-mask-image:linear-gradient(to left, transparent 0%, black 18%);mask-image:linear-gradient(to left, transparent 0%, black 18%);"/>
+      <div style="position:absolute;top:0;right:0;width:52%;height:38%;background:linear-gradient(to left, #141009 0%, rgba(20,16,9,0.85) 26%, rgba(20,16,9,0.4) 58%, transparent 100%);-webkit-mask-image:linear-gradient(to bottom, black 50%, transparent 100%);mask-image:linear-gradient(to bottom, black 50%, transparent 100%);pointer-events:none;"></div>
+      <div style="position:absolute;inset:0;background:linear-gradient(to bottom, rgba(16,12,6,0.55) 0%, rgba(16,12,6,0.15) 55%, rgba(16,12,6,0.6) 100%);"></div>
+      <div data-pad="1" style="position:relative;z-index:10;padding:44px 40px 44px 64px;">
+        <div style="font-size:14px;font-weight:700;letter-spacing:2.4px;color:#C89A3C;">WHY COLLECTIVE CALLING?</div>
+        <h2 data-h2="1" style="font-family:'Instrument Serif',serif;font-weight:400;font-size:42px;line-height:1.22;color:#F7F3EA;margin:20px 0 0 0;max-width:420px;">None of us arrives where we are entirely by ourselves.</h2>
+        <div style="width:40px;height:2px;background:rgba(247,243,234,0.5);margin-top:26px;"></div>
+      </div>
+    </div>
+    <div style="padding:52px 64px 56px 56px;">
+      <div data-icons="1" style="display:flex;gap:36px;align-items:flex-start;">
+        <div style="flex:1;min-width:110px;text-align:center;">
+          <svg viewBox="0 0 40 40" fill="none" style="width:38px;height:38px;" aria-hidden="true"><path d="M14 7h12v26H14z M14 7 8 10v23l6-3M19 20.5v3" stroke="#C89A3C" stroke-width="1.8" stroke-linejoin="round"></path></svg>
+          <p style="font-size:14.5px;font-weight:500;line-height:1.6;color:rgba(247,243,234,0.95);margin:14px 0 0 0;">Somebody<br/>opened a door.</p>
+        </div>
+        <div style="flex:1;min-width:110px;text-align:center;">
+          <svg viewBox="0 0 40 40" fill="none" style="width:38px;height:38px;" aria-hidden="true"><path d="M20 32s-11-6.6-11-14a6.2 6.2 0 0 1 11-3.9A6.2 6.2 0 0 1 31 18c0 7.4-11 14-11 14Z" stroke="#C89A3C" stroke-width="1.8" stroke-linejoin="round"></path><path d="M20 24v-6m0 0-3-3m3 3 3-3" stroke="#C89A3C" stroke-width="1.6" stroke-linecap="round"></path></svg>
+          <p style="font-size:14.5px;font-weight:500;line-height:1.6;color:rgba(247,243,234,0.95);margin:14px 0 0 0;">Somebody<br/>believed in us.</p>
+        </div>
+        <div style="flex:1;min-width:110px;text-align:center;">
+          <svg viewBox="0 0 40 40" fill="none" style="width:38px;height:38px;" aria-hidden="true"><path d="M12 8h16v24H12z M28 8l-8 3v24l8-3M16 18h4" stroke="#C89A3C" stroke-width="1.8" stroke-linejoin="round"></path></svg>
+          <p style="font-size:14.5px;font-weight:500;line-height:1.6;color:rgba(247,243,234,0.95);margin:14px 0 0 0;">Somebody<br/>taught us.</p>
+        </div>
+        <div style="flex:1;min-width:110px;text-align:center;">
+          <svg viewBox="0 0 40 40" fill="none" style="width:38px;height:38px;" aria-hidden="true"><path d="M11 24c2-4 5-6 9-6s7 2 9 6M20 18v-4m-4.5 5.5L13 17m11.5 2.5L27 17" stroke="#C89A3C" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"></path><path d="M8 30c3.4-3 8-4.4 12-4.4S28.6 27 32 30" stroke="#C89A3C" stroke-width="1.7" stroke-linecap="round"></path></svg>
+          <p style="font-size:14.5px;font-weight:500;line-height:1.6;color:rgba(247,243,234,0.95);margin:14px 0 0 0;">Somebody<br/>gave us an<br/>opportunity.</p>
+        </div>
+        <div style="flex:1;min-width:110px;text-align:center;">
+          <svg viewBox="0 0 40 40" fill="none" style="width:38px;height:38px;" aria-hidden="true"><circle cx="14" cy="13" r="3.4" stroke="#C89A3C" stroke-width="1.7"></circle><circle cx="26" cy="13" r="3.4" stroke="#C89A3C" stroke-width="1.7"></circle><circle cx="20" cy="10" r="3.4" stroke="#C89A3C" stroke-width="1.7" fill="#141009"></circle><path d="M7 31c0-4.5 3.1-7.5 7-7.5 2.4 0 4.5 1.1 6 2.9 1.5-1.8 3.6-2.9 6-2.9 3.9 0 7 3 7 7.5" stroke="#C89A3C" stroke-width="1.7" stroke-linecap="round"></path></svg>
+          <p style="font-size:14.5px;font-weight:500;line-height:1.6;color:rgba(247,243,234,0.95);margin:14px 0 0 0;">Somebody<br/>showed up.</p>
+        </div>
+      </div>
+      <p style="font-size:16.5px;line-height:1.7;color:rgba(247,243,234,0.95);margin:44px 0 0 0;">And eventually we are faced with a question:</p>
+      <div style="font-family:'Instrument Serif',serif;font-size:34px;line-height:1.3;color:#C89A3C;margin-top:16px;">What will we do with what has been placed in our hands?</div>
+      <p style="font-size:16.5px;line-height:1.8;color:rgba(247,243,234,0.95);margin:22px 0 0 0;">Collective Calling is the belief that answering that question belongs to all of us.<br/>Not everyone is called to do the same thing. But everyone can do something.</p>
+    </div>
+  </div>
+</section>
+
+<section aria-label="Our board" data-pad="1" style="padding:120px 64px 24px;">
+  <div style="max-width:1320px;margin:0 auto;">
+    <div style="display:flex;align-items:center;gap:16px;">
+      <span style="font-size:14px;font-weight:700;letter-spacing:2.4px;color:#8A5F16;">OUR BOARD</span>
+      <span style="width:40px;height:1px;background:#C89A3C;"></span>
+    </div>
+    <div data-lead-grid="1" style="display:grid;grid-template-columns:1fr 1fr;gap:56px;margin-top:32px;">
+      <div data-lead-card="1" style="display:grid;grid-template-columns:1fr 1.1fr;gap:28px;align-items:start;">
+        <img src="assets/team/mt-paul.png" alt="Paul Carr wearing a cap, looking into the distance" style="display:block;width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:14px;"/>
+        <div>
+          <h2 style="font-family:'Instrument Serif',serif;font-weight:400;font-size:30px;margin:0;">Paul Carr</h2>
+          <div style="font-size:14px;font-weight:600;color:#8A5F16;margin-top:8px;">Co-Founder &amp; President</div>
+          <div style="width:34px;height:1px;background:#C89A3C;margin-top:14px;"></div>
+          <p style="font-size:14.5px;line-height:1.75;color:#4A443B;margin:16px 0 0 0;">Paul&#x27;s heart for people and justice drives the vision and direction of Collective Calling.</p>
+          <a href="#" style="display:inline-flex;align-items:center;gap:10px;min-height:44px;font-size:12.5px;font-weight:700;letter-spacing:1.5px;color:#1E1B17;margin-top:8px;transition:color .2s ease;" style-hover="color:#8A5F16;">VIEW PAUL&#x27;S STORY <span aria-hidden="true">→</span></a>
+        </div>
+      </div>
+      <div data-lead-card="1" style="display:grid;grid-template-columns:1fr 1.1fr;gap:28px;align-items:start;">
+        <img src="assets/team/mt-gemma.png" alt="Gemma Blanchard smiling in front of green hills" style="display:block;width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:14px;"/>
+        <div>
+          <h2 style="font-family:'Instrument Serif',serif;font-weight:400;font-size:30px;margin:0;">Gemma Blanchard</h2>
+          <div style="font-size:14px;font-weight:600;color:#8A5F16;margin-top:8px;">Co-Founder &amp; Secretary / Treasurer</div>
+          <div style="width:34px;height:1px;background:#C89A3C;margin-top:14px;"></div>
+          <p style="font-size:14.5px;line-height:1.75;color:#4A443B;margin:16px 0 0 0;">Gemma leads with wisdom and compassion, ensuring stewardship and strong foundations for the work.</p>
+          <a href="#" style="display:inline-flex;align-items:center;gap:10px;min-height:44px;font-size:12.5px;font-weight:700;letter-spacing:1.5px;color:#1E1B17;margin-top:8px;transition:color .2s ease;" style-hover="color:#8A5F16;">VIEW GEMMA&#x27;S STORY <span aria-hidden="true">→</span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section aria-label="Our ambassadors" data-pad="1" style="padding:64px 64px 120px;">
+  <div style="max-width:1320px;margin:0 auto;">
+    <div style="display:flex;align-items:center;gap:16px;">
+      <span style="font-size:14px;font-weight:700;letter-spacing:2.4px;color:#8A5F16;">OUR AMBASSADORS</span>
+      <span style="width:40px;height:1px;background:#C89A3C;"></span>
+    </div>
+    <div data-team-grid="1" style="display:grid;grid-template-columns:repeat(5,1fr);gap:24px;margin-top:32px;">
+      <article style="background:#FAF7F1;border:1px solid rgba(42,37,32,0.14);border-radius:10px;overflow:hidden;display:flex;flex-direction:column;">
+        <img src="assets/team/mt-aicha.png" alt="Aicha Msuya smiling outdoors" style="display:block;width:100%;aspect-ratio:1/1;object-fit:cover;"/>
+        <div style="padding:20px 20px 24px;display:flex;flex-direction:column;flex:1;">
+          <h3 style="font-family:'Instrument Serif',serif;font-weight:400;font-size:23px;line-height:1.2;margin:0;">Aicha Msuya</h3>
+          <div style="font-size:13px;font-weight:600;color:#8A5F16;line-height:1.5;margin-top:7px;">Operations Manager<br/>Spain</div>
+          <p style="font-size:13.5px;line-height:1.65;color:#4A443B;margin:12px 0 0 0;">Oversees our centres and shops, leading teams and daily operations.</p>
+        </div>
+      </article>
+      <article style="background:#FAF7F1;border:1px solid rgba(42,37,32,0.14);border-radius:10px;overflow:hidden;display:flex;flex-direction:column;">
+        <img src="assets/team/mt-artur.png" alt="Artur Gorecki smiling in a black shirt" style="display:block;width:100%;aspect-ratio:1/1;object-fit:cover;"/>
+        <div style="padding:20px 20px 24px;display:flex;flex-direction:column;flex:1;">
+          <h3 style="font-family:'Instrument Serif',serif;font-weight:400;font-size:23px;line-height:1.2;margin:0;">Artur Gorecki</h3>
+          <div style="font-size:13px;font-weight:600;color:#8A5F16;line-height:1.5;margin-top:7px;">VIA Programme Director</div>
+          <p style="font-size:13.5px;line-height:1.65;color:#4A443B;margin:12px 0 0 0;">Leads Values in Action, partnering with businesses to create lasting impact.</p>
+        </div>
+      </article>
+      <article style="background:#FAF7F1;border:1px solid rgba(42,37,32,0.14);border-radius:10px;overflow:hidden;display:flex;flex-direction:column;">
+        <img src="assets/team/mt-natalie.png" alt="Natalie Harrison smiling outdoors" style="display:block;width:100%;aspect-ratio:1/1;object-fit:cover;"/>
+        <div style="padding:20px 20px 24px;display:flex;flex-direction:column;flex:1;">
+          <h3 style="font-family:'Instrument Serif',serif;font-weight:400;font-size:23px;line-height:1.2;margin:0;">Natalie Harrison</h3>
+          <div style="font-size:13px;font-weight:600;color:#8A5F16;line-height:1.5;margin-top:7px;">Community &amp; Events Lead</div>
+          <p style="font-size:13.5px;line-height:1.65;color:#4A443B;margin:12px 0 0 0;">Builds community connections and creates spaces that bring people together for good.</p>
+        </div>
+      </article>
+      <article style="background:#FAF7F1;border:1px solid rgba(42,37,32,0.14);border-radius:10px;overflow:hidden;display:flex;flex-direction:column;">
+        <img src="assets/team/mt-emmanuel.png" alt="Emmanuel Mushi smiling in the hills" style="display:block;width:100%;aspect-ratio:1/1;object-fit:cover;"/>
+        <div style="padding:20px 20px 24px;display:flex;flex-direction:column;flex:1;">
+          <h3 style="font-family:'Instrument Serif',serif;font-weight:400;font-size:23px;line-height:1.2;margin:0;">Emmanuel Mushi</h3>
+          <div style="font-size:13px;font-weight:600;color:#8A5F16;line-height:1.5;margin-top:7px;">Tanzania Programme Lead</div>
+          <p style="font-size:13.5px;line-height:1.65;color:#4A443B;margin:12px 0 0 0;">Oversees our work in Tanzania, ensuring local needs are met with dignity and love.</p>
+        </div>
+      </article>
+      <article style="background:#FAF7F1;border:1px solid rgba(42,37,32,0.14);border-radius:10px;overflow:hidden;display:flex;flex-direction:column;">
+        <img src="assets/team/mt-josh.png" alt="Josh Hards smiling outdoors" style="display:block;width:100%;aspect-ratio:1/1;object-fit:cover;"/>
+        <div style="padding:20px 20px 24px;display:flex;flex-direction:column;flex:1;">
+          <h3 style="font-family:'Instrument Serif',serif;font-weight:400;font-size:23px;line-height:1.2;margin:0;">Josh Hards</h3>
+          <div style="font-size:13px;font-weight:600;color:#8A5F16;line-height:1.5;margin-top:7px;">Logistics &amp; Operations</div>
+          <p style="font-size:13.5px;line-height:1.65;color:#4A443B;margin:12px 0 0 0;">Keeps things moving, behind the scenes and on the ground.</p>
+        </div>
+      </article>
+      <article style="background:#FAF7F1;border:1px solid rgba(42,37,32,0.14);border-radius:10px;overflow:hidden;display:flex;flex-direction:column;">
+        <img src="assets/team/mt-ruth.png" alt="Ruth García smiling softly" style="display:block;width:100%;aspect-ratio:1/1;object-fit:cover;"/>
+        <div style="padding:20px 20px 24px;display:flex;flex-direction:column;flex:1;">
+          <h3 style="font-family:'Instrument Serif',serif;font-weight:400;font-size:23px;line-height:1.2;margin:0;">Ruth García</h3>
+          <div style="font-size:13px;font-weight:600;color:#8A5F16;line-height:1.5;margin-top:7px;">Shop Manager<br/>San Pedro</div>
+          <p style="font-size:13.5px;line-height:1.65;color:#4A443B;margin:12px 0 0 0;">Leads our San Pedro team with excellence and heart.</p>
+        </div>
+      </article>
+      <article style="background:#FAF7F1;border:1px solid rgba(42,37,32,0.14);border-radius:10px;overflow:hidden;display:flex;flex-direction:column;">
+        <img src="assets/team/mt-eva.png" alt="Eva Ramírez smiling warmly" style="display:block;width:100%;aspect-ratio:1/1;object-fit:cover;"/>
+        <div style="padding:20px 20px 24px;display:flex;flex-direction:column;flex:1;">
+          <h3 style="font-family:'Instrument Serif',serif;font-weight:400;font-size:23px;line-height:1.2;margin:0;">Eva Ramírez</h3>
+          <div style="font-size:13px;font-weight:600;color:#8A5F16;line-height:1.5;margin-top:7px;">Shop Manager<br/>Estepona</div>
+          <p style="font-size:13.5px;line-height:1.65;color:#4A443B;margin:12px 0 0 0;">Oversees our Estepona shop and creates a welcoming experience for all.</p>
+        </div>
+      </article>
+      <article style="background:#FAF7F1;border:1px solid rgba(42,37,32,0.14);border-radius:10px;overflow:hidden;display:flex;flex-direction:column;">
+        <img src="assets/team/mt-george.png" alt="George William wearing a cap" style="display:block;width:100%;aspect-ratio:1/1;object-fit:cover;"/>
+        <div style="padding:20px 20px 24px;display:flex;flex-direction:column;flex:1;">
+          <h3 style="font-family:'Instrument Serif',serif;font-weight:400;font-size:23px;line-height:1.2;margin:0;">George William</h3>
+          <div style="font-size:13px;font-weight:600;color:#8A5F16;line-height:1.5;margin-top:7px;">Driver &amp; Logistics</div>
+          <p style="font-size:13.5px;line-height:1.65;color:#4A443B;margin:12px 0 0 0;">Ensures safe transport and reliable support for our teams and projects.</p>
+        </div>
+      </article>
+      <article style="background:#FAF7F1;border:1px solid rgba(42,37,32,0.14);border-radius:10px;overflow:hidden;display:flex;flex-direction:column;">
+        <img src="assets/team/mt-veronica.png" alt="Veronica Tai smiling in the sun" style="display:block;width:100%;aspect-ratio:1/1;object-fit:cover;"/>
+        <div style="padding:20px 20px 24px;display:flex;flex-direction:column;flex:1;">
+          <h3 style="font-family:'Instrument Serif',serif;font-weight:400;font-size:23px;line-height:1.2;margin:0;">Veronica Tai</h3>
+          <div style="font-size:13px;font-weight:600;color:#8A5F16;line-height:1.5;margin-top:7px;">Ambassador</div>
+          <p style="font-size:13.5px;line-height:1.65;color:#4A443B;margin:12px 0 0 0;">Using her voice and influence to champion the mission.</p>
+        </div>
+      </article>
+      <article style="background:#EFEAE0;border:1px solid rgba(42,37,32,0.1);border-radius:10px;display:flex;flex-direction:column;justify-content:center;padding:32px 24px;text-align:center;">
+        <svg viewBox="0 0 48 48" fill="none" style="width:44px;height:44px;margin:0 auto;" aria-hidden="true"><path d="M24 38s-13-8-13-16.5A7.5 7.5 0 0 1 24 15a7.5 7.5 0 0 1 13 6.5C37 30 24 38 24 38Z" stroke="#C89A3C" stroke-width="1.6" stroke-linejoin="round"></path></svg>
+        <h3 style="font-family:'Instrument Serif',serif;font-weight:400;font-size:23px;line-height:1.25;margin:18px 0 0 0;">And our volunteers</h3>
+        <p style="font-size:13.5px;line-height:1.7;color:#4A443B;margin:12px 0 0 0;">A growing family of incredible people who give their time, skills, and hearts.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section data-invite-sec="1" aria-label="The invitation" style="position:relative;background:#141009;overflow:hidden;">
+  <img data-invite-img="1" src="assets/img/the-invitation.jpg" alt="A wooden boardwalk winding through golden hills at sunset" style="position:absolute;top:0;right:0;bottom:0;width:46%;height:100%;object-fit:cover;object-position:50% 60%;"/>
+  <div data-invite-wash="1" style="position:absolute;inset:0;background:linear-gradient(to right, #100C06 0%, #100C06 54%, rgba(16,12,6,0.6) 64%, rgba(16,12,6,0.12) 80%, rgba(16,12,6,0) 92%);"></div>
+  <div data-invite="1" data-pad="1" style="position:relative;z-index:10;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:40px;padding:64px 64px 74px;">
+    <div style="min-width:0;">
+      <div style="font-size:14px;font-weight:700;letter-spacing:2.4px;color:#C89A3C;">THE INVITATION</div>
+      <h2 data-invite-h="1" style="font-family:'Instrument Serif',serif;font-weight:400;font-size:56px;line-height:1.12;color:#F7F3EA;margin:18px 0 0 0;">What do<br/>you hold?</h2>
+      <p style="font-size:16.5px;line-height:1.75;color:rgba(247,243,234,0.95);margin:24px 0 0 0;max-width:440px;">Our vision is a world where every person understands that they hold something that can strengthen another person&#x27;s life.</p>
+    </div>
+    <a href="#" style="background:#D9A83F;color:#2A2415;font-size:14px;font-weight:600;letter-spacing:1.6px;padding:20px 44px;border-radius:6px;display:inline-flex;align-items:center;gap:14px;white-space:nowrap;justify-self:center;transition:all .25s ease;" style-hover="background:#C89A3C;color:#1E1B17;transform:translateY(-1px);">START YOUR JOURNEY <span aria-hidden="true" style="font-size:16px;">→</span></a>
+    <div style="flex:0.6;"></div>
+  </div>
+</section>
+
+<dc-import name="Site Footer" hint-size="100%,560px"></dc-import>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+
+class Component extends DCLogic {}</script>
+</body>
+</html>
