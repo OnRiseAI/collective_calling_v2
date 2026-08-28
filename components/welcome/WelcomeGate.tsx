@@ -9,8 +9,11 @@ import { Link } from '@/i18n/navigation'
  * (Aug 24 export, default variant: dark card, pillars and quote shown; the
  * "Simple button" CTA variant was dropped as the unused branch).
  *
- * Direct campaign landing. Skip links and the journey card still write the
- * `cc_welcomed` cookie. The homepage is no longer redirected here.
+ * First-visit routing lives in middleware.ts: a request for the homepage with
+ * no `cc_welcomed` cookie is redirected here. Every exit (skip links and the
+ * journey card) writes the cookie so the visitor passes straight through for
+ * the next 30 days. The cookie is written client-side on click — the gate
+ * itself stays a static page.
  */
 
 const COOKIE_MAX_AGE_S = 30 * 24 * 60 * 60

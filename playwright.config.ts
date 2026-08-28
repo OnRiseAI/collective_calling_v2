@@ -38,8 +38,9 @@ export default defineConfig({
   use: {
     baseURL: `http://localhost:${PORT}`,
     navigationTimeout: 45_000,
-    // Welcome cookie is leftover from when the homepage redirected to
-    // /welcome. Harmless if present; welcome.spec.ts still clears it.
+    // Pre-seed the welcome-gate cookie so specs land on the pages they
+    // navigate to rather than the first-visit /welcome interstitial. The gate
+    // itself is covered by welcome.spec.ts, which clears this cookie.
     storageState: {
       cookies: [
         {

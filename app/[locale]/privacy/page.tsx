@@ -59,8 +59,8 @@ export default async function PrivacyPage({
           Stripe). We do not store card numbers on this website.
         </li>
         <li>
-          A cookie named <code>cc_welcomed</code> if you visit the welcome page and continue to the
-          rest of the site. It lasts 30 days.
+          A first-visit cookie named <code>cc_welcomed</code>, which remembers that you have passed
+          the welcome gate so you are not sent there on every return visit. It lasts 30 days.
         </li>
         <li>
           Technical logs created by our hosting provider (for example IP address, browser type and
@@ -127,10 +127,10 @@ export default async function PrivacyPage({
 
       <h2>Cookies</h2>
       <p>
-        The only first-party cookie this site sets today is <code>cc_welcomed</code>, written when
-        you leave the welcome page. It is not used for advertising. You can delete it in your
-        browser at any time. Third-party embeds (for example the Donorbox giving form) may set
-        their own cookies. Those are governed by Donorbox.
+        The only first-party cookie this site sets today is <code>cc_welcomed</code>, used to skip
+        the welcome screen on later visits. It is not used for advertising. You can delete it in
+        your browser at any time. Third-party embeds (for example the Donorbox giving form) may
+        set their own cookies. Those are governed by Donorbox.
       </p>
 
       <h2>Children</h2>

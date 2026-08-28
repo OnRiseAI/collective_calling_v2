@@ -3,17 +3,20 @@ import { test, expect } from '@playwright/test'
 /**
  * Welcome gate and editorial pages (Aug 24 design export).
  *
- * The homepage is the default URL. /welcome stays a reachable campaign page.
+ * The suite-wide storageState pre-seeds the `cc_welcomed` cookie so every
+ * other spec bypasses the gate; this spec clears that state to exercise the
+ * first-visit flow itself, then re-verifies the pass-through behaviour.
  */
 
 test.describe('welcome gate', () => {
+  // A clean browser context: no cc_welcomed cookie, so the gate engages.
   test.use({ storageState: { cookies: [], origins: [] } })
 
-  test('a first visit to the homepage is the homepage, not the gate', async ({ page }) => {
+  test('a first visit to the homepage is redirected to the gate', async ({ page }) => {
     await page.goto('/')
-    await expect(page).not.toHaveURL(/welcome/)
+    await expect(page).toHaveURL(/\/en\/welcome$/)
     const h1 = page.getByRole('heading', { level: 1 })
-    await expect(h1).toContainText(/a life/i)
+    await expect(h1).toContainText(/every life becomes part of a bigger story/i)
   })
 
   test('skipping the gate writes the cookie and lands on the homepage', async ({ page }) => {
