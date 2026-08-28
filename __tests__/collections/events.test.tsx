@@ -45,11 +45,15 @@ test('the events page renders exactly one h1 containing "Events"', async () => {
   expect(h1s[0]).toHaveTextContent(/events/i)
 })
 
-test('the events page shows the empty state and mailing signup', async () => {
+test('the events page lists the Fashion Show and the mailing signup', async () => {
   const ui = await EventsPage({ params: Promise.resolve({ locale: 'en' }) })
   renderWithLocale(ui)
 
-  expect(screen.getByText('Nothing scheduled right now.')).toBeInTheDocument()
+  expect(screen.getByRole('heading', { name: /the fashion show/i })).toBeInTheDocument()
+  expect(screen.getByRole('link', { name: /view the evening/i })).toHaveAttribute(
+    'href',
+    expect.stringMatching(/\/events\/fashion-show$/),
+  )
   expect(screen.getByRole('textbox', { name: /email address/i })).toBeInTheDocument()
   expect(screen.getByRole('button', { name: 'KEEP ME POSTED' })).toBeInTheDocument()
 })

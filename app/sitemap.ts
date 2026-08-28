@@ -34,6 +34,9 @@ const STATIC_ROUTES: Array<{ path: string; priority: number; changeFrequency: Me
   { path: '/stories', priority: 0.8, changeFrequency: 'weekly' },
   { path: '/appeals', priority: 0.8, changeFrequency: 'weekly' },
   { path: '/events', priority: 0.7, changeFrequency: 'weekly' },
+  { path: '/events/fashion-show', priority: 0.8, changeFrequency: 'weekly' },
+  { path: '/privacy', priority: 0.3, changeFrequency: 'yearly' },
+  { path: '/terms', priority: 0.3, changeFrequency: 'yearly' },
   { path: '/charity-shops', priority: 0.7, changeFrequency: 'monthly' },
 ]
 

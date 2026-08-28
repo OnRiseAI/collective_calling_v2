@@ -3,12 +3,12 @@ import { Link } from '@/i18n/navigation'
 import { SiteHeader } from '@/components/layout/SiteHeader'
 import { SiteFooter } from '@/components/layout/SiteFooter'
 import { EventsSignup } from '@/components/events/EventsSignup'
+import { FASHION_SHOW_HREF } from '@/lib/nav'
 
 /**
  * Events & Experiences, transcribed from the v3 `Events and Experiences.dc.html`.
- * Empty state: nothing is scheduled. The mailing form has no backend. Uses
- * shared SiteHeader / SiteFooter. Paddings step down below 680px. All copy
- * is static; nothing here reads Sanity.
+ * Lists the Fashion Show as the current upcoming evening, then the mailing
+ * form (no backend yet). Uses shared SiteHeader / SiteFooter.
  */
 
 function Hero(): React.JSX.Element {
@@ -35,63 +35,38 @@ function Hero(): React.JSX.Element {
   )
 }
 
-function EmptyState(): React.JSX.Element {
+function Upcoming(): React.JSX.Element {
   return (
     <section aria-label="Upcoming events" className="px-16 py-[120px] max-[680px]:px-7">
-      <div className="mx-auto max-w-[760px] text-center">
-        <span className="inline-flex h-16 w-16 items-center justify-center rounded-full border border-[#D6CFC2] bg-[#FAF7F1]">
-          <svg
-            viewBox="0 0 24 24"
-            fill="none"
-            className="h-[26px] w-[26px]"
-            aria-hidden="true"
-          >
-            <rect
-              x="4"
-              y="6"
-              width="16"
-              height="14"
-              rx="1.6"
-              stroke="#8A5F16"
-              strokeWidth="1.4"
-            />
-            <path
-              d="M4 10.5h16M8.5 4v4M15.5 4v4"
-              stroke="#8A5F16"
-              strokeWidth="1.4"
-              strokeLinecap="round"
-            />
-          </svg>
-        </span>
-        <h2 className="mt-7 font-heading text-[38px] font-normal leading-[1.2]">
-          Nothing scheduled right now.
-        </h2>
-        <p className="mx-auto mt-[18px] max-w-[420px] text-[16.5px] leading-[1.8] text-[#4A443B]">
-          New events and experiences are announced here first. Join the mailing list and
-          we&apos;ll let you know the moment something is planned.
-        </p>
-        <EventsSignup />
-        <p className="mt-4 text-[12.5px] text-[#5F594E]">
-          No spam. Just the occasional invitation worth opening.
-        </p>
-        <div className="mx-auto mt-14 h-px w-10 bg-[#D6CFC2]" />
-        <p className="mx-auto mt-8 max-w-[420px] text-[15px] leading-[1.8] text-[#4A443B]">
-          In the meantime, there are other ways in:{' '}
-          <Link
-            href="/what-we-do"
-            className="font-semibold text-[#8A5F16] transition-colors hover:text-[#C89A3C]"
-          >
-            see what we do
-          </Link>{' '}
-          or{' '}
-          <Link
-            href="/stories"
-            className="font-semibold text-[#8A5F16] transition-colors hover:text-[#C89A3C]"
-          >
-            read the stories
-          </Link>{' '}
-          behind the work.
-        </p>
+      <div className="mx-auto max-w-[760px]">
+        <Link
+          href={FASHION_SHOW_HREF}
+          className="block rounded-[14px] border border-[#D6CFC2] bg-[#FAF7F1] px-10 py-12 transition-all duration-[250ms] hover:-translate-y-1 hover:border-[#C89A3C] max-[680px]:px-7"
+        >
+          <div className="text-[13px] font-bold tracking-[2.4px] text-[#8A5F16]">
+            THURSDAY 24 SEPTEMBER 2026
+          </div>
+          <h2 className="mt-4 font-heading text-[38px] font-normal leading-[1.2] text-[#1E1B17]">
+            The Fashion Show
+          </h2>
+          <p className="mt-4 max-w-[440px] text-[16.5px] leading-[1.8] text-[#4A443B]">
+            An evening of fashion in support of Collective Calling&rsquo;s work in Spain and
+            Tanzania.
+          </p>
+          <p className="mt-8 inline-flex items-center gap-2.5 text-[13px] font-bold tracking-[1.5px] text-[#8A5F16]">
+            VIEW THE EVENING <span aria-hidden="true">→</span>
+          </p>
+        </Link>
+        <div className="mt-16 text-center">
+          <p className="mx-auto max-w-[420px] text-[16.5px] leading-[1.8] text-[#4A443B]">
+            New events and experiences are announced here first. Join the mailing list and
+            we&apos;ll let you know the moment something else is planned.
+          </p>
+          <EventsSignup />
+          <p className="mt-4 text-[12.5px] text-[#5F594E]">
+            No spam. Just the occasional invitation worth opening.
+          </p>
+        </div>
       </div>
     </section>
   )
@@ -102,7 +77,7 @@ export function Events(): React.JSX.Element {
     <div className="min-h-screen bg-[#F4F0E8] font-body text-[#1E1B17]">
       <SiteHeader active="what" tone="dark" />
       <Hero />
-      <EmptyState />
+      <Upcoming />
       <SiteFooter />
     </div>
   )

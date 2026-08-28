@@ -91,6 +91,11 @@ export const SUPPORT_HREF = '/support'
 // editorial pages' START YOUR JOURNEY action.
 export const JOURNEY_HREF = '/journey'
 
+export const FASHION_SHOW_HREF = '/events/fashion-show'
+
+export const FASHION_SHOW_RESERVE_HREF =
+  'mailto:info@collectivecalling.org?subject=The%20Fashion%20Show%2C%2024%20September%202026'
+
 export type SiteHeaderActive = 'who' | 'what' | 'stories' | 'contact' | ''
 
 export const SITE_HEADER_WHAT_WE_DO: NavItem[] = [
