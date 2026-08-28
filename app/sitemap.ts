@@ -7,8 +7,8 @@ import { getAppeals } from '@/lib/content/appeals'
 // No /studio (Sanity admin is not a public route).
 const STATIC_ROUTES: Array<{ path: string; priority: number; changeFrequency: MetadataRoute.Sitemap[number]['changeFrequency'] }> = [
   { path: '/', priority: 1.0, changeFrequency: 'weekly' },
-  // /welcome is deliberately absent: it is a first-visit gate, not a page we
-  // want surfaced in search in place of the homepage.
+  // /welcome is a campaign landing, not the default URL. Keep it out of the
+  // sitemap so search stays on the homepage.
   { path: '/who-we-are', priority: 0.9, changeFrequency: 'monthly' },
   { path: '/what-we-do', priority: 0.9, changeFrequency: 'monthly' },
   { path: '/about', priority: 0.9, changeFrequency: 'monthly' },

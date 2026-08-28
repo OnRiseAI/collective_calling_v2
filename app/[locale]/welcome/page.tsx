@@ -19,9 +19,8 @@ export async function generateMetadata({
 }
 
 /**
- * Welcome gate (/welcome). A full-viewport first-visit interstitial, reached
- * via middleware when the homepage is requested without the `cc_welcomed`
- * cookie. It stays directly reachable so campaign traffic can point at it.
+ * Welcome gate (/welcome). Campaign landing only. The default URL is the
+ * homepage; this page stays reachable if a link points at it.
  * Chrome-free: no site header or footer, exactly as designed.
  */
 export default async function WelcomePage({
