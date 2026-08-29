@@ -39,16 +39,14 @@ test('toolkit sections wrap their content in a scroll reveal', () => {
   expect(screen.getByText('Band copy')).toBeInTheDocument()
 })
 
-test('the welcome gate plays the film and keeps the journey card', () => {
+test('the welcome gate fades the headline and reveals the journey card', () => {
   const { container } = renderWithLocale(<WelcomeGate />)
   expect(container.querySelectorAll('[data-reveal]').length).toBeGreaterThan(1)
-  const film = container.querySelector('video')
-  expect(film).toHaveAttribute('src', '/videos/welcome-gate.mp4')
-  expect(film).toHaveAttribute('poster', '/videos/welcome-gate.png')
   expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent(
     /every life becomes part of a bigger story/i,
   )
   expect(screen.getByRole('link', { name: /begin your journey/i })).toBeInTheDocument()
+  expect(container.querySelector('video')).toBeNull()
 })
 
 test('globals.css fails open for reduced-motion readers on reveal nodes', async () => {
