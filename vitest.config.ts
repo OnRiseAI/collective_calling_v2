@@ -3,7 +3,18 @@ import react from '@vitejs/plugin-react'
 import { fileURLToPath } from 'node:url'
 
 export default defineConfig({
-  plugins: [react()],
+  plugins: [
+    {
+      name: 'stub-css',
+      transform(_code, id) {
+        if (id.includes('.css')) {
+          return { code: 'export default {}', map: null }
+        }
+        return undefined
+      },
+    },
+    react(),
+  ],
   resolve: {
     alias: {
       // Mirror the tsconfig "@/*" -> project root mapping so tests can import

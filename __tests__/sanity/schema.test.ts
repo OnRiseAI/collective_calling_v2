@@ -9,6 +9,15 @@ test('schema includes the homePage singleton', () => {
   expect(names).toContain('homePage')
 })
 
+test('schema includes the isolated visualPage document and allowlisted sections', () => {
+  const names = schemaTypes.map((t: { name: string }) => t.name)
+  expect(names).toContain('visualPage')
+  expect(names).toContain('heroSection')
+  expect(names).toContain('statsSection')
+  expect(names).toContain('imageTextSection')
+  expect(names).toContain('ctaSection')
+})
+
 describe('homePage schema', () => {
   // The document opens with the shape-version stamp, then the bands.
   const bandNames = () =>

@@ -116,6 +116,13 @@ describe('sitemap()', () => {
     expect(studioUrls).toHaveLength(0)
   })
 
+  test('contains NO /editor-test URLs', async () => {
+    const { default: sitemap } = await import('@/app/sitemap')
+    const entries = await sitemap()
+    const editorUrls = entries.filter((e) => e.url.includes('/editor-test'))
+    expect(editorUrls).toHaveLength(0)
+  })
+
   test('every entry url is absolute (starts with SITE.url)', async () => {
     const { default: sitemap } = await import('@/app/sitemap')
     const entries = await sitemap()
@@ -179,6 +186,7 @@ describe('robots() - indexable (NEXT_PUBLIC_SITE_INDEXABLE=true)', () => {
     const disallow = rules[0].disallow
     const disallowArr = Array.isArray(disallow) ? disallow : [disallow]
     expect(disallowArr).toContain('/studio')
+    expect(disallowArr).toContain('/editor-test')
   })
 
   test('includes a sitemap field when indexable', async () => {

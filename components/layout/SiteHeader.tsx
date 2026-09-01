@@ -30,16 +30,13 @@ export function SiteHeader({
   const pathname = usePathname()
   const isHome = pathname === '/' || pathname === ''
   const resolvedTone = tone ?? (isHome ? 'dark' : 'light')
-  const [solid, setSolid] = React.useState(resolvedTone === 'light')
+  const [scrolled, setScrolled] = React.useState(false)
   const [drawerOpen, setDrawerOpen] = React.useState(false)
-
-  React.useEffect(() => {
-    setSolid(resolvedTone === 'light')
-  }, [resolvedTone])
+  const solid = resolvedTone === 'light' || scrolled
 
   React.useEffect(() => {
     if (resolvedTone === 'light') return
-    const onScroll = () => setSolid(window.scrollY > SCROLL_LOCK_PX)
+    const onScroll = () => setScrolled(window.scrollY > SCROLL_LOCK_PX)
     onScroll()
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
