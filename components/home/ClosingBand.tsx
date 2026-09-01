@@ -1,3 +1,5 @@
+'use client'
+
 import * as React from 'react'
 import { Eyebrow, DisplayHeading, PillLink } from '@/components/home/primitives'
 import { Reveal } from '@/components/ui/Reveal'

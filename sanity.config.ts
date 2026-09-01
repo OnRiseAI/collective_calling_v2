@@ -5,6 +5,7 @@ import { visionTool } from '@sanity/vision'
 import { projectId, dataset } from './sanity/env'
 import { schemaTypes } from './sanity/schemas'
 import { structure } from './sanity/structure'
+import { websiteEditorPlugin } from './sanity/plugins/website-editor'
 
 // Embedded Studio config. When no Sanity project is configured, projectId is
 // undefined and we fall back to 'placeholder' so the Studio compiles and the
@@ -15,6 +16,6 @@ export default defineConfig({
   title: 'Collective Calling',
   projectId: projectId ?? 'placeholder',
   dataset,
-  plugins: [structureTool({ structure }), visionTool()],
+  plugins: [structureTool({ structure }), websiteEditorPlugin(), visionTool()],
   schema: { types: schemaTypes },
 })

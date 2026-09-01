@@ -15,5 +15,7 @@ export const sanityClient: SanityClient | null = isSanityConfigured()
       // the CDN saves nothing and its cache lag can bake a stale document into
       // a build (observed after re-seeding). Read the live API instead.
       useCdn: false,
+      // Public visitors must never receive drafts. Pin published explicitly.
+      perspective: 'published',
     })
   : null
