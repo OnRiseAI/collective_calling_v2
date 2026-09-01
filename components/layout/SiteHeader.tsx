@@ -108,16 +108,6 @@ export function SiteHeader({
             >
               WHO WE ARE
             </Link>
-            <Link
-              href={MEET_THE_TEAM_HREF}
-              aria-current={active === 'team' ? 'page' : undefined}
-              className={cx(
-                'flex min-h-11 items-center text-[13px] font-semibold tracking-[1.2px] transition-colors hover:text-[#C89A3C]',
-                active === 'team' ? activeClass : ink,
-              )}
-            >
-              MEET THE TEAM
-            </Link>
             <div className="group relative">
               <Link
                 href="/what-we-do"
@@ -174,6 +164,16 @@ export function SiteHeader({
                 </div>
               </div>
             </div>
+            <Link
+              href={MEET_THE_TEAM_HREF}
+              aria-current={active === 'team' ? 'page' : undefined}
+              className={cx(
+                'flex min-h-11 items-center text-[13px] font-semibold tracking-[1.2px] transition-colors hover:text-[#C89A3C]',
+                active === 'team' ? activeClass : ink,
+              )}
+            >
+              MEET THE TEAM
+            </Link>
             <Link
               href="/stories"
               aria-current={active === 'stories' ? 'page' : undefined}
@@ -275,9 +275,6 @@ export function SiteHeader({
               <DrawerLink href="/who-we-are" onClick={() => setDrawerOpen(false)}>
                 WHO WE ARE
               </DrawerLink>
-              <DrawerLink href={MEET_THE_TEAM_HREF} onClick={() => setDrawerOpen(false)}>
-                MEET THE TEAM
-              </DrawerLink>
               <DrawerLink href="/what-we-do" onClick={() => setDrawerOpen(false)}>
                 WHAT WE DO
               </DrawerLink>
@@ -293,6 +290,9 @@ export function SiteHeader({
                   </Link>
                 ))}
               </div>
+              <DrawerLink href={MEET_THE_TEAM_HREF} onClick={() => setDrawerOpen(false)}>
+                MEET THE TEAM
+              </DrawerLink>
               <DrawerLink href="/stories" onClick={() => setDrawerOpen(false)}>
                 STORIES
               </DrawerLink>

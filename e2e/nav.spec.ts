@@ -38,15 +38,12 @@ test.describe('desktop flat nav', () => {
     await page.goto('/')
 
     const primaryNav = page.getByRole('navigation', { name: /^main$/i })
-    for (const label of [
-      'WHO WE ARE',
-      'MEET THE TEAM',
-      'WHAT WE DO',
-      'STORIES',
-      'CONTACT',
-    ]) {
+    const ORDER = ['WHO WE ARE', 'WHAT WE DO', 'MEET THE TEAM', 'STORIES', 'CONTACT']
+    for (const label of ORDER) {
       await expect(primaryNav.getByRole('link', { name: label, exact: true })).toBeVisible()
     }
+    // Order matters: Meet the Team sits after What We Do, not beside Who We Are.
+    await expect(primaryNav.getByRole('link').filter({ hasText: /\S/ })).toContainText(ORDER)
     await expect(primaryNav.getByRole('link', { name: 'WHO WE ARE', exact: true })).toHaveAttribute(
       'href',
       /\/who-we-are$/,
