@@ -47,6 +47,10 @@ test.describe('welcome gate', () => {
 })
 
 test.describe('editorial pages', () => {
+  // These assertions reach for the desktop link row and its Start Your Journey
+  // CTA, which the v4 header yields to the drawer below 1366px.
+  test.use({ viewport: { width: 1440, height: 900 } })
+
   const PAGES = [
     { path: '/who-we-are', h1: /every life\s*carries worth\./i },
     { path: '/what-we-do', h1: /where something\s*different can begin\./i },

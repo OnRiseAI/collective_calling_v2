@@ -37,6 +37,9 @@ export const NAV_SECTIONS: NavSection[] = [
     label: 'Who We Are',
     href: '/who-we-are',
     items: [
+      { label: 'Meet the team', href: '/meet-the-team' },
+      // The v1 team page. It still exists and still duplicates the new
+      // /meet-the-team; retiring or redirecting it is an open decision.
       { label: 'Our team', href: '/about/our-team' },
       { label: 'Partners', href: '/about/partners' },
     ],
@@ -96,7 +99,11 @@ export const FASHION_SHOW_HREF = '/events/fashion-show'
 export const FASHION_SHOW_RESERVE_HREF =
   'mailto:info@collectivecalling.org?subject=The%20Fashion%20Show%2C%2024%20September%202026'
 
-export type SiteHeaderActive = 'who' | 'what' | 'stories' | 'contact' | ''
+// The designed Meet the Team page (v4). It sits top-level in the header,
+// directly after Who We Are.
+export const MEET_THE_TEAM_HREF = '/meet-the-team'
+
+export type SiteHeaderActive = 'who' | 'team' | 'what' | 'stories' | 'contact' | ''
 
 export const SITE_HEADER_WHAT_WE_DO: NavItem[] = [
   { label: 'Children & Families', href: '/what-we-do#children-families' },

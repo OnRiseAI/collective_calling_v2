@@ -17,6 +17,8 @@ import { NAV_SECTIONS, DONATE_HREF } from '../lib/nav'
  */
 
 const ROUTES = [
+  // v4 design port: the top-level Meet the Team page.
+  '/meet-the-team',
   '/about',
   '/about/who-we-are',
   '/about/what-we-do',

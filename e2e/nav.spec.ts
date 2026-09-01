@@ -1,7 +1,8 @@
 import { test, expect } from '@playwright/test'
 
-// The flat desktop nav (hidden below lg) and the mobile panel (hidden at lg
-// and up) never show at the same width, so each block sets its own viewport.
+// The flat desktop nav (hidden below 1366px) and the mobile panel (hidden at
+// 1366px and up) never show at the same width, so each block sets its own
+// viewport.
 
 test.describe('mobile navigation', () => {
   test.use({ viewport: { width: 390, height: 844 } })
@@ -29,13 +30,21 @@ test.describe('mobile navigation', () => {
 })
 
 test.describe('desktop flat nav', () => {
-  test.use({ viewport: { width: 1280, height: 900 } })
+  // The v4 header carries six links, so the row yields to the drawer below
+  // 1366px rather than 1280px. 1440 is the design's own preview width.
+  test.use({ viewport: { width: 1440, height: 900 } })
 
   test('the section links are visible and Start Your Journey is the CTA', async ({ page }) => {
     await page.goto('/')
 
     const primaryNav = page.getByRole('navigation', { name: /^main$/i })
-    for (const label of ['WHO WE ARE', 'WHAT WE DO', 'STORIES', 'CONTACT']) {
+    for (const label of [
+      'WHO WE ARE',
+      'MEET THE TEAM',
+      'WHAT WE DO',
+      'STORIES',
+      'CONTACT',
+    ]) {
       await expect(primaryNav.getByRole('link', { name: label, exact: true })).toBeVisible()
     }
     await expect(primaryNav.getByRole('link', { name: 'WHO WE ARE', exact: true })).toHaveAttribute(
@@ -46,6 +55,9 @@ test.describe('desktop flat nav', () => {
       'href',
       /\/what-we-do$/,
     )
+    await expect(
+      primaryNav.getByRole('link', { name: 'MEET THE TEAM', exact: true }),
+    ).toHaveAttribute('href', /\/meet-the-team$/)
     await expect(page.getByRole('link', { name: /^give$/i }).first()).toHaveAttribute(
       'href',
       /\/support$/,

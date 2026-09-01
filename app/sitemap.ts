@@ -10,6 +10,7 @@ const STATIC_ROUTES: Array<{ path: string; priority: number; changeFrequency: Me
   // /welcome is deliberately absent: it is a first-visit gate, not a page we
   // want surfaced in search in place of the homepage.
   { path: '/who-we-are', priority: 0.9, changeFrequency: 'monthly' },
+  { path: '/meet-the-team', priority: 0.9, changeFrequency: 'monthly' },
   { path: '/what-we-do', priority: 0.9, changeFrequency: 'monthly' },
   { path: '/about', priority: 0.9, changeFrequency: 'monthly' },
   { path: '/about/who-we-are', priority: 0.8, changeFrequency: 'monthly' },

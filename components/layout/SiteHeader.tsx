@@ -6,6 +6,7 @@ import { cx } from '@/lib/cx'
 import { Emblem } from '@/components/layout/Emblem'
 import {
   JOURNEY_HREF,
+  MEET_THE_TEAM_HREF,
   SITE_HEADER_WHAT_WE_DO,
   SUPPORT_HREF,
   type SiteHeaderActive,
@@ -15,7 +16,7 @@ import {
  * v3 site chrome for editorial pages (Who We Are, What We Do, Stories,
  * Support, Events). Fixed over the hero. Dark pages start transparent with
  * cream type; light pages (What We Do) start in the solid cream state. Scroll
- * always locks the cream bar. Below 1280px the link row yields to a drawer.
+ * always locks the cream bar. Below 1366px the link row yields to a drawer.
  */
 
 const SCROLL_LOCK_PX = 8
@@ -95,7 +96,7 @@ export function SiteHeader({
 
           <nav
             aria-label="Main"
-            className="flex items-center gap-[34px] max-xl:hidden"
+            className="flex items-center gap-[34px] max-[1365px]:hidden"
           >
             <Link
               href="/who-we-are"
@@ -106,6 +107,16 @@ export function SiteHeader({
               )}
             >
               WHO WE ARE
+            </Link>
+            <Link
+              href={MEET_THE_TEAM_HREF}
+              aria-current={active === 'team' ? 'page' : undefined}
+              className={cx(
+                'flex min-h-11 items-center text-[13px] font-semibold tracking-[1.2px] transition-colors hover:text-[#C89A3C]',
+                active === 'team' ? activeClass : ink,
+              )}
+            >
+              MEET THE TEAM
             </Link>
             <div className="group relative">
               <Link
@@ -189,7 +200,7 @@ export function SiteHeader({
             <Link
               href={JOURNEY_HREF}
               className={cx(
-                'inline-flex min-h-11 items-center gap-2.5 rounded-[6px] border px-[22px] text-[12.5px] font-semibold tracking-[1.4px] whitespace-nowrap transition-all duration-[250ms] hover:border-[#C89A3C] hover:text-[#C89A3C] max-xl:hidden',
+                'inline-flex min-h-11 items-center gap-2.5 rounded-[6px] border px-[22px] text-[12.5px] font-semibold tracking-[1.4px] whitespace-nowrap transition-all duration-[250ms] hover:border-[#C89A3C] hover:text-[#C89A3C] max-[1365px]:hidden',
                 solid
                   ? 'border-[#1E1B17] bg-transparent text-[#1E1B17]'
                   : 'border-[rgba(247,243,234,0.7)] bg-[rgba(16,12,6,0.3)] text-[#F7F3EA]',
@@ -209,7 +220,7 @@ export function SiteHeader({
               aria-expanded={drawerOpen}
               onClick={() => setDrawerOpen(true)}
               className={cx(
-                'hidden h-11 w-11 items-center justify-center max-xl:inline-flex',
+                'hidden h-11 w-11 items-center justify-center max-[1365px]:inline-flex',
                 ink,
               )}
             >
@@ -263,6 +274,9 @@ export function SiteHeader({
               </DrawerLink>
               <DrawerLink href="/who-we-are" onClick={() => setDrawerOpen(false)}>
                 WHO WE ARE
+              </DrawerLink>
+              <DrawerLink href={MEET_THE_TEAM_HREF} onClick={() => setDrawerOpen(false)}>
+                MEET THE TEAM
               </DrawerLink>
               <DrawerLink href="/what-we-do" onClick={() => setDrawerOpen(false)}>
                 WHAT WE DO

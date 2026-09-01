@@ -1,6 +1,6 @@
 import { Link } from '@/i18n/navigation'
 import { Emblem } from '@/components/layout/Emblem'
-import { JOURNEY_HREF, SUPPORT_HREF } from '@/lib/nav'
+import { JOURNEY_HREF, MEET_THE_TEAM_HREF, SUPPORT_HREF } from '@/lib/nav'
 
 /**
  * v3 editorial footer: a closing give/journey band, then four columns
@@ -10,6 +10,7 @@ import { JOURNEY_HREF, SUPPORT_HREF } from '@/lib/nav'
 
 const EXPLORE = [
   { label: 'Who we are', href: '/who-we-are' },
+  { label: 'Meet the team', href: MEET_THE_TEAM_HREF },
   { label: 'What we do', href: '/what-we-do' },
   { label: 'Stories', href: '/stories' },
   { label: 'Impact', href: '/about/our-impact' },
@@ -62,8 +63,8 @@ export function SiteFooter(): React.JSX.Element {
         <div className="flex items-end justify-between gap-12 border-b border-[#F7F3EA]/14 pb-16 max-lg:flex-col max-lg:items-start max-lg:gap-9">
           <div>
             <div className="h-0.5 w-10 bg-[#C89A3C]" />
-            <h2 className="mt-[22px] max-w-[520px] font-heading text-[clamp(34px,3.4vw,48px)] font-normal leading-[1.18]">
-              What you carry can change a life.
+            <h2 className="mt-[22px] max-w-[520px] font-heading text-[clamp(34px,3.4vw,48px)] font-normal leading-[1.18] text-balance">
+              What you carry can change a{' '}life.
             </h2>
           </div>
           <div className="flex flex-none items-center gap-3.5 max-[680px]:w-full max-[680px]:flex-col max-[680px]:items-stretch">
