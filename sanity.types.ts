@@ -117,12 +117,120 @@ export type Story = {
   placeholder?: boolean;
 };
 
+export type VisualPage = {
+  _id: string;
+  _type: "visualPage";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  slug?: Slug;
+  locale?: "en" | "es";
+  seo?: VisualPageSeo;
+  sections?: Array<
+    | ({
+        _key: string;
+      } & HeroSection)
+    | ({
+        _key: string;
+      } & StatsSection)
+    | ({
+        _key: string;
+      } & ImageTextSection)
+    | ({
+        _key: string;
+      } & CtaSection)
+  >;
+};
+
+export type VisualPageSeo = {
+  _type: "visualPageSeo";
+  title?: string;
+  description?: string;
+};
+
+export type CtaSection = {
+  _type: "ctaSection";
+  eyebrow?: string;
+  headline?: SplitHeading;
+  body?: string;
+  primaryCta?: LinkCta;
+  secondaryCta?: LinkCta;
+  theme?: "default" | "dark";
+};
+
+export type LinkCta = {
+  _type: "linkCta";
+  label?: string;
+  href?: string;
+};
+
+export type SplitHeading = {
+  _type: "splitHeading";
+  lead?: string;
+  accent?: string;
+};
+
+export type ImageTextSection = {
+  _type: "imageTextSection";
+  eyebrow?: string;
+  headline?: SplitHeading;
+  body?: string;
+  image?: {
+    asset?: SanityImageAssetReference;
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  };
+  alt?: string;
+  cta?: LinkCta;
+  imagePosition?: "left" | "right";
+};
+
+export type StatsSection = {
+  _type: "statsSection";
+  eyebrow?: string;
+  heading?: string;
+  intro?: string;
+  stats?: Array<
+    {
+      _key: string;
+    } & VisualStatItem
+  >;
+};
+
+export type HeroSection = {
+  _type: "heroSection";
+  eyebrow?: string;
+  headline?: SplitHeading;
+  description?: string;
+  image?: {
+    asset?: SanityImageAssetReference;
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  };
+  alt?: string;
+  primaryCta?: LinkCta;
+  secondaryCta?: LinkCta;
+};
+
+export type VisualStatItem = {
+  _type: "visualStatItem";
+  value?: number;
+  suffix?: string;
+  label?: string;
+};
+
 export type HomePage = {
   _id: string;
   _type: "homePage";
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
+  version?: number;
   hero?: HomeHero;
   philosophy?: HomePhilosophy;
   expressions?: HomeExpressions;
@@ -245,18 +353,6 @@ export type HomeHero = {
   alt?: string;
   primaryCta?: LinkCta;
   secondaryCta?: LinkCta;
-};
-
-export type LinkCta = {
-  _type: "linkCta";
-  label?: string;
-  href?: string;
-};
-
-export type SplitHeading = {
-  _type: "splitHeading";
-  lead?: string;
-  accent?: string;
 };
 
 export type PartnerMark = {
@@ -417,6 +513,15 @@ export type AllSanitySchemaTypes =
   | Slug
   | AppealEntry
   | Story
+  | VisualPage
+  | VisualPageSeo
+  | CtaSection
+  | LinkCta
+  | SplitHeading
+  | ImageTextSection
+  | StatsSection
+  | HeroSection
+  | VisualStatItem
   | HomePage
   | HomeClosing
   | HomePartners
@@ -427,8 +532,6 @@ export type AllSanitySchemaTypes =
   | HomeExpressions
   | HomePhilosophy
   | HomeHero
-  | LinkCta
-  | SplitHeading
   | PartnerMark
   | StoryCard
   | ImpactStat
@@ -490,8 +593,9 @@ export type EVENTS_QUERY_RESULT = Array<{
 
 // Source: lib/sanity/home.query.ts
 // Variable: HOME_QUERY
-// Query: *[_type == "homePage"][0]{  hero{ eyebrow, heading{ lead, accent }, lede, image, alt, primaryCta{ label, href }, secondaryCta{ label, href } },  philosophy{ eyebrow, heading{ lead, accent }, body, pullquote },  expressions{ eyebrow, heading, intro, cards[]{ key, index, title, tagline, body, image, alt, cta{ label, href } } },  via{ eyebrow, heading{ lead, accent }, body, cta{ label, href }, image, alt },  impact{ eyebrow, heading, intro, stats[]{ key, value, suffix, label } },  stories{ eyebrow, heading{ lead, accent }, viewAll{ label, href }, feature{ title, blurb, image, alt, href }, cards[]{ title, blurb, image, alt, href } },  impactCta{ eyebrow, heading{ lead, accent }, cta{ label, href }, image, alt },  partners{ label, marks[]{ name, logo }, logoSlot{ label, href } },  closing{ eyebrow, heading{ lead, accent }, body, primaryCta{ label, href }, secondaryCta{ label, href } }}
+// Query: *[_type == "homePage"][0]{  version,  hero{ eyebrow, heading{ lead, accent }, lede, image, alt, primaryCta{ label, href }, secondaryCta{ label, href } },  philosophy{ eyebrow, heading{ lead, accent }, body, pullquote },  expressions{ eyebrow, heading, intro, cards[]{ key, index, title, tagline, body, image, alt, cta{ label, href } } },  via{ eyebrow, heading{ lead, accent }, body, cta{ label, href }, image, alt },  impact{ eyebrow, heading, intro, stats[]{ key, value, suffix, label } },  stories{ eyebrow, heading{ lead, accent }, viewAll{ label, href }, feature{ title, blurb, image, alt, href }, cards[]{ title, blurb, image, alt, href } },  impactCta{ eyebrow, heading{ lead, accent }, cta{ label, href }, image, alt },  partners{ label, marks[]{ name, logo }, logoSlot{ label, href } },  closing{ eyebrow, heading{ lead, accent }, body, primaryCta{ label, href }, secondaryCta{ label, href } }}
 export type HOME_QUERY_RESULT = {
+  version: number | null;
   hero: {
     eyebrow: string | null;
     heading: {
@@ -692,13 +796,144 @@ export type STORIES_QUERY_RESULT = Array<{
   placeholder: boolean | null;
 }>;
 
+// Source: lib/sanity/visual-page.query.ts
+// Variable: VISUAL_PAGE_QUERY
+// Query: *[_type == "visualPage" && slug.current == $slug && locale == $locale][0]{  _id,  _type,  title,  "slug": slug.current,  locale,  seo{ title, description },  sections[]{    _key,    _type,    eyebrow,    heading,    headline{ lead, accent },    description,    body,    intro,    alt,    image,    imagePosition,    theme,    primaryCta{ label, href },    secondaryCta{ label, href },    cta{ label, href },    stats[]{ _key, value, suffix, label }  }}
+export type VISUAL_PAGE_QUERY_RESULT = {
+  _id: string;
+  _type: "visualPage";
+  title: string | null;
+  slug: string | null;
+  locale: "en" | "es" | null;
+  seo: {
+    title: string | null;
+    description: string | null;
+  } | null;
+  sections: Array<
+    | {
+        _key: string;
+        _type: "ctaSection";
+        eyebrow: string | null;
+        heading: null;
+        headline: {
+          lead: string | null;
+          accent: string | null;
+        } | null;
+        description: null;
+        body: string | null;
+        intro: null;
+        alt: null;
+        image: null;
+        imagePosition: null;
+        theme: "dark" | "default" | null;
+        primaryCta: {
+          label: string | null;
+          href: string | null;
+        } | null;
+        secondaryCta: {
+          label: string | null;
+          href: string | null;
+        } | null;
+        cta: null;
+        stats: null;
+      }
+    | {
+        _key: string;
+        _type: "heroSection";
+        eyebrow: string | null;
+        heading: null;
+        headline: {
+          lead: string | null;
+          accent: string | null;
+        } | null;
+        description: string | null;
+        body: null;
+        intro: null;
+        alt: string | null;
+        image: {
+          asset?: SanityImageAssetReference;
+          media?: unknown;
+          hotspot?: SanityImageHotspot;
+          crop?: SanityImageCrop;
+          _type: "image";
+        } | null;
+        imagePosition: null;
+        theme: null;
+        primaryCta: {
+          label: string | null;
+          href: string | null;
+        } | null;
+        secondaryCta: {
+          label: string | null;
+          href: string | null;
+        } | null;
+        cta: null;
+        stats: null;
+      }
+    | {
+        _key: string;
+        _type: "imageTextSection";
+        eyebrow: string | null;
+        heading: null;
+        headline: {
+          lead: string | null;
+          accent: string | null;
+        } | null;
+        description: null;
+        body: string | null;
+        intro: null;
+        alt: string | null;
+        image: {
+          asset?: SanityImageAssetReference;
+          media?: unknown;
+          hotspot?: SanityImageHotspot;
+          crop?: SanityImageCrop;
+          _type: "image";
+        } | null;
+        imagePosition: "left" | "right" | null;
+        theme: null;
+        primaryCta: null;
+        secondaryCta: null;
+        cta: {
+          label: string | null;
+          href: string | null;
+        } | null;
+        stats: null;
+      }
+    | {
+        _key: string;
+        _type: "statsSection";
+        eyebrow: string | null;
+        heading: string | null;
+        headline: null;
+        description: null;
+        body: null;
+        intro: string | null;
+        alt: null;
+        image: null;
+        imagePosition: null;
+        theme: null;
+        primaryCta: null;
+        secondaryCta: null;
+        cta: null;
+        stats: Array<{
+          _key: string;
+          value: number | null;
+          suffix: string | null;
+          label: string | null;
+        }> | null;
+      }
+  > | null;
+} | null;
+
 // Query TypeMap
 import "@sanity/client";
 declare module "@sanity/client" {
   interface SanityQueries {
     '*[_type == "appealEntry"] | order(_createdAt asc){\n  slug,\n  title,\n  theme,\n  blurb,\n  body,\n  image,\n  alt,\n  relatedHref,\n  donationDesignation,\n  donorboxQuery{ amount, recurring, default_interval },\n  placeholder\n}': APPEALS_QUERY_RESULT;
     '*[_type == "eventItem"] | order(date asc, _createdAt asc){\n  slug,\n  title,\n  summary,\n  image,\n  alt,\n  dateLabel,\n  placeholder\n}': EVENTS_QUERY_RESULT;
-    '*[_type == "homePage"][0]{\n  hero{ eyebrow, heading{ lead, accent }, lede, image, alt, primaryCta{ label, href }, secondaryCta{ label, href } },\n  philosophy{ eyebrow, heading{ lead, accent }, body, pullquote },\n  expressions{ eyebrow, heading, intro, cards[]{ key, index, title, tagline, body, image, alt, cta{ label, href } } },\n  via{ eyebrow, heading{ lead, accent }, body, cta{ label, href }, image, alt },\n  impact{ eyebrow, heading, intro, stats[]{ key, value, suffix, label } },\n  stories{ eyebrow, heading{ lead, accent }, viewAll{ label, href }, feature{ title, blurb, image, alt, href }, cards[]{ title, blurb, image, alt, href } },\n  impactCta{ eyebrow, heading{ lead, accent }, cta{ label, href }, image, alt },\n  partners{ label, marks[]{ name, logo }, logoSlot{ label, href } },\n  closing{ eyebrow, heading{ lead, accent }, body, primaryCta{ label, href }, secondaryCta{ label, href } }\n}': HOME_QUERY_RESULT;
+    '*[_type == "homePage"][0]{\n  version,\n  hero{ eyebrow, heading{ lead, accent }, lede, image, alt, primaryCta{ label, href }, secondaryCta{ label, href } },\n  philosophy{ eyebrow, heading{ lead, accent }, body, pullquote },\n  expressions{ eyebrow, heading, intro, cards[]{ key, index, title, tagline, body, image, alt, cta{ label, href } } },\n  via{ eyebrow, heading{ lead, accent }, body, cta{ label, href }, image, alt },\n  impact{ eyebrow, heading, intro, stats[]{ key, value, suffix, label } },\n  stories{ eyebrow, heading{ lead, accent }, viewAll{ label, href }, feature{ title, blurb, image, alt, href }, cards[]{ title, blurb, image, alt, href } },\n  impactCta{ eyebrow, heading{ lead, accent }, cta{ label, href }, image, alt },\n  partners{ label, marks[]{ name, logo }, logoSlot{ label, href } },\n  closing{ eyebrow, heading{ lead, accent }, body, primaryCta{ label, href }, secondaryCta{ label, href } }\n}': HOME_QUERY_RESULT;
     '*[_type == "story"] | order(_createdAt asc){\n  slug,\n  title,\n  location,\n  excerpt,\n  body,\n  images[]{ ..., asset },\n  placeholder\n}': STORIES_QUERY_RESULT;
+    '*[_type == "visualPage" && slug.current == $slug && locale == $locale][0]{\n  _id,\n  _type,\n  title,\n  "slug": slug.current,\n  locale,\n  seo{ title, description },\n  sections[]{\n    _key,\n    _type,\n    eyebrow,\n    heading,\n    headline{ lead, accent },\n    description,\n    body,\n    intro,\n    alt,\n    image,\n    imagePosition,\n    theme,\n    primaryCta{ label, href },\n    secondaryCta{ label, href },\n    cta{ label, href },\n    stats[]{ _key, value, suffix, label }\n  }\n}': VISUAL_PAGE_QUERY_RESULT;
   }
 }

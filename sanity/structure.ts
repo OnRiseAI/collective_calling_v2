@@ -8,7 +8,7 @@ import type { StructureResolver } from 'sanity/structure'
 //
 // No em dashes anywhere in this file.
 const SINGLETON_TYPES = new Set(['homePage'])
-const COLLECTION_TYPES = ['story', 'appealEntry', 'eventItem'] as const
+const COLLECTION_TYPES = ['story', 'appealEntry', 'eventItem', 'visualPage'] as const
 
 export const structure: StructureResolver = (S) =>
   S.list()
@@ -24,6 +24,8 @@ export const structure: StructureResolver = (S) =>
       S.documentTypeListItem('story').title('Stories'),
       S.documentTypeListItem('appealEntry').title('Appeals'),
       S.documentTypeListItem('eventItem').title('Events'),
+      S.divider(),
+      S.documentTypeListItem('visualPage').title('Visual pages'),
       S.divider(),
       ...S.documentTypeListItems().filter(
         (item) => {

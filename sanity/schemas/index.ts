@@ -19,6 +19,15 @@ import {
 import { story } from './documents/story'
 import { appealEntry } from './documents/appealEntry'
 import { eventItem } from './documents/eventItem'
+import {
+  visualPageSeo,
+  visualStatItem,
+  heroSection,
+  statsSection,
+  imageTextSection,
+  ctaSection,
+} from './objects/visualSections'
+import { visualPage } from './documents/visualPage'
 
 /**
  * All schema types registered with the Studio. Consumed by sanity.config.ts.
@@ -42,6 +51,13 @@ export const schemaTypes = [
   homePartners,
   homeClosing,
   homePage,
+  visualPageSeo,
+  visualStatItem,
+  heroSection,
+  statsSection,
+  imageTextSection,
+  ctaSection,
+  visualPage,
   story,
   appealEntry,
   eventItem,
